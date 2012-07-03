@@ -1,0 +1,121 @@
+% Copyright © 2012 Edward O'Callaghan. All Rights Reserved.
+
+\RequirePackage[l2tabu, orthodox]{nag}
+
+\documentclass[10pt, oneside, reqno]{amsart}
+\usepackage{geometry, setspace, graphicx, enumerate, amssymb}
+%\usepackage{dcpic,pictex}
+\usepackage{pgf}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+%\usepackage{bbm} % /mathbbm{1}
+\usepackage{microtype}
+\onehalfspacing                 
+
+%\usepackage[ruled,section]{algorithm}
+%\usepackage{algpseudocode}
+
+
+% AMS Theorems
+\theoremstyle{plain}% default 
+\newtheorem{thm}{Theorem}[section] 
+\newtheorem{prob}[thm]{Problem}
+\newtheorem{question}[thm]{Question}
+
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem*{cor}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{exmp}[thm]{Example}
+
+\theoremstyle{remark} 
+\newtheorem*{rem}{Remark} 
+\newtheorem*{note}{Note} 
+\newtheorem{case}{Case} 
+
+\newcommand{\expc}[1]{\mathbb{E}\left[#1\right]}
+
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\Ga}{\mathbb{G}}
+
+\newcommand{\Cat}{\mathcal{K}}
+
+\newcommand{\nth}{n\textsuperscript{th}}
+\newcommand{\bigo}[1]{\mathcal{O}(#1)}
+
+% \setlength{\topmargin}{0.2cm}
+% \setlength{\footskip}{0.2cm}
+% \setlength{\hoffset}{-1cm}
+% \setlength{\voffset}{-2cm}
+
+        
+\usepackage{hyperref}
+        
+\title{Category Theory}                               % Document Title
+\author{Edward O'Callaghan}
+%\date{}                                           % Activate to display a given date or no date
+
+
+
+\begin{document}
+\maketitle \tableofcontents \clearpage
+
+
+\section{Introduction} % (fold)
+\label{sec:introduction}
+We begin by defining what we mean by a `Category'.
+\begin{defn}[Category]
+	A $\emph{category}$ $\Cat$ consists of the following three mathematical entities:
+	\begin{enumerate}
+		\item A $\emph{class}$ $\text{Ob}(\Cat)$ of objects
+		
+		\item A class $\text{Hom}(A,B)$ of $\emph{morphisms}$, from $A \longrightarrow B$ such that $A, B \in \text{Ob}(\Cat)$.
+		\\
+		e.g. $f : A \to B$ to mean $f \in \text{Hom}(A,B)$.
+		\begin{rem}
+		 The class of \emph{all} morphisms of $\Cat$ is denoted $\text{Hom}(\Cat)$.
+		\end{rem}
+
+		\item Given $A, B, C \in \text{Ob}(\Cat)$, a binary operation $\circ : Hom(B,C) \times Hom(A,B) \to Hom(A,C)$ called \emph{composition},
+		satisfying:
+		\begin{enumerate}
+			\item \emph{(associativity)} Given $f : A \to B$, $g : B \to C$ and $h : C \to D$
+			\\
+			we have $h \circ (g \circ f) = (h \circ g) \circ f$.
+			\\
+			\begin{tikzcd}[row sep=tiny]
+			& B \arrow{dd}{g} \\
+			A \arrow{ur}{f} \arrow{dr}{h} & \\
+			& C
+			\end{tikzcd}
+			
+			\item \emph{(identity)} For any object X there is an identity morphism $1_{X} : X \to X$ such that for any $f : A \to B$ we have $1_{B} \circ f = f = f \circ 1_{A}$.
+			\\
+			\begin{tikzcd}
+			X \arrow[in=30, out=60, loop]{}[name=idX]{1_{X}}
+			\end{tikzcd}
+		\end{enumerate}
+	\end{enumerate}
+\end{defn}
+
+It is also worth noting about what we mean by `small' and `large' categories.
+
+\begin{defn}[Small Category]
+	A category $\Cat$ is called small if both $\text{Ob}(\Cat)$ and $\text{Hom}(\Cat)$ are sets.
+	If $\Cat$ is not small, then it is called large.
+	$\Cat$ is called locally small if $\text{Hom}(A,B)$ is a set for all $A, B \in \text{Ob}(\Cat)$.
+\end{defn}
+
+\begin{rem}
+	Most important categories in mathematics are not small however, are locally small.
+\end{rem}
+
+
+\end{document}% End of document.
