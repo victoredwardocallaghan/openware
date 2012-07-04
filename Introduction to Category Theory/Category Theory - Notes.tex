@@ -95,7 +95,7 @@ We begin by defining what we mean by a `Category'.
 		\item Given $A, B, C \in \text{Ob}(\Cat)$, a binary operation $\circ : Hom(B,C) \times Hom(A,B) \to Hom(A,C)$ called \emph{composition},
 		satisfying:
 		\begin{enumerate}
-			\item \emph{(associativity)} Given $f : A \to B$, $g : B \to C$ and $h : C \to D$
+			\item \emph{(closed associativity)} Given $f : A \to B$, $g : B \to C$ and $h : C \to D$
 			\\
 			we have $h \circ (g \circ f) = (h \circ g) \circ f$.
 			\\
@@ -125,6 +125,17 @@ It is also worth noting about what we mean by `small' and `large' categories.
 \begin{rem}
 	Most important categories in mathematics are not small however, are locally small.
 \end{rem}
+
+Most basic categories have as objects certain mathematical structures, and the structure-preserving
+functions as morphisms. A common list is given;
+\begin{itemize}
+ \item $\emph{Top}$ is the category of topological spaces and continous functions.
+ \item $\emph{Grp}$ is the category of groups and group homomorphisms.
+ \item $\emph{Rng}$ is the category of rings and ring homomorphisms.
+ \item $\emph{Grph}$ is the category of graphs and graph homomorphisms.
+ \item $\emph{Pos}$ is the category of partially ordered sets and monotonic functions.
+\end{itemize}
+
 
 \section{Functors} % (fold)
 \label{sec:functors}
@@ -179,6 +190,12 @@ Many important constructions in mathematics can be studied in this context.
 \begin{defn}[Monoid]
  A category with exactly one object is called a $\emph{monoid}$.
 \end{defn}
+
+and so, expanding out the definition of a category we have;
+\begin{cor}[Monoid]
+ A $\emph{monoid}$ is a set $X$ together with a law of composition $\circ$
+ which associates and has identity $e \in X$.
+\end{cor}
 
 
 \end{document}% End of document.
