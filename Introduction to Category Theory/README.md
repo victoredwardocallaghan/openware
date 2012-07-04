@@ -21,6 +21,7 @@ Table of content:
  Lectures  -
 		   ** Categories
 		   ** Functors
+		   ** Monoids
 		   ** Natural transformations
 		   ** Special constructions
 		   ** Case study
