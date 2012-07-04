@@ -129,11 +129,11 @@ It is also worth noting about what we mean by `small' and `large' categories.
 Most basic categories have as objects certain mathematical structures, and the structure-preserving
 functions as morphisms. A common list is given;
 \begin{itemize}
- \item $\emph{Top}$ is the category of topological spaces and continous functions.
- \item $\emph{Grp}$ is the category of groups and group homomorphisms.
- \item $\emph{Rng}$ is the category of rings and ring homomorphisms.
- \item $\emph{Grph}$ is the category of graphs and graph homomorphisms.
- \item $\emph{Pos}$ is the category of partially ordered sets and monotonic functions.
+\item $\emph{Top}$ is the category of topological spaces and continous functions.
+\item $\emph{Grp}$ is the category of groups and group homomorphisms.
+\item $\emph{Rng}$ is the category of rings and ring homomorphisms.
+\item $\emph{Grph}$ is the category of graphs and graph homomorphisms.
+\item $\emph{Pos}$ is the category of partially ordered sets and monotonic functions.
 \end{itemize}
 
 
@@ -163,6 +163,19 @@ we are studying the relationships between various classes of mathematical struct
 	\end{enumerate}
 \end{defn}
 
+\begin{prop}[Properties of functors]
+A functor $F : \mathcal{A} \to \mathcal{B}$ is
+\begin{enumerate}
+	\item $\emph{faithful}$ if for every parallel pair of morphisms $f,g : A \rightrightarrows A' in \mathcal{A}$, one has $f = g$ whenever $F(f) = F(g)$
+	\item $\emph{full}$ if for every morphism $b: F(A) \to F(A') in \mathcal{B}$, there exists a morphism $a: A \to A^{'} \in \mathcal{A}$ such that $F(a) = b$
+	\item essentially $\emph{surjective}$ if for every object $B in \mathcal{B}$, there exists an object $A in \mathcal{A}$ with $B$ isomorphic to $F A$
+	\item an $\emph{equivalence}$ if there exists a functor $F' : \mathcal{B} \to \mathcal{A}$ such that both $F \circ F'$ and $F' \circ F$ are naturally
+		isomorphic to the identity functors; such a functor $F'$ is called a $\emph{quasi-inverse}$ of $F$
+	\item an $\emph{isomorhpism}$ if there exists a functor $F' : \mathcal{B} \to \mathcal{A}$ such that both $F \circ F'$ and $F' \circ F$ are equal to the identity functors
+	\item $\emph{conserative}$ if it reflects isomorphisms; that is, $a: A \to A'$ is an isomorphism whenever $F(a): F(A) \to F(A')$ is
+\end{enumerate}
+\end{prop}
+
 \section{Natural Transformations} % (fold)
 \label{sec:natural transformations}
 In category theory, a branch of mathematics, a natural transformation provides a way of transforming one functor into another
@@ -188,13 +201,13 @@ Many important constructions in mathematics can be studied in this context.
 \label{sec:monoids}
 
 \begin{defn}[Monoid]
- A category with exactly one object is called a $\emph{monoid}$.
+A category with exactly one object is called a $\emph{monoid}$.
 \end{defn}
 
 and so, expanding out the definition of a category we have;
 \begin{cor}[Monoid]
- A $\emph{monoid}$ is a set $X$ together with a law of composition $\circ$
- which associates and has identity $e \in X$.
+A $\emph{monoid}$ is a set $X$ together with a law of composition $\circ$
+which associates and has identity $e \in X$.
 \end{cor}
 
 
