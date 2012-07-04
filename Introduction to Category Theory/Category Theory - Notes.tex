@@ -136,6 +136,34 @@ functions as morphisms. A common list is given;
 \item $\emph{Pos}$ is the category of partially ordered sets and monotonic functions.
 \end{itemize}
 
+\begin{prop}[Properties of morphisms]
+Morphisms can have any of the following properties. A morphism $f: a \to b$ is a:
+\begin{itemize}
+\item $\emph{monomorphism}$ if $f \circ g = f \circ h \implies g = h$ for all morphisms $g,h: x \to a$.
+\item $\emph{epimorphism}$ if $g \circ f = h \circ f \implies g = h$ for all morphisms $g,h: b \to x$.
+\item $\emph{bimorphism}$ if $f$ is both a monomorphism and epimorphism.
+\item $\emph{isomorphism}$ if there exists a morphism $g: b \to a : f \circ g = 1_{b}$
+ and $g \circ f = 1_{a}$.
+\item $\emph{endomorphism}$ if $a = b$.
+The class of endomorphisms of a is denoted by $end(a)$.
+\item $\emph{automorphism}$ if $f$ is both an endomorphism and an isomorphism.
+The class of automorphisms of a is denoted by $aut(a)$.
+\item $\emph{retraction}$ if a right inverse of $f$ exists,
+ i.e. if there exists a morphism $g: b \to a$ with $f \circ g = 1_{b}$.
+\item $\emph{section}$ if a left inverse of f exists,
+ i.e. if there exists a morphism $g: b \to a$ with $g \circ f = 1_{a}$.
+\end{itemize}
+\end{prop}
+
+\begin{rem}[Retractions and Sections]
+Every retraction is an epimorphism and every section is a monomorphism.
+We have the following three equivalent statements:
+\begin{itemize}
+\item f is a monomorphism and a retraction;
+\item f is an epimorphism and a section;
+\item f is an isomorphism.
+\end{itemize}
+\end{rem}
 
 \section{Functors} % (fold)
 \label{sec:functors}
