@@ -55,9 +55,9 @@
 % \setlength{\hoffset}{-1cm}
 % \setlength{\voffset}{-2cm}
 
-        
+	
 \usepackage{hyperref}
-        
+	
 \title{Category Theory}                               % Document Title
 \author{Edward O'Callaghan}
 %\date{}                                           % Activate to display a given date or no date
@@ -67,9 +67,13 @@
 \begin{document}
 \maketitle \tableofcontents \clearpage
 
-
 \section{Introduction} % (fold)
 \label{sec:introduction}
+TODO - ..
+
+
+\section{Categories} % (fold)
+\label{sec:categories}
 We begin by defining what we mean by a `Category'.
 \begin{defn}[Category]
 	A $\emph{category}$ $\Cat$ consists of the following three mathematical entities:
@@ -80,7 +84,7 @@ We begin by defining what we mean by a `Category'.
 		\\
 		e.g. $f : A \to B$ to mean $f \in \text{Hom}(A,B)$.
 		\begin{rem}
-		 The class of \emph{all} morphisms of $\Cat$ is denoted $\text{Hom}(\Cat)$.
+		The class of \emph{all} morphisms of $\Cat$ is denoted $\text{Hom}(\Cat)$.
 		\end{rem}
 
 		\item Given $A, B, C \in \text{Ob}(\Cat)$, a binary operation $\circ : Hom(B,C) \times Hom(A,B) \to Hom(A,C)$ called \emph{composition},
@@ -117,5 +121,51 @@ It is also worth noting about what we mean by `small' and `large' categories.
 	Most important categories in mathematics are not small however, are locally small.
 \end{rem}
 
+\section{Functors} % (fold)
+\label{sec:functors}
+A category is itself a type of mathematical structure, so we can look for "processes" which preserve this structure in some sense; such a process is called a functor.
+A functor associates to every object of one category an object of another category, and to every morphism in the first category a morphism in the second.
+In fact, what we have done is define a category of categories and functors – the objects are categories, and the morphisms (between categories) are functors.
+By studying categories and functors, we are not just studying a class of mathematical structures and the morphisms between them;
+we are studying the relationships between various classes of mathematical structures.
+
+\begin{defn}[Functor]
+	Let $\mathcal{C}$ and $\mathcal{K}$ be categories. A $\emph{functor}$ $F$ from $\mathcal{C}$ to $\mathcal{K}$ is a mapping that:
+	\begin{enumerate}
+		\item associates to each object $X \in \mathcal{C}$ an object $F(X) \in  \mathcal{K}$
+		
+		\item associates to each morphism $f : X \to Y \in \mathcal{C}$ a morphism $F(f) : F(X) \to F(Y) \in \mathcal{K}$
+		satisfying:
+		\begin{enumerate}
+			\item $F(id_{X}) = id_{F(X)}$ for every object $X \in \mathcal{C}$
+			
+			\item $F(g \circ f) = F(g) \circ F(f)$ for all morphisms $f : X \to Y$ and $g : Y \to Z$
+			\begin{rem}
+				That is, functors must preserve identity morphisms and composition of morphisms.
+			\end{rem}
+		\end{enumerate}
+	\end{enumerate}
+\end{defn}
+
+\section{Natural Transformations} % (fold)
+\label{sec:natural transformations}
+In category theory, a branch of mathematics, a natural transformation provides a way of transforming one functor into another
+while respecting the internal structure (i.e. the composition of morphisms) of the categories involved.
+Hence, a natural transformation can be considered to be a ``morphism of functors''.
+Indeed this intuition can be formalized to define so-called functor categories.
+Natural transformations are, after categories and functors, one of the most basic notions of category theory and consequently
+appear in the majority of its applications.
+
+\begin{defn}[Natural Transformation]
+	Let $F$ and $G$ be functors between the categories $\mathcal{C}$ and $\mathcal{K}$, then a $\emph{natural transformation}$ $\eta : F \to G$
+	associates to every object $X \in \mathcal{C}$ a morphism $\eta_{X} : F(X) \to G(X)$ between objects of $\mathcal{K}$, called the $\emph{component}$
+	of $\eta$ at $X$, such that for every morphism $f : X \to Y \in \mathcal{C}$ we have:
+	\\
+	$\eta_{Y} \circ F(f) = G(g) \circ \eta_{X}$
+\end{defn}
+Constructions are often "naturally related" – a vague notion, at first sight.
+This leads to the clarifying concept of natural transformation, a way to "map" one functor to another.
+Many important constructions in mathematics can be studied in this context.
+"Naturality" is a principle, like general covariance in physics, that cuts deeper than is initially apparent.
 
 \end{document}% End of document.
