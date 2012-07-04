@@ -18,11 +18,16 @@ Table of content:
 =================
 
  * Introduction to Category Theory.
- Lectures  -
-		   ** Categories
-		   ** Functors
-		   ** Monoids
-		   ** Natural transformations
-		   ** Special constructions
-		   ** Case study
- Exercises -
+
+ Lectures
+ ^^^^^^^^
+ + Prelude
+ + Categories
+ + Morphisms
+ + Functors
+ + Monoids
+ + Natural transformations
+ + Special constructions
+
+ Exercises
+ ^^^^^^^^^
