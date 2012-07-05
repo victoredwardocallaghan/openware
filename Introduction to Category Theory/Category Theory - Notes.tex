@@ -70,8 +70,7 @@
 
 \section{Prelude} % (fold)
 \label{sec:purelude}
-First a word on how to study category theory.
-Category theory is extremely heavy on new terminology at first sight.
+First a word on how to study category theory. Category theory is extremely heavy on new terminology at first sight.
 It is typically misconceived as abstractly and arbitrarily renaming things to no real gain and a generally poorly understood
 topic in ungrad mathematics. To get over the initial shock of the many perhaps new terms and to consolidate simple concepts
 and hence sometimes hard to remember due to their intrinsic simplicity. One should consider taking the time to highlight these
@@ -101,6 +100,55 @@ that occur naturally in various areas of mathematics, with only slight changes f
 It is convenient to take advantage of this observation. Category theory can be described as that branch of mathematics
 in which one studies certain definitions in a broader context - without reference to the particular area to which
 the definition might be applied.
+
+
+\section{Morphisms} % (fold)
+\label{sec:morphisms}
+Morphisms can have any of the following properties.
+
+\begin{defn}[Monomorphism]
+ A morphism $f: X \to Y$ is a $\emph{monomorphism}$ if $f \circ g = f \circ h \implies g = h$ for all morphisms $g,h: X \to Y$.
+\end{defn}
+
+\begin{defn}[Epimorphism]
+ A morphism $f: X \to Y$ is a $\emph{epimorphism}$ if $g \circ f = h \circ f \implies g = h$ for all morphisms $g,h: Y \to X$.
+\end{defn}
+ 
+\begin{defn}[Bimorphism]
+ A morphism $f: X \to Y$ is a $\emph{bimorphism}$ if $f$ is both a monomorphism and epimorphism.
+\end{defn}
+
+\begin{defn}[Isomorphism]
+ A morphism $f: X \to Y$ is a $\emph{isomorphism}$ if there exists a morphism $g: Y \to X : f \circ g = \id{Y}$ and $g \circ f = \id{X}$.
+\end{defn}
+
+\begin{defn}[Endomorphism]
+ A morphism $f: X \to Y$ is a $\emph{endomorphism}$ if $X = Y$.
+ The class of endomorphisms of a is denoted by $end(a)$.
+\end{defn}
+
+\begin{defn}[Automorphism]
+ A morphism $f: X \to Y$ is a $\emph{automorphism}$ if $f$ is both an endomorphism and an isomorphism.
+ The class of automorphisms of a is denoted by $aut(a)$.
+\end{defn}
+
+\begin{defn}[Retraction]
+ A morphism $f: X \to Y$ has a $\emph{retraction}$ if there exists a morphism $g: Y \to X$ with $f \circ g = \id{Y}$ - ``if a right inverse of $f$ exists''.
+\end{defn}
+
+\begin{defn}[Section]
+ A morphism $f: X \to Y$ has a $\emph{section}$ if there exists a morphism $g: Y \to X$ with $g \circ f = \id{X}$ - ``if a left inverse of $f$ exists''.
+\end{defn}
+
+\begin{lem}[Retractions and Sections]
+Every retraction is an epimorphism and every section is a monomorphism.
+We have the following three equivalent statements:
+\begin{itemize}
+\item $f$ is a monomorphism and a retraction;
+\item $f$ is an epimorphism and a section;
+\item $f$ is an isomorphism.
+\end{itemize}
+\end{lem}
 
 
 \section{Categories} % (fold)
@@ -162,43 +210,15 @@ functions as morphisms. A common list is given;
 \item $\emph{Pos}$ is the category of partially ordered sets and monotonic functions.
 \end{itemize}
 
-\begin{prop}[Properties of morphisms]
-Morphisms can have any of the following properties. A morphism $f: X \to Y$ is a:
-\begin{itemize}
-\item $\emph{monomorphism}$ if $f \circ g = f \circ h \implies g = h$ for all morphisms $g,h: X \to Y$.
-\item $\emph{epimorphism}$ if $g \circ f = h \circ f \implies g = h$ for all morphisms $g,h: Y \to X$.
-\item $\emph{bimorphism}$ if $f$ is both a monomorphism and epimorphism.
-\item $\emph{isomorphism}$ if there exists a morphism $g: Y \to X : f \circ g = \id{Y}$
- and $g \circ f = \id{X}$.
-\item $\emph{endomorphism}$ if $X = Y$.
-The class of endomorphisms of a is denoted by $end(a)$.
-\item $\emph{automorphism}$ if $f$ is both an endomorphism and an isomorphism.
-The class of automorphisms of a is denoted by $aut(a)$.
-\item $\emph{retraction}$ if a right inverse of $f$ exists,
- i.e. if there exists a morphism $g: Y \to X$ with $f \circ g = \id{Y}$.
-\item $\emph{section}$ if a left inverse of f exists,
- i.e. if there exists a morphism $g: Y \to X$ with $g \circ f = \id{X}$.
-\end{itemize}
-\end{prop}
-
-\begin{rem}[Retractions and Sections]
-Every retraction is an epimorphism and every section is a monomorphism.
-We have the following three equivalent statements:
-\begin{itemize}
-\item $f$ is a monomorphism and a retraction;
-\item $f$ is an epimorphism and a section;
-\item $f$ is an isomorphism.
-\end{itemize}
-\end{rem}
-
 
 \section{Functors} % (fold)
 \label{sec:functors}
-A category is itself a type of mathematical structure, so we can look for "processes" which preserve this structure in some sense; such a process is called a functor.
+A category is itself a type of mathematical structure and so, one can generise the notion of a morphism which preserve this structure by the notion of a
+functor.
 A functor associates to every object of one category an object of another category, and to every morphism in the first category a morphism in the second.
 Hence, Functors are structure-preserving maps between categories and can be thought of as morphisms in the category of all (small) categories.
 
-In particular, what we have done is define a category of categories and functors – the objects are categories, and the morphisms (between categories) are functors.
+In particular, what we have done is define a category of categories and functors - the objects are categories, and the morphisms (between categories) are functors.
 By studying categories and functors, we are not just studying a class of mathematical structures and the morphisms between them;
 we are studying the relationships between various classes of mathematical structures.
 
@@ -240,13 +260,13 @@ that of the $\emph{contravariant}$- and $\emph{covariant}$- functors, defined as
 
 \begin{defn}[Contravariant Functor]
  A $\emph{contravariant}$ functor $F: \mathcal{C} \to \mathcal{K}$, is a `reversed' covariant functor.
- In particular, for every morphism $f: X \to Y \in \mathcal{C}$ must be assigned to a morphism $F(f) : F(Y) \to F(X) \in \mathcal{D}$.
+ In particular, for every morphism $f: X \to Y \in \mathcal{C}$ must be assigned to a morphism $F(f) : F(Y) \to F(X) \in \mathcal{K}$.
  Alternatively, contravariant functors acts as covariant functor from the opposite category $\mathcal{C}^{op} \to \mathcal{K}$.
 \end{defn}
 
-In particular, functors have particular properties, essentially the same as morphisms do.
+Functors have particular properties that essentially are the same as morphisms.
 This may seem obvious, since functors are a generalisation of the notion of a morphism.
-The following definitions should mostly be obvious if you reflect back to the corresponding morphism
+So, the following definitions should mostly be obvious if you reflect back to the corresponding morphism
 definitions above or just break the word down grammatically.
 
 \begin{defn}[Endofunctor]
@@ -315,5 +335,9 @@ This leads to the clarifying concept of natural transformation, a way to "map" o
 Many important constructions in mathematics can be studied in this context.
 "Naturality" is a principle, like general covariance in physics, that cuts deeper than is initially apparent.
 
+
+\section{Special constructions} % (fold)
+\label{sec:special constructions}
+..TODO
 
 \end{document}% End of document.
