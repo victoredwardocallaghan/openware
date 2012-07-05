@@ -46,7 +46,16 @@
 \newcommand{\Ga}{\mathbb{G}}
 
 \newcommand{\Cat}{\mathcal{K}}
-\newcommand{\id}{\mbox{id}_}
+\newcommand{\id}{\mathit{id}_}
+
+%\usepackage{arrayjobx}
+%\newarray{monoidelements}
+\newcommand{\monoid}[1]{
+  \begin{tikzcd}[->,font=\normalsize,>=angle 90,ampersand replacement=\&]
+  #1(1) \arrow{d}{#1(6)} \arrow[<->]{rr}{\alpha}\& \& #1(2) \arrow{d}{#1(7)}\\
+  #1(3) \arrow{dr}{#1(8)} \& \& #1(4)\arrow{dl}{#1(9)}\\
+   \& #1(5) \&
+  \end{tikzcd}}
 
 \newcommand{\nth}{n\textsuperscript{th}}
 \newcommand{\bigo}[1]{\mathcal{O}(#1)}
@@ -171,17 +180,11 @@ We begin by defining what we mean by a category:
 			\\
 			we have $\phi \circ (\psi \circ \varphi) = (\phi \circ \psi) \circ \varphi$.
 			\\
-%			\begin{tikzcd}[row sep=tiny]
-%			& B \arrow{dd}{g} \\
-%			A \arrow{ur}{f} \arrow{dr}{h} & \\
-%			& C
-%			\end{tikzcd}
-\begin{tikzcd}
- A \drar{\phi} \rar{\varphi}
- & B \dar{\psi} \\
- & C
-\end{tikzcd}
-
+			\begin{tikzcd}
+			A \drar{\phi} \rar{\varphi}
+			& B \dar{\psi} \\
+			& C
+			\end{tikzcd}
 			
 			\item \emph{(identity)} For any object X there is an identity morphism $\id{X} : X \to X$ such that for any $\varphi: A \to B$ we have $\id{B} \circ \varphi = \varphi = \varphi \circ \id{A}$.
 			\\
@@ -318,6 +321,10 @@ Thus, expanding out the definition of a category we have;
  which associates and has identity $e \in X$.
 \end{cor}
 
+%\readarray{monoidelements}{(A\otimes A)\otimes A\otimes A&A\otimes (A\otimes A)
+%  &A\otimes A&A\otimes A&A&\mu\otimes Id&Id\otimes\mu&\mu&\mu\otimes Id}
+%\monoid{\monoidelements}
+
 
 \section{Natural Transformations} % (fold)
 \label{sec:natural transformations}
@@ -329,11 +336,20 @@ Natural transformations are, after categories and functors, one of the most basi
 appear in the majority of its applications.
 
 \begin{defn}[Natural Transformation]
- Let $F$ and $G$ be functors between the categories $\mathcal{C}$ and $\mathcal{K}$, then a $\emph{natural transformation}$ $\eta : F \to G$
- associates to every object $X \in \mathcal{C}$ a morphism $\eta_{X} : F(X) \to G(X)$ between objects of $\mathcal{K}$, called the $\emph{component}$
- of $\eta$ at $X$, such that for every morphism $\varphi: X \to Y \in \mathcal{C}$ we have:
+ Let $F$ and $G$ be functors both from the category $\mathcal{C}$ to $\mathcal{K}$.
+ Then a $\emph{natural transformation}$ $\eta : F \to G$ associates to every object
+ $X \in \mathcal{C}$ a morphism $\eta_{X} : F(X) \to G(X) \in \mathcal{K}$, called the $\emph{component}$
+ of $\eta$ at $X$. The component morphism $\eta_{X}$ is subject to the condition that the diagram
+ commutes for every morphism $\varphi: X \to Y \in \mathcal{C}$; that is,
+ $\eta_{Y} \circ F(\varphi) = G(\varphi) \circ \eta_{X}$.
  \\
- $\eta_{Y} \circ F(\varphi) = G(g) \circ \eta_{X}$
+ We draw the commutative diagram in the category $\mathcal{K}$:
+ \begin{tikzcd}
+ F(X) \rar{\eta_{X}} \dar[][color=red]{F(\varphi)}
+  & G(X) \dar[][color=red]{G(\varphi)} \\
+ F(Y) \rar{\eta_{Y}}
+  & G(Y)
+ \end{tikzcd}
 \end{defn}
 Constructions are often "naturally related" - a vague notion, at first sight.
 This leads to the clarifying concept of natural transformation, a way to "map" one functor to another.
@@ -341,27 +357,52 @@ Many important constructions in mathematics can be studied in this context.
 "Naturality" is a principle, like general covariance in physics, that cuts deeper than is initially apparent.
 
 
-\section{Special constructions} % (fold)
-\label{sec:special constructions}
-Recall that a natural transformation $\varphi: F \to G$ between two functors $F,G : \mathcal{C} \to \mathcal{K}$
-is a total function $\varphi$ that maps $\text{Ob}(\mathcal{C}) \to \text{Hom}(\mathcal{K})$, with
-$\varphi_{X}: F(X) \to G(X) \, \forall X \in \text{Ob}(\mathcal{C})$ such that the diagram commutes for each $\phi: X \to Y$.
+\section{Universal constructions} % (fold)
+\label{sec:universalconstructions}
+Categorial objects are both abstract and have atomic type.
+Thus we are face with the issue of defining objects without referring to the internal structure.
+Thus we characterise these objects in terms of their relations to other objects, as given by the morphisms 
+of the respective categories. Therefore we must find universal properties that uniquely determine the objects of interest.
+Indeed, it turns out that numerous important constructions can be described purely in this way.
+The central concept which is needed for this purpose is called categorical limit, and can be dualized to yield the notion of a colimit.
 
+Suppose that $U: \mathcal{K} \to \mathcal{C}$ is a functor from a category $\mathcal{K}$ to a category $\mathcal{C}$,
+and let $X \in \text{Ob}(\mathcal{C})$. Consider the following dual (opposite) notions:
+\begin{defn}[Initial morphism]
+ An $\emph{initial morphism}$ from $X \to U$ is an initial object in the category
+ $(X \downarrow U)$ of morphisms from $X \to U$. In other words, it consists
+ of a pair $(A, \varphi)$ where $A \in \text{Ob}(\mathcal{K})$ and $\varphi: X \to U(A) \in \text{Hom}(\mathcal{C})$,
+ such that the following initial property is satisfied:
+ \\
+ Whenever $Y \in \text{Ob}(\mathcal{K})$ and $f: X \to U(Y) \in \text{Hom}(\mathcal{C})$, then there exists a unique morphism
+ $g: A \to Y$ such that the following diagram commutes:
 \begin{tikzcd}
- F(X) \rar{\varphi_{X}} \dar[][color=red]{F(\phi)}
-  & G(X) \dar[][color=red]{G(\phi)} \\
- F(Y) \rar{\varphi_{Y}}
-  & G(Y)
+ X \drar[swap]{f} \rar{\phi} & U(A)
+ \dar[dashed]{U(g)} \\ & U(Y)
 \end{tikzcd}
+\end{defn}
 
-\begin{exmp}
-Common examples in programs include:
-\begin{itemize}
- \item rev : List $\to$ List  =  reversing a list
- \item fla : Tree $\to$ List  =  flattening a tree
- \item len : List $\to$ Int   =  length of a list
-\end{itemize}
-\end{exmp}
+\begin{defn}[Terminal morphism]
+ A $\emph{terminal morphism}$ from $U \to X$ is a terminal object in the $\emph{comma category (i.e., morphisms become objects)}$
+ $(U \downarrow X)$ of morphisms from $U \to X$. In other words, it consists of a pair $(A, \varphi)$
+ where $A \in \text{Ob}(\mathcal{K})$ and $\varphi: U(A) \to X \in \text{Hom}(\mathcal{C})$,
+ such that the following terminal property is satisfied:
+ \\
+ Whenever $Y \in \text{Ob}(\mathcal{K})$ and $f: U(Y) \to X \in \text{Hom}(\mathcal{C})$, then there exists a unique morphism
+ $g: Y \to A$ such that the following diagram commutes:
+\begin{tikzcd}
+ U(Y) \dar[dashed,swap]{U(g)} \drar{f} \\
+ U(A) \rar[swap]{\phi} & X
+\end{tikzcd} 
+\end{defn}
 
+
+\subsection{Limit} % (fold)
+\label{subsec:limit}
+TODO..
+
+\subsection{Colimit} % (fold)
+\label{subsec:colimit}
+TODO..
 
 \end{document}% End of document.

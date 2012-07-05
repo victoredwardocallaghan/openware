@@ -26,6 +26,6 @@ Table of content:
   + Functors
   + Monoids
   + Natural transformations
-  + Special constructions
+  + Universal constructions
 
  # Exercises
