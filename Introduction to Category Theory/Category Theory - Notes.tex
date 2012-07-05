@@ -105,46 +105,46 @@ the definition might be applied.
 Morphisms can have any of the following properties.
 
 \begin{defn}[Monomorphism]
- A morphism $f: X \to Y$ is a $\emph{monomorphism}$ if $f \circ g = f \circ h \implies g = h$ for all morphisms $g,h: X \to Y$.
+ A morphism $\varphi: X \to Y$ is a $\emph{monomorphism}$ if $\varphi \circ \psi = \varphi \circ \phi \implies \psi = \phi$ for all morphisms $\psi,\phi: X \to Y$.
 \end{defn}
 
 \begin{defn}[Epimorphism]
- A morphism $f: X \to Y$ is a $\emph{epimorphism}$ if $g \circ f = h \circ f \implies g = h$ for all morphisms $g,h: Y \to X$.
+ A morphism $\varphi: X \to Y$ is a $\emph{epimorphism}$ if $\psi \circ \varphi = \phi \circ \varphi \implies \psi = \phi$ for all morphisms $\psi,\phi: Y \to X$.
 \end{defn}
  
 \begin{defn}[Bimorphism]
- A morphism $f: X \to Y$ is a $\emph{bimorphism}$ if $f$ is both a monomorphism and epimorphism.
+ A morphism $\varphi: X \to Y$ is a $\emph{bimorphism}$ if $\varphi$ is both a monomorphism and epimorphism.
 \end{defn}
 
 \begin{defn}[Isomorphism]
- A morphism $f: X \to Y$ is a $\emph{isomorphism}$ if there exists a morphism $g: Y \to X : f \circ g = \id{Y}$ and $g \circ f = \id{X}$.
+ A morphism $\varphi: X \to Y$ is a $\emph{isomorphism}$ if there exists a morphism $\psi: Y \to X : \varphi \circ \psi = \id{Y}$ and $\psi \circ \varphi = \id{X}$.
 \end{defn}
 
 \begin{defn}[Endomorphism]
- A morphism $f: X \to Y$ is a $\emph{endomorphism}$ if $X = Y$.
+ A morphism $\varphi: X \to Y$ is a $\emph{endomorphism}$ if $X = Y$.
  The class of endomorphisms of a is denoted by $end(a)$.
 \end{defn}
 
 \begin{defn}[Automorphism]
- A morphism $f: X \to Y$ is a $\emph{automorphism}$ if $f$ is both an endomorphism and an isomorphism.
+ A morphism $\varphi: X \to Y$ is a $\emph{automorphism}$ if $\varphi$ is both an endomorphism and an isomorphism.
  The class of automorphisms of a is denoted by $aut(a)$.
 \end{defn}
 
 \begin{defn}[Retraction]
- A morphism $f: X \to Y$ has a $\emph{retraction}$ if there exists a morphism $g: Y \to X$ with $f \circ g = \id{Y}$ - ``if a right inverse of $f$ exists''.
+ A morphism $\varphi: X \to Y$ has a $\emph{retraction}$ if there exists a morphism $\psi: Y \to X$ with $\varphi \circ \psi = \id{Y}$ - ``if a right inverse of $\varphi$ exists''.
 \end{defn}
 
 \begin{defn}[Section]
- A morphism $f: X \to Y$ has a $\emph{section}$ if there exists a morphism $g: Y \to X$ with $g \circ f = \id{X}$ - ``if a left inverse of $f$ exists''.
+ A morphism $\varphi: X \to Y$ has a $\emph{section}$ if there exists a morphism $\psi: Y \to X$ with $\psi \circ \varphi = \id{X}$ - ``if a left inverse of $\varphi$ exists''.
 \end{defn}
 
 \begin{lem}[Retractions and Sections]
 Every retraction is an epimorphism and every section is a monomorphism.
 We have the following three equivalent statements:
 \begin{itemize}
-\item $f$ is a monomorphism and a retraction;
-\item $f$ is an epimorphism and a section;
-\item $f$ is an isomorphism.
+\item $\varphi$ is a monomorphism and a retraction;
+\item $\varphi$ is an epimorphism and a section;
+\item $\varphi$ is an isomorphism.
 \end{itemize}
 \end{lem}
 
@@ -159,25 +159,31 @@ We begin by defining what we mean by a category:
 		
 		\item A class $\text{Hom}(A,B)$ of $\emph{morphisms}$, from $A \longrightarrow B$ such that $A, B \in \text{Ob}(\Cat)$.
 		\\
-		e.g. $f : A \to B$ to mean $f \in \text{Hom}(A,B)$.
+		e.g. $\varphi : A \to B$ to mean $\varphi \in \text{Hom}(A,B)$.
 		\begin{rem}
 		The class of \emph{all} morphisms of $\Cat$ is denoted $\text{Hom}(\Cat)$.
 		\end{rem}
 
-		\item Given $A, B, C \in \text{Ob}(\Cat)$, a binary operation $\circ : Hom(B,C) \times Hom(A,B) \to Hom(A,C)$ called \emph{composition},
+		\item Given $A, B, C \in \text{Ob}(\Cat)$, a binary operation $\circ : Hom(A,B) \times Hom(B,C) \to Hom(A,C)$ called \emph{composition},
 		satisfying:
 		\begin{enumerate}
-			\item \emph{(closed associativity)} Given $f : A \to B$, $g : B \to C$ and $h : C \to D$
+			\item \emph{(closed associativity)} Given $\varphi : A \to B$, $\psi: B \to C$ and $\phi: A \to C$
 			\\
-			we have $h \circ (g \circ f) = (h \circ g) \circ f$.
+			we have $\phi \circ (\psi \circ \varphi) = (\phi \circ \psi) \circ \varphi$.
 			\\
-			\begin{tikzcd}[row sep=tiny]
-			& B \arrow{dd}{g} \\
-			A \arrow{ur}{f} \arrow{dr}{h} & \\
-			& C
-			\end{tikzcd}
+%			\begin{tikzcd}[row sep=tiny]
+%			& B \arrow{dd}{g} \\
+%			A \arrow{ur}{f} \arrow{dr}{h} & \\
+%			& C
+%			\end{tikzcd}
+\begin{tikzcd}
+ A \drar{\phi} \rar{\varphi}
+ & B \dar{\psi} \\
+ & C
+\end{tikzcd}
+
 			
-			\item \emph{(identity)} For any object X there is an identity morphism $\id{X} : X \to X$ such that for any $f : A \to B$ we have $\id{B} \circ f = f = f \circ \id{A}$.
+			\item \emph{(identity)} For any object X there is an identity morphism $\id{X} : X \to X$ such that for any $\varphi: A \to B$ we have $\id{B} \circ \varphi = \varphi = \varphi \circ \id{A}$.
 			\\
 			\begin{tikzcd}
 			X \arrow[in=30, out=60, loop]{}[name=idX]{\id{X}}
@@ -226,12 +232,12 @@ we are studying the relationships between various classes of mathematical struct
 	\begin{enumerate}
 		\item associates to each object $X \in \mathcal{C}$ an object $F(X) \in  \mathcal{K}$
 		
-		\item associates to each morphism $f : X \to Y \in \mathcal{C}$ a morphism $F(f) : F(X) \to F(Y) \in \mathcal{K}$
+		\item associates to each morphism $\varphi: X \to Y \in \mathcal{C}$ a morphism $F(\varphi) : F(X) \to F(Y) \in \mathcal{K}$
 		satisfying:
 		\begin{enumerate}
 			\item $F(id_{X}) = id_{F(X)}$ for every object $X \in \mathcal{C}$
 			
-			\item $F(g \circ f) = F(g) \circ F(f)$ for all morphisms $f : X \to Y$ and $g : Y \to Z$
+			\item $F(\psi \circ \varphi) = F(\psi) \circ F(\varphi)$ for all morphisms $\varphi: X \to Y$ and $\psi: Y \to Z$
 			\begin{rem}
 				That is, functors must preserve identity morphisms and composition of morphisms.
 			\end{rem}
@@ -248,18 +254,18 @@ that of the $\emph{contravariant}$- and $\emph{covariant}$- functors, defined as
  A $\emph{covariant}$ functor $F$ from a category $\mathcal{C}$ to a category $\mathcal{K}$, $F: \mathcal{C} \to \mathcal{K}$, consists of:
  \begin{itemize}
   \item for each object $X \in \mathcal{C}$, an object $F(X) \in \mathcal{K}$
-  \item for each morphism $f: X \to Y \in \mathcal{C}$, a morphism $F(f): F(X) \to F(Y)$
+  \item for each morphism $\varphi: X \to Y \in \mathcal{C}$, a morphism $F(\varphi): F(X) \to F(Y)$
  \end{itemize}
  provided the following two properties hold:
  \begin{itemize}
   \item For every object $X \in \mathcal{C}$, $F(\id{X}) = \id{F(X)}$
-  \item For all morphisms $f: X \to Y$ and $g: Y \to Z$, $F(g \circ f) = F(g) \circ F(f)$
+  \item For all morphisms $\varphi: X \to Y$ and $\psi: Y \to Z$, $F(\psi \circ \varphi) = F(\psi) \circ F(\varphi)$
  \end{itemize}
 \end{defn}
 
 \begin{defn}[Contravariant Functor]
  A $\emph{contravariant}$ functor $F: \mathcal{C} \to \mathcal{K}$, is a `reversed' covariant functor.
- In particular, for every morphism $f: X \to Y \in \mathcal{C}$ must be assigned to a morphism $F(f) : F(Y) \to F(X) \in \mathcal{K}$.
+ In particular, for every morphism $\varphi: X \to Y \in \mathcal{C}$ must be assigned to a morphism $F(\varphi): F(Y) \to F(X) \in \mathcal{K}$.
  Alternatively, contravariant functors act as covariant functors from the opposite category $\mathcal{C}^{op} \to \mathcal{K}$.
 \end{defn}
 
@@ -315,7 +321,7 @@ Thus, expanding out the definition of a category we have;
 
 \section{Natural Transformations} % (fold)
 \label{sec:natural transformations}
-In category theory, a branch of mathematics, a natural transformation provides a way of transforming one functor into another
+A natural transformation provides a way of transforming one functor into another
 while respecting the internal structure (i.e. the composition of morphisms) of the categories involved.
 Hence, a natural transformation can be considered to be a ``morphism of functors''.
 Indeed this intuition can be formalized to define so-called functor categories.
@@ -325,9 +331,9 @@ appear in the majority of its applications.
 \begin{defn}[Natural Transformation]
  Let $F$ and $G$ be functors between the categories $\mathcal{C}$ and $\mathcal{K}$, then a $\emph{natural transformation}$ $\eta : F \to G$
  associates to every object $X \in \mathcal{C}$ a morphism $\eta_{X} : F(X) \to G(X)$ between objects of $\mathcal{K}$, called the $\emph{component}$
- of $\eta$ at $X$, such that for every morphism $f : X \to Y \in \mathcal{C}$ we have:
+ of $\eta$ at $X$, such that for every morphism $\varphi: X \to Y \in \mathcal{C}$ we have:
  \\
- $\eta_{Y} \circ F(f) = G(g) \circ \eta_{X}$
+ $\eta_{Y} \circ F(\varphi) = G(g) \circ \eta_{X}$
 \end{defn}
 Constructions are often "naturally related" - a vague notion, at first sight.
 This leads to the clarifying concept of natural transformation, a way to "map" one functor to another.
@@ -337,6 +343,25 @@ Many important constructions in mathematics can be studied in this context.
 
 \section{Special constructions} % (fold)
 \label{sec:special constructions}
-..TODO
+Recall that a natural transformation $\varphi: F \to G$ between two functors $F,G : \mathcal{C} \to \mathcal{K}$
+is a total function $\varphi$ that maps $\text{Ob}(\mathcal{C}) \to \text{Hom}(\mathcal{K})$, with
+$\varphi_{X}: F(X) \to G(X) \, \forall X \in \text{Ob}(\mathcal{C})$ such that the diagram commutes for each $\phi: X \to Y$.
+
+\begin{tikzcd}
+ F(X) \rar{\varphi_{X}} \dar[][color=red]{F(\phi)}
+  & G(X) \dar[][color=red]{G(\phi)} \\
+ F(Y) \rar{\varphi_{Y}}
+  & G(Y)
+\end{tikzcd}
+
+\begin{exmp}
+Common examples in programs include:
+\begin{itemize}
+ \item rev : List $\to$ List  =  reversing a list
+ \item fla : Tree $\to$ List  =  flattening a tree
+ \item len : List $\to$ Int   =  length of a list
+\end{itemize}
+\end{exmp}
+
 
 \end{document}% End of document.
