@@ -46,16 +46,27 @@
 \newcommand{\Ga}{\mathbb{G}}
 
 \newcommand{\Cat}{\mathcal{K}}
-\newcommand{\id}{\mathit{id}_}
+\newcommand{\Id}{\mathit{id}_}
 
-%\usepackage{arrayjobx}
-%\newarray{monoidelements}
-\newcommand{\monoid}[1]{
+\usepackage{xparse}
+\NewDocumentCommand{\monoid}{m}
+ {
+  \makeargument{#1}
   \begin{tikzcd}[->,font=\normalsize,>=angle 90,ampersand replacement=\&]
-  #1(1) \arrow{d}{#1(6)} \arrow[<->]{rr}{\alpha}\& \& #1(2) \arrow{d}{#1(7)}\\
-  #1(3) \arrow{dr}{#1(8)} \& \& #1(4)\arrow{dl}{#1(9)}\\
-   \& #1(5) \&
-  \end{tikzcd}}
+  \argument{0} \arrow{d}{\argument{5}} \arrow[<->]{rr}{\alpha}\& \& \argument{1} \arrow{d}{\argument{6}}\\
+  \argument{2} \arrow{dr}{\argument{7}} \& \& \argument{3}\arrow{dl}{\argument{8}}\\
+   \& \argument{4} \&
+  \end{tikzcd}
+ }
+\ExplSyntaxOn
+\seq_new:N \l_sk_monoid_seq
+\cs_new:Npn \makeargument #1
+ { \seq_set_split:Nnn \l_sk_monoid_seq { & } { #1 } }
+\cs_new:Npn \argument #1
+ { \seq_item:Nn \l_sk_monoid_seq {#1} }
+\ExplSyntaxOff
+
+
 
 \newcommand{\nth}{n\textsuperscript{th}}
 \newcommand{\bigo}[1]{\mathcal{O}(#1)}
@@ -126,7 +137,7 @@ Morphisms can have any of the following properties.
 \end{defn}
 
 \begin{defn}[Isomorphism]
- A morphism $\varphi: X \to Y$ is a $\emph{isomorphism}$ if there exists a morphism $\psi: Y \to X : \varphi \circ \psi = \id{Y}$ and $\psi \circ \varphi = \id{X}$.
+ A morphism $\varphi: X \to Y$ is a $\emph{isomorphism}$ if there exists a morphism $\psi: Y \to X : \varphi \circ \psi = \Id{Y}$ and $\psi \circ \varphi = \Id{X}$.
 \end{defn}
 
 \begin{defn}[Endomorphism]
@@ -140,11 +151,11 @@ Morphisms can have any of the following properties.
 \end{defn}
 
 \begin{defn}[Retraction]
- A morphism $\varphi: X \to Y$ has a $\emph{retraction}$ if there exists a morphism $\psi: Y \to X$ with $\varphi \circ \psi = \id{Y}$ - ``if a right inverse of $\varphi$ exists''.
+ A morphism $\varphi: X \to Y$ has a $\emph{retraction}$ if there exists a morphism $\psi: Y \to X$ with $\varphi \circ \psi = \Id{Y}$ - ``if a right inverse of $\varphi$ exists''.
 \end{defn}
 
 \begin{defn}[Section]
- A morphism $\varphi: X \to Y$ has a $\emph{section}$ if there exists a morphism $\psi: Y \to X$ with $\psi \circ \varphi = \id{X}$ - ``if a left inverse of $\varphi$ exists''.
+ A morphism $\varphi: X \to Y$ has a $\emph{section}$ if there exists a morphism $\psi: Y \to X$ with $\psi \circ \varphi = \Id{X}$ - ``if a left inverse of $\varphi$ exists''.
 \end{defn}
 
 \begin{lem}[Retractions and Sections]
@@ -186,10 +197,10 @@ We begin by defining what we mean by a category:
 			& C
 			\end{tikzcd}
 			
-			\item \emph{(identity)} For any object X there is an identity morphism $\id{X} : X \to X$ such that for any $\varphi: A \to B$ we have $\id{B} \circ \varphi = \varphi = \varphi \circ \id{A}$.
+			\item \emph{(identity)} For any object X there is an identity morphism $\Id{X} : X \to X$ such that for any $\varphi: A \to B$ we have $\Id{B} \circ \varphi = \varphi = \varphi \circ \Id{A}$.
 			\\
 			\begin{tikzcd}
-			X \arrow[in=30, out=60, loop]{}[name=idX]{\id{X}}
+			X \arrow[in=30, out=60, loop]{}[name=idX]{\Id{X}}
 			\end{tikzcd}
 		\end{enumerate}
 	\end{enumerate}
@@ -261,7 +272,7 @@ that of the $\emph{contravariant}$- and $\emph{covariant}$- functors, defined as
  \end{itemize}
  provided the following two properties hold:
  \begin{itemize}
-  \item For every object $X \in \mathcal{C}$, $F(\id{X}) = \id{F(X)}$
+  \item For every object $X \in \mathcal{C}$, $F(\Id{X}) = \Id{F(X)}$
   \item For all morphisms $\varphi: X \to Y$ and $\psi: Y \to Z$, $F(\psi \circ \varphi) = F(\psi) \circ F(\varphi)$
  \end{itemize}
 \end{defn}
@@ -318,12 +329,20 @@ A functor $F : \mathcal{A} \to \mathcal{B}$ is
 Thus, expanding out the definition of a category we have;
 \begin{cor}[Monoid]
  A $\emph{monoid}$ is a set $X$ together with a law of composition $\circ$
- which associates and has identity $e \in X$.
+ which associates and has identity $\Id{} \in X$.
 \end{cor}
 
-%\readarray{monoidelements}{(A\otimes A)\otimes A\otimes A&A\otimes (A\otimes A)
-%  &A\otimes A&A\otimes A&A&\mu\otimes Id&Id\otimes\mu&\mu&\mu\otimes Id}
-%\monoid{\monoidelements}
+\monoid{
+  (A\otimes A)\otimes A\otimes A &
+  A\otimes (A\otimes A) &
+  A\otimes A &
+  A\otimes A &
+  A &
+  \mu\otimes \Id{} &
+  \Id{} \otimes\mu &
+  \mu &
+  \mu\otimes \Id{}
+}
 
 
 \section{Natural Transformations} % (fold)
