@@ -92,12 +92,12 @@
 \label{sec:purelude}
 First a word on how to study category theory. Category theory is extremely heavy on new terminology at first sight.
 It is typically misconceived as abstractly and arbitrarily renaming things to no real gain and a generally poorly understood
-topic in ungrad mathematics. To get over the initial shock of the many perhaps new terms and to consolidate simple concepts.
+topic in undergraduate mathematics. To get over the initial shock of the many perhaps new terms and to consolidate simple concepts.
 One should consider taking the time to highlight these notes in assortment of coloured pens,
 with each new term given a corresponding colour. Also note that almost everything, at least
 at this level in category theory, may be represented as a diagram. I highly recommend you copy each new term with a corresponding
 diagram to anecdote the idea at hand. If all else fails, be sure to remember to break the term down into prefix and suffix and reason
-it. Typically terms are fairly simple to reason out (e.g., mono = ``one'', auto = ``self'', morphism = ``change shape'').
+it. Typically terms are fairly simple to reason out (e.g., mono = ``one'', auto = ``self'', morphism = ``to shape'').
 
 \begin{note}[Class]
  A $\emph{class}$ is a collection of mathematical objects (e.g., sets)
@@ -122,6 +122,15 @@ the definition might be applied.
 
 \section{Morphisms} % (fold)
 \label{sec:morphisms}
+A morphism is a map between two objects in an abstract category, more on this later.
+A general morphism is called a homomorphism. A homomorphism is a term typically used in category theory.
+The term itself derives from the Greek $o \mu o$ (omo) ``alike'' and $\mu o \rho\varphi\omega\sigma\iota\varsigma$
+(morphosis), ``to form'' or ``to shape''.
+\begin{rem}
+ The similarity in meaning and form of the words ``homomorphism'' and ``homeomorphism'' is unfortunate and typically
+ a source of common confusion.
+\end{rem}
+
 Morphisms can have any of the following properties.
 
 \begin{defn}[Monomorphism]
@@ -171,7 +180,11 @@ We have the following three equivalent statements:
 
 \section{Categories} % (fold)
 \label{sec:categories}
-We begin by defining what we mean by a category:
+A category consists of three things:
+a collection of objects, for each pair of objects a collection of morphisms from one to another, and a binary
+operation defined on compatible pairs of morphisms called composition. The category must satisfy an identity axiom
+and an associative axiom which is analogous to the monoid axioms, seen later. We require that morphisms preserve the
+mathematical structure of the objects (i.e., for vector spaces as objects one would choose linear maps as morphisms, and so on).
 \begin{defn}[Category]
 	A $\emph{category}$ $\Cat$ consists of the following three mathematical entities:
 	\begin{enumerate}
@@ -221,11 +234,11 @@ It is also worth noting about what we mean by `small' and `large' categories.
 Most basic categories have as objects certain mathematical structures, and the structure-preserving
 functions as morphisms. A common list is given;
 \begin{itemize}
-\item $\emph{Top}$ is the category of topological spaces and continuous functions.
-\item $\emph{Grp}$ is the category of groups and group homomorphisms.
-\item $\emph{Rng}$ is the category of rings and ring homomorphisms.
-\item $\emph{Grph}$ is the category of graphs and graph homomorphisms.
 \item $\emph{Pos}$ is the category of partially ordered sets and monotonic functions.
+\item $\emph{Top}$ is the category of topological spaces and continuous functions.
+\item $\emph{Rng}$ is the category of rings and ring homomorphisms.
+\item $\emph{Grp}$ is the category of groups and group homomorphisms.
+\item $\emph{Grph}$ is the category of graphs and graph homomorphisms.
 \end{itemize}
 
 
@@ -317,6 +330,19 @@ A functor $F : \mathcal{A} \to \mathcal{B}$ is
  are equal to the identity functors
  \item $\emph{conserative}$ if it reflects isomorphisms; that is, $a: A \to A'$ is an isomorphism whenever $F(a): F(A) \to F(A')$ is
 \end{enumerate}
+
+\begin{defn}[Functor categories and Yoneda embedding]
+
+ \begin{enumerate}
+  \item Given a category $\mathcal{A}$ and a small category $\mathcal{C}$, we denote by
+  $\mathcal{A}^\mathcal{C}$ the category of functors from $\mathcal{C} \to \mathcal{A}$ and natural transformations.
+  \item In case $\mathcal{A} = \emph{Set}$, we have the $\emph{Yoneda embedding}$:\\
+  $Y_{\mathcal{C}}: \mathcal{C}^{op} \to \emph{Set}^{\mathcal{C}}
+  \, \,
+  Y_{\mathcal{C}}(X) = \mathcal{C}(X, -)$,\\
+  which is full and faithful.
+ \end{enumerate}
+\end{defn}
 
 
 \section{Monoids} % (fold)
