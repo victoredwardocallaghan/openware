@@ -470,4 +470,27 @@ TODO..
 \label{subsec:colimit}
 TODO..
 
+
+\section{Monads} % (fold)
+\label{sec:monads}
+A $\emph{Monad}$ is an endofunctor, coupled with two natural transformations.
+The notion of "algebras for a monad" generalizes classical notions from universal algebra, and in this sense, monads can be thought of as "theories".
+The computer science interpretation is that of a unit of computation.
+
+\begin{defn}[Monad]
+ Given a category $\mathcal{K}$, a $\emph{monad}$ on $\mathcal{K}$ is the endofunctor $T: \mathcal{K} \to \mathcal{K}$
+ coupled with two natural transformations, $\eta: \Id{\mathcal{C}} \to T$ and $\mu: (T \circ T) \to T$ provided they
+ statisfy the so-called $\emph{coherence conditions}$:
+ \begin{itemize}
+  \item $\mu \circ T \mu = \mu \circ \mu T$,
+  \item $\mu \circ T \eta = \mu \circ \eta T = \Id{T}$.
+ \end{itemize}
+\end{defn}
+The coherence conditions may be represented by the following commutative diagrams:
+TODO..
+
+\subsection{Algebras for Monads} % (fold)
+\label{sec:monadalgebra}
+TODO..
+
 \end{document}% End of document.
