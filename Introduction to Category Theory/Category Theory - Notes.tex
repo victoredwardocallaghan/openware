@@ -241,6 +241,23 @@ functions as morphisms. A common list is given;
 \item $\emph{Grph}$ is the category of graphs and graph homomorphisms.
 \end{itemize}
 
+\subsection{Dual Category} % (fold)
+\label{subsec:dualcategory}
+$\emph{Duality}$ is a correpsondence between properties of a category $\mathcal{K}$ and the notion
+of $\emph{dual properties}$ of the ``opposite category'' $\mathcal{K}^{op}$. Suppose some proposition
+regarding a category $\mathcal{K}$, by interchanging the domain and codomain of each morphism as well as
+the order of composition, a corresponding dual proposition is obtained of $\mathcal{K}^{op}$.
+
+Duality, as such, is the assertion that truth is invariant under this operation on propositions.
+\begin{lem}
+ $(\mathcal{K}^{op})^{op} = \mathcal{K}$.
+\end{lem}
+
+\begin{exmp}
+ Suppose a monomorphism in a category $\mathcal{K}$ then an epimorphism is the categorial dual
+ in the dual category $\mathcal{K}^{op}$. Prove this by diagram.
+\end{exmp}
+
 
 \section{Functors} % (fold)
 \label{sec:functors}
@@ -302,7 +319,7 @@ So, the following definitions should mostly be obvious if you reflect back to th
 definitions above or simply break the word down grammatically.
 
 \begin{defn}[Endofunctor]
- A $\emph{endofunctor}$ is a functor that maps a category to its self, sometimes called a $\emph{identityfunctor}$.
+ A $\emph{endofunctor}$ is a functor that maps a category to its self, sometimes called a $\emph{identity functor}$.
 \end{defn}
 
 \begin{defn}[Bifunctor]
