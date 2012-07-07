@@ -122,7 +122,7 @@ the definition might be applied.
 
 \section{Morphisms} % (fold)
 \label{sec:morphisms}
-A morphism is a map between two objects in an abstract category, more on this later.
+A morphism is a map between two objects in an abstract category from $\emph{dom}$ain to $\emph{codom}$ain, more on this later.
 A general morphism is called a homomorphism. A homomorphism is a term typically used in category theory.
 The term itself derives from the Greek $o \mu o$ (omo) ``alike'' and $\mu o \rho\varphi\omega\sigma\iota\varsigma$
 (morphosis), ``to form'' or ``to shape''.
@@ -182,7 +182,7 @@ We have the following three equivalent statements:
 \label{sec:categories}
 A category consists of three things:
 a collection of objects, for each pair of objects a collection of morphisms from one to another, and a binary
-operation defined on compatible pairs of morphisms called composition. The category must satisfy an identity axiom
+operation defined on compatible pairs of morphisms called composition denoted by $\circ$. The category must satisfy an identity axiom
 and an associative axiom which is analogous to the monoid axioms, seen later. We require that morphisms preserve the
 mathematical structure of the objects (i.e., for vector spaces as objects one would choose linear maps as morphisms, and so on).
 \begin{defn}[Category]
@@ -197,8 +197,8 @@ mathematical structure of the objects (i.e., for vector spaces as objects one wo
 		The class of \emph{all} morphisms of $\Cat$ is denoted $\text{Hom}(\Cat)$.
 		\end{rem}
 
-		\item Given $A, B, C \in \text{Ob}(\Cat)$, a binary operation $\circ : Hom(A,B) \times Hom(B,C) \to Hom(A,C)$ called \emph{composition},
-		satisfying:
+		\item Given $A, B, C \in \text{Ob}(\Cat)$, a binary operation $\circ : Hom(A,B) \times Hom(B,C) \to Hom(A,C)$ called
+		\emph{composition}, satisfying:
 		\begin{enumerate}
 			\item \emph{(closed associativity)} Given $\varphi : A \to B$, $\psi: B \to C$ and $\phi: A \to C$
 			\\
@@ -397,29 +397,36 @@ A natural transformation provides a way of transforming one functor into another
 while respecting the internal structure (i.e. the composition of morphisms) of the categories involved.
 Hence, a natural transformation can be considered to be a ``morphism of functors''.
 Indeed this intuition can be formalized to define so-called functor categories.
-Natural transformations are, after categories and functors, one of the most basic notions of category theory and consequently
-appear in the majority of its applications.
+Natural transformations are, after categories and functors, one of the most basic notions of category theory
+and consequently appear in the majority of its applications.
 
 \begin{defn}[Natural Transformation]
  Let $F$ and $G$ be functors both from the category $\mathcal{C}$ to $\mathcal{K}$.
  Then a $\emph{natural transformation}$ $\eta : F \to G$ associates to every object
  $X \in \mathcal{C}$ a morphism $\eta_{X} : F(X) \to G(X) \in \mathcal{K}$, called the $\emph{component}$
- of $\eta$ at $X$. The component morphism $\eta_{X}$ is subject to the condition that the diagram
- commutes for every morphism $\varphi: X \to Y \in \mathcal{C}$; that is,
+ of $\eta$ at $X$. The component morphism $\eta_{X}$ is subject to the condition of $\emph{naturality}$,
+ that is, the diagram commutes for every morphism $\varphi: X \to Y \in \mathcal{C}$; or simply,
  $\eta_{Y} \circ F(\varphi) = G(\varphi) \circ \eta_{X}$.
  \\
- We draw the commutative diagram in the category $\mathcal{K}$:
+ We draw the commutative diagram in the category $\mathcal{K}$ know as the $\emph{naturality square}$:
  \begin{tikzcd}
- F(X) \rar{\eta_{X}} \dar[][color=red]{F(\varphi)}
+ F(X) \rar[][color=red]{\eta_{X}} \dar[]{F(\varphi)}
   & G(X) \dar[][color=red]{G(\varphi)} \\
  F(Y) \rar{\eta_{Y}}
   & G(Y)
  \end{tikzcd}
 \end{defn}
+\begin{rem}
+ N.B. The naturality square is the key concept to understanding natural transformations and
+ there is one of them for every morphism in $\mathcal{C}$ as stated above. Note this well.
+\end{rem}
+
 Constructions are often "naturally related" - a vague notion, at first sight.
 This leads to the clarifying concept of natural transformation, a way to "map" one functor to another.
-Many important constructions in mathematics can be studied in this context.
-"Naturality" is a principle, like general covariance in physics, that cuts deeper than is initially apparent.
+\begin{rem}
+ Various important constructions in mathematics can be studied in this context.
+ "Naturality" is a principle, like that of general covariance in physics, that cuts deeper than is initially apparent.
+\end{rem}
 
 
 \section{Universal constructions} % (fold)
@@ -473,21 +480,80 @@ TODO..
 
 \section{Monads} % (fold)
 \label{sec:monads}
-A $\emph{Monad}$ is an endofunctor, coupled with two natural transformations.
-The notion of "algebras for a monad" generalizes classical notions from universal algebra, and in this sense, monads can be thought of as "theories".
-The computer science interpretation is that of a unit of computation.
+$\emph{Monads}$ are like algebraic theories and that a algebra for a monad is a model of that theory. A monad is simply a functor
+with some extra 'stuff' that tells us what is going on in the associated theory.
+The notion of $\emph{algebras for a monad}$ generalises classical notions from universal algebra,
+and in this sense, monads can be thought of as $\emph{theories}$. The computer science interpretation is that of a unit of computation.
+More formally, a monad or $\emph{(Kleisli triple)}$, is an endofunctor coupled with two natural transformations,
+$\eta$ and $\mu$ that satisfy so-called $\emph{coherence conditions}$.
 
 \begin{defn}[Monad]
  Given a category $\mathcal{K}$, a $\emph{monad}$ on $\mathcal{K}$ is the endofunctor $T: \mathcal{K} \to \mathcal{K}$
- coupled with two natural transformations, $\eta: \Id{\mathcal{C}} \to T$ and $\mu: (T \circ T) \to T$ provided they
- statisfy the so-called $\emph{coherence conditions}$:
+ coupled with two natural transformations, $\eta: \Id{\mathcal{C}} \rightrightarrows T$ and $\mu: T^2 \rightrightarrows T$
+ that satisfy the coherence conditions:
  \begin{itemize}
-  \item $\mu \circ T \mu = \mu \circ \mu T$,
+  \item $\mu \circ T \mu = \mu \circ \mu T$, and
   \item $\mu \circ T \eta = \mu \circ \eta T = \Id{T}$.
  \end{itemize}
 \end{defn}
-The coherence conditions may be represented by the following commutative diagrams:
-TODO..
+\begin{rem}
+ N.B. $\eta$ called $\emph{the unit}$ since it is a natural mapping from idenity and
+ $\mu$ called $\emph{the multiplication}$ also noting the natural mapping from $T \circ T = T^2$.
+\end{rem}
+
+Recall the definition of a natural transformation of $\eta$ and $\mu$, that for every $X \in \text{Ob}(\mathcal{K})$
+there is a $\emph{component}$ morphism of $\eta$ and $\mu$ at $X$, denoted by, $\eta_{X}$ and $\mu_{X}$ respectively.
+\\
+So, we have the following:
+\begin{itemize}
+ \item $\eta_{X}: X \to T(X) \in \mathcal{K}$,
+ read, $\emph{``the component of $\eta$ at $X$ is a morphism in $\mathcal{K}$ from $X$ to $T$ of $X$''}$, and,
+ \item $\mu_{X}: T^2(X) \to T(X) \in \mathcal{K}$,
+ read, $\emph{``the component of $\mu$ at $X$ is a morphism in $\mathcal{K}$ from $T^2$ of $X$ to $T$ of $X$''}$.
+\end{itemize}
+
+Hence, the coherence conditions are shown the by commutative diagrams for every component $X \in \text{Ob}(\mathcal{K})$
+\\
+For the existence idenity by $\emph{the left and right unit triangles}$:
+\begin{tikzcd}
+T(X) \drar[equals] \rar[][color=red]{\eta_{T(X)}} \dar[swap]{T(\eta_{X})}
+ & T^2(X) \dar[][color=red]{\mu_{X}} \\
+T^2(X) \rar[swap]{\mu_{X}}
+ & T(X)
+\end{tikzcd}
+\\
+and for that of $\emph{the associativity square}$ by:
+\begin{tikzcd}
+T^3(X) \rar[][color=red]{T(\mu_{X})} \dar[swap]{\mu_{T(X)}}
+ & T^2(X) \dar[][color=red]{\mu_{X}} \\
+T^2(X) \rar[swap]{\mu_{X}}
+ & T(X)
+\end{tikzcd}
+Since these are natural transformations,
+we can write these without $X$ and by writing $\eta_{T(X)}$ as $\eta T$ and $T(\eta_{X})$ as $T \eta$, for example.
+Since the commutative diagrams in the category $\mathcal{K}$ are component wise, that is, in terms of $X$.
+
+\begin{exmp}[Monad for monoids]
+ From the definition of a monoid,
+ take the category $\mathcal{K} = \emph{Set}$ and a functor $T: X \to X^{*}$ where $X$ is the ``set of words'' in $X$.
+ \begin{rem}
+  A word is just a list of objects in $X$ e.g., $(x_{1}, x{2}, x_{3})$ or simply the empty list $()$.
+ \end{rem}
+ Therefore, we define the natural transformations component wise, as: $\eta_{X}: X \to X^{*}$ and $\mu_{X}: X^{**} \to X^{*}$.
+ \begin{rem}
+  To understand $\mu_{X}: X^{**} \to X^{*}$ consider the example: $(a, (b, c)) \to (a, b, c)$
+ \end{rem}
+ Finish me...... TODO.
+\end{exmp}
+
+\begin{note}
+Haskell Note:
+\begin{itemize}
+ \item $\eta$ is the Monadic equivalent of the "return" function and,
+ \item $\mu$ is the Monadic equivalent of the "join" operator.
+\end{itemize}
+\end{note}
+
 
 \subsection{Algebras for Monads} % (fold)
 \label{sec:monadalgebra}
