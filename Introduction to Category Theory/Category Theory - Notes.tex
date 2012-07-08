@@ -92,12 +92,12 @@
 \label{sec:purelude}
 First a word on how to study category theory. Category theory is extremely heavy on new terminology at first sight.
 It is typically misconceived as abstractly and arbitrarily renaming things to no real gain and a generally poorly understood
-topic in undergraduate mathematics. To get over the initial shock of the many perhaps new terms and to consolidate simple concepts.
-One should consider taking the time to highlight these notes in assortment of coloured pens,
-with each new term given a corresponding colour. Also note that almost everything, at least
-at this level in category theory, may be represented as a diagram. I highly recommend you copy each new term with a corresponding
-diagram to anecdote the idea at hand. If all else fails, be sure to remember to break the term down into prefix and suffix and reason
-it. Typically terms are fairly simple to reason out (e.g., mono = ``one'', auto = ``self'', morphism = ``to shape'').
+topic in undergraduate mathematics. Consider taking the time to highlight these notes in assortment of coloured pens,
+with each new term given a corresponding colour. To get over the initial shock of, perhaps, new terms and to consolidate concepts.
+Also note that almost everything, at least at this level in category theory, may be represented as a diagram.
+I highly recommend you copy each new term with a corresponding diagram to anecdote the idea at hand.
+If all else fails, be sure to remember to break the term down into prefix and suffix and reason it.
+Typically terms are fairly simple to reason out (e.g., mono = ``one'', auto = ``self'', morphism = ``to shape'').
 
 \begin{note}[Class]
  A $\emph{class}$ is a collection of mathematical objects (e.g., sets)
@@ -124,7 +124,7 @@ the definition might be applied.
 \label{sec:morphisms}
 A morphism is a map between two objects in an abstract category from $\emph{dom}$ain to $\emph{codom}$ain, more on this later.
 A general morphism is called a homomorphism. A homomorphism is a term typically used in category theory.
-The term itself derives from the Greek $o \mu o$ (omo) ``alike'' and $\mu o \rho\varphi\omega\sigma\iota\varsigma$
+The term itself derives from the Greek $o \mu o$ (omo), ``alike'' and $\mu o \rho\varphi\omega\sigma\iota\varsigma$
 (morphosis), ``to form'' or ``to shape''.
 \begin{rem}
  The similarity in meaning and form of the words ``homomorphism'' and ``homeomorphism'' is unfortunate and typically
@@ -150,7 +150,7 @@ Morphisms can have any of the following properties.
 \end{defn}
 
 \begin{defn}[Endomorphism]
- A morphism $\varphi: X \to Y$ is a $\emph{endomorphism}$ if $X = Y$.
+ A morphism $\varphi: X \to X$ is a $\emph{endomorphism}$.
  The class of endomorphisms of a is denoted by $end(a)$.
 \end{defn}
 
@@ -244,7 +244,7 @@ functions as morphisms. A common list is given;
 \subsection{Dual Category} % (fold)
 \label{subsec:dualcategory}
 $\emph{Duality}$ is a correpsondence between properties of a category $\mathcal{K}$ and the notion
-of $\emph{dual properties}$ of the ``opposite category'' $\mathcal{K}^{op}$. Suppose some proposition
+of $\emph{dual properties}$ of the ``$\emph{op}$posite category'' $\mathcal{K}^{op}$. Suppose some proposition
 regarding a category $\mathcal{K}$, by interchanging the domain and codomain of each morphism as well as
 the order of composition, a corresponding dual proposition is obtained of $\mathcal{K}^{op}$.
 
@@ -292,7 +292,7 @@ we are studying the relationships between various classes of mathematical struct
 \subsection{Types of Functors} % (fold)
 \label{subsec:functorstypes}
 Like many things in category theory, functors come in a kind of ``dual'' type in concepts;
-that of the $\emph{contravariant}$- and $\emph{covariant}$- functors, defined as follows:
+that of the $\emph{contravariant}$ and $\emph{covariant}$ functors, defined as follows:
 
 \begin{defn}[Covariant Functor]
  A $\emph{covariant}$ functor $F$ from a category $\mathcal{C}$ to a category $\mathcal{K}$, $F: \mathcal{C} \to \mathcal{K}$, consists of:
@@ -319,7 +319,7 @@ So, the following definitions should mostly be obvious if you reflect back to th
 definitions above or simply break the word down grammatically.
 
 \begin{defn}[Endofunctor]
- A $\emph{endofunctor}$ is a functor that maps a category to its self, sometimes called a $\emph{identity functor}$.
+ A $\emph{endofunctor}$ is a functor that maps a category to itself, sometimes called a $\emph{identity functor}$.
 \end{defn}
 
 \begin{defn}[Bifunctor]
@@ -349,12 +349,15 @@ A functor $F : \mathcal{A} \to \mathcal{B}$ is
 \end{enumerate}
 
 \begin{defn}[Functor categories and Yoneda embedding]
-
+The Yoneda lemma suggests that instead of studying the $\emph{locally small}$ category $\mathcal{K}$,
+one should study the category of all functors of $\mathcal{K}$ into $\textbf{Set}$.
+Since the category $\textbf{Set}$ is well understood, a functor of $\mathcal{K}$ into $\textbf{Set}$
+maybe seen as a $\emph{representation}$ of $\mathcal{K}$ in terms of known structures. 
  \begin{enumerate}
   \item Given a category $\mathcal{A}$ and a small category $\mathcal{C}$, we denote by
   $\mathcal{A}^\mathcal{C}$ the category of functors from $\mathcal{C} \to \mathcal{A}$ and natural transformations.
-  \item In case $\mathcal{A} = \emph{Set}$, we have the $\emph{Yoneda embedding}$:\\
-  $Y_{\mathcal{C}}: \mathcal{C}^{op} \to \emph{Set}^{\mathcal{C}}
+  \item In case $\mathcal{A} = \textbf{Set}$, we have the $\emph{Yoneda embedding}$:\\
+  $Y_{\mathcal{C}}: \mathcal{C}^{op} \to \textbf{Set}^{\mathcal{C}}
   \, \,
   Y_{\mathcal{C}}(X) = \mathcal{C}(X, -)$,\\
   which is full and faithful.
@@ -422,10 +425,10 @@ and consequently appear in the majority of its applications.
 \end{rem}
 
 Constructions are often "naturally related" - a vague notion, at first sight.
-This leads to the clarifying concept of natural transformation, a way to "map" one functor to another.
+This leads to the clarifying concept of natural transformation, a way to map one functor to another.
 \begin{rem}
  Various important constructions in mathematics can be studied in this context.
- "Naturality" is a principle, like that of general covariance in physics, that cuts deeper than is initially apparent.
+ Naturality is a principle, like that of general covariance in physics, that cuts deeper than is initially apparent.
 \end{rem}
 
 
@@ -480,10 +483,12 @@ TODO..
 
 \section{Monads} % (fold)
 \label{sec:monads}
-$\emph{Monads}$ are like algebraic theories and that a algebra for a monad is a model of that theory. A monad is simply a functor
+$\emph{Monads}$ derived from Greek, $\mu o \nu\alpha\varsigma$ (monas), ``unit''.
+The computer science interpretation is that of a unit of computation.
+Monads are like algebraic theories and that a algebra for a monad is a model of that theory. A monad is simply a functor
 with some extra 'stuff' that tells us what is going on in the associated theory.
 The notion of $\emph{algebras for a monad}$ generalises classical notions from universal algebra,
-and in this sense, monads can be thought of as $\emph{theories}$. The computer science interpretation is that of a unit of computation.
+and in this sense, monads can be thought of as $\emph{theories}$.
 More formally, a monad or $\emph{(Kleisli triple)}$, is an endofunctor coupled with two natural transformations,
 $\eta$ and $\mu$ that satisfy so-called $\emph{coherence conditions}$.
 
@@ -533,9 +538,15 @@ Since these are natural transformations,
 we can write these without $X$ and by writing $\eta_{T(X)}$ as $\eta T$ and $T(\eta_{X})$ as $T \eta$, for example.
 Since the commutative diagrams in the category $\mathcal{K}$ are component wise, that is, in terms of $X$.
 
+\begin{rem}[CoMonad]
+ A $\emph{Co}$monad, or just $\emph{cotriple}$, is the categorical dual of a Monad.
+ That is, A comonad for a category $\mathcal{K}$ is a monad for the opposite category $\mathcal{K}^{op}$.
+\end{rem}
+
+
 \begin{exmp}[Monad for monoids]
  From the definition of a monoid,
- take the category $\mathcal{K} = \emph{Set}$ and a functor $T: X \to X^{*}$ where $X$ is the ``set of words'' in $X$.
+ take the category $\mathcal{K} = \textbf{Set}$ and a functor $T: X \to X^{*}$ where $X$ is the ``set of words'' in $X$.
  \begin{rem}
   A word is just a list of objects in $X$ e.g., $(x_{1}, x{2}, x_{3})$ or simply the empty list $()$.
  \end{rem}
@@ -557,6 +568,33 @@ Haskell Note:
 
 \subsection{Algebras for Monads} % (fold)
 \label{sec:monadalgebra}
-TODO..
+Given the monad $(T, \eta, \mu)$ on a category $\mathcal{K}$. A $T$-algebra denoted by $(x,h)$,
+where $x \in \text{Ob}(\mathcal{K})$ coupled with $h \in \text{Hom}(\mathcal{K})$ with
+$h: T(x) \to x \in \mathcal{K}$. The morphism $h$ is called the structure map of the algebra $T$ provided
+the usual diagrams commute (i.e., the coherence conditions are satisfied).
+
+The $\emph{the associativity square}$ by:
+\begin{tikzcd}
+T^2(x) \rar[][color=red]{T(x)} \dar[swap]{\mu_{x}}
+ & T(x) \dar[][color=red]{h} \\
+T(x) \rar[swap]{h}
+ & x
+\end{tikzcd}
+\\
+and the $\emph{right unit triangle}$ (idenity) by:
+\begin{tikzcd}
+ x \drar[swap]{\Id{x}} \rar{\eta_{x}} & T(x)
+ \dar[]{h} \\ & x
+\end{tikzcd}
+
+A morphism $f: (x,h) \to (x',h')$ of $T$-$\emph{algebras}$ is a morphism $f: x \to x' \in \mathcal{K}$
+given that the following diagram commutes:
+\begin{tikzcd}
+T(x) \rar[][color=red]{T(f)} \dar[swap]{h}
+ & T(x') \dar[][color=red]{h'} \\
+x \rar[swap]{f}
+ & x'
+\end{tikzcd}
+
 
 \end{document}% End of document.
