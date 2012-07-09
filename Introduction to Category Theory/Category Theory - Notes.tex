@@ -134,11 +134,17 @@ The term itself derives from the Greek $o \mu o$ (omo), ``alike'' and $\mu o \rh
 Morphisms can have any of the following properties.
 
 \begin{defn}[Monomorphism]
- A morphism $\varphi: X \to Y$ is a $\emph{monomorphism}$ if $\varphi \circ \psi = \varphi \circ \phi \implies \psi = \phi$ for all morphisms $\psi,\phi: X \to Y$.
-\end{defn}
+ A morphism $\varphi: X \to Y$ is a $\emph{monomorphism}$ if $\varphi \circ \psi = \varphi \circ \phi \implies \psi = \phi$ for all morphisms $\psi,\phi: Z \to X$.
+ \begin{tikzcd}
+  Z \rar[transform canvas={yshift=.5ex}]{\psi} \rar[transform canvas={yshift=-.5ex}, swap]{\phi} & X \rar{\varphi} & Y
+ \end{tikzcd}
+ \end{defn}
 
 \begin{defn}[Epimorphism]
- A morphism $\varphi: X \to Y$ is a $\emph{epimorphism}$ if $\psi \circ \varphi = \phi \circ \varphi \implies \psi = \phi$ for all morphisms $\psi,\phi: Y \to X$.
+ A morphism $\varphi: X \to Y$ is a $\emph{epimorphism}$ if $\psi \circ \varphi = \phi \circ \varphi \implies \psi = \phi$ for all morphisms $\psi,\phi: Y \to Z$.
+ \begin{tikzcd}
+  X \rar{\varphi} & Y \rar[transform canvas={yshift=.5ex}]{\psi} \rar[transform canvas={yshift=-.5ex}, swap]{\phi} & Z
+ \end{tikzcd}
 \end{defn}
  
 \begin{defn}[Bimorphism]
