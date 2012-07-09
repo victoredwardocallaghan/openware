@@ -264,6 +264,10 @@ Duality, as such, is the assertion that truth is invariant under this operation 
  in the dual category $\mathcal{K}^{op}$. Prove this by diagram.
 \end{exmp}
 
+\begin{rem}
+ We make the notion of diagram and hence the idea of commutative diagrams rigous later.
+\end{rem}
+
 
 \section{Functors} % (fold)
 \label{sec:functors}
@@ -442,30 +446,30 @@ This leads to the clarifying concept of natural transformation, a way to map one
 \label{sec:universalconstructions}
 Categorial objects are both abstract and have atomic type.
 Thus we are face with the issue of defining objects without referring to the internal structure.
-Thus we characterise these objects in terms of their relations to other objects, as given by the morphisms 
+To characterise these objects, we look at them from the prospective of their relations to other objects, as given by the morphisms 
 of the respective categories. Therefore we must find universal properties that uniquely determine the objects of interest.
 Indeed, it turns out that numerous important constructions can be described purely in this way.
 The central concept which is needed for this purpose is called categorical limit, and can be dualized to yield the notion of a colimit.
 
 Suppose that $U: \mathcal{K} \to \mathcal{C}$ is a functor from a category $\mathcal{K}$ to a category $\mathcal{C}$,
-and let $X \in \text{Ob}(\mathcal{C})$. Consider the following dual (opposite) notions:
+and let $X \in \text{Ob}(\mathcal{C})$. Consider the following dual notions:
 \begin{defn}[Initial morphism]
  An $\emph{initial morphism}$ from $X \to U$ is an initial object in the category
- $(X \downarrow U)$ of morphisms from $X \to U$. In other words, it consists
+ $(X \downarrow U)$ of morphisms from $X \to U$. In particular, it consists
  of a pair $(A, \varphi)$ where $A \in \text{Ob}(\mathcal{K})$ and $\varphi: X \to U(A) \in \text{Hom}(\mathcal{C})$,
  such that the following initial property is satisfied:
  \\
  Whenever $Y \in \text{Ob}(\mathcal{K})$ and $f: X \to U(Y) \in \text{Hom}(\mathcal{C})$, then there exists a unique morphism
  $g: A \to Y$ such that the following diagram commutes:
 \begin{tikzcd}
- X \drar[swap]{f} \rar{\phi} & U(A)
+ X \drar[swap]{f} \rar{\varphi} & U(A)
  \dar[dashed]{U(g)} \\ & U(Y)
 \end{tikzcd}
 \end{defn}
 
 \begin{defn}[Terminal morphism]
  A $\emph{terminal morphism}$ from $U \to X$ is a terminal object in the $\emph{comma category (i.e., morphisms become objects)}$
- $(U \downarrow X)$ of morphisms from $U \to X$. In other words, it consists of a pair $(A, \varphi)$
+ $(U \downarrow X)$ of morphisms from $U \to X$. In particular, it consists of a pair $(A, \varphi)$
  where $A \in \text{Ob}(\mathcal{K})$ and $\varphi: U(A) \to X \in \text{Hom}(\mathcal{C})$,
  such that the following terminal property is satisfied:
  \\
@@ -473,9 +477,45 @@ and let $X \in \text{Ob}(\mathcal{C})$. Consider the following dual (opposite) n
  $g: Y \to A$ such that the following diagram commutes:
 \begin{tikzcd}
  U(Y) \dar[dashed,swap]{U(g)} \drar{f} \\
- U(A) \rar[swap]{\phi} & X
+ U(A) \rar[swap]{\varphi} & X
 \end{tikzcd} 
 \end{defn}
+
+\subsection{Diagram} % (fold)
+\label{subsec:diagram}
+A diagram is the categorial analogue of an indexed family in set theory. In particular, one also must consider that
+morphism as well as objects must be indexed. Hence, a diagram is a collection of objects and morphisms, that is,
+a category that is indexed by another fixed category. Since we are mapping from one category to another, a diagram is
+naturally then a functor as you may expect.
+\begin{defn}[Diagram]
+ A $\emph{diagram}$ $D$ is given by the functor $D: \mathcal{J} \to \mathcal{K}$
+ where $\mathcal{J}$ is some $\emph{index category}$ in the category $\mathcal{K}$.
+\end{defn}
+
+The acutal detail of the internals of the index category $\mathcal{J}$ is of no concern, merely the internal relationships
+are of importance. Hence, diagrams and functors are technically the same thing, however, a different matter of prospective.
+
+\begin{cor}
+ A diagram is said to be $\emph{small}$ (finite) whenever the index category $\mathcal{J}$ is.
+\end{cor}
+
+Again, recall that a digram is a essentially a functor.
+Now, suppose two diagrams $D_{1}$ and $D_{2}$ by some fixed indexing category $\mathcal{J}$ in the category $\mathcal{K}$.
+Then each morphism in $D_{1}$ can be found in $D_{2}$ by the natural transformation from $D_{1}$ to $D_{2}$.
+Hence we have motiavation to form a definition of the $\emph{category of diagrams}$ given by the following:
+
+\begin{defn}[Category of Diagrams]
+ The category of diagrams by the index category, or type, $\mathcal{J}$ in the category $\mathcal{K}$ as the $\emph{functor category}$,
+ denoted by $\mathcal{K}^{\mathcal{J}}$ with diagrams as the defined object class.
+\end{defn}
+
+\begin{exmp}
+ Take some small type $\mathcal{J}$ in the category $\mathcal{K}$,
+ then $\mathcal{J}$ merely indexes the objects in the category $\mathcal{K}$.
+ \begin{rem}
+  Also note that the diagram is again be finite since $\mathcal{J}$ is.
+ \end{rem}
+\end{exmp}
 
 
 \subsection{Limit} % (fold)
