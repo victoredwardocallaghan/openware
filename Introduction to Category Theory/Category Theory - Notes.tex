@@ -452,36 +452,6 @@ of the respective categories. Therefore we must find universal properties that u
 Indeed, it turns out that numerous important constructions can be described purely in this way.
 The central concept which is needed for this purpose is called categorical limit, and can be dualized to yield the notion of a colimit.
 
-Suppose that $U: \mathcal{K} \to \mathcal{C}$ is a functor from a category $\mathcal{K}$ to a category $\mathcal{C}$,
-and let $X \in \text{Ob}(\mathcal{C})$. Consider the following dual notions:
-\begin{defn}[Initial morphism]
- An $\emph{initial morphism}$ from $X \to U$ is an initial object in the category
- $(X \downarrow U)$ of morphisms from $X \to U$. In particular, it consists
- of a pair $(A, \varphi)$ where $A \in \text{Ob}(\mathcal{K})$ and $\varphi: X \to U(A) \in \text{Hom}(\mathcal{C})$,
- such that the following initial property is satisfied:
- \\
- Whenever $Y \in \text{Ob}(\mathcal{K})$ and $f: X \to U(Y) \in \text{Hom}(\mathcal{C})$, then there exists a unique morphism
- $g: A \to Y$ such that the following diagram commutes:
-\begin{tikzcd}
- X \drar[swap]{f} \rar{\varphi} & U(A)
- \dar[dashed]{U(g)} \\ & U(Y)
-\end{tikzcd}
-\end{defn}
-
-\begin{defn}[Terminal morphism]
- A $\emph{terminal morphism}$ from $U \to X$ is a terminal object in the $\emph{comma category (i.e., morphisms become objects)}$
- $(U \downarrow X)$ of morphisms from $U \to X$. In particular, it consists of a pair $(A, \varphi)$
- where $A \in \text{Ob}(\mathcal{K})$ and $\varphi: U(A) \to X \in \text{Hom}(\mathcal{C})$,
- such that the following terminal property is satisfied:
- \\
- Whenever $Y \in \text{Ob}(\mathcal{K})$ and $f: U(Y) \to X \in \text{Hom}(\mathcal{C})$, then there exists a unique morphism
- $g: Y \to A$ such that the following diagram commutes:
-\begin{tikzcd}
- U(Y) \dar[dashed,swap]{U(g)} \drar{f} \\
- U(A) \rar[swap]{\varphi} & X
-\end{tikzcd} 
-\end{defn}
-
 \subsection{Diagram} % (fold)
 \label{subsec:diagram}
 A diagram is the categorial analogue of an indexed family in set theory. In particular, one also must consider that
@@ -518,10 +488,63 @@ Hence we have motiavation to form a definition of the $\emph{category of diagram
  \end{rem}
 \end{exmp}
 
+One of the wonderful results of diagrams in category theory is that we have a new simple, yet effective, proving technique.
+This technique of proving with categorial diagrams is know as $\emph{diagram chasing}$ where we look for equivalent map compositions in commutative diagrams.
+Typically exploiting the properties of monomorphic, epicmorphic and bimorphic type homomorphisms and their $\emph{exact sequences}$.
+\begin{note}
+ As a side note;
+ Another area of mathematics where diagram chasing is oftern used is that of homological algebra, where Modules are of primary concern.
+\end{note}
+
+\subsection{Cone} % (fold)
+\label{subsec:cone}
+The abstract notion of a $\emph{cone of a functor}$ shall be the essence of what it is to define $\emph{the limit of a functor}$.
+
+\begin{defn}
+ Given some diagram $D: \mathcal{J} \to \mathcal{K}$ with type $\mathcal{J}$ in the category $\mathcal{K}$.
+ A $\emph{cone}$ to the diagram $D$ is an object $N$ of the category $\mathcal{K}$ endowed with a family $\Psi_{X}: N \to D(X)$ of morphisms
+ indexed by $\text{Ob}(\mathcal{J})$ such that every morphism $\varphi: X \to Y \in \mathcal{J}$, we have $F(\varphi) \circ \Psi_{X} = \Psi_{Y}$.
+ The cone is denoted by the pair $(N, \Psi)$.
+\end{defn}
+
+TODO.. develope more with diagrams etc..
 
 \subsection{Limit} % (fold)
 \label{subsec:limit}
 TODO..
+
+\begin{exmp}
+ Suppose that $U: \mathcal{K} \to \mathcal{C}$ is a functor from a category $\mathcal{K}$ to a category $\mathcal{C}$,
+and let $X \in \text{Ob}(\mathcal{C})$. Consider the following dual notions:
+\begin{defn}[Initial morphism]
+ An $\emph{initial morphism}$ from $X \to U$ is an initial object in the category
+ $(X \downarrow U)$ of morphisms from $X \to U$. In particular, it consists
+ of a pair $(A, \varphi)$ where $A \in \text{Ob}(\mathcal{K})$ and $\varphi: X \to U(A) \in \text{Hom}(\mathcal{C})$,
+ such that the following initial property is satisfied:
+ \\
+ Whenever $Y \in \text{Ob}(\mathcal{K})$ and $f: X \to U(Y) \in \text{Hom}(\mathcal{C})$, then there exists a unique morphism
+ $g: A \to Y$ such that the following diagram commutes:
+\begin{tikzcd}
+ X \drar[swap]{f} \rar{\varphi} & U(A)
+ \dar[dashed]{U(g)} \\ & U(Y)
+\end{tikzcd}
+\end{defn}
+
+\begin{defn}[Terminal morphism]
+ A $\emph{terminal morphism}$ from $U \to X$ is a terminal object in the $\emph{comma category (i.e., morphisms become objects)}$
+ $(U \downarrow X)$ of morphisms from $U \to X$. In particular, it consists of a pair $(A, \varphi)$
+ where $A \in \text{Ob}(\mathcal{K})$ and $\varphi: U(A) \to X \in \text{Hom}(\mathcal{C})$,
+ such that the following terminal property is satisfied:
+ \\
+ Whenever $Y \in \text{Ob}(\mathcal{K})$ and $f: U(Y) \to X \in \text{Hom}(\mathcal{C})$, then there exists a unique morphism
+ $g: Y \to A$ such that the following diagram commutes:
+\begin{tikzcd}
+ U(Y) \dar[dashed,swap]{U(g)} \drar{f} \\
+ U(A) \rar[swap]{\varphi} & X
+\end{tikzcd}
+\end{defn}
+\end{exmp}
+
 
 \subsection{Colimit} % (fold)
 \label{subsec:colimit}
