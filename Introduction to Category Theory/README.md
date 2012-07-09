@@ -21,11 +21,13 @@ Table of content:
 
  # Lectures
   + Prelude
-  + Categories
+  + Introduction
   + Morphisms
+  + Categories
   + Functors
   + Monoids
   + Natural transformations
   + Universal constructions
+  + Monads
 
  # Exercises
