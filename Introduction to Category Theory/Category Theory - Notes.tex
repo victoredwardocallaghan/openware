@@ -467,13 +467,14 @@ The acutal detail of the internals of the index category $\mathcal{J}$ is of no 
 are of importance. Hence, diagrams and functors are technically the same thing, however, a different matter of prospective.
 
 \begin{cor}
- A diagram is said to be $\emph{small}$ (finite) whenever the index category $\mathcal{J}$ is.
+ A diagram is said to be $\emph{small}$, or finite, whenever the index category $\mathcal{J}$ is.
 \end{cor}
 
 Again, recall that a digram is a essentially a functor.
 Now, suppose two diagrams $D_{1}$ and $D_{2}$ by some fixed indexing category $\mathcal{J}$ in the category $\mathcal{K}$.
 Then each morphism in $D_{1}$ can be found in $D_{2}$ by the natural transformation from $D_{1}$ to $D_{2}$.
-Hence we have motiavation to form a definition of the $\emph{category of diagrams}$ given by the following:
+Hence we have motivation to form a definition of the $\emph{category of diagrams}$, or $\emph{functor category}$ when
+$\mathcal{J}$ is small, given by the following:
 
 \begin{defn}[Category of Diagrams]
  The category of diagrams by the index category, or type, $\mathcal{J}$ in the category $\mathcal{K}$ as the $\emph{functor category}$,
@@ -501,13 +502,23 @@ Typically exploiting the properties of monomorphic, epicmorphic and bimorphic ty
 The abstract notion of a $\emph{cone of a functor}$ shall be the essence of what it is to define $\emph{the limit of a functor}$.
 
 \begin{defn}
- Given some diagram $D: \mathcal{J} \to \mathcal{K}$ with type $\mathcal{J}$ in the category $\mathcal{K}$.
- A $\emph{cone}$ to the diagram $D$ is an object $N$ of the category $\mathcal{K}$ endowed with a family $\Psi_{X}: N \to D(X)$ of morphisms
+ Given some diagram $F: \mathcal{J} \to \mathcal{K}$ with type $\mathcal{J}$ in the category $\mathcal{K}$.
+ A $\emph{cone}$ to the diagram $F$ is an object $N$ of the category $\mathcal{K}$ endowed with a family $\Psi_{X}: N \to F(X)$ of morphisms
  indexed by $\text{Ob}(\mathcal{J})$ such that every morphism $\varphi: X \to Y \in \mathcal{J}$, we have $F(\varphi) \circ \Psi_{X} = \Psi_{Y}$.
  The cone is denoted by the pair $(N, \Psi)$.
 \end{defn}
 
-TODO.. develope more with diagrams etc..
+Hence, we have the following commutative diagram:
+\begin{tikzcd}
+ N \dar[bend right, swap]{\Psi_{X}} \drar[bend left]{\Psi_{Y}} \\
+ F(X) \rar[swap]{F(\varphi)} & F(Y)
+\end{tikzcd}
+
+\begin{rem}
+ The cone $\Psi$ can be said to have vertex $N$ with base $F$.
+\end{rem}
+
+%TODO.. Add stuff about dual of a cone (cocone) as a exercie..
 
 \subsection{Limit} % (fold)
 \label{subsec:limit}
