@@ -134,38 +134,54 @@ The term itself derives from the Greek $o \mu o$ (omo), ``alike'' and $\mu o \rh
 
 Morphisms can have any of the following properties.
 
+\subsection{Monomorphism} % (fold)
+\label{subsec:monomorphism}
 \begin{defn}[Monomorphism]
  A morphism $\varphi: X \to Y$ is a $\emph{monomorphism}$ if $\varphi \circ \psi = \varphi \circ \phi \implies \psi = \phi$ for all morphisms $\psi,\phi: Z \to X$.
+ \\
  \begin{tikzcd}
   Z \rar[transform canvas={yshift=.5ex}]{\psi} \rar[transform canvas={yshift=-.5ex}, swap]{\phi} & X \rar{\varphi} & Y
  \end{tikzcd}
  \end{defn}
 
+\subsection{Epimorphism} % (fold)
+\label{subsec:epimorphism}
 \begin{defn}[Epimorphism]
  A morphism $\varphi: X \to Y$ is a $\emph{epimorphism}$ if $\psi \circ \varphi = \phi \circ \varphi \implies \psi = \phi$ for all morphisms $\psi,\phi: Y \to Z$.
+ \\
  \begin{tikzcd}
   X \rar{\varphi} & Y \rar[transform canvas={yshift=.5ex}]{\psi} \rar[transform canvas={yshift=-.5ex}, swap]{\phi} & Z
  \end{tikzcd}
 \end{defn}
  
+\subsection{Bimorphism} % (fold)
+\label{subsec:bimorphism}
 \begin{defn}[Bimorphism]
  A morphism $\varphi: X \to Y$ is a $\emph{bimorphism}$ if $\varphi$ is both a monomorphism and epimorphism.
 \end{defn}
 
+\subsection{Isomorphism} % (fold)
+\label{subsec:isomorphism}
 \begin{defn}[Isomorphism]
  A morphism $\varphi: X \to Y$ is a $\emph{isomorphism}$ if there exists a morphism $\psi: Y \to X : \varphi \circ \psi = \Id{Y}$ and $\psi \circ \varphi = \Id{X}$.
 \end{defn}
 
+\subsection{Endomorphism} % (fold)
+\label{subsec:endomorphism}
 \begin{defn}[Endomorphism]
  A morphism $\varphi: X \to X$ is a $\emph{endomorphism}$.
- The class of endomorphisms of a is denoted by $end(a)$.
+ The class of endomorphisms of $\varphi$ is denoted by $end(\varphi)$.
 \end{defn}
 
+\subsection{Automorphism} % (fold)
+\label{subsec:automorphism}
 \begin{defn}[Automorphism]
  A morphism $\varphi: X \to Y$ is a $\emph{automorphism}$ if $\varphi$ is both an endomorphism and an isomorphism.
- The class of automorphisms of a is denoted by $aut(a)$.
+ The class of automorphisms of $\varphi$ is denoted by $aut(\varphi)$.
 \end{defn}
 
+\subsection{Retractions and Sections} % (fold)
+\label{subsec:retractionsandsections}
 \begin{defn}[Retraction]
  A morphism $\varphi: X \to Y$ has a $\emph{retraction}$ if there exists a morphism $\psi: Y \to X$ with $\varphi \circ \psi = \Id{Y}$ - ``if a right inverse of $\varphi$ exists''.
 \end{defn}
@@ -248,8 +264,8 @@ functions as morphisms. A common list is given;
 \item $\emph{Grph}$ is the category of graphs and graph homomorphisms.
 \end{itemize}
 
-\subsection{Dual Category} % (fold)
-\label{subsec:dualcategory}
+\section{Dual Category} % (fold)
+\label{sec:dualcategory}
 $\emph{Duality}$ is a correpsondence between properties of a category $\mathcal{K}$ and the notion
 of $\emph{dual properties}$ of the ``$\emph{op}$posite category'' $\mathcal{K}^{op}$. Suppose some proposition
 regarding a category $\mathcal{K}$, by interchanging the domain and codomain of each morphism as well as
@@ -359,25 +375,30 @@ A functor $F : \mathcal{A} \to \mathcal{B}$ is
  \item $\emph{conserative}$ if it reflects isomorphisms; that is, $a: A \to A'$ is an isomorphism whenever $F(a): F(A) \to F(A')$ is
 \end{enumerate}
 
-\begin{defn}[Functor categories and Yoneda embedding]
+\begin{defn}[Functor category and the Yoneda embedding]
 The Yoneda lemma suggests that instead of studying the $\emph{locally small}$ category $\mathcal{K}$,
 one should study the category of all functors of $\mathcal{K}$ into $\textbf{Set}$.
 Since the category $\textbf{Set}$ is well understood, a functor of $\mathcal{K}$ into $\textbf{Set}$
-maybe seen as a $\emph{representation}$ of $\mathcal{K}$ in terms of known structures. 
+maybe seen as a $\emph{representation}$ of $\mathcal{K}$ in terms of known structures.
+See the $\emph{category of diagrams}$ later.
  \begin{enumerate}
-  \item Given a category $\mathcal{A}$ and a small category $\mathcal{C}$, we denote by
-  $\mathcal{A}^\mathcal{C}$ the category of functors from $\mathcal{C} \to \mathcal{A}$ and natural transformations.
-  \item In case $\mathcal{A} = \textbf{Set}$, we have the $\emph{Yoneda embedding}$:\\
-  $Y_{\mathcal{C}}: \mathcal{C}^{op} \to \textbf{Set}^{\mathcal{C}}
+  \item Given a category $\mathcal{K}$ and a small category $\mathcal{J}$, we denote by
+  $\mathcal{K}^\mathcal{J}$ the category of functors from $\mathcal{J} \to \mathcal{K}$ and natural transformations
+  of each functor from $\mathcal{J} \to \mathcal{K}$.
+  \item In case $\mathcal{K} = \textbf{Set}$, we have the $\emph{Yoneda embedding}$:\\
+  $Y_{\mathcal{J}}: \mathcal{J}^{op} \to \textbf{Set}^{\mathcal{J}}
   \, \,
-  Y_{\mathcal{C}}(X) = \mathcal{C}(X, -)$,\\
-  which is full and faithful.
+  Y_{\mathcal{J}}(X) = \mathcal{J}(X, -)$, which is full and faithful.
  \end{enumerate}
 \end{defn}
 
 
 \section{Monoids} % (fold)
 \label{sec:monoids}
+A $\emph{monoid}$ is an abstract mathematical structure normally associated with that of a semigroup with identity.
+A semigroup with identity, or just monoid, is some set $M$ together with a law of associative composition,
+$\forall x,y,z \in M : (x \circ y) \circ z = x \circ (y \circ z)$, that is both closed, $\forall x,y \in M : x \circ y \in M$,
+and has idenity not in $M$ such that $\Id{} \circ x = x = x \circ \Id{} \forall x \in M$. More compactly,
 
 \begin{defn}[Monoid]
  A category with exactly one object is called a $\emph{monoid}$.
@@ -386,23 +407,32 @@ maybe seen as a $\emph{representation}$ of $\mathcal{K}$ in terms of known struc
 Thus, expanding out the definition of a category we have;
 \begin{cor}[Monoid]
  A $\emph{monoid}$ is a set $X$ together with a law of composition $\circ$
- which associates and has identity $\Id{} \in X$.
+ which associates, and has identity $\Id{} \in X$.
 \end{cor}
 
 \begin{exmp}
- The following commutative diagram illustrates the monoidal structure of a group:
- \monoid{
-  (A\otimes A)\otimes A\otimes A &
-  A\otimes (A\otimes A) &
-  A\otimes A &
-  A\otimes A &
-  A &
-  \mu\otimes \Id{} &
-  \Id{} \otimes\mu &
-  \mu &
-  \mu\otimes \Id{}
- }
+ Let $M = \Z$ and the law of composition $+$ as arithmetic addition with $0$ as identity.
 \end{exmp}
+
+\begin{exmp}
+ A list is an example of a monoid with the empty list $()$ as identity and the law of composition $++$ as appending to the list.
+\end{exmp}
+
+
+% \begin{exmp}
+%  The following commutative diagram illustrates the monoidal structure of a group:
+%  \monoid{
+%   (A\otimes A)\otimes A\otimes A &
+%   A\otimes (A\otimes A) &
+%   A\otimes A &
+%   A\otimes A &
+%   A &
+%   \mu\otimes \Id{} &
+%   \Id{} \otimes\mu &
+%   \mu &
+%   \mu\otimes \Id{}
+%  }
+% \end{exmp}
 
 
 \section{Natural Transformations} % (fold)
@@ -518,48 +548,49 @@ Hence, we have the following commutative diagram:
  The cone $\Psi$ can be said to have vertex $N$ with base $F$.
 \end{rem}
 
-%TODO.. Add stuff about dual of a cone (cocone) as a exercie..
+\begin{rem}[Cocone]
+ TODO..
+\end{rem}
 
 \subsection{Limit} % (fold)
 \label{subsec:limit}
 TODO..
 
-\begin{exmp}
- Suppose that $U: \mathcal{K} \to \mathcal{C}$ is a functor from a category $\mathcal{K}$ to a category $\mathcal{C}$,
-and let $X \in \text{Ob}(\mathcal{C})$. Consider the following dual notions:
-\begin{defn}[Initial morphism]
- An $\emph{initial morphism}$ from $X \to U$ is an initial object in the category
- $(X \downarrow U)$ of morphisms from $X \to U$. In particular, it consists
- of a pair $(A, \varphi)$ where $A \in \text{Ob}(\mathcal{K})$ and $\varphi: X \to U(A) \in \text{Hom}(\mathcal{C})$,
- such that the following initial property is satisfied:
- \\
- Whenever $Y \in \text{Ob}(\mathcal{K})$ and $f: X \to U(Y) \in \text{Hom}(\mathcal{C})$, then there exists a unique morphism
- $g: A \to Y$ such that the following diagram commutes:
-\begin{tikzcd}
- X \drar[swap]{f} \rar{\varphi} & U(A)
- \dar[dashed]{U(g)} \\ & U(Y)
-\end{tikzcd}
-\end{defn}
+\begin{rem}[Colimit]
+ TODO..
+\end{rem}
 
-\begin{defn}[Terminal morphism]
- A $\emph{terminal morphism}$ from $U \to X$ is a terminal object in the $\emph{comma category (i.e., morphisms become objects)}$
- $(U \downarrow X)$ of morphisms from $U \to X$. In particular, it consists of a pair $(A, \varphi)$
- where $A \in \text{Ob}(\mathcal{K})$ and $\varphi: U(A) \to X \in \text{Hom}(\mathcal{C})$,
- such that the following terminal property is satisfied:
- \\
- Whenever $Y \in \text{Ob}(\mathcal{K})$ and $f: U(Y) \to X \in \text{Hom}(\mathcal{C})$, then there exists a unique morphism
- $g: Y \to A$ such that the following diagram commutes:
-\begin{tikzcd}
- U(Y) \dar[dashed,swap]{U(g)} \drar{f} \\
- U(A) \rar[swap]{\varphi} & X
-\end{tikzcd}
-\end{defn}
-\end{exmp}
-
-
-\subsection{Colimit} % (fold)
-\label{subsec:colimit}
-TODO..
+% \begin{exmp}
+%  Suppose that $U: \mathcal{K} \to \mathcal{C}$ is a functor from a category $\mathcal{K}$ to a category $\mathcal{C}$,
+% and let $X \in \text{Ob}(\mathcal{C})$. Consider the following dual notions:
+% \begin{defn}[Initial morphism]
+%  An $\emph{initial morphism}$ from $X \to U$ is an initial object in the category
+%  $(X \downarrow U)$ of morphisms from $X \to U$. In particular, it consists
+%  of a pair $(A, \varphi)$ where $A \in \text{Ob}(\mathcal{K})$ and $\varphi: X \to U(A) \in \text{Hom}(\mathcal{C})$,
+%  such that the following initial property is satisfied:
+%  \\
+%  Whenever $Y \in \text{Ob}(\mathcal{K})$ and $f: X \to U(Y) \in \text{Hom}(\mathcal{C})$, then there exists a unique morphism
+%  $g: A \to Y$ such that the following diagram commutes:
+% \begin{tikzcd}
+%  X \drar[swap]{f} \rar{\varphi} & U(A)
+%  \dar[dashed]{U(g)} \\ & U(Y)
+% \end{tikzcd}
+% \end{defn}
+% 
+% \begin{defn}[Terminal morphism]
+%  A $\emph{terminal morphism}$ from $U \to X$ is a terminal object in the $\emph{comma category (i.e., morphisms become objects)}$
+%  $(U \downarrow X)$ of morphisms from $U \to X$. In particular, it consists of a pair $(A, \varphi)$
+%  where $A \in \text{Ob}(\mathcal{K})$ and $\varphi: U(A) \to X \in \text{Hom}(\mathcal{C})$,
+%  such that the following terminal property is satisfied:
+%  \\
+%  Whenever $Y \in \text{Ob}(\mathcal{K})$ and $f: U(Y) \to X \in \text{Hom}(\mathcal{C})$, then there exists a unique morphism
+%  $g: Y \to A$ such that the following diagram commutes:
+% \begin{tikzcd}
+%  U(Y) \dar[dashed,swap]{U(g)} \drar{f} \\
+%  U(A) \rar[swap]{\varphi} & X
+% \end{tikzcd}
+% \end{defn}
+% \end{exmp}
 
 
 \section{Monads} % (fold)
@@ -584,7 +615,7 @@ $\eta$ and $\mu$ that satisfy so-called $\emph{coherence conditions}$.
 \end{defn}
 \begin{rem}
  N.B. $\eta$ called $\emph{the unit}$ since it is a natural mapping from idenity and
- $\mu$ called $\emph{the multiplication}$ also noting the natural mapping from $T \circ T = T^2$.
+ $\mu$ called $\emph{the multiplication}$ also noting the natural mapping from $T^2 = T \circ T$.
 \end{rem}
 
 Recall the definition of a natural transformation of $\eta$ and $\mu$, that for every $X \in \text{Ob}(\mathcal{K})$
@@ -619,7 +650,7 @@ Since these are natural transformations,
 we can write these without $X$ and by writing $\eta_{T(X)}$ as $\eta T$ and $T(\eta_{X})$ as $T \eta$, for example.
 Since the commutative diagrams in the category $\mathcal{K}$ are component wise, that is, in terms of $X$.
 
-\begin{rem}[CoMonad]
+\begin{rem}[Comonad]
  A $\emph{Co}$monad, or just $\emph{cotriple}$, is the categorical dual of a Monad.
  That is, A comonad for a category $\mathcal{K}$ is a monad for the opposite category $\mathcal{K}^{op}$.
 \end{rem}
@@ -629,7 +660,7 @@ Since the commutative diagrams in the category $\mathcal{K}$ are component wise,
  From the definition of a monoid,
  take the category $\mathcal{K} = \textbf{Set}$ and a functor $T: X \to X^{*}$ where $X$ is the ``set of words'' in $X$.
  \begin{rem}
-  A word is just a list of objects in $X$ e.g., $(x_{1}, x{2}, x_{3})$ or simply the empty list $()$.
+  A word is just a list of objects in $X$ e.g., $(x_{1}, x_{2}, x_{3})$ or simply the empty list $()$.
  \end{rem}
  Therefore, we define the natural transformations component wise, as: $\eta_{X}: X \to X^{*}$ and $\mu_{X}: X^{**} \to X^{*}$.
  \begin{rem}
