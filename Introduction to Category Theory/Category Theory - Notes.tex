@@ -397,18 +397,18 @@ See the $\emph{category of diagrams}$ later.
 \label{sec:monoids}
 A $\emph{monoid}$ is an abstract mathematical structure normally associated with that of a semigroup with identity.
 A semigroup with identity, or just monoid, is some set $M$ together with a law of associative composition,
-$\forall x,y,z \in M : (x \circ y) \circ z = x \circ (y \circ z)$, that is both closed, $\forall x,y \in M : x \circ y \in M$,
-and has idenity not in $M$ such that $\Id{} \circ x = x = x \circ \Id{} \forall x \in M$. More compactly,
+$\forall x,y,z \in M : (x \circ y) \circ z = x \circ (y \circ z)$, that is both closed, $M \circ M \to M$,
+and has idenity, $\exists \Id{M} \in M : \Id{M} \circ x = x = x \circ \Id{M} \, \forall x \in M$. That is,
 
+\begin{defn}
+ A $\emph{monoid}$ is a set $X$ together with a law of composition $\circ$
+ which is closed associative, and has identity $\Id{X} \in X$.
+\end{defn}
+
+More compactly in categorial terms,
 \begin{defn}[Monoid]
  A category with exactly one object is called a $\emph{monoid}$.
 \end{defn}
-
-Thus, expanding out the definition of a category we have;
-\begin{cor}[Monoid]
- A $\emph{monoid}$ is a set $X$ together with a law of composition $\circ$
- which associates, and has identity $\Id{} \in X$.
-\end{cor}
 
 \begin{exmp}
  Let $M = \Z$ and the law of composition $+$ as arithmetic addition with $0$ as identity.
