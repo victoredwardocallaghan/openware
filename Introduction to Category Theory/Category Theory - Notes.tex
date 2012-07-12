@@ -38,6 +38,7 @@
 
 \newcommand{\expc}[1]{\mathbb{E}\left[#1\right]}
 
+\newcommand{\N}{\mathbb{N}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
@@ -264,6 +265,25 @@ functions as morphisms. A common list is given;
 \item $\emph{Grph}$ is the category of graphs and graph homomorphisms.
 \end{itemize}
 
+\subsection{Product} % (fold)
+\label{subsec:product}
+Let $A,B \in \text{Ob}(\mathcal{K})$ for some category $\mathcal{K}$.
+A $\emph{product}$ of $A$ and $B$ is an object $C$, together with morphisms from
+$\alpha: C \to A$ and $\beta: C \to B$, such that the following prperty holds:
+if $C^{'}$ is any object, and any morphisms $\alpha^{'}: C^{'} \to A$ and $\beta^{'}: C^{'} \to B$,
+there is a unique morphism $\gamma: C^{'} \to C$ such that the following diagram commutes:
+
+\begin{tikzcd}
+& C^{'}
+ \ar[swap]{ddl}{\alpha^{'}} \ar{ddr}{\beta^{'}} \dar{\gamma} & \\
+ & C
+ \dlar{\alpha} \drar[swap]{\beta} & \\
+ A & & B
+\end{tikzcd}
+
+The morphisms $\alpha$ and $\beta$ are called the $\emph{canonical projections}$.
+We denote the product of $A$ and $B$ as: $A \prod B$ or sometimes $A \bigotimes B$.
+
 \section{Dual Category} % (fold)
 \label{sec:dualcategory}
 $\emph{Duality}$ is a correpsondence between properties of a category $\mathcal{K}$ and the notion
@@ -284,6 +304,25 @@ Duality, as such, is the assertion that truth is invariant under this operation 
 \begin{rem}
  We make the notion of diagram and hence the idea of commutative diagrams rigous later.
 \end{rem}
+
+\subsection{Coproduct} % (fold)
+\label{subsec:coproduct}
+Let $A,B \in \text{Ob}(\mathcal{K})$ for some category $\mathcal{K}$.
+A $\emph{co}$product (sum) of $A$ and $B$ is an object $C$, together with morphisms from
+$\alpha: A \to C$ and $\beta: B \to C$, such that the following prperty holds:
+if $C^{'}$ is any object, and any morphisms $\alpha^{'}: A \to C^{'}$ and $\beta^{'}: B \to C^{'}$,
+there is a unique morphism $\gamma: C \to C^{'}$ such that the following diagram commutes:
+
+\begin{tikzcd}
+A \ar{ddr}[swap]{\alpha^{'}} \drar{\alpha}
+ &&
+ B \ar{ddl}{\beta^{'}} \dlar[swap]{\beta} & \\
+ & C \dar{\gamma} & \\
+ & C^{'}
+\end{tikzcd}
+
+Once again, the morphisms $\alpha$ and $\beta$ are called the $\emph{canonical projections}$.
+We denote the coproduct, or `sum', of $A$ and $B$ as: $A \coprod B$ or sometimes $A \bigoplus B$.
 
 
 \section{Functors} % (fold)
@@ -391,6 +430,42 @@ See the $\emph{category of diagrams}$ later.
   Y_{\mathcal{J}}(X) = \mathcal{J}(X, -)$, which is full and faithful.
  \end{enumerate}
 \end{defn}
+
+
+\subsection{F-algebra} % (fold)
+\label{subsec:f-algebra}
+$\emph{F-algebras}$ have various applications, such as in computer science,
+creating concrete definitions of various algebraic data types (e.g., lists, trees, ...).
+A $F$-algebra is a structure defined according to some endofunctor $F: \mathcal{K} \to \mathcal{K}$
+for some category of functors $\mathcal{K}$. That is,
+
+\begin{defn}[F-algebra]
+ A $F$-algebra for a endofunctor $F$ is some object $A$ in the category $\mathcal{K}$, coupled with
+ a $\mathcal{K}$-morphism $\alpha: F(A) \to A$. We denote this $F$-algebra by the pair $(A, \alpha)$.
+\end{defn}
+
+$F$-algebras also form a category as expected.
+Since, The homomorphism from a $F$-algebra $(A, \alpha)$ to $F$-algebra $(B, \beta)$
+is given by $\varphi: A \to B \in \mathcal{K}$ such that $\varphi \circ \alpha = \beta \circ F(\varphi)$.
+Hence, we have the following commutative diagram:
+\begin{tikzcd}
+F(A) \rar[][color=red]{\alpha} \dar[]{F(\varphi)}
+ & A \dar[][color=red]{\varphi} \\
+F(B) \rar{\beta}
+ & B
+\end{tikzcd}
+
+\begin{exmp}[Initial algebra]
+ Consider a functor $F: \textbf{Set} \to \textbf{Set}$, in particular, $F: X \to \{ \; \} \bigoplus X$.
+ Then the set $\N$ endowered with the function $[zero,succ]: \{ \; \} \bigoplus \N \to N$, is a $F$-algebra.
+ This initial algebra is denoted by the pair $(\N, [zero,succ])$.
+\end{exmp}
+
+Here the singleton set $\{ \; \}$ denotes the $\emph{terminal object}$ and $\bigoplus$ as the $\emph{coproduct}$.
+
+\begin{rem}
+ The categorial dual are called $F$-$\emph{co}$algebras.
+\end{rem}
 
 
 \section{Monoids} % (fold)
