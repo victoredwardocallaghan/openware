@@ -100,6 +100,9 @@ a categorial diagram is simply a directed graph, where the nodes are objects fro
 I highly recommend you copy each new term with a corresponding diagram to anecdote the idea at hand.
 If all else fails, be sure to remember to break the term down into prefix and suffix and reason it.
 Typically terms are fairly simple to reason out (e.g., mono = ``one'', auto = ``self'', morphism = ``to shape'').
+Category theory is actually a generalisation of set theory and so, we `stress' that a class of objects is not
+nessarily a set and is considered more abstract. Keep this in mind when we look at `small' and `large' categories
+we shall see later.
 
 \begin{note}[Class]
  A $\emph{class}$ is a collection of mathematical objects (e.g., sets)
@@ -269,7 +272,7 @@ functions as morphisms. A common list is given;
 \label{subsec:product}
 Let $A,B \in \text{Ob}(\mathcal{K})$ for some category $\mathcal{K}$.
 A $\emph{product}$ of $A$ and $B$ is an object $C$, together with morphisms from
-$\alpha: C \to A$ and $\beta: C \to B$, such that the following prperty holds:
+$\alpha: C \to A$ and $\beta: C \to B$, such that the following property holds:
 if $C^{'}$ is any object, and any morphisms $\alpha^{'}: C^{'} \to A$ and $\beta^{'}: C^{'} \to B$,
 there is a unique morphism $\gamma: C^{'} \to C$ such that the following diagram commutes:
 
@@ -282,7 +285,7 @@ there is a unique morphism $\gamma: C^{'} \to C$ such that the following diagram
 \end{tikzcd}
 
 The morphisms $\alpha$ and $\beta$ are called the $\emph{canonical projections}$.
-We denote the product of $A$ and $B$ as: $A \prod B$ or sometimes $A \bigotimes B$.
+We denote the product of $A$ and $B$ as: $C = A \prod B$ or sometimes written $C = A \bigotimes B$.
 
 \section{Dual Category} % (fold)
 \label{sec:dualcategory}
@@ -309,7 +312,7 @@ Duality, as such, is the assertion that truth is invariant under this operation 
 \label{subsec:coproduct}
 Let $A,B \in \text{Ob}(\mathcal{K})$ for some category $\mathcal{K}$.
 A $\emph{co}$product (sum) of $A$ and $B$ is an object $C$, together with morphisms from
-$\alpha: A \to C$ and $\beta: B \to C$, such that the following prperty holds:
+$\alpha: A \to C$ and $\beta: B \to C$, such that the following property holds:
 if $C^{'}$ is any object, and any morphisms $\alpha^{'}: A \to C^{'}$ and $\beta^{'}: B \to C^{'}$,
 there is a unique morphism $\gamma: C \to C^{'}$ such that the following diagram commutes:
 
@@ -322,7 +325,9 @@ A \ar{ddr}[swap]{\alpha^{'}} \drar{\alpha}
 \end{tikzcd}
 
 Once again, the morphisms $\alpha$ and $\beta$ are called the $\emph{canonical projections}$.
-We denote the coproduct, or `sum', of $A$ and $B$ as: $A \coprod B$ or sometimes $A \bigoplus B$.
+We denote the coproduct, or `sum', of $A$ and $B$ as: $C = A \coprod B$ or sometimes written $C = A \bigoplus B$.
+Notice that all we have done is reverse all the morphisms (arrows) in a product to obtain the coproduct.
+This is, ofcourse, the usual method of finding a categorial dual.
 
 
 \section{Functors} % (fold)
@@ -404,8 +409,10 @@ definitions above or simply break the word down grammatically.
 However, some properties are more particular to functors and we review them here to families ourselves.
 A functor $F : \mathcal{A} \to \mathcal{B}$ is
 \begin{enumerate}
- \item $\emph{faithful}$ if for every parallel pair of morphisms $f,g : A \rightrightarrows A' \in \mathcal{A}$, one has $f = g$ whenever $F(f) = F(g)$
+ \item $\emph{faithful}$ if for every parallel pair of morphisms $f,g : A \rightrightarrows A' \in \mathcal{A}$, one has $f = g$ whenever $F(f) = F(g)$.
+ (Recall the definition of a monomorphism).
  \item $\emph{full}$ if for every morphism $b: F(A) \to F(A') \in \mathcal{B}$, there exists a morphism $a: A \to A' \in \mathcal{A}$ such that $F(a) = b$
+ (Recall the definition of a epimorphism).
  \item essentially $\emph{surjective}$ if for every object $B \in \mathcal{B}$, there exists an object $A \in \mathcal{A}$ with $B$ isomorphic to $F(A)$
  \item an $\emph{equivalence}$ if there exists a functor $F': \mathcal{B} \to \mathcal{A}$ such that both $F \circ F'$ and $F' \circ F$ are naturally
  isomorphic to the identity functors; such a functor $F'$ is called a $\emph{quasi-inverse}$ of $F$
@@ -427,7 +434,7 @@ See the $\emph{category of diagrams}$ later.
   \item In case $\mathcal{K} = \textbf{Set}$, we have the $\emph{Yoneda embedding}$:\\
   $Y_{\mathcal{J}}: \mathcal{J}^{op} \to \textbf{Set}^{\mathcal{J}}
   \, \,
-  Y_{\mathcal{J}}(X) = \mathcal{J}(X, -)$, which is full and faithful.
+  Y_{\mathcal{J}}(X) = \mathcal{J}(X, -)$, which is full and faithful (Recall the definition of a bimorphism).
  \end{enumerate}
 \end{defn}
 
@@ -456,12 +463,13 @@ F(B) \rar{\beta}
 \end{tikzcd}
 
 \begin{exmp}[Initial algebra]
- Consider a functor $F: \textbf{Set} \to \textbf{Set}$, in particular, $F: X \to \{ \; \} \bigoplus X$.
- Then the set $\N$ endowered with the function $[zero,succ]: \{ \; \} \bigoplus \N \to N$, is a $F$-algebra.
+ Consider a functor $F: \textbf{Set} \to \textbf{Set}$, in particular, $F: X \to 1 \bigoplus X$.
+ Then the set $\N$ endowered with the function $[zero,succ]: 1 \bigoplus \N \to N$, is a $F$-algebra.
  This initial algebra is denoted by the pair $(\N, [zero,succ])$.
 \end{exmp}
 
-Here the singleton set $\{ \; \}$ denotes the $\emph{terminal object}$ and $\bigoplus$ as the $\emph{coproduct}$.
+Here $1$ denotes the $\emph{terminal object}$ taken to be the singleton set $\{ \; \}$
+and $\bigoplus$ as the $\emph{coproduct}$.
 
 \begin{rem}
  The categorial dual are called $F$-$\emph{co}$algebras.
@@ -536,7 +544,7 @@ and consequently appear in the majority of its applications.
  \end{tikzcd}
 \end{defn}
 \begin{rem}
- N.B. The naturality square is the key concept to understanding natural transformations and
+ $\textbf{N.B.}$ The naturality square is the key concept to understanding natural transformations and
  there is one of them for every morphism in $\mathcal{C}$ as stated above. Note this well.
 \end{rem}
 
@@ -548,7 +556,7 @@ This leads to the clarifying concept of natural transformation, a way to map one
 \end{rem}
 
 
-\section{Universal constructions} % (fold)
+\section{Universal Constructions} % (fold)
 \label{sec:universalconstructions}
 Categorial objects are both abstract and have atomic type.
 Thus we are face with the issue of defining objects without referring to the internal structure.
@@ -568,7 +576,7 @@ naturally then a functor as you may expect.
  where $\mathcal{J}$ is some $\emph{index category}$ in the category $\mathcal{K}$.
 \end{defn}
 
-The acutal detail of the internals of the index category $\mathcal{J}$ is of no concern, merely the internal relationships
+The actual detail of the internals of the index category $\mathcal{J}$ is of no concern, merely the internal relationships
 are of importance. Hence, diagrams and functors are technically the same thing, however, a different matter of prospective.
 
 \begin{cor}
@@ -596,7 +604,7 @@ $\mathcal{J}$ is small, given by the following:
 
 One of the wonderful results of diagrams in category theory is that we have a new simple, yet effective, proving technique.
 This technique of proving with categorial diagrams is know as $\emph{diagram chasing}$ where we look for equivalent map compositions in commutative diagrams.
-Typically exploiting the properties of monomorphic, epicmorphic and bimorphic type homomorphisms and their $\emph{exact sequences}$.
+Typically exploiting the properties of monomorphic, epimorphic and bimorphic type homomorphisms and their $\emph{exact sequences}$.
 \begin{note}
  As a side note;
  Another area of mathematics where diagram chasing is oftern used is that of homological algebra, where Modules are of primary concern.
@@ -624,15 +632,34 @@ Hence, we have the following commutative diagram:
 \end{rem}
 
 \begin{rem}[Cocone]
- TODO..
+ The categorial dual of a cone is called a $\emph{co}$cone.
 \end{rem}
 
 \subsection{Limit} % (fold)
 \label{subsec:limit}
-TODO..
+Let $F: J \to \mathcal{J}$ be a diagram of type $J$ in the category $\mathcal{K}$.
+A cone to $F$ is a some $N \in \text{Ob}(\mathcal{K})$ together with a family
+$\Psi: N \to F(X)$ of morphisms indexed by the objects of $J$, such that
+for each $\varphi: X \to Y \in J$, we have $F(\varphi) \circ \Psi_{X} = \Psi_{Y}$.
+
+A $\emph{limit}$ of the diagram $F$ is a cone $(L,\psi)$ to $F$ such that for any other
+cone $(N,\Psi)$ to $F$ there exists a $\emph{unique}$ morphism $\gamma: N \to L$ such that
+$\psi_{X} \circ \gamma = \Psi_{X} \, \forall X \in J$.
+
+\begin{tikzcd}
+& N
+ \ar[swap]{ddl}{\Psi_{X}} \ar{ddr}{\Psi_{Y}} \dar{\gamma} & \\
+ & L
+ \dlar{\psi_{X}} \drar[swap]{\psi_{Y}} & \\
+ F(X) & \rar[swap]{F(\varphi)} & F(Y)
+\end{tikzcd} % FIXME: F(f) arrow too short?
+
+This definition should look familiar to that of a $\emph{product}$.
+Here, the cone $(N, \Psi)$ factors through the cone $(L, \psi)$ with the unique factorization $\gamma$.
+We call the morphism, $\gamma$, the mediating morphism.
 
 \begin{rem}[Colimit]
- TODO..
+ The categorial dual of a limit is called a $\emph{co}$limit.
 \end{rem}
 
 % \begin{exmp}
@@ -672,8 +699,8 @@ TODO..
 \label{sec:monads}
 $\emph{Monads}$ derived from Greek, $\mu o \nu\alpha\varsigma$ (monas), ``unit''.
 The computer science interpretation is that of a unit of computation.
-Monads are like algebraic theories and that a algebra for a monad is a model of that theory. A monad is simply a functor
-with some extra 'stuff' that tells us what is going on in the associated theory.
+Monads are like algebraic theories and that an algebra for a monad is a model of that theory. A monad is simply
+a functor with some extra 'stuff' that tells us what is going on in the associated theory.
 The notion of $\emph{algebras for a monad}$ generalises classical notions from universal algebra,
 and in this sense, monads can be thought of as $\emph{theories}$.
 More formally, a monad or $\emph{(Kleisli triple)}$, is an endofunctor coupled with two natural transformations,
