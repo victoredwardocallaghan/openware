@@ -1,0 +1,81 @@
+\section{Categories} % (fold)
+\label{sec:categories}
+A category consists of three things:
+a collection of objects, for each pair of objects a collection of morphisms from one to another, and a binary
+operation defined on compatible pairs of morphisms called composition denoted by $\circ$. The category must satisfy an identity axiom
+and an associative axiom which is analogous to the monoid axioms, seen later. We require that morphisms preserve the
+mathematical structure of the objects (i.e., for vector spaces as objects one would choose linear maps as morphisms, and so on).
+\begin{defn}[Category]
+	A $\emph{category}$ $\Cat$ consists of the following three mathematical entities:
+	\begin{enumerate}
+		\item A $\emph{class}$ $\text{Ob}(\Cat)$ of objects
+		
+		\item A class $\text{Hom}(A,B)$ of $\emph{morphisms}$, from $A \longrightarrow B$ such that $A, B \in \text{Ob}(\Cat)$.
+		\\
+		e.g. $\varphi : A \to B$ to mean $\varphi \in \text{Hom}(A,B)$.
+		\begin{rem}
+		The class of \emph{all} morphisms of $\Cat$ is denoted $\text{Hom}(\Cat)$.
+		\end{rem}
+
+		\item Given $A, B, C \in \text{Ob}(\Cat)$, a binary operation $\circ : Hom(A,B) \times Hom(B,C) \to Hom(A,C)$ called
+		\emph{composition}, satisfying:
+		\begin{enumerate}
+			\item \emph{(closed associativity)} Given $\varphi : A \to B$, $\psi: B \to C$ and $\phi: A \to C$
+			\\
+			we have $\phi \circ (\psi \circ \varphi) = (\phi \circ \psi) \circ \varphi$.
+			\\
+			\begin{tikzcd}
+			A \drar{\phi} \rar{\varphi}
+			& B \dar{\psi} \\
+			& C
+			\end{tikzcd}
+			
+			\item \emph{(identity)} For any object X there is an identity morphism $\Id{X} : X \to X$ such that for any $\varphi: A \to B$ we have $\Id{B} \circ \varphi = \varphi = \varphi \circ \Id{A}$.
+			\\
+			\begin{tikzcd}
+			X \arrow[in=30, out=60, loop]{}[name=idX]{\Id{X}}
+			\end{tikzcd}
+		\end{enumerate}
+	\end{enumerate}
+\end{defn}
+
+It is also worth noting about what we mean by `small' and `large' categories.
+
+\begin{defn}[Small Category]
+	A category $\Cat$ is called small if both $\text{Ob}(\Cat)$ and $\text{Hom}(\Cat)$ are sets.
+	If $\Cat$ is not small, then it is called large.
+	$\Cat$ is called locally small if $\text{Hom}(A,B)$ is a set for all $A, B \in \text{Ob}(\Cat)$.
+\end{defn}
+
+\begin{rem}
+	Most important categories in mathematics are not small however, are locally small.
+\end{rem}
+
+Most basic categories have as objects certain mathematical structures, and the structure-preserving
+functions as morphisms. A common list is given;
+\begin{itemize}
+\item $\emph{Pos}$ is the category of partially ordered sets and monotonic functions.
+\item $\emph{Top}$ is the category of topological spaces and continuous functions.
+\item $\emph{Rng}$ is the category of rings and ring homomorphisms.
+\item $\emph{Grp}$ is the category of groups and group homomorphisms.
+\item $\emph{Grph}$ is the category of graphs and graph homomorphisms.
+\end{itemize}
+
+\subsection{Product} % (fold)
+\label{subsec:product}
+Let $A,B \in \text{Ob}(\mathcal{K})$ for some category $\mathcal{K}$.
+A $\emph{product}$ of $A$ and $B$ is an object $C$, together with morphisms from
+$\alpha: C \to A$ and $\beta: C \to B$, such that the following property holds:
+if $C^{'}$ is any object, and any morphisms $\alpha^{'}: C^{'} \to A$ and $\beta^{'}: C^{'} \to B$,
+there is a unique morphism $\gamma: C^{'} \to C$ such that the following diagram commutes:
+
+\begin{tikzcd}
+& C^{'}
+ \ar[swap]{ddl}{\alpha^{'}} \ar{ddr}{\beta^{'}} \dar{\gamma} & \\
+ & C
+ \dlar{\alpha} \drar[swap]{\beta} & \\
+ A & & B
+\end{tikzcd}
+
+The morphisms $\alpha$ and $\beta$ are called the $\emph{canonical projections}$.
+We denote the product of $A$ and $B$ as: $C = A \prod B$ or sometimes written $C = A \bigotimes B$.

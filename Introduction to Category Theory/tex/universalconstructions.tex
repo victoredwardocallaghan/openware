@@ -1,0 +1,137 @@
+\section{Universal Constructions} % (fold)
+\label{sec:universalconstructions}
+Categorial objects are both abstract and have atomic type.
+Thus we are face with the issue of defining objects without referring to the internal structure.
+To characterise these objects, we look at them from the prospective of their relations to other objects, as given by the morphisms 
+of the respective categories. Therefore we must find universal properties that uniquely determine the objects of interest.
+Indeed, it turns out that numerous important constructions can be described purely in this way.
+The central concept which is needed for this purpose is called categorical limit, and can be dualized to yield the notion of a colimit.
+
+\subsection{Diagram} % (fold)
+\label{subsec:diagram}
+A diagram is the categorial analogue of an indexed family in set theory. In particular, one also must consider that
+morphism as well as objects must be indexed. Hence, a diagram is a collection of objects and morphisms, that is,
+a category that is indexed by another fixed category. Since we are mapping from one category to another, a diagram is
+naturally then a functor as you may expect.
+\begin{defn}[Diagram]
+ A $\emph{diagram}$ $D$ is given by the functor $D: \mathcal{J} \to \mathcal{K}$
+ where $\mathcal{J}$ is some $\emph{index category}$ in the category $\mathcal{K}$.
+\end{defn}
+
+The actual detail of the internals of the index category $\mathcal{J}$ is of no concern, merely the internal relationships
+are of importance. Hence, diagrams and functors are technically the same thing, however, a different matter of prospective.
+
+\begin{cor}
+ A diagram is said to be $\emph{small}$, or finite, whenever the index category $\mathcal{J}$ is.
+\end{cor}
+
+Again, recall that a digram is a essentially a functor.
+Now, suppose two diagrams $D_{1}$ and $D_{2}$ by some fixed indexing category $\mathcal{J}$ in the category $\mathcal{K}$.
+Then each morphism in $D_{1}$ can be found in $D_{2}$ by the natural transformation from $D_{1}$ to $D_{2}$.
+Hence we have motivation to form a definition of the $\emph{category of diagrams}$, or $\emph{functor category}$ when
+$\mathcal{J}$ is small, given by the following:
+
+\begin{defn}[Category of Diagrams]
+ The category of diagrams by the index category, or type, $\mathcal{J}$ in the category $\mathcal{K}$ as the $\emph{functor category}$,
+ denoted by $\mathcal{K}^{\mathcal{J}}$ with diagrams as the defined object class.
+\end{defn}
+
+\begin{exmp}
+ Take some small type $\mathcal{J}$ in the category $\mathcal{K}$,
+ then $\mathcal{J}$ merely indexes the objects in the category $\mathcal{K}$.
+ \begin{rem}
+  Also note that the diagram is again be finite since $\mathcal{J}$ is.
+ \end{rem}
+\end{exmp}
+
+One of the wonderful results of diagrams in category theory is that we have a new simple, yet effective, proving technique.
+This technique of proving with categorial diagrams is know as $\emph{diagram chasing}$ where we look for equivalent map compositions in commutative diagrams.
+Typically exploiting the properties of monomorphic, epimorphic and bimorphic type homomorphisms and their $\emph{exact sequences}$.
+\begin{note}
+ As a side note;
+ Another area of mathematics where diagram chasing is oftern used is that of homological algebra, where Modules are of primary concern.
+\end{note}
+
+\subsection{Cone} % (fold)
+\label{subsec:cone}
+The abstract notion of a $\emph{cone of a functor}$ shall be the essence of what it is to define $\emph{the limit of a functor}$.
+
+\begin{defn}
+ Given some diagram $F: \mathcal{J} \to \mathcal{K}$ with type $\mathcal{J}$ in the category $\mathcal{K}$.
+ A $\emph{cone}$ to the diagram $F$ is an object $N$ of the category $\mathcal{K}$ endowed with a family $\Psi_{X}: N \to F(X)$ of morphisms
+ indexed by $\text{Ob}(\mathcal{J})$ such that every morphism $\varphi: X \to Y \in \mathcal{J}$, we have $F(\varphi) \circ \Psi_{X} = \Psi_{Y}$.
+ The cone is denoted by the pair $(N, \Psi)$.
+\end{defn}
+
+Hence, we have the following commutative diagram:
+\begin{tikzcd}
+ N \dar[bend right, swap]{\Psi_{X}} \drar[bend left]{\Psi_{Y}} \\
+ F(X) \rar[swap]{F(\varphi)} & F(Y)
+\end{tikzcd}
+
+\begin{rem}
+ The cone $\Psi$ can be said to have vertex $N$ with base $F$.
+\end{rem}
+
+\begin{rem}[Cocone]
+ The categorial dual of a cone is called a $\emph{co}$cone.
+\end{rem}
+
+\subsection{Limit} % (fold)
+\label{subsec:limit}
+Let $F: J \to \mathcal{J}$ be a diagram of type $J$ in the category $\mathcal{K}$.
+A cone to $F$ is a some $N \in \text{Ob}(\mathcal{K})$ together with a family
+$\Psi: N \to F(X)$ of morphisms indexed by the objects of $J$, such that
+for each $\varphi: X \to Y \in J$, we have $F(\varphi) \circ \Psi_{X} = \Psi_{Y}$.
+
+A $\emph{limit}$ of the diagram $F$ is a cone $(L,\psi)$ to $F$ such that for any other
+cone $(N,\Psi)$ to $F$ there exists a $\emph{unique}$ morphism $\gamma: N \to L$ such that
+$\psi_{X} \circ \gamma = \Psi_{X} \, \forall X \in J$.
+
+\begin{tikzcd}
+& N
+ \ar[swap]{ddl}{\Psi_{X}} \ar{ddr}{\Psi_{Y}} \dar{\gamma} & \\
+ & L
+ \dlar{\psi_{X}} \drar[swap]{\psi_{Y}} & \\
+ F(X) & \rar[swap]{F(\varphi)} & F(Y)
+\end{tikzcd} % FIXME: F(f) arrow too short?
+
+This definition should look familiar to that of a $\emph{product}$.
+Here, the cone $(N, \Psi)$ factors through the cone $(L, \psi)$ with the unique factorization $\gamma$.
+We call the morphism, $\gamma$, the mediating morphism.
+
+\begin{rem}[Colimit]
+ The categorial dual of a limit is called a $\emph{co}$limit.
+\end{rem}
+
+% \begin{exmp}
+%  Suppose that $U: \mathcal{K} \to \mathcal{C}$ is a functor from a category $\mathcal{K}$ to a category $\mathcal{C}$,
+% and let $X \in \text{Ob}(\mathcal{C})$. Consider the following dual notions:
+% \begin{defn}[Initial morphism]
+%  An $\emph{initial morphism}$ from $X \to U$ is an initial object in the category
+%  $(X \downarrow U)$ of morphisms from $X \to U$. In particular, it consists
+%  of a pair $(A, \varphi)$ where $A \in \text{Ob}(\mathcal{K})$ and $\varphi: X \to U(A) \in \text{Hom}(\mathcal{C})$,
+%  such that the following initial property is satisfied:
+%  \\
+%  Whenever $Y \in \text{Ob}(\mathcal{K})$ and $f: X \to U(Y) \in \text{Hom}(\mathcal{C})$, then there exists a unique morphism
+%  $g: A \to Y$ such that the following diagram commutes:
+% \begin{tikzcd}
+%  X \drar[swap]{f} \rar{\varphi} & U(A)
+%  \dar[dashed]{U(g)} \\ & U(Y)
+% \end{tikzcd}
+% \end{defn}
+% 
+% \begin{defn}[Terminal morphism]
+%  A $\emph{terminal morphism}$ from $U \to X$ is a terminal object in the $\emph{comma category (i.e., morphisms become objects)}$
+%  $(U \downarrow X)$ of morphisms from $U \to X$. In particular, it consists of a pair $(A, \varphi)$
+%  where $A \in \text{Ob}(\mathcal{K})$ and $\varphi: U(A) \to X \in \text{Hom}(\mathcal{C})$,
+%  such that the following terminal property is satisfied:
+%  \\
+%  Whenever $Y \in \text{Ob}(\mathcal{K})$ and $f: U(Y) \to X \in \text{Hom}(\mathcal{C})$, then there exists a unique morphism
+%  $g: Y \to A$ such that the following diagram commutes:
+% \begin{tikzcd}
+%  U(Y) \dar[dashed,swap]{U(g)} \drar{f} \\
+%  U(A) \rar[swap]{\varphi} & X
+% \end{tikzcd}
+% \end{defn}
+% \end{exmp}

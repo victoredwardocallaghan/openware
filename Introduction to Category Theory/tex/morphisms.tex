@@ -1,0 +1,78 @@
+\section{Morphisms} % (fold)
+\label{sec:morphisms}
+A morphism is a map between two objects in an abstract category from $\emph{dom}$ain to $\emph{codom}$ain, more on this later.
+A general morphism is called a homomorphism. A homomorphism is a term typically used in category theory.
+The term itself derives from the Greek $o \mu o$ (omo), ``alike'' and $\mu o \rho\varphi\omega\sigma\iota\varsigma$
+(morphosis), ``to form'' or ``to shape''.
+\begin{rem}
+ The similarity in meaning and form of the words ``homomorphism'' and ``homeomorphism'' is unfortunate and typically
+ a source of common confusion.
+\end{rem}
+
+Morphisms can have any of the following properties.
+
+\subsection{Monomorphism} % (fold)
+\label{subsec:monomorphism}
+\begin{defn}[Monomorphism]
+ A morphism $\varphi: X \to Y$ is a $\emph{monomorphism}$ if $\varphi \circ \psi = \varphi \circ \phi \implies \psi = \phi$ for all morphisms $\psi,\phi: Z \to X$.
+ \\
+ \begin{tikzcd}
+  Z \rar[transform canvas={yshift=.5ex}]{\psi} \rar[transform canvas={yshift=-.5ex}, swap]{\phi} & X \rar{\varphi} & Y
+ \end{tikzcd}
+ \end{defn}
+
+\subsection{Epimorphism} % (fold)
+\label{subsec:epimorphism}
+\begin{defn}[Epimorphism]
+ A morphism $\varphi: X \to Y$ is a $\emph{epimorphism}$ if $\psi \circ \varphi = \phi \circ \varphi \implies \psi = \phi$ for all morphisms $\psi,\phi: Y \to Z$.
+ \\
+ \begin{tikzcd}
+  X \rar{\varphi} & Y \rar[transform canvas={yshift=.5ex}]{\psi} \rar[transform canvas={yshift=-.5ex}, swap]{\phi} & Z
+ \end{tikzcd}
+\end{defn}
+ 
+\subsection{Bimorphism} % (fold)
+\label{subsec:bimorphism}
+\begin{defn}[Bimorphism]
+ A morphism $\varphi: X \to Y$ is a $\emph{bimorphism}$ if $\varphi$ is both a monomorphism and epimorphism.
+\end{defn}
+
+\subsection{Isomorphism} % (fold)
+\label{subsec:isomorphism}
+\begin{defn}[Isomorphism]
+ A morphism $\varphi: X \to Y$ is a $\emph{isomorphism}$ if there exists a morphism $\psi: Y \to X : \varphi \circ \psi = \Id{Y}$ and $\psi \circ \varphi = \Id{X}$.
+\end{defn}
+
+\subsection{Endomorphism} % (fold)
+\label{subsec:endomorphism}
+\begin{defn}[Endomorphism]
+ A morphism $\varphi: X \to X$ is a $\emph{endomorphism}$.
+ The class of endomorphisms of $\varphi$ is denoted by $end(\varphi)$.
+\end{defn}
+
+\subsection{Automorphism} % (fold)
+\label{subsec:automorphism}
+\begin{defn}[Automorphism]
+ A morphism $\varphi: X \to Y$ is a $\emph{automorphism}$ if $\varphi$ is both an endomorphism and an isomorphism.
+ The class of automorphisms of $\varphi$ is denoted by $aut(\varphi)$.
+\end{defn}
+
+\subsection{Retractions and Sections} % (fold)
+\label{subsec:retractionsandsections}
+\begin{defn}[Retraction]
+ A morphism $\varphi: X \to Y$ has a $\emph{retraction}$ if there exists a morphism $\psi: Y \to X$ with $\varphi \circ \psi = \Id{Y}$ - ``if a right inverse of $\varphi$ exists''.
+\end{defn}
+
+\begin{defn}[Section]
+ A morphism $\varphi: X \to Y$ has a $\emph{section}$ if there exists a morphism $\psi: Y \to X$ with $\psi \circ \varphi = \Id{X}$ - ``if a left inverse of $\varphi$ exists''.
+\end{defn}
+
+\begin{lem}[Retractions and Sections]
+Every retraction is an epimorphism and every section is a monomorphism.
+We have the following three equivalent statements:
+\begin{itemize}
+\item $\varphi$ is a monomorphism and a retraction;
+\item $\varphi$ is an epimorphism and a section;
+\item $\varphi$ is an isomorphism.
+\end{itemize}
+\end{lem}

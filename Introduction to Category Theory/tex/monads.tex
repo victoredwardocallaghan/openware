@@ -1,0 +1,114 @@
+\section{Monads} % (fold)
+\label{sec:monads}
+$\emph{Monads}$ derived from Greek, $\mu o \nu\alpha\varsigma$ (monas), ``unit''.
+The computer science interpretation is that of a unit of computation.
+Monads are like algebraic theories and that an algebra for a monad is a model of that theory. A monad is simply
+a functor with some extra 'stuff' that tells us what is going on in the associated theory.
+The notion of $\emph{algebras for a monad}$ generalises classical notions from universal algebra,
+and in this sense, monads can be thought of as $\emph{theories}$.
+More formally, a monad or $\emph{(Kleisli triple)}$, is an endofunctor coupled with two natural transformations,
+$\eta$ and $\mu$ that satisfy so-called $\emph{coherence conditions}$.
+
+\begin{defn}[Monad]
+ Given a category $\mathcal{K}$, a $\emph{monad}$ on $\mathcal{K}$ is the endofunctor $T: \mathcal{K} \to \mathcal{K}$
+ coupled with two natural transformations, $\eta: \Id{\mathcal{C}} \rightrightarrows T$ and $\mu: T^2 \rightrightarrows T$
+ that satisfy the coherence conditions:
+ \begin{itemize}
+  \item $\mu \circ T \mu = \mu \circ \mu T$, and
+  \item $\mu \circ T \eta = \mu \circ \eta T = \Id{T}$.
+ \end{itemize}
+\end{defn}
+\begin{rem}
+ N.B. $\eta$ called $\emph{the unit}$ since it is a natural mapping from idenity and
+ $\mu$ called $\emph{the multiplication}$ also noting the natural mapping from $T^2 = T \circ T$.
+\end{rem}
+
+Recall the definition of a natural transformation of $\eta$ and $\mu$, that for every $X \in \text{Ob}(\mathcal{K})$
+there is a $\emph{component}$ morphism of $\eta$ and $\mu$ at $X$, denoted by, $\eta_{X}$ and $\mu_{X}$ respectively.
+\\
+So, we have the following:
+\begin{itemize}
+ \item $\eta_{X}: X \to T(X) \in \mathcal{K}$,
+ read, $\emph{``the component of $\eta$ at $X$ is a morphism in $\mathcal{K}$ from $X$ to $T$ of $X$''}$, and,
+ \item $\mu_{X}: T^2(X) \to T(X) \in \mathcal{K}$,
+ read, $\emph{``the component of $\mu$ at $X$ is a morphism in $\mathcal{K}$ from $T^2$ of $X$ to $T$ of $X$''}$.
+\end{itemize}
+
+Hence, the coherence conditions are shown the by commutative diagrams for every component $X \in \text{Ob}(\mathcal{K})$
+\\
+For the existence idenity by $\emph{the left and right unit triangles}$:
+\begin{tikzcd}
+T(X) \drar[equals] \rar[][color=red]{\eta_{T(X)}} \dar[swap]{T(\eta_{X})}
+ & T^2(X) \dar[][color=red]{\mu_{X}} \\
+T^2(X) \rar[swap]{\mu_{X}}
+ & T(X)
+\end{tikzcd}
+\\
+and for that of $\emph{the associativity square}$ by:
+\begin{tikzcd}
+T^3(X) \rar[][color=red]{T(\mu_{X})} \dar[swap]{\mu_{T(X)}}
+ & T^2(X) \dar[][color=red]{\mu_{X}} \\
+T^2(X) \rar[swap]{\mu_{X}}
+ & T(X)
+\end{tikzcd}
+Since these are natural transformations,
+we can write these without $X$ and by writing $\eta_{T(X)}$ as $\eta T$ and $T(\eta_{X})$ as $T \eta$, for example.
+Since the commutative diagrams in the category $\mathcal{K}$ are component wise, that is, in terms of $X$.
+
+\begin{rem}[Comonad]
+ A $\emph{Co}$monad, or just $\emph{cotriple}$, is the categorical dual of a Monad.
+ That is, A comonad for a category $\mathcal{K}$ is a monad for the opposite category $\mathcal{K}^{op}$.
+\end{rem}
+
+
+\begin{exmp}[Monad for monoids]
+ From the definition of a monoid,
+ take the category $\mathcal{K} = \textbf{Set}$ and a functor $T: X \to X^{*}$ where $X$ is the ``set of words'' in $X$.
+ \begin{rem}
+  A word is just a list of objects in $X$ e.g., $(x_{1}, x_{2}, x_{3})$ or simply the empty list $()$.
+ \end{rem}
+ Therefore, we define the natural transformations component wise, as: $\eta_{X}: X \to X^{*}$ and $\mu_{X}: X^{**} \to X^{*}$.
+ \begin{rem}
+  To understand $\mu_{X}: X^{**} \to X^{*}$ consider the example: $(a, (b, c)) \to (a, b, c)$
+ \end{rem}
+ Finish me...... TODO.
+\end{exmp}
+
+\begin{note}
+Haskell Note:
+\begin{itemize}
+ \item $\eta$ is the Monadic equivalent of the "return" function and,
+ \item $\mu$ is the Monadic equivalent of the "join" operator.
+\end{itemize}
+\end{note}
+
+
+\subsection{Algebras for Monads} % (fold)
+\label{sec:monadalgebra}
+Given the monad $(T, \eta, \mu)$ on a category $\mathcal{K}$. A $T$-algebra denoted by $(x,h)$,
+where $x \in \text{Ob}(\mathcal{K})$ coupled with $h \in \text{Hom}(\mathcal{K})$ with
+$h: T(x) \to x \in \mathcal{K}$. The morphism $h$ is called the structure map of the algebra $T$ provided
+the usual diagrams commute (i.e., the coherence conditions are satisfied).
+
+The $\emph{the associativity square}$ by:
+\begin{tikzcd}
+T^2(x) \rar[][color=red]{T(x)} \dar[swap]{\mu_{x}}
+ & T(x) \dar[][color=red]{h} \\
+T(x) \rar[swap]{h}
+ & x
+\end{tikzcd}
+\\
+and the $\emph{right unit triangle}$ (idenity) by:
+\begin{tikzcd}
+ x \drar[swap]{\Id{x}} \rar{\eta_{x}} & T(x)
+ \dar[]{h} \\ & x
+\end{tikzcd}
+
+A morphism $f: (x,h) \to (x',h')$ of $T$-$\emph{algebras}$ is a morphism $f: x \to x' \in \mathcal{K}$
+given that the following diagram commutes:
+\begin{tikzcd}
+T(x) \rar[][color=red]{T(f)} \dar[swap]{h}
+ & T(x') \dar[][color=red]{h'} \\
+x \rar[swap]{f}
+ & x'
+\end{tikzcd}

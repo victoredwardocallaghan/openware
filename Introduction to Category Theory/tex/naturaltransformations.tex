@@ -1,0 +1,36 @@
+\section{Natural Transformations} % (fold)
+\label{sec:natural transformations}
+A natural transformation provides a way of transforming one functor into another
+while respecting the internal structure (i.e. the composition of morphisms) of the categories involved.
+Hence, a natural transformation can be considered to be a ``morphism of functors''.
+Indeed this intuition can be formalized to define so-called functor categories.
+Natural transformations are, after categories and functors, one of the most basic notions of category theory
+and consequently appear in the majority of its applications.
+
+\begin{defn}[Natural Transformation]
+ Let $F$ and $G$ be functors both from the category $\mathcal{C}$ to $\mathcal{K}$.
+ Then a $\emph{natural transformation}$ $\eta : F \to G$ associates to every object
+ $X \in \mathcal{C}$ a morphism $\eta_{X} : F(X) \to G(X) \in \mathcal{K}$, called the $\emph{component}$
+ of $\eta$ at $X$. The component morphism $\eta_{X}$ is subject to the condition of $\emph{naturality}$,
+ that is, the diagram commutes for every morphism $\varphi: X \to Y \in \mathcal{C}$; or simply,
+ $\eta_{Y} \circ F(\varphi) = G(\varphi) \circ \eta_{X}$.
+ \\
+ We draw the commutative diagram in the category $\mathcal{K}$ know as the $\emph{naturality square}$:
+ \begin{tikzcd}
+ F(X) \rar[][color=red]{\eta_{X}} \dar[]{F(\varphi)}
+  & G(X) \dar[][color=red]{G(\varphi)} \\
+ F(Y) \rar{\eta_{Y}}
+  & G(Y)
+ \end{tikzcd}
+\end{defn}
+\begin{rem}
+ $\textbf{N.B.}$ The naturality square is the key concept to understanding natural transformations and
+ there is one of them for every morphism in $\mathcal{C}$ as stated above. Note this well.
+\end{rem}
+
+Constructions are often "naturally related" - a vague notion, at first sight.
+This leads to the clarifying concept of natural transformation, a way to map one functor to another.
+\begin{rem}
+ Various important constructions in mathematics can be studied in this context.
+ Naturality is a principle, like that of general covariance in physics, that cuts deeper than is initially apparent.
+\end{rem}

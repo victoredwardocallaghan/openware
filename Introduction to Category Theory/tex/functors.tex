@@ -1,0 +1,144 @@
+\section{Functors} % (fold)
+\label{sec:functors}
+A category is itself a type of mathematical structure and so, one can generalise the notion of a morphism thus preserve this structure by the notion of a
+functor.
+A functor associates to every object of one category an object of another category, and to every morphism in the first category a morphism in the second.
+Hence, functors are structure-preserving maps between categories and can be thought of as morphisms in the category of all (small) categories.
+
+In particular, what we have done is define a category of categories and functors - the objects are categories, and the morphisms (between categories) 
+are functors.
+By studying categories and functors, we are not merely studying a class of mathematical structures and the morphisms between them,
+we are studying the relationships between various classes of mathematical structures.
+
+\begin{defn}[Functor]
+	Let $\mathcal{C}$ and $\mathcal{K}$ be categories. A $\emph{functor}$ $F$ from $\mathcal{C}$ to $\mathcal{K}$ is a mapping that:
+	\begin{enumerate}
+		\item associates to each object $X \in \mathcal{C}$ an object $F(X) \in  \mathcal{K}$
+		
+		\item associates to each morphism $\varphi: X \to Y \in \mathcal{C}$ a morphism $F(\varphi) : F(X) \to F(Y) \in \mathcal{K}$
+		satisfying:
+		\begin{enumerate}
+			\item $F(id_{X}) = id_{F(X)}$ for every object $X \in \mathcal{C}$
+			
+			\item $F(\psi \circ \varphi) = F(\psi) \circ F(\varphi)$ for all morphisms $\varphi: X \to Y$ and $\psi: Y \to Z$
+			\begin{rem}
+				That is, functors must preserve identity morphisms and composition of morphisms.
+			\end{rem}
+		\end{enumerate}
+	\end{enumerate}
+\end{defn}
+
+\subsection{Types of Functors} % (fold)
+\label{subsec:functorstypes}
+Like many things in category theory, functors come in a kind of ``dual'' type in concepts;
+that of the $\emph{contravariant}$ and $\emph{covariant}$ functors, defined as follows:
+
+\begin{defn}[Covariant Functor]
+ A $\emph{covariant}$ functor $F$ from a category $\mathcal{C}$ to a category $\mathcal{K}$, $F: \mathcal{C} \to \mathcal{K}$, consists of:
+ \begin{itemize}
+  \item for each object $X \in \mathcal{C}$, an object $F(X) \in \mathcal{K}$
+  \item for each morphism $\varphi: X \to Y \in \mathcal{C}$, a morphism $F(\varphi): F(X) \to F(Y)$
+ \end{itemize}
+ provided the following two properties hold:
+ \begin{itemize}
+  \item For every object $X \in \mathcal{C}$, $F(\Id{X}) = \Id{F(X)}$
+  \item For all morphisms $\varphi: X \to Y$ and $\psi: Y \to Z$, $F(\psi \circ \varphi) = F(\psi) \circ F(\varphi)$
+ \end{itemize}
+\end{defn}
+
+\begin{defn}[Contravariant Functor]
+ A $\emph{contravariant}$ functor $F: \mathcal{C} \to \mathcal{K}$, is a `reversed' covariant functor.
+ In particular, for every morphism $\varphi: X \to Y \in \mathcal{C}$ must be assigned to a morphism $F(\varphi): F(Y) \to F(X) \in \mathcal{K}$.
+ Alternatively, contravariant functors act as covariant functors from the opposite category $\mathcal{C}^{op} \to \mathcal{K}$.
+\end{defn}
+
+Functors have particular properties that essentially are the same as morphisms.
+This may seem obvious given that functors are a generalisation of the notion of a morphism.
+So, the following definitions should mostly be obvious if you reflect back to the corresponding morphism
+definitions above or simply break the word down grammatically.
+
+\begin{defn}[Endofunctor]
+ A $\emph{endofunctor}$ is a functor that maps a category to itself, sometimes called a $\emph{identity functor}$.
+\end{defn}
+
+\begin{defn}[Bifunctor]
+ A $\emph{bifunctor}$ is a functor in $\emph{two}$ arguments. More formally, a bifunctor is a functor whose
+ domain is a $\emph{product category}$.
+ The $Hom$ functor is a natural example; it is contravariant in one argument while covariant in the other.
+ Hence, the $Hom$ functor is of the type $\mathcal{C}^{op} \times \mathcal{C} \to \textbf{Set}$.
+\end{defn}
+
+\begin{defn}[Multifunctor]
+ A $\emph{multifunctor}$ is a generalisation of the functor concept to n variables, (e.g., A $\emph{bifunctor}$ is when $n=2$)
+\end{defn}
+
+\subsection{Properties of Functors} % (fold)
+\label{subsec:functorsproperties}
+However, some properties are more particular to functors and we review them here to families ourselves.
+A functor $F : \mathcal{A} \to \mathcal{B}$ is
+\begin{enumerate}
+ \item $\emph{faithful}$ if for every parallel pair of morphisms $f,g : A \rightrightarrows A' \in \mathcal{A}$, one has $f = g$ whenever $F(f) = F(g)$.
+ (Recall the definition of a monomorphism).
+ \item $\emph{full}$ if for every morphism $b: F(A) \to F(A') \in \mathcal{B}$, there exists a morphism $a: A \to A' \in \mathcal{A}$ such that $F(a) = b$
+ (Recall the definition of a epimorphism).
+ \item essentially $\emph{surjective}$ if for every object $B \in \mathcal{B}$, there exists an object $A \in \mathcal{A}$ with $B$ isomorphic to $F(A)$
+ \item an $\emph{equivalence}$ if there exists a functor $F': \mathcal{B} \to \mathcal{A}$ such that both $F \circ F'$ and $F' \circ F$ are naturally
+ isomorphic to the identity functors; such a functor $F'$ is called a $\emph{quasi-inverse}$ of $F$
+ \item an $\emph{isomorhpism}$ if there exists a functor $F': \mathcal{B} \to \mathcal{A}$ such that both $F \circ F'$ and $F' \circ F$
+ are equal to the identity functors
+ \item $\emph{conserative}$ if it reflects isomorphisms; that is, $a: A \to A'$ is an isomorphism whenever $F(a): F(A) \to F(A')$ is
+\end{enumerate}
+
+\begin{defn}[Functor category and the Yoneda embedding]
+The Yoneda lemma suggests that instead of studying the $\emph{locally small}$ category $\mathcal{K}$,
+one should study the category of all functors of $\mathcal{K}$ into $\textbf{Set}$.
+Since the category $\textbf{Set}$ is well understood, a functor of $\mathcal{K}$ into $\textbf{Set}$
+maybe seen as a $\emph{representation}$ of $\mathcal{K}$ in terms of known structures.
+See the $\emph{category of diagrams}$ later.
+ \begin{enumerate}
+  \item Given a category $\mathcal{K}$ and a small category $\mathcal{J}$, we denote by
+  $\mathcal{K}^\mathcal{J}$ the category of functors from $\mathcal{J} \to \mathcal{K}$ and natural transformations
+  of each functor from $\mathcal{J} \to \mathcal{K}$.
+  \item In case $\mathcal{K} = \textbf{Set}$, we have the $\emph{Yoneda embedding}$:\\
+  $Y_{\mathcal{J}}: \mathcal{J}^{op} \to \textbf{Set}^{\mathcal{J}}
+  \, \,
+  Y_{\mathcal{J}}(X) = \mathcal{J}(X, -)$, which is full and faithful (Recall the definition of a bimorphism).
+ \end{enumerate}
+\end{defn}
+
+
+\subsection{F-algebra} % (fold)
+\label{subsec:f-algebra}
+$\emph{F-algebras}$ have various applications, such as in computer science,
+creating concrete definitions of various algebraic data types (e.g., lists, trees, ...).
+A $F$-algebra is a structure defined according to some endofunctor $F: \mathcal{K} \to \mathcal{K}$
+for some category of functors $\mathcal{K}$. That is,
+
+\begin{defn}[F-algebra]
+ A $F$-algebra for a endofunctor $F$ is some object $A$ in the category $\mathcal{K}$, coupled with
+ a $\mathcal{K}$-morphism $\alpha: F(A) \to A$. We denote this $F$-algebra by the pair $(A, \alpha)$.
+\end{defn}
+
+$F$-algebras also form a category as expected.
+Since, The homomorphism from a $F$-algebra $(A, \alpha)$ to $F$-algebra $(B, \beta)$
+is given by $\varphi: A \to B \in \mathcal{K}$ such that $\varphi \circ \alpha = \beta \circ F(\varphi)$.
+Hence, we have the following commutative diagram:
+\begin{tikzcd}
+F(A) \rar[][color=red]{\alpha} \dar[]{F(\varphi)}
+ & A \dar[][color=red]{\varphi} \\
+F(B) \rar{\beta}
+ & B
+\end{tikzcd}
+
+\begin{exmp}[Initial algebra]
+ Consider a functor $F: \textbf{Set} \to \textbf{Set}$, in particular, $F: X \to 1 \bigoplus X$.
+ Then the set $\N$ endowered with the function $[zero,succ]: 1 \bigoplus \N \to N$, is a $F$-algebra.
+ This initial algebra is denoted by the pair $(\N, [zero,succ])$.
+\end{exmp}
+
+Here $1$ denotes the $\emph{terminal object}$ taken to be the singleton set $\{ \; \}$
+and $\bigoplus$ as the $\emph{coproduct}$.
+
+\begin{rem}
+ The categorial dual are called $F$-$\emph{co}$algebras.
+\end{rem}

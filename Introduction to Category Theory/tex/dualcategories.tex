@@ -1,0 +1,41 @@
+\section{Dual Category} % (fold)
+\label{sec:dualcategory}
+$\emph{Duality}$ is a correpsondence between properties of a category $\mathcal{K}$ and the notion
+of $\emph{dual properties}$ of the ``$\emph{op}$posite category'' $\mathcal{K}^{op}$. Suppose some proposition
+regarding a category $\mathcal{K}$, by interchanging the domain and codomain of each morphism as well as
+the order of composition, a corresponding dual proposition is obtained of $\mathcal{K}^{op}$.
+
+Duality, as such, is the assertion that truth is invariant under this operation on propositions.
+\begin{lem}
+ $(\mathcal{K}^{op})^{op} = \mathcal{K}$.
+\end{lem}
+
+\begin{exmp}
+ Suppose a monomorphism in a category $\mathcal{K}$ then an epimorphism is the categorial dual
+ in the dual category $\mathcal{K}^{op}$. Prove this by diagram.
+\end{exmp}
+
+\begin{rem}
+ We make the notion of diagram and hence the idea of commutative diagrams rigous later.
+\end{rem}
+
+\subsection{Coproduct} % (fold)
+\label{subsec:coproduct}
+Let $A,B \in \text{Ob}(\mathcal{K})$ for some category $\mathcal{K}$.
+A $\emph{co}$product (sum) of $A$ and $B$ is an object $C$, together with morphisms from
+$\alpha: A \to C$ and $\beta: B \to C$, such that the following property holds:
+if $C^{'}$ is any object, and any morphisms $\alpha^{'}: A \to C^{'}$ and $\beta^{'}: B \to C^{'}$,
+there is a unique morphism $\gamma: C \to C^{'}$ such that the following diagram commutes:
+
+\begin{tikzcd}
+A \ar{ddr}[swap]{\alpha^{'}} \drar{\alpha}
+ &&
+ B \ar{ddl}{\beta^{'}} \dlar[swap]{\beta} & \\
+ & C \dar{\gamma} & \\
+ & C^{'}
+\end{tikzcd}
+
+Once again, the morphisms $\alpha$ and $\beta$ are called the $\emph{canonical projections}$.
+We denote the coproduct, or `sum', of $A$ and $B$ as: $C = A \coprod B$ or sometimes written $C = A \bigoplus B$.
+Notice that all we have done is reverse all the morphisms (arrows) in a product to obtain the coproduct.
+This is, ofcourse, the usual method of finding a categorial dual.
