@@ -1,0 +1,131 @@
+% discrete_distributions.tex.tex - Theory of Statistics - Discrete Distributions.
+
+\documentclass[10pt,a4paper]{article}
+\usepackage{amsfonts} % - For mathbb
+\usepackage{amsmath} % - For begin{align}
+\usepackage{listings} % - For R code
+\usepackage{color}
+%\usepackage[margin=1.5cm]{geometry} % - Fit more on one page
+\usepackage{graphicx} % - Import graphics
+\usepackage{sidecap} % - Graphics caption formating
+%\usepackage{natbib}
+\usepackage{amssymb} % - for special \triangleq sign.
+
+% used by \maketitle
+\title{\textbf{Theory of Statistics - Discrete Distributions}\\}
+\author{Edward O'Callaghan\\
+%\textit{Department of Microbiology and Immunology, University of New South Wales}}
+\textit{Department of Mathematics and Statistics, University of New South Wales}}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Bernoulli Distribution.}
+\begin{equation}\label{eqn:bernoullidist}
+ \boxed{X \sim Bernoulli (p) : 0 \leq p \leq 1}
+\end{equation}
+Take some random variable $X$ with a Bernoulli parametric model with success parameter $p$ defined by:
+\begin{displaymath}
+   X \triangleq \left\{
+     \begin{array}{lr}
+       1 & \mbox{ if success } p, \\
+       0 & \mbox{ otherwise.}
+     \end{array}
+   \right.
+\end{displaymath} 
+Then, $X \sim Bernoulli (p)$ read as; ``X has distribution Bernoulli with parameter p''.
+The probability mass function is then defined by:
+\begin{equation}\label{eqn:bernoulli}
+ \boxed{f_{X}(x; p) \triangleq p^{x}(1 - p)^{1 - x} : x \in \{0, 1\}.}
+\end{equation}
+
+\section{Binomial Distribution.}
+\begin{equation}\label{eqn:bindist}
+ \boxed{X \sim Bin(n, p) : 0 \leq p \leq 1}
+\end{equation}
+This is a finite generalisation of a series of Brnoulli random variables with replacement.
+
+Take some random variable $X$ with each observation $x_{i} \in X : 0 \leq i \leq n$ where $n$ is the number of trials and that each $x_{i} \sim Bernoulli (p)$.
+Then, provided all the observations $x_{i}$ are independent and since the parameter $p$ is the same (a special case of the Poisson binomial distribution) for all.
+Then, we claim that the each $x_{i}$ are ``independent and identically distributed'' $\textbf{i.i.d}$.
+Assuming now, we select each $x_{i}$ with replacement, then there are $n \choose x$ ways to select $x$ observations from a trial, or sample size of $n$.
+
+That is, $X \sim Bin(n, p) : 0 \leq p \leq 1$ and hence has probability mass function defined by:
+\begin{equation}\label{eqn:binomial}
+ \boxed{f_{X}(x; n, p) \triangleq {n \choose x} p^{x} (1 - p)^{n - x} : 0 \leq x \leq n.}
+\end{equation}
+
+Clear, this is just an extension of a Bernoulli trial sequentially repeated $n$ times.
+
+\section{Geometric Distribution.}
+\begin{equation}\label{eqn:geometricdist}
+ \boxed{X \sim Geom(p) : 0 \leq p \leq 1}
+\end{equation}
+This is a special case result of a Binomial random variable, for when $x=1$.
+
+Take some random variable $X$ such that $X \sim Bin(n, p)$, given that $p$ is the probability of success.
+Take $x=1$ with $n=k$ so that, the probability of first success on the $k^{th}$ trial is given by,
+\[
+ f_{X}(1; k, p) = {k \choose 1} p^{1} (1 - p)^{k - 1}.
+\]
+Then we have the following special case result as our probability mass function:
+\begin{equation}\label{eqn:geometric}
+ \boxed{f_{X}(k; p) \triangleq p (1 - p)^{k - 1} : k \in \{1, 2, \dots\} .}
+\end{equation}
+
+\section{Poisson Distribution.}
+\begin{equation}\label{eqn:poissondist}
+ \boxed{X \sim Poisson(\lambda)}
+\end{equation}
+This is another special case result of a Binomial random variable, for when $p$ is close to zero and $n$ is very large\cite{Papoulis-1991}.
+
+Take some random variable $Y$ such that $Y \sim Bin(n, p)$ and fix some parameter $\lambda \doteq n p$ where $n$ is known to be large and $p$ is known to be small.
+Such a case is intuitively a rare event since the probability of success $p$ is small for a large number of trials $n$. This is know as ``the law of rare events''\cite{homepages/93/8114}.
+We continue with the assumtion that such events are sufficiently independent. Then, we have a limiting case of the Binomial random variable $Y$ with parameter $\lambda$.
+
+Hence if,
+\begin{align*}
+ Y & \sim Bin(n, p)
+ \intertext{Substituting for $\lambda$ and by introduction of an auxiliary random variable X}
+ X & \sim Bin(n, \frac{\lambda}{n})
+ \intertext{we derive the probability mass function as follows,}
+ f_{X}(x; \lambda) & = \frac{n!}{(n - x)!x!} (\frac{\lambda}{n})^{x} (1 - \frac{\lambda}{n})^{n - x}
+ \\
+ & = \frac{n!}{n^{x}(n-x)!} \frac{1}{(1 - \frac{\lambda}{n})^{x}} \frac{{\lambda}^{x}}{x!} (1 - \frac{\lambda}{n})^{n}
+ \intertext{Taking the limit as $n \to \infty$ and noting the definition of $e^{-\lambda} \doteq \lim_{n \to \infty} (1 - \frac{\lambda}{n})^{n}$}
+ \frac{{\lambda}^{x}}{x!} &
+ \lim_{n \to \infty} \left( \frac{n!}{n^{x}(n-x)!} \right) \left( \frac{1}{(1 - \frac{\lambda}{n})^{x}} \right) \left( 1 - \frac{\lambda}{n} \right)^{n}
+ \\
+ & = \frac{{\lambda}^{x}}{x!} (1) (1) (e^{-\lambda})
+ \intertext{hence, we have the probability mass function to be:}
+ \Rightarrow f_{X}(x; \lambda) & = \frac{e^{-\lambda} {\lambda}^{x}}{x!} : x \in \{0, 1, 2, \dots\} \mbox{ for some fixed } \lambda.
+\end{align*}
+
+Thus, Given a random variable X such that $X \sim Poisson(\lambda)$ then $X$ has probability mass function:
+\begin{equation}\label{eqn:poisson}
+ \boxed{f_{X}(x; \lambda) \triangleq \frac{e^{-\lambda} {\lambda}^{x}}{x!} : x \in \{0, 1, 2, \dots\}}
+\end{equation}
+
+\section{Hypergeometric Distribution.}
+% FIXME: Improve formating and finish me!
+\begin{equation}\label{eqn:hypergeomdist}
+ \boxed{X \sim Hypergeom(M,N,n) : \max(0, M + n - N) \leq k \leq \min(M, n)}
+\end{equation}
+Bernoulli trials without replacement (Binomial is actually a special case of the hypergeometric).
+Probability mass function is defined as:
+\begin{equation}\label{eqn:hypergeometric}
+ \boxed{
+  \begin{aligned}
+  f_{X}(x; M, N, n) \triangleq \frac{{M \choose x }{N - M \choose n - x}}{{N \choose n}} :
+  & N \in \left\{1,2,\dots\right\}
+  \\ & m \in \left\{0,1,2,\dots,N\right\}
+  \\ & n \in \left\{1,2,\dots,N\right\}
+  \end{aligned}
+ }
+\end{equation}
+
+\bibliographystyle{alpha}
+\bibliography{background_citations}
+
+\end{document}	% End of document.

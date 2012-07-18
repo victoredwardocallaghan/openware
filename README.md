@@ -10,4 +10,8 @@ Table of content:
 =================
 
  * Introduction to Category Theory.
+ * Theory of Statistics.
  * Introduction to Linear Models.
+ * Real Analysis I.
+ * Codes and Ciphers.
+
