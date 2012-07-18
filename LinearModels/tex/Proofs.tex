@@ -14,16 +14,22 @@
 \section{Coefficient of determination (Proof)} % (fold)
 \label{sec:proofone}
 Given that:
-\begin{defn}[total sum of squares]
-	$ SS_{total} = \sum_{i=1}^{n} (y_i - \bar{y})^2 $
+\begin{defn}[$\emph{total}$ sum of squares]
+ \begin{displaymath}
+  SS_{total} = \sum_{i=1}^{n} (y_i - \bar{y})^2
+ \end{displaymath}
 \end{defn}
 
-\begin{defn}[regression sum of squares]
-	$ SS_{reg} = \sum_{i=1}^{n} (\hat{y_i} - \bar{y})^2 $
+\begin{defn}[$\emph{reg}$ression sum of squares]
+ \begin{displaymath}
+  SS_{reg} = \sum_{i=1}^{n} (\hat{y_i} - \bar{y})^2
+ \end{displaymath}
 \end{defn}
 
-\begin{defn}[residual sum of squares]
-	$ SS_{res} = \sum_{i=1}^{n} (y_{i} - \hat{y_{i}})^2 $
+\begin{defn}[$\emph{res}$idual sum of squares]
+ \begin{displaymath}
+  SS_{res} = \sum_{i=1}^{n} (y_{i} - \hat{y_{i}})^2
+ \end{displaymath}
 \end{defn}
 
 
@@ -31,26 +37,26 @@ Given that:
 	$ SS_{total} = SS_{reg} + SS_{res} $
 \end{prob}
 
-A direct proof is given:
+A direct proof by construction is given:
 \begin{proof}
 \begin{align*}
- \sum_{i} (y_i - \bar{y})^2 & = \sum_{i} (\hat{y_i} - \bar{y})^2 + \sum_{i} (y_i - \hat{y_i})^2
- \\
- & = \sum_{i} ( \underbrace{ \hat{y_i} - \bar{y} }_{a} )^2 + ( \underbrace{ y_i - \hat{y_i} }_{b} )^2
+ \sum_{i} (\hat{y_i} - \bar{y})^2 + \sum_{i} (y_i - \hat{y_i})^2
+ & =
+ \sum_{i} ( \underbrace{ \hat{y_i} - \bar{y} }_{a} )^2 + ( \underbrace{ y_i - \hat{y_i} }_{b} )^2
  \tag{and recall that $a^2 + b^2 = (a+b)^2 - 2ab$}
  \\
- & = \sum_{i} (y_i - \bar{y})^2 - 2 \underbrace{ \sum_{i} (\hat{y_i} - \bar{y})(y_i - \hat{y_i})}_{\text{show this } = 0}
- \intertext{and so,}
- \implies \sum_{i} (\hat{y_i} - \bar{y})(y_i - \hat{y_i}) & \underset{\uparrow}{=}
- \sum_{i} ( \cancel{\bar{y}} + b_1 (x_i - \bar{x}) - \cancel{\bar{y}})(y_i - \bar{y} - b_1 (x_i - \bar{x}))
+ & = \sum_{i} (y_i - \bar{y})^2 - 2 \underbrace{ \sum_{i} (\hat{y_i} - \bar{y})(y_i - \hat{y_i})}_{\text{show this } =\, 0}
+ \intertext{and so, take:}
+ \sum_{i} (\hat{y_i} - \bar{y})(y_i - \hat{y_i}) & \underset{\uparrow}{=}
+ \sum_{i} ( \cancel{\bar{y}} + b_1 (x_i - \bar{x}) - \cancel{\bar{y}})[y_i - \bar{y} - b_1 (x_i - \bar{x})]
  \\
  & \text{by, } \hat{y_i} = b_0 + b_1 x_i = (\bar{y} -b_1 \bar{x}) + b_1 x_i = \bar{y} + b_1(x_i - \bar{x}) % FIXME: make this a bit more clear.. (multi-line)
  \\
- & = b_1 \sum_{i} (x_i - \bar{x}) [ y_i - \bar{y} - b_1 (x_i - \bar{x}) ]
+ & = b_1 \sum_{i} (x_i - \bar{x}) \left[ y_i - \bar{y} - b_1 (x_i - \bar{x}) \right]
  \\
  & = b_1 \left[ S_{xy} - b_1 S_{xx} \right]
  \\
- & = b_1 \left[ S_{xy} - \frac{S_{xy}}{\cancel{S_{xx}}} . \cancel{S_{xx}} \right] = 0 \qedhere
+ & = b_1 \left[ S_{xy} - \frac{S_{xy}}{\cancel{S_{xx}}} \cancel{S_{xx}} \right] = 0. \qedhere
 \end{align*}
 \end{proof}
 
