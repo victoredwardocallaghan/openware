@@ -1,13 +1,18 @@
 - Copyright © 2012 Edward O'Callaghan. All Rights Reserved.
 
-opencourseware
-==============
+Introduction to Linear Models
+=============================
 
-Open Courseware notes.
+Linear Models is about...
 
 =================
 Table of content:
 =================
 
- * Introduction to Category Theory.
  * Introduction to Linear Models.
+
+ # Lectures
+  + Prelude
+  + Introduction
+
+ # Exercises
