@@ -1,5 +1,5 @@
-Codes and Ciphers
-=================
+Introduction to Coding Theory
+=============================
 
 In this course we builds up the rudiments of the theoretical framework that unpins many modern day coding methodology.
 Applications such as ISBN, RSA, barcodes and error correcting with polynomials over finite groups, typically used in things such as wifi IEEE 802.11*.

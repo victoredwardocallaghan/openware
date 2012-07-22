@@ -1,0 +1,85 @@
+\section{Arithmetic} % (fold)
+\label{sec:arithmetic}
+
+\subsection{Divisibility}
+If a and b $(b \neq 0)$ are integers, we say b $\emph{divides}$ a, or b is a divisor of a,
+if $a/b$ is an integer. We shall denote by $b \mid a$ and conversely $b \nmid a$.
+
+\begin{exmp}
+ $2 \mid 4$, however $3 \nmid 4$.
+\end{exmp}
+
+\begin{exmp}
+ If $a \in \Z$, then $1 \mid a$ and, for $a \neq 0$, then $a \mid a$; furthermore, $\forall a \in \Z^*, \, a \mid 0$.
+\end{exmp}
+
+\begin{defn}
+ Given $x, y \in \Z^*$, then $d \in Z$ is called the $\textbf{greatest common divisor}$ of x and y if,
+ \begin{itemize}
+  \item $d > 0$,
+  \item $d \mid x$ and $d \mid y$,
+  \item $\forall f \in Z^* : f \mid x$ and $f \mid y$ then $f \mid d$.
+ \end{itemize}
+\end{defn}
+We denote the greatest common divisor $d$ of both $x$ and $y$ by the $d = gcd(x,y)$.
+
+\begin{exmp}
+ $gcd(341,527) = 31$.
+\end{exmp}
+
+\begin{lem}[Euclid's Division Lemma]
+	\[
+		\forall m (m > 0), p \in \Z \exists ! q, r \in \Z : 0 \leq r < m \text{ and } p = qm + r
+	\]
+\end{lem}
+Note that we have simply rewritten a division problem in terms of multiplication and addition.
+Where, p is the dividend; m, the divisor; q, the quotient; and r, the remainder.
+
+By Euclid's lemma we get the oldest known numerical algorithm still in use, Euclid's algorithm.
+Euclid's algorithm is simply the repeated application of Euclid's lemma.
+
+\begin{exmp}
+ To find $gcd(341,527)$ we do the following;
+ \begin{align*}
+  \underline{527} &= \underline{341} \cdot 1 + \underline{186}
+  \\
+  \underline{341} &= \underline{186} \cdot 1 + \underline{155}
+  \\
+  \underline{186} &= \underline{155} \cdot 1 + \underline{31}
+  \\
+  \underline{155} &= \underline{31} \cdot 5 + \underline{0}
+ \end{align*}
+ Hence, $31 \mid 341$ and $31 \mid 527$ so $gcd(341,527) = 31$.
+\end{exmp}
+
+
+\subsection{Modular arithmetic}
+Modular arithmetic is the arithmetic of forgetting.
+This notion of forgetful arithmetic will become apparent though
+the following examples given with integers. Note however, that we
+do not necessarily have to "read modulo" an integer (e.g., read modulo a polynomial)
+and we shall explore this in more depth later.
+
+Here are some motivating examples:
+\begin{exmp}
+\begin{align}
+ 6 & \equiv 1 \pmod{5}
+ \\
+ 7 & \equiv 2 \pmod{5}
+ \\
+ 13 & \equiv 3 \pmod{10}
+\end{align}
+\end{exmp}
+TODO...
+
+\subsection{Primality testing}
+TODO.
+
+\subsection{Prime number generation}
+TODO.
+
+\subsection{Random number generation}
+TODO.
+
+\subsection{Factorising}
+TODO.

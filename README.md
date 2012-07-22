@@ -13,5 +13,5 @@ Table of content:
  * Theory of Statistics.
  * Introduction to Linear Models.
  * Real Analysis I.
- * Codes and Ciphers.
+ * Introduction to Coding Theory.
 
