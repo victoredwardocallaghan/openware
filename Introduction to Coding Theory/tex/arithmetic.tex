@@ -14,6 +14,15 @@ if $a/b$ is an integer. We shall denote by $b \mid a$ and conversely $b \nmid a$
 \end{exmp}
 
 \begin{defn}
+ A $p \in Z^+ : p \neq 1$ is said to be $\textbf{prime}$ iff
+ p and 1 are the only divisors of p.
+\end{defn}
+
+\begin{exmp}
+ $2, 3, 5, 7, 11, \cdots$
+\end{exmp}
+
+\begin{defn}
  Given $x, y \in \Z^*$, then $d \in Z$ is called the $\textbf{greatest common divisor}$ of x and y if,
  \begin{itemize}
   \item $d > 0$,
@@ -25,6 +34,19 @@ We denote the greatest common divisor $d$ of both $x$ and $y$ by the $d = gcd(x,
 
 \begin{exmp}
  $gcd(341,527) = 31$.
+\end{exmp}
+
+\begin{defn}
+ We say that x and y are $\textbf{relatively prime}$ or $\textbf{coprime}$ iff
+ $gcd(x,y) = 1$.
+\end{defn}
+
+\begin{note}
+ Any two distinct primes are ofcourse coprime.
+\end{note}
+
+\begin{exmp}
+ Given that $gcd(27,7) = 1$, then we see that 27 and 7 are coprime.
 \end{exmp}
 
 \begin{lem}[Euclid's Division Lemma]
@@ -51,6 +73,49 @@ Euclid's algorithm is simply the repeated application of Euclid's lemma.
  \end{align*}
  Hence, $31 \mid 341$ and $31 \mid 527$ so $gcd(341,527) = 31$.
 \end{exmp}
+
+We now note that Euclid's lemma can be interprated geometrically as a line. Where we are in actual fact
+asking how one line divides into another. Thus we have motivation for the following equation:
+
+\begin{cor}
+ \[
+  a \cdot x + b \cdot y = gcd(a,b) : x,y \in \Z.
+ \]
+\end{cor}
+
+\begin{prob}
+ Solve: $341 \cdot x + 527 \cdot y = 31$.
+\end{prob}
+
+Thus, using the previous result of repeated application of Euclids lemma, that is, Euclids algorithm.
+We may extend this result as Euclids `extended' algorithm by working backwards.
+
+\begin{align}
+ \underline{31} &= \underline{186} - \underline{155} \cdot 1
+ \\
+ &= \underline{186} - (\underline{341} - \underline{186} \cdot 1) \cdot 1
+ \\
+ &= \underline{186} \cdot 2 - \underline{341} \cdot 1 \tag{after simplifying}
+ \\
+ &= (\underline{527} - \underline{341} \cdot 1) \cdot 2 - \underline{341} \cdot 1
+ \\
+ &= \underline{527} - \underline{341} \cdot 3 \tag{after simplifying}
+\end{align}
+
+Hence, we see that $x=-3$ and $y=1$, however these solutions are $\textbf{particular}$.
+To find the more general solution set we must look at the homogenous case by finding the kernel.
+
+Notice that, if we subsitute $x=527t$ and $y=-341t$ into the orginal equation, we have:
+\[
+ 341 \cdot (527t) + 527 \cdot (-341t) = 0 \hspace{1cm} \forall t \in \Z
+\]
+
+However, note also that $31 \mid 527t$ and $31 \mid -341t$ and so we may $\textbf{reduce}$ the kernel
+to $x=107t$ and $y=-11t$. Hence we have the general solution as given by,
+\begin{align}
+ x &= -3 + 107t, \\
+ y &= 1 - 11t \hspace{1cm} \forall t \in \Z.
+\end{align}
 
 
 \subsection{Modular arithmetic}
