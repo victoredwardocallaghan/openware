@@ -1,0 +1,35 @@
+\section{Semi-groups} % (fold)
+\label{sec:semi-groups}
+
+\begin{defn}[binary operation]
+ A $\textbf{binary operation}$ on a set $\mathcal{G}$ is a map
+ $\circ : \mathcal{G} \times \mathcal{G} \to \mathcal{G}$.
+ $\textbf{N.B.}$ that the binary operation is $\emph{closed}$.
+\end{defn}
+
+\begin{defn}[magma]
+ A $\textbf{magma}$ is a set $\mathcal{M}$ equipped with a binary operation $\circ$.
+ We denote the magma as the tuple pair $(\mathcal{M}, \circ)$.
+\end{defn}
+
+
+\begin{defn}[semi-group]
+ A $\textbf{semi-group}$ is a set $\mathcal{G}$ equipped with binary operation that is $\emph{associative}$.
+ Hence, a semi-group is a magma where the operation is $\emph{associative}$;
+ That is, given any $x,y,z \in \mathcal{G}$ then $x \circ (y \circ z) = (x \circ y) \circ z \in \mathcal{G}$.
+ We denote the semi-group as the tuple pair $(\mathcal{G}, \circ)$, not to be confused with a magma from context.
+\end{defn}
+
+\begin{defn}[monoid]
+ A $\textbf{semi-group with idenitity}$ or, $\textbf{monoid}$ for short, is a semi-group $(\mathcal{G}, \circ)$
+ with a unquie elememt $e \in \mathcal{G}$ such that $x \circ e = x = e \circ x \, \forall x \in \mathcal{G}$
+\end{defn}
+
+
+% TODO: Add proof of unquieness of idenitity.
+
+
+\begin{exmp}
+ Given $\mathcal{G} = \mathbb{Z}$ with the binary law of composition $\circ$ to be defined as arithmetic addition $+$.
+ Then, $(\mathbb{Z}, +)$ forms a semi-group with idenitity $0$. Verify the axioms.
+\end{exmp}
