@@ -1,28 +1,28 @@
-\section{Semi-groups} % (fold)
-\label{sec:semi-groups}
+\section{Groups} % (fold)
+\label{sec:groups}
 
-\begin{defn}[binary operation]
+\begin{defn}[Binary operation]
  A $\textbf{binary operation}$ on a set $\mathcal{G}$ is a map
  $\circ : \mathcal{G} \times \mathcal{G} \to \mathcal{G}$.
  $\textbf{N.B.}$ that the binary operation is $\emph{closed}$.
 \end{defn}
 
-\begin{defn}[magma]
+\begin{defn}[Magma]
  A $\textbf{magma}$ is a set $\mathcal{M}$ equipped with a binary operation $\circ$.
  We denote the magma as the tuple pair $(\mathcal{M}, \circ)$.
 \end{defn}
 
 
-\begin{defn}[semi-group]
+\begin{defn}[Semi-group]
  A $\textbf{semi-group}$ is a set $\mathcal{G}$ equipped with binary operation that is $\emph{associative}$.
  Hence, a semi-group is a magma where the operation is $\emph{associative}$;
  That is, given any $x,y,z \in \mathcal{G}$ then $x \circ (y \circ z) = (x \circ y) \circ z \in \mathcal{G}$.
  We denote the semi-group as the tuple pair $(\mathcal{G}, \circ)$, not to be confused with a magma from context.
 \end{defn}
 
-\begin{defn}[monoid]
+\begin{defn}[Monoid]
  A $\textbf{semi-group with idenitity}$ or, $\textbf{monoid}$ for short, is a semi-group $(\mathcal{G}, \circ)$
- with a unquie elememt $e \in \mathcal{G}$ such that $x \circ e = x = e \circ x \, \forall x \in \mathcal{G}$
+ with a unquie idenitity elememt $e \in \mathcal{G}$ such that $x \circ e = x = e \circ x \, \forall x \in \mathcal{G}$
 \end{defn}
 
 
@@ -33,3 +33,121 @@
  Given $\mathcal{G} = \mathbb{Z}$ with the binary law of composition $\circ$ to be defined as arithmetic addition $+$.
  Then, $(\mathbb{Z}, +)$ forms a semi-group with idenitity $0$. Verify the axioms.
 \end{exmp}
+
+
+\begin{defn}[Group]
+ A $\textbf{group}$ is a monoid where every element has an inverse. A abelian group is a group that is commutative.
+\end{defn}
+
+
+% TODO: Give some examples of groups..
+
+
+\subsection{Non-commutative groups} % (fold)
+\label{sec:noncommutative-groups}
+A common class of non-commutative groups are transformation groups.
+Note:
+\begin{defn}[Transformation]
+ A bijective map $\varphi: X \to X$ is called a $\textbf{transformation}$ of X.
+ \begin{note}
+  The most trivial case is the $\emph{idenitity map} \, \Id{X}$ by $\Id{X}(x) = x, \, \forall x \in X$.
+ \end{note}
+\end{defn}
+Hence, there exists a inverse $\varphi^{-1}$ of $\varphi$ such that
+$\varphi^{-1} \circ \varphi = \Id{X} = \varphi \circ \varphi^{-1}$. Now, take two transformations of X,
+$\varphi$ and $\psi$, and let the product $\varphi \circ \psi$ be well defined. Then the set of all transformations of X form
+the group $\textbf{Transf(X)}$. Since, given $\varphi , \psi , \phi \in Transf(X)$ then we have associatity,
+$\varphi \circ (\psi \circ \phi) = (\varphi \circ \psi) \circ \phi$. We have idenitity $e = \Id{X} \in Transf(X)$ and so,
+inverses $\forall \varphi \in Transf(X) \exists ! \varphi^{-1} : \varphi \circ \varphi^{-1} = e$. Closure follows from the composition
+of two transformations $\varphi$ and $\psi$, since $(\varphi \circ \psi)^{-1} = \psi^{-1} \circ \varphi^{-1}$.
+
+A transformation group is a type of group action which describes symmetries of objects. More abstractly,
+since a group $\mathcal{G}$ is a category with a single object in which every morphism is bijective.
+Then, a group action is a $\emph{forgetful functor}$ $\mathcal{F}$ from the group $\mathcal{G}$ in the category $\textbf{Grp}$
+to the set category $\textbf{Set}$ that is, $\mathcal{F} : \mathcal{G} \to \textbf{Set}$.
+
+That is, for a group $\mathcal{G}$ and set X, a group action is defined as a group homomorphism $\varphi$
+from $\mathcal{G}$ to the symmetric group of X.
+The action assigns a permutation of X to each element of the group in such a way that the permutation of X assigned to:
+\begin{itemize}
+ \item The identity element $e \in \mathcal{G}$ is the identity transformation of X, that is, $\Id{X}$;
+ \item A product $\varphi \circ \psi \in \mathcal{G}$ is the composite of the permutations assigned to $\varphi$ and $\psi$.
+\end{itemize}
+Given that each element of $\mathcal{G}$ is represented as a permutation.
+Then a group action can also be consider as a permutation representation.
+
+\subsection{Permutations} % (fold)
+\label{sec:permutations}
+Now take a finite set X with $|X|=n$, then the transformations of X are called $\textbf{permutations}$ of the
+elements of X. In particular, the group of permutatons of $X=\{ 1, 2, \cdots, n \}$ is a $\textbf{symmetric group}$ of
+$\emph{order}$ n, denoted $S_n$ with $\textbf{order}$ $|S_n|=n!$. Thus, by taking any subgroup of $S_n$ we have a
+$\textbf{permutation group}$.
+
+A permutaton $\sigma \in S_n$ can be notated by,
+\[
+ \sigma =
+ \begin{pmatrix}
+  1 & 2 & \cdots & n \\
+  a_1 & a_2 & \cdots & a_n
+ \end{pmatrix}
+\]
+where $a_1 = \sigma(1), a_2 = \sigma(2), \cdots$.
+
+The idenitity permutation $\Id{n} \in S_n$ is simply,
+\[
+ \Id{n} =
+ \begin{pmatrix}
+  1 & 2 & \cdots & n \\
+  1 & 2 & \cdots & n
+ \end{pmatrix}
+\].
+
+Since $|S_n|=n!$ then the total number of ways n elements maybe permuted is $n!$.
+
+Take any two permutations $\sigma,\pi \in S_n$ then composition is well defined as $\textbf{functional composition}$
+as follows.
+
+Given,
+\[
+ \sigma =
+ \begin{pmatrix}
+  1 & 2 & \cdots & n \\
+  a_1 & a_2 & \cdots & a_n
+ \end{pmatrix}
+ \, \, and \, \,
+ \pi =
+ \begin{pmatrix}
+  a_1 & a_2 & \cdots & a_n \\
+  b_1 & b_2 & \cdots & b_n
+ \end{pmatrix}
+\]
+then,
+
+\begin{align*}
+ \pi \circ \sigma &=
+ \begin{pmatrix}
+  1 & 2 & \cdots & n \\
+  \pi(a_1) & \pi(a_2) & \cdots & \pi(a_n)
+ \end{pmatrix}
+ \\
+ &=
+ \begin{pmatrix}
+  1 & 2 & \cdots & n \\
+  b_1 & b_2 & \cdots & b_n
+ \end{pmatrix}
+\end{align*}
+.
+
+A inverse of any permutation $\sigma \in S_n$ is given by,
+\[
+ \sigma^{-1} =
+ \begin{pmatrix}
+  1 & 2 & \cdots & n \\
+  a_1 & a_2 & \cdots & a_n
+ \end{pmatrix}^{-1}
+ =
+ \begin{pmatrix}
+  a_1 & a_2 & \cdots & a_n \\
+  1 & 2 & \cdots & n
+ \end{pmatrix}
+\]
