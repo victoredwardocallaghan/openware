@@ -53,13 +53,12 @@ Note:
   The most trivial case is the $\emph{idenitity map} \, \Id{X}$ by $\Id{X}(x) = x, \, \forall x \in X$.
  \end{note}
 \end{defn}
-Hence, there exists a inverse $\varphi^{-1}$ of $\varphi$ such that
-$\varphi^{-1} \circ \varphi = \Id{X} = \varphi \circ \varphi^{-1}$. Now, take two transformations of X,
-$\varphi$ and $\psi$, and let the product $\varphi \circ \psi$ be well defined. Then the set of all transformations of X form
-the group $\textbf{Transf(X)}$. Since, given $\varphi , \psi , \phi \in Transf(X)$ then we have associatity,
-$\varphi \circ (\psi \circ \phi) = (\varphi \circ \psi) \circ \phi$. We have idenitity $e = \Id{X} \in Transf(X)$ and so,
-inverses $\forall \varphi \in Transf(X) \exists ! \varphi^{-1} : \varphi \circ \varphi^{-1} = e$. Closure follows from the composition
-of two transformations $\varphi$ and $\psi$, since $(\varphi \circ \psi)^{-1} = \psi^{-1} \circ \varphi^{-1}$.
+Hence, there exists a inverse $\varphi^{-1}$ of $\varphi$ such that $\varphi^{-1} \circ \varphi = \Id{X} = \varphi \circ \varphi^{-1}$.
+Now, take two transformations of X, $\varphi$ and $\psi$, and let the product $\varphi \circ \psi$ be well defined.
+Then the set of all transformations of X form the group $\textbf{Transf(X)}$.
+Since, given $\varphi , \psi , \phi \in Transf(X)$ then we have associatity, $\varphi \circ (\psi \circ \phi) = (\varphi \circ \psi) \circ \phi$.
+We have idenitity $e = \Id{X} \in Transf(X)$ and so, inverses $\forall \varphi \in Transf(X) \exists ! \varphi^{-1} : \varphi \circ \varphi^{-1} = e$.
+Closure follows from the composition of two transformations $\varphi$ and $\psi$, since $(\varphi \circ \psi)^{-1} = \psi^{-1} \circ \varphi^{-1}$.
 
 A transformation group is a type of group action which describes symmetries of objects. More abstractly,
 since a group $\mathcal{G}$ is a category with a single object in which every morphism is bijective.
@@ -81,7 +80,8 @@ Then a group action can also be consider as a permutation representation.
 Now take a finite set X with $|X|=n$, then the transformations of X are called $\textbf{permutations}$ of the
 elements of X. In particular, the group of permutatons of $X=\{ 1, 2, \cdots, n \}$ is a $\textbf{symmetric group}$ of
 $\emph{order}$ n, denoted $S_n$ with $\textbf{order}$ $|S_n|=n!$. Thus, by taking any subgroup of $S_n$ we have a
-$\textbf{permutation group}$.
+$\textbf{permutation group}$. Also note that, for finite sets, $\emph{permutations}$ and $\emph{bijective maps}$
+refer to the same operation, namely rearrangement of elements of X.
 
 A permutaton $\sigma \in S_n$ can be notated by,
 \[
@@ -90,8 +90,9 @@ A permutaton $\sigma \in S_n$ can be notated by,
   1 & 2 & \cdots & n \\
   a_1 & a_2 & \cdots & a_n
  \end{pmatrix}
+ \, \, \,
+ \text{where } a_1 = \sigma(1), a_2 = \sigma(2), \cdots .
 \]
-where $a_1 = \sigma(1), a_2 = \sigma(2), \cdots$.
 
 The idenitity permutation $\Id{n} \in S_n$ is simply,
 \[
