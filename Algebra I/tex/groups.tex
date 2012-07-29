@@ -2,8 +2,8 @@
 \label{sec:groups}
 
 \begin{defn}[Binary operation]
- A $\textbf{binary operation}$ on a set $\mathcal{G}$ is a map
- $\circ : \mathcal{G} \times \mathcal{G} \to \mathcal{G}$.
+ A $\textbf{binary operation}$ on a set $\mathcal{X}$ is a map
+ $\circ : \mathcal{X} \times \mathcal{X} \to \mathcal{X}$.
  $\textbf{N.B.}$ that the binary operation is $\emph{closed}$.
 \end{defn}
 
@@ -26,12 +26,14 @@
 \end{defn}
 
 
-% TODO: Add proof of unquieness of idenitity.
+\begin{proof}[Proof: unquieness of idenitity]
+ Assume some other idenitity $e^{'}$ exists in $\mathcal{G}$ then, $e^{'} = e^{'} \circ e = e \circ e^{'} = e. \qedhere$
+\end{proof}
 
 
 \begin{exmp}
- Given $\mathcal{G} = \mathbb{Z}$ with the binary law of composition $\circ$ to be defined as arithmetic addition $+$.
- Then, $(\mathbb{Z}, +)$ forms a semi-group with idenitity $0$. Verify the axioms.
+ Given $\mathcal{G} = \mathbb{N}$ with the binary law of composition $\circ$ to be defined as arithmetic addition $+$.
+ Then, $(\mathbb{N}, +)$ forms a semi-group with idenitity $0$. Verify the axioms.
 \end{exmp}
 
 
@@ -40,10 +42,18 @@
 \end{defn}
 
 
-% TODO: Give some examples of groups..
+\begin{exmp}
+ Given $\mathcal{G} = \mathbb{Z}$ with the binary law of composition $\circ$ to be defined as arithmetic addition $+$.
+ Then, $(\mathbb{Z}, +)$ forms a semi-group with idenitity $0$. Verify the axioms.
+\end{exmp}
 
 
-\subsection{Non-commutative groups} % (fold)
+\begin{question}
+ Why does the set of naturals $\mathbb{N}$ not form a group under addition, however does form a monoid?
+\end{question}
+
+
+\subsection{Non-commutative Groups} % (fold)
 \label{sec:noncommutative-groups}
 A common class of non-commutative groups are transformation groups.
 Note:
@@ -65,25 +75,23 @@ since a group $\mathcal{G}$ is a category with a single object in which every mo
 Then, a group action is a $\emph{forgetful functor}$ $\mathcal{F}$ from the group $\mathcal{G}$ in the category $\textbf{Grp}$
 to the set category $\textbf{Set}$ that is, $\mathcal{F} : \mathcal{G} \to \textbf{Set}$.
 
-That is, for a group $\mathcal{G}$ and set X, a group action is defined as a group homomorphism $\varphi$
-from $\mathcal{G}$ to the symmetric group of X.
-The action assigns a permutation of X to each element of the group in such a way that the permutation of X assigned to:
-\begin{itemize}
- \item The identity element $e \in \mathcal{G}$ is the identity transformation of X, that is, $\Id{X}$;
- \item A product $\varphi \circ \psi \in \mathcal{G}$ is the composite of the permutations assigned to $\varphi$ and $\psi$.
-\end{itemize}
-Given that each element of $\mathcal{G}$ is represented as a permutation.
-Then a group action can also be consider as a permutation representation.
-
 \subsection{Permutations} % (fold)
 \label{sec:permutations}
-Now take a finite set X with $|X|=n$, then the transformations of X are called $\textbf{permutations}$ of the
-elements of X. In particular, the group of permutatons of $X=\{ 1, 2, \cdots, n \}$ is a $\textbf{symmetric group}$ of
-$\emph{order}$ n, denoted $S_n$ with $\textbf{order}$ $|S_n|=n!$. Thus, by taking any subgroup of $S_n$ we have a
+Take a finite set X with $|X|=n$, then the transformations of X are called $\textbf{permutations}$ of the
+elements of X. In particular, the group of permutatons of $X=\{ 1, 2, \cdots, n \}$ is a $\textbf{symmetric group}$,
+denoted $S_n$, with $\textbf{order}$ $|S_n|=n!$. Thus, by taking any subgroup of $S_n$ we have a
 $\textbf{permutation group}$. Also note that, for finite sets, $\emph{permutations}$ and $\emph{bijective maps}$
 refer to the same operation, namely rearrangement of elements of X.
+Another way is to consider, a group $\mathcal{G}$ and set X.
+Then a group action is defined as a group homomorphism $\varphi$ from $\mathcal{G}$ to the symmetric group of X.
+That is, the action $\varphi: \mathcal{G} \to S_n(X)$, assigns a permutation of X to each element of the group $\mathcal{G}$ in the following way:
+\begin{itemize}
+ \item From the identity element $e \in \mathcal{G}$ to the identity transformation $\Id{X}$ of X, that is, $\varphi : e \to \Id{X}$;
+ \item A product of group homomorphisms $\varphi \circ \psi \in \mathcal{G}$ is then the composite of permutations given by $\varphi$ and $\psi$ in X.
+\end{itemize}
+Given that each element of $\mathcal{G}$ is represented as a permutation. Then a group action can also be consider as a permutation representation.
 
-A permutaton $\sigma \in S_n$ can be notated by,
+A permutaton $\sigma \in S_n$ can be written,
 \[
  \sigma =
  \begin{pmatrix}

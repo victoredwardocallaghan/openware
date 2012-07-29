@@ -1,0 +1,186 @@
+\section{Arithmetic} % (fold)
+\label{sec:arithmetic}
+Arithmetic is derived from the Greek word, $\alpha \rho \iota \theta \mu o \varsigma$, or ``arithmos'' or number.
+Arithmetic is the oldest known form of mathematical expression, dating back to 18,000BC, however still contains
+deep unsolved mysteries. The area of mathematics concerned with the study of such is known as $\emph{Number Theory}$.
+
+It should be clear from the history that there is actually no such thing as, say, ``2'' from a modern mathematical
+prospective. Many civilizations in antiquity had their own way of expressing numbers. For example, the ancient
+Egyptians had a little man with his hands waving in the air for one million. Not only did they express their numbers
+differently in script, they also counted in a different way. The differences in the way in which counting was done
+combined with is known as the script is now known as a $\textbf{number system}$ which we shall come to shortly.
+
+Now, no one has ever seen ``2'', the script of ``2'' simply denotes a concept way off in 'maths land'. For
+a more concrete example, take:
+\begin{exmp}
+ $1 + 1 = 2$.
+\end{exmp}
+Notice that, we are actually say the $\emph{same thing}$ of both sides of the equality here. That is, $1 + 1$ points
+off in maths land to thing thing we call $2$ and so does $2$ and that by $=$ we mean they point at the same thing.
+Thus, given that mathematics is of course also a language, it does what you normally expect a language to do, repeat
+yourself until someone understands you. Hence, when you are off ``solving'' many problems here, consider that all you
+are actually doing is repeating yourself. By which you are taking out unnecessary things out of the argument at hand,
+distilling out the core argument (which we call the solution) in a clear way that others can follow. The hard part,
+as with all languages is that of construction, such that you are clear to others as to what you are thinking. Keep
+this prospective in mind when you are next stuck half way though an algebraic problem, where you are perhaps thinking,
+``what is the next right step''..
+
+\section{Numeral system} % (fold)
+\label{subsec:numeralsystem}
+A numeral system is really just a method of counting and denoting digits in a consistent manner. We are use to counting
+in the $\textbf{base}$ ten number system with digits zero to nine. That is, take for example the number $3210$ and see that:
+\begin{exmp}
+ $3210 = (3)*10^3 + (2)*10^2 + (1)*10^1 + (0)*10^0$.
+\end{exmp}
+However, there is no particular reason we should count in base ten, we could count in base two with digits from zero to one, we call $\emph{bits}$
+This way of counting in base two is what we normally call binary. Taking say, $21$ as a example, then:
+\begin{exmp}
+ $(21)_{10} = \left( (1)*2^4 + (0)*2^3 + (1)*2^2 + (0)*2^1 + (1)*2^0 \right)_{2}$.
+\end{exmp}
+
+Keep this idea of $\emph{base}$ in mind when we do logarithms.
+
+\section{Construction of numbers} % (fold)
+\label{subsec:numberconstruction}
+Now that we have established that a number is just a $\emph{representation}$ of a idea, this raises the question $\emph{what idea?}$
+It turns out the best initial intuition of a number is from a geometric prospective. Consider the notation of $1$ as a given unit line.
+Then, any positive number, say $3$ is simply a mutilative notion of this line, that is, you can view it as a $\textbf{dialation}$. Now,
+by multiplying any given line by $-1$ you can view this as making the line point or dilate in the opposite direction. This intuition
+may seem over the top at first however shall become useful when considering higher dimensional numbers in the form of a matrix, more on
+this later.
+
+To construct the modern system in which we count, and in fact virtually all of mathematics, we must begin with the notion of a $\textbf{set}$ as follows:
+\begin{defn}
+ A set is a gathering together into a whole of definite, distinct objects of our perception and of our thought for which we called elements of the set.
+\end{defn}
+
+If we take a set $X = \{ 1, 2 , 3 \}$ we can say $1<2$ and $2<3$ which implies $1<3$ if we impose a form of ordering denoted by $<$.
+The $\textbf{natural}$ counting numbers, denoted by $\N$, is the classic one you are familiar with, where $\N = \{ 1, 2, 3, \cdots \}$.
+Notice some algebraic properties of the naturals:
+\begin{itemize}
+ \item Arithmetic addition is $\textbf{closed}$, that is, for any two elements $x,y \in \N$ then $x+y \in \N$;
+ \item Arithmetic multiplication is closed, that is, for any two elements $x,y \in \N$ then $x*y \in N$;
+ \item Addition and multiplication are both are commutative, e.g., for any two elements $x,y \in \N$ then $x+y = y+x$;
+ \item Addition and multiplication are both associativity, e.g., for any three elements $x,y,z \in \N$ then $x+(y+z) = (x+y)+z$;
+ \item Multiplication is distributive over addition, that is, for any three elements $x,y,z \in \N$ then $x*(y + z) = x*y + x*z$;
+ \item Identity of multiplication, that is, for any $x \in \N$ then $1*x = x = 1*x \in \N$.
+\end{itemize}
+
+\begin{note}
+ Do not always assume any of these are always true else where in mathematics in general! Such as, for example, commutativity.
+\end{note}
+
+You also should make note that the distributive law is like a kind of super glue that binds two different types of operations,
+addition and multiplication in this case, together. Also note that the order in which you do such acts on arguments you are
+making matters.
+
+However we have a problem, we can not subtract since that it is not guarantied to be in the set, for example:
+\begin{exmp}
+ $2 - 3 = -1 \notin \N$
+\end{exmp}
+
+Now, if we $\textbf{adjoin}$ the notion of zero and negative, denoted by $0$ and $-1$ respectively,
+to the naturals we form a new slightly larger set called the integers, denoted $\Z$.
+The word integer is Latin for ``whole'' and a $\Z$ is used to denote them from the German word ``z\H{a}hlen'' which means ``to count''.
+Hence, the integers is the set $\Z = \{ \cdots, -2, -1, 0, 1, 2, \cdots \}$ and that we now have the $\textbf{existence}$
+of identity of addition. That is, for any $x \in \Z$ then $x + 0 = x = 0 + x \in \Z$. We also have closure of subtraction, that is,
+for any $x,y \in \Z$ then $x + (-1*y) = x - y \in \Z$.
+
+OK, so we can now arithmetically add, subtract, multiply however division has yet to be $\textbf{well-defined}$. However, division
+seems like a $\textbf{rational}$ thing we may like to do with numbers and so we form a new larger set from the integers called
+$\textbf{the set of rationals}$ denoted by $\Q$. The $\Q$ comes from the word $\textbf{quotient}$, from the Latin word ``quotient''
+which is the result after division. Hence we $\textbf{construct}$ the set of rationals $\Q$ out of the set of integers $\Z$ as follows:
+\begin{defn}
+ $\Q = \left\{ \frac{p}{q} : p,q \in \Z \text{ and } q \neq 0 \right\} $
+\end{defn}
+We should note that division by zero is $\textbf{not}$ a $\textbf{rational}$ thing to do and so this is part of our definition.
+
+\subsection{Divisibility} % (fold)
+\label{subsec:divisibility}
+If a and b $(b \neq 0)$ are integers, we say b $\emph{divides}$ a, or b is a divisor of a,
+if $a/b$ is an integer. We shall denote by $b \mid a$ and conversely $b \nmid a$.
+
+\begin{exmp}
+ $2 \mid 4$, however $3 \nmid 4$.
+\end{exmp}
+
+\begin{exmp}
+ If $a \in \Z$, then $1 \mid a$ and, for $a \neq 0$, then $a \mid a$; furthermore, $\forall a \in \Z^*, \, a \mid 0$.
+\end{exmp}
+
+\begin{defn}
+ A $p \in Z^+ : p \neq 1$ is said to be $\textbf{prime}$ iff
+ p and 1 are the only divisors of p.
+\end{defn}
+
+\begin{exmp}
+ $2, 3, 5, 7, 11, \cdots$
+\end{exmp}
+
+\begin{defn}
+ Given $x, y \in \Z^*$, then $d \in Z$ is called the $\textbf{greatest common divisor}$ of x and y if,
+ \begin{itemize}
+  \item $d > 0$,
+  \item $d \mid x$ and $d \mid y$,
+  \item $\forall f \in Z^* : f \mid x$ and $f \mid y$ then $f \mid d$.
+ \end{itemize}
+\end{defn}
+We denote the greatest common divisor $d$ of both $x$ and $y$ by the $d = gcd(x,y)$.
+
+\begin{exmp}
+ $gcd(341,527) = 31$.
+\end{exmp}
+
+\begin{defn}
+ We say that x and y are $\textbf{relatively prime}$ or $\textbf{coprime}$ iff
+ $gcd(x,y) = 1$.
+\end{defn}
+
+\begin{note}
+ Any two distinct primes are of course coprime.
+\end{note}
+
+\begin{exmp}
+ Given that $gcd(27,7) = 1$, then we see that 27 and 7 are coprime.
+\end{exmp}
+
+\begin{lem}[Euclid's Division Lemma]
+	\[
+		\forall m (m > 0), p \in \Z \exists ! q, r \in \Z : 0 \leq r < m \text{ and } p = qm + r
+	\]
+\end{lem}
+Note that we have simply rewritten a division problem in terms of multiplication and addition.
+Where, p is the dividend; m, the divisor; q, the quotient; and r, the remainder.
+
+By Euclid's lemma we get the oldest known numerical algorithm still in use, Euclid's algorithm.
+Euclid's algorithm is simply the repeated application of Euclid's lemma.
+
+\begin{exmp}
+ To find $gcd(341,527)$ we do the following;
+ \begin{align*}
+  \underline{527} &= \underline{341} \cdot 1 + \underline{186}
+  \\
+  \underline{341} &= \underline{186} \cdot 1 + \underline{155}
+  \\
+  \underline{186} &= \underline{155} \cdot 1 + \underline{31}
+  \\
+  \underline{155} &= \underline{31} \cdot 5 + \underline{0}
+ \end{align*}
+ Hence, $31 \mid 341$ and $31 \mid 527$ so $gcd(341,527) = 31$.
+\end{exmp}
+
+\subsection{Higher dimensional numbers} % (fold)
+\label{subsec:higherdimnumbers}
+Once again, recalling the profound yet simple notion of $\textbf{representation}$, we may represent the idea
+of higher dimensional numbers with the notation of $\textbf{matrices}$. For example, here is a two dimensional
+number one:
+\begin{exmp}
+ \begin{align*}
+  I &=
+  \begin{pmatrix}
+   1 & 0 \\
+   0 & 1
+  \end{pmatrix}
+ \end{align*}
+\end{exmp}
+We call this special matrix, the $\textbf{idenity matrix}$ $I$. This can of course be generalised into $n$-dimensions.
