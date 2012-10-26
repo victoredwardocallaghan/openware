@@ -1,0 +1,30 @@
+\section{Dual Spaces} % (fold)
+\label{sec:dualspace}
+
+Recall that; If $\mathcal{U}$ and $\mathcal{V}$ are two
+vector spaces over a field $\F$, then the set of all
+linear maps from $\mathcal{U} \to \mathcal{V}$, denoted
+$L(\mathcal{U},\mathcal{V})$, is a vector space over $\F$.
+
+\begin{defn}
+	Let $\mathcal{V}$ be a vector space over $\F$. The dual
+	space of $\mathcal{V}$, denoted $\mathcal{V}^{*}$, is
+	the set of all linear maps from $\mathcal{V}$ to $\F$.
+	That is, $\mathcal{V}^{*} = L(\mathcal{V},\F)$.
+	The elements of $\mathcal{V}^{*}$ are called
+	$\emph{linear functionals}$ on $\mathcal{V}$.
+\end{defn}
+
+\begin{rem}
+	Since $L(\mathcal{V},\F)$ is a vector space over $\F$ then
+	so too is the dual $\mathcal{V}^{*}$, with point-wise addition and
+	scalar multiplication. Moreover, if $n=\dim \mathcal{V} < \infty$,
+	then $\dim \mathcal{V}^{*} = \dim L(\mathcal{V},\F) = n$.
+\end{rem}
+
+\begin{exmp}
+	Fix $x \in [0,1]$ and define the $\emph{evaluation map}$
+	$ev_x : \mathcal{C}([0,1]) \to \R$ by $ev_x (f) = f(x)$ for any
+	$f \in \mathcal{C}([0,1])$.
+	Then $ev_x \in \left( \mathcal{C}([0,1]) \right)^{*}$.
+\end{exmp}

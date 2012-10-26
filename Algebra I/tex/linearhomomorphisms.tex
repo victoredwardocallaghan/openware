@@ -1,0 +1,106 @@
+\section{Vector space Homomorphisms} % (fold)
+\label{sec:linearmaps}
+
+\begin{defn}[Vector space Homomorphism]
+	A vector space homomorphism is the structure preserving mapping between two vector spaces.
+	That is, for some vector spaces $\mathcal{U}$ and $\mathcal{V}$ over common field $\F$
+	with morphism $\varphi : \mathcal{U} \to \mathcal{V}$ we have,
+	\[
+		\varphi(u_1 + \lambda u_2) = \varphi(u_1) + \lambda \varphi(u_2) : u_1,u_2 \in \mathcal{U} \text{ and } \lambda \in \F.
+	\]
+\end{defn}
+
+\begin{rem}
+	A vector space homomorphism preserves linearity and so we typically call the
+	homomorphism a linear map.
+\end{rem}
+
+% Kernel
+\begin{defn}[Kernel]
+	Consider the linear map $\varphi : \mathcal{U} \to \mathcal{V}$, the
+	$\emph{kernel}$ of $\varphi$, denoted $\ker(\varphi)$ is given by:
+	\[
+		\ker(\varphi) = \{ u \in \mathcal{U} : \varphi(u) = \mathbf{0} \in \mathcal{V} \}.
+	\]
+	The set or space of elements inside the kernel is thus called the $\emph{null space}$.
+\end{defn}
+
+% Nullity
+\begin{defn}[Nullity]
+	The $\emph{nullality}$ is the dimension of the null space or kernel.
+\end{defn}
+
+\begin{rem}
+	Note that the nullity gives a measure of the injectivity of the linear map
+	$\varphi$.
+\end{rem}
+
+% Image
+\begin{defn}[Image]
+	For some morphism $\varphi : \mathcal{U} \to \mathcal{V}$ the $\emph{image}$ is defined as,
+	\[
+		img(\varphi) =
+		\varphi(\mathcal{U}) = \{ v \in \mathcal{V} : v = \varphi(u) \text{for some} u \in \mathcal{U} \}.
+	\]
+\end{defn}
+
+% Preimage
+\begin{defn}[Preimage]
+	For some morphism $\varphi : \mathcal{U} \to \mathcal{V}$ the $\emph{preimage}$ is defined as,
+	\[
+		\stackrel{\leftarrow}{\varphi}(\mathcal{V}) = \{ u \in \mathcal{U} : \varphi(u) \in \mathcal{V} \}
+	\]
+\end{defn}
+
+\begin{rem}
+	The preimage can be defined even when no inverse morphism exists.
+\end{rem}
+
+% Rank-Nullality Theorm
+\begin{thm}
+	Let $\mathcal{U}$ and $\mathcal{V}$ be vector spaces over some common field $\F$
+	and some linear map $\varphi : \mathcal{U} \to \mathcal{V}$ then
+	\[
+		\dim( img(\varphi) ) + \dim( \ker(\varphi) ) = \dim( \mathcal{U} )
+	\]
+\end{thm}
+
+% Monomorphism
+\begin{defn}[Injective]
+	If, for the linear map $\varphi : \mathcal{U} \to \mathcal{V}$, we have
+	\[
+		\varphi(u_1) = \varphi(u_2) \implies u_1 = u_2 \, \forall u_1,u_2 \in \mathcal{U}
+	\]
+	then $\varphi$ is said to be $\emph{injective}$.
+\end{defn}
+
+% Epimorphism
+\begin{defn}[Surjective]
+	If, for the linear map $\varphi : \mathcal{U} \to \mathcal{V}$, we have
+	\[
+		\forall v \in \mathcal{V} \exists u \in \mathcal{U} : \varphi(u) = v
+	\]
+	then $\varphi$ is said to be $\emph{surjective}$.
+\end{defn}
+
+% Isomorphism 
+\begin{defn}[Bijective]
+	If the linear map $\varphi : \mathcal{U} \to \mathcal{V}$ is both
+	injective and subjective then $\varphi$ is said to be $\emph{bijective}$, or,
+	isomorphic in the context vector space homomorphisms.
+\end{defn}
+
+\subsection{Properties of linear maps}
+One may note that a linear map can always be represented in the form of a matrix and as such
+the determinant can be taken given that linear maps are from vector spaces to vector spaces
+over a common field.
+Hence, the conceptual question arises, geometrically, what exactly is the determinant? It
+turns out the determinant is a $\emph{measure}$ of dilation much like how scaler multiplies
+of the unit scalar dilate it. That is, $3*1=3$ is the dilation of the unit scalar $1$ by a
+measure of $3$. Now, recall that a field is a vector space over itself and so we may use this
+to generalise our intuition from above. Thus, we may view a linear map as a linear dilation
+of some vector in one vector space to another vector space and the determinant as the measure
+of dilation of this mapping.
+
+TODO.. motivate to prove the determinant definition here.. and motiave to the charteristic polynomial
+and eigen spaces..

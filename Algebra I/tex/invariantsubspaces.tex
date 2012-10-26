@@ -1,0 +1,155 @@
+\section{Invariant Subspaces} % (fold)
+\label{sec:invariantsubspace}
+
+\begin{defn}[Characteristic polynomial]
+	Consider some matrix $A \in \mathcal{M}_{n,n}(\F)$ with
+	the eigenvector $\mathbf{x}$ and eigenvalue $\lambda \in \F$ relation,
+	\begin{align*}
+		A \mathbf{x} &= \lambda \mathbf{x} : \mathbf{x} \neq \mathbf{0}
+		\intertext{then we have,}
+		A \mathbf{x} - \lambda \mathbf{x} &= \mathbf{0}
+		\\
+		\Rightarrow
+		( A - \lambda I_n ) \mathbf{x} &= \mathbf{0}.
+		\intertext{Hence, the characteristic polynomial is given by}
+		\chi_{A} (\lambda) &= \left| A - \lambda I_n \right|.
+	\end{align*}
+\end{defn}
+
+\begin{thm}[Clayley-Hamilton]
+	For any matrix $A \in \mathcal{M}_{n,n}(\F)$ with
+	characteristic polynomial $\chi_{A} (\lambda) : \lambda \in \F$.
+	Then $A$ satisfies $\chi_{A} (\lambda)$, that is, $\chi_{A} (A) = 0$.
+\end{thm}
+
+\begin{exmp}
+	Suppose some matrix $A \in \mathcal{M}_{n,n}(\F)$ is $\emph{idempotent}$,
+	that is $A^2 = A$. Then show that each eigenvalue of $A$ is either zero or one.
+	\begin{proof}
+		\begin{align*}
+			\intertext{Suppose that,}
+			A \mathbf{x} &= \lambda \mathbf{x} : \mathbf{x} \neq \mathbf{0}
+			\intertext{by induction we see that,}
+			A^2 \mathbf{x} &= \lambda^2 \mathbf{x}
+			\\
+			\Rightarrow A \mathbf{x} &= \lambda^2 \mathbf{x}
+			\\
+			&= \lambda \mathbf{x}
+			\\
+			\Rightarrow \lambda &= \lambda^2 \mbox{ iff } \lambda \in \{0,1\}. \qedhere
+		\end{align*}
+	\end{proof}
+\end{exmp}
+
+\begin{exmp}
+	Suppose some matrix $A \in \mathcal{M}_{n,n}(\F)$ is $\emph{nilpotent}$,
+	that is $A^k = \mathbf{0}$ for some positive integer $k$. Then show that all
+	the eigenvalues of $A$ are zero.
+	\begin{proof}
+		\begin{align*}
+			\intertext{Suppose that,}
+			A \mathbf{x} &= \lambda \mathbf{x} : \mathbf{x} \neq \mathbf{0}
+			\intertext{by induction we see that,}
+			A^k \mathbf{x} &= \lambda^k \mathbf{x}
+			\\
+			\Rightarrow \mathbf{0} &= \lambda^k \mathbf{x}
+			\\
+			\Rightarrow \lambda^k &= 0
+			\\
+			\text{and so, } \lambda &= 0 \text{ for every } \lambda \in \F. \qedhere
+		\end{align*}
+	\end{proof}
+\end{exmp}
+
+\begin{defn}[Eigen Subspace]
+	For some matrix $A \in \mathcal{M}_{n,n}$.
+	Define a eigen-subspace $\mathcal{E}_{\lambda}$ for every eigenvalue $\lambda$ as
+	the space that contains all the eigenvectors for that particular eigenvalue. That is,
+	\begin{align*}
+		\mathcal{E}_{\lambda}(k) &= \ker (A - \lambda I_n)^k.
+	\end{align*}
+\end{defn}
+
+\begin{defn}[Spectrum]
+	The $\emph{spectrum}$ of a linear operator $A \in \mathcal{M}_{n,n}(\C)$
+	is the set of all its eigenvalues, denoted by $\sigma(A)$. That is,
+	\begin{align*}
+		\sigma(A) &=
+		\{ \lambda \in \C : A \mathbf{x} = \lambda \mathbf{x} : \mathbf{x} \neq \mathbf{0} \}.
+	\end{align*}
+\end{defn}
+
+\begin{defn}[Spectral radius]
+	The $\emph{spectral radius}$ pf a linear operator $A \in \mathcal{M}_{n,n}(\C)$
+	is the radius of the smallest disc centered at the origin in the complex plane
+	that includes all the eigenvalues of $A$, denoted by $\rho(A)$. That is,
+	\begin{align*}
+		\rho(A) &= \max \{ | \lambda | : \lambda \in \sigma(A) \}.
+	\end{align*}
+\end{defn}
+
+\begin{defn}[T-invariant subspace]
+	For a vector space $\mathcal{V}$ consider the linear endomorphism
+	$T: \mathcal{V} \to \mathcal{V}$. Then, for some subspace $\mathcal{W} \leq \mathcal{V}$,
+	$\mathcal{W}$ is said to be $T$-invariant if $T(\mathcal{W}) \subseteq \mathcal{W}$.
+\end{defn}
+
+\begin{exmp}
+	Show that,
+	\begin{align*}
+		W=span \left\{
+			\begin{pmatrix}
+				1\\1\\0\\1
+			\end{pmatrix}
+			,
+			\begin{pmatrix}
+				1\\0\\2\\0
+			\end{pmatrix}
+		\right\}
+		& \text{ and }
+		W'=span \left\{
+			\begin{pmatrix}
+				1\\1\\0\\0
+			\end{pmatrix}
+			,
+			\begin{pmatrix}
+				1\\1\\-1\\0
+			\end{pmatrix}
+		\right\}
+	\end{align*}
+	are $T$-invariant subspaces of the linear map:
+	\[
+		T=
+		\begin{pmatrix}
+			4 & -2 & -1 & -1 \\
+			3 & -1 & -1 & -1 \\
+			-2 & 2 & 2 & 0 \\
+			1 & -1 & 0 & 1
+		\end{pmatrix}.
+	\]
+	Observe that,
+	\begin{align*}
+		T(W) &= span \left\{
+			\begin{pmatrix}
+				1\\1\\0\\1
+			\end{pmatrix}
+			,
+			\begin{pmatrix}
+				2\\1\\2\\1
+			\end{pmatrix}
+		\right\}
+		\subseteq W
+		\intertext{and that}
+		T(W') &= span \left\{
+			\begin{pmatrix}
+				2\\2\\0\\0
+			\end{pmatrix}
+			,
+			\begin{pmatrix}
+				3\\3\\-2\\0
+			\end{pmatrix}
+		\right\}
+		\subseteq W'
+		\intertext{and so, both $W$ and $W'$ are $T$-invariant subspaces.}
+	\end{align*}
+\end{exmp}

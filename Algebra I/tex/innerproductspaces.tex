@@ -1,0 +1,173 @@
+\section{Inner Product Spaces} % (fold)
+\label{sec:innerproductspaces}
+
+Let $V$ be a complex vector space.
+
+\begin{defn}[Inner product]
+	An $\emph{inner product}$ in $V$ is a mapping $\langle \cdot , \cdot \rangle : V \times V \to \C$
+	satisfying
+	\begin{itemize}
+		\item Hermitian symmetry: $\langle x,y \rangle = \overline{\langle y,x \rangle} \, \forall x,y \in V$;
+		\item Linearity:
+			$\langle \alpha x_1 + \beta x_2,y \rangle = \alpha \langle x_1,y \rangle + \beta \langle x_2,y \rangle$
+			$\forall x_1,x_2,y \in V$ and $\alpha , \beta \in \C$;
+		\item Positive definite: $\langle x,x \rangle \geq 0$ and $\langle x,x \rangle =0$ iff $x=0, \, \forall x \in V$;
+	\end{itemize}
+\end{defn}
+
+\begin{rem}
+	Note that condition (i) implies that $\langle x,x \rangle \in \R$ and so condition (ii) is consistent.
+\end{rem}
+
+\begin{rem}
+	Note that condition (ii) defines that the inner product is linear in the first argument. However,
+	the inner product is $\emph{conjugate linear}$ in the second argument as shown by:
+	\begin{proof}
+		\begin{align*}
+			\langle x, \alpha y_1 + \beta y_2 \rangle
+			&= \overline{\langle \alpha y_1 + \beta y_2, x \rangle}
+			\\
+			&= \overline{\langle \alpha y_1, x \rangle + \langle \beta y_2, x \rangle}
+			\\
+			&= \bar{\alpha} \overline{\langle y_1, x \rangle} + \bar{\beta} \overline{\langle y_2, x \rangle}
+			\\
+			&= \bar{\alpha} \langle x, y_1 \rangle + \bar{\beta} \langle x, y_2 \rangle . \qedhere
+		\end{align*}
+	\end{proof}
+\end{rem}
+
+A vector space $V$ together with an inner product $\langle \cdot, \cdot \rangle$ is termed an
+$\emph{inner product space}$.
+
+\begin{exmp}
+	Consider the vector space $V=M_{mn}(\F)$. We wish to show that, for some $X,Y \in V$, that
+	$tr(X^{*} Y)$ defines an inner product in $V$.
+	Hence we have, $\langle X, Y \rangle \doteq tr(X^{*} Y) \, \forall X,Y \in V$.
+	\begin{proof}
+		First suppose that $\langle X, Y \rangle = tr(X^{*}Y)$ and so;
+		\begin{align*}
+			\intertext{We check that $tr(X^{*}Y)$ is Hermitian symmetric:}
+			\langle X,Y \rangle &= tr(X^{*}Y)
+			\\
+			&= \overline{tr(\overline{X^{*}Y})}
+			\\
+			&= \overline{tr(\overline{YX^{*}})}
+			\\
+			&= \overline{tr( \overline{(X^{*}Y)}^{T} )}
+			\\
+			&= \overline{tr(Y^{*}X)}
+			\\
+			&= \overline{\langle Y,X \rangle}.
+			\intertext{Check that $tr(X^{*} Y)$
+		is linear in the first parameters by considering some $\alpha,\beta \in \F$ so that}
+		\langle \alpha X_1 + \beta X_2, Y \rangle &= tr( (\alpha X_1 + \beta X_2)^{*} Y )
+		\\
+		&= tr( (\alpha X_1)^{*} Y + (\beta X_2)^{*} Y )
+		\\
+		&= tr( (\alpha X_1)^{*} Y ) + tr( (\beta X_2)^{*} Y )
+		\\
+		&= \bar{\alpha} tr(X^{*}_1 Y) + \bar{\beta} tr(X^{*}_2 Y)
+		\\
+		&= \bar{\alpha} \langle X_1, Y \rangle + \bar{\beta} \langle X_2, Y \rangle .
+		\intertext{and check that $tr(X^{*} Y)$ is positive definite for $X=Y$,}
+		\langle X, X \rangle &= tr( X^{*} X ) \geq 0
+		\intertext{and when}
+		X = 0 & \implies X^{*} = 0
+		\\
+		& \implies tr( X^{*} X ) = 0. \qedhere
+		\end{align*}
+	\end{proof}
+\end{exmp}
+
+TODO..
+
+\begin{exmp}
+	Let $\mathcal{V}$ be the vector space of continuous real-valued functions $[0,1]$ endowed
+	with the standard inner product. If $f(x)=x$ and $g(x)=e^x$ then find $\langle f, g \rangle$
+	and $\|f\|$.
+	\begin{align*}
+		\intertext{For $\langle f,g \rangle$ we have,}
+		\langle f, g \rangle &= \int_0^1 f(x) \overline{g(x)} \mathrm{d}x
+		\\
+		&= \int_0^1 x e^x \mathrm{d}x
+		\tag{by parts we have,}
+		\\
+		&= xe^x \|_0^1 - \int_0^1 e^x \mathrm{d}x
+		\\
+		&= e - (e - 1) = 1.
+		\intertext{Now, for $\|f\|$ we have,}
+		\|f\| &= \left( \int_0^1 x^2 \mathrm{d}x \right)^{\frac{1}{2}}
+		\\
+		&= \sqrt{ \frac{1}{x^3} } |_0^1
+		\\
+		&= \frac{1}{\sqrt{3}}.
+	\end{align*}
+\end{exmp}
+
+\begin{thm}
+	Let $\mathcal{V}$ be a complex vector space with inner product $\langle \cdot, \cdot \rangle$.
+	Then the inner product induces a norm $\| \cdot \|$ in $\mathcal{V}$ by the definition
+	\[
+		\| x \| = \sqrt{ \langle x , x \rangle } \text{ for } x \in \mathcal{V}.
+	\]
+	\begin{proof}
+		\begin{align*}
+			\intertext{Notice that $\| \cdot \|$ is trivially positive definite as follows:}
+			\| x \| &= \sqrt{ \langle x, x \rangle } \geq 0 \Leftrightarrow x=0, \, \forall x \in \mathcal{V}.
+			\intertext{By linearity we see that,}
+			\| \alpha x \| &= \sqrt{ \langle \alpha x, \alpha x \rangle }
+			\\
+			&= \sqrt{ \alpha \bar{\alpha} \langle x, x \rangle }
+			\\
+			&= \sqrt{ | \alpha |^2 \langle x, x \rangle } = | \alpha | \| x \|
+			\, \forall \alpha \in \C \text{ and } \forall x \in \mathcal{V}.
+			\intertext{Finally the triangle inequality follows as shown,}
+			\| x + y \|^2 &= \langle x+y , x+y \rangle
+			\\
+			&= \| x \|^2 + \| y \|^2 + \langle x,y \rangle + \langle y,x \rangle
+			\\
+			&= \| x \|^2 + \| y \|^2 + \langle x,y \rangle + \overline{\langle x,y \rangle}
+			\\
+			&= \| x \|^2 + \| y \|^2 + 2 \R [\langle x,y \rangle]
+			\\
+			& \leq \| x \|^2 + \| y \|^2 + 2 | \langle x,y \rangle |
+			\\
+			& \leq \| x \|^2 + \| y \|^2 + 2 \| x \| \| y \|
+			\\
+			&= \left( \| x \| + \| y \| \right)^2 \, \forall x,y \in \mathcal{V}. \qedhere
+		\end{align*}
+	\end{proof}
+\end{thm}
+
+
+TODO.. MOVE ME..
+
+\begin{exmp}
+	Find a basis for the orthogonal complement of
+	$W=span \left\{
+		\begin{pmatrix} 1\\1\\1\\0 \end{pmatrix}
+		,
+		\begin{pmatrix} 2\\2\\1\\1 \end{pmatrix}
+	\right\} \in \R^4$.
+	Therefore we do the following:
+	\begin{align*}
+		W^{\perp} &= \ker
+		\begin{pmatrix}
+			1 & 1 & 1 & 0 \\
+			2 & 2 & 1 & 1
+		\end{pmatrix}
+		\\
+		&= \ker
+		\begin{pmatrix}
+			1 & 1 & 1 & 0 \\
+			0 & 0 & -1 & 1
+		\end{pmatrix}
+		\tag{after a row reduction}
+		\\
+		&= span \left\{
+			\begin{pmatrix} 0\\-1\\1\\1 \end{pmatrix}
+			,
+			\begin{pmatrix} -1\\0\\1\\1 \end{pmatrix}
+		\right\}.
+	\end{align*}
+\end{exmp}

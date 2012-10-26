@@ -1,0 +1,94 @@
+\section{Direct Sum} % (fold)
+\label{sec:directsum}
+
+Consider two subspaces $\mathcal{U},\mathcal{V} \leq \mathcal{W}$
+of $\mathcal{W}$. Then $\mathcal{U}$ and $\mathcal{V}$ are said to be
+$\textbf{complementry}$ if every vector $w \in \mathcal{W}$ has a
+$\emph{unique}$ decomposition $w=u+v : u \in \mathcal{U}$
+and $v \in \mathcal{V}$. The vector space $\mathcal{W}$ is then said to
+be the $\textbf{internal direct sum}$ of subspaces $\mathcal{U}$
+and $\mathcal{V}$, written $\mathcal{W} = \mathcal{U} \oplus \mathcal{V}$.
+
+\begin{defn}[Direct sum]
+	Consider two vector spaces $\mathcal{U}$ and $\mathcal{V}$.
+	Then the sum $\mathcal{U} + \mathcal{V}$ is called $\emph{direct}$
+	if and only if $\mathcal{U} \cap \mathcal{V} = \{ \mathbf{0} \}$,
+	written $\mathcal{U} \oplus \mathcal{V}$.
+\end{defn}
+
+\begin{defn}[Complementary subspaces]
+	Both $\mathcal{U}$ and $\mathcal{V}$ are complementary subspaces
+	of $\mathcal{W}$ if and only if,
+	\begin{itemize}
+		\item $W = \mathcal{U} + \mathcal{V}$ and,
+		\item $\mathcal{U} \cap \mathcal{V} = \{ \mathbf{0} \}$.
+	\end{itemize}
+	That is, if $\mathcal{U},\mathcal{V} \leq \mathcal{W}$ we have that
+	$\mathcal{W} = \mathcal{U} \oplus \mathcal{V}$.
+\end{defn}
+
+\begin{defn}[External direct sum]
+	Consider two arbitrary vector spaces $\mathcal{U}$ and $\mathcal{V}$
+	over some field $\F$. We may define their direct sum constructively
+	by setting $\mathcal{U} \oplus \mathcal{V}
+	= \mathcal{U} \times \mathcal{V}
+	= \{ (u,v) : u \in \mathcal{U}, v \in \mathcal{V} \}$ with vector
+	addition and scalar multiplication defined by:
+	\begin{itemize}
+		\item $(u,v)+(u',v')=(u+u',v+v')$ and
+		\item $\lambda (u,v) = ( \lambda u, \lambda v) : \lambda \in \F$.
+	\end{itemize}
+\end{defn}
+
+Consider two vector spaces $\mathcal{U}$ and $\mathcal{V}$ with the linear
+map $\varphi: \mathcal{U} \to \mathcal{V}$ and the short exact sequence
+\[
+	\mathcal{U} \stackrel{\alpha}{\to}
+	\mathcal{U} / \ker(\varphi) \stackrel{\gamma}{\to}
+	\im(\varphi) \stackrel{\beta}{\to} \mathcal{V}.
+\]
+
+In particular, observe that the map
+$\alpha: u \mapsto (u,0)$ and
+$\beta: v \mapsto (0,v)$ are injective. While the maps
+$\alpha^{'}: (u,0) \mapsto u$ and
+$\beta^{'}: (0,v) \mapsto v$ are subjective. That is
+$\gamma$ is isomorphic.
+Hence we have the following commutative diagram:
+\begin{center}
+	\begin{tikzcd}
+		\mathcal{U} \ar{dd}{\iota_{\mathcal{U}}} \drar{\alpha}
+		& & \mathcal{V} \ar[swap]{dd}{\iota_{\mathcal{V}}} \dlar[swap]{\beta} & \\
+		& \dlar{\alpha^{'}}
+		\mathcal{U} \oplus \mathcal{V}
+		\drar[swap]{\beta^{'}} & \\
+		\mathcal{U} & & \mathcal{V}
+	\end{tikzcd}
+\end{center}
+
+Observe that the internal and external direct sums are isomorphic in this case.
+
+We can now write higher dimensional vector spaces are direct sums of one
+dimensional subspaces by the natural isomorphism outlined above.
+
+\begin{exmp}
+	Let $\R_1 = \{ (\mathbf{x}_1,\mathbf{0}) : \mathbf{x}_1 \in \R \}$
+	and $\R_2 = \{ (\mathbf{0},\mathbf{x}_2) : \mathbf{x}_2 \in \R \}$.
+	Then we see that $\R^2 = \R_1 \oplus \R_2 \cong \R \oplus \R$.
+\end{exmp}
+
+More generally, consider the subspace $\R_i$ with vectors of the form
+\[
+	\R_i = \{ ( \mathbf{0}_1, \dots , \mathbf{0}_{i-1}, \mathbf{x}_i,
+	\mathbf{0}_{i+1}, \dots , \mathbf{0}_n) : \mathbf{x}_i \in \R \}.
+\]
+Then we have the following:
+\begin{align*}
+	\R^n &= \bigoplus_{i=1}^{n} \R_i
+	\\
+	&= \R_1 \oplus \R_2 \oplus \dots \oplus \R_n
+	\\
+	& \cong \underbrace{\R \oplus \dots \oplus \R}_{\text{n times}}
+	\\
+	&= \bigoplus_{i=1}^{n} \R.
+\end{align*}

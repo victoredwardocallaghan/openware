@@ -1,0 +1,174 @@
+\section{Vector Spaces} % (fold)
+\label{sec:vectorspaces}
+
+\begin{defn}[Vector space]
+	A $\textbf{vector space}$ $\mathcal{V}$ over a field $\mathbb{F}$
+	is an abelian additive group $(\mathcal{V}, +)$, coupled with a
+	mapping (scalar multiplication) $(\lambda,x) \to \lambda x$ of
+	$\mathbb{F} \times \mathcal{V}$ into $\mathcal{V}$ which satisfies
+	\begin{itemize}
+		\item $1 . x = x$,
+		\item $(\lambda + \mu)(x) = \lambda x + \mu x$,
+		\item $\lambda (\mu x) = (\lambda \mu) x$,
+		\item $\lambda (x + y) = \lambda x + \lambda y$,
+	\end{itemize}
+	for $\lambda , \mu \in \mathbb{F}$ and $x, y \in \mathcal{V}$.
+	We note here that the elements of $\mathcal{V}$ are called $\emph{vectors}$
+	and that the elements of $\mathbb{F}$ are called $\emph{scalars}$.
+\end{defn}
+
+\begin{rem}
+	Note that any field $\mathbb{F}$ forms a degenerate vector space over itself.
+\end{rem}
+
+\begin{exmp}
+	For a set $X$, the set of functions from $X \to \F$, denoted $Fun(X,\F)$, is
+	a vector space with pointwise addition and scalar multiplication. That is,
+	for some $\varphi , \psi \in Fun(X,\F), \, x \in X$ and $\lambda \in \F$ we have,
+	\begin{align*}
+		(\varphi + \psi)(x) &= \varphi (x) + \psi (x)
+		\intertext{and}
+		(\lambda \varphi)(x) &= \lambda (\varphi (x)).
+	\end{align*}
+\end{exmp}
+
+\subsection{Subspaces} % (fold)
+\label{sec:subspaces}
+
+\begin{defn}
+	A non-empty subset $\mathcal{U}$ of a vector space $\mathcal{V}$ over $\F$ is a
+	$\emph{linear subspace}$ if it is a subgroup of $\mathcal{V}$ and if $\lambda x \in \mathcal{U}$
+	whenever $\lambda \in \mathbb{F}$ and $x \in \mathcal{U}$ written $\mathcal{U} \leq \mathcal{V}$.
+\end{defn}
+
+\begin{cor}
+	A non-empty subset $\mathcal{U}$ of a vector space $\mathcal{V}$ over a field $\F$ is a linear
+	subspace if and only if, for any $u, u' \in \mathcal{U}$ and $\lambda \in \F$ we have,
+	$u + \lambda u' \in \mathcal{U}$.
+\end{cor}
+
+\begin{exmp}
+	Let the set of all real-valued functions on $\R^n$ be denoted by $\mathcal{F}(\R^n)$.
+	Notice that, for any $f,g \in \mathcal{F}(\R^n), \, \mathbf{x} \in \R^n$ and $\lambda \in \R$
+	we have, $(f + g)(\mathbf{x}) = f(\mathbf{x}) + g(\mathbf{x})$
+	and $(\lambda f)(\mathbf{x}) = \lambda f(\mathbf{x})$.
+	That is we claim that, $\mathcal{F}(\R^n)$ is a vector space.
+
+	Now, observe that the set of all continuous real-valued functions, denoted $\mathcal{C}(\R^n)$ is a
+	subspace of $\mathcal{F}(\R^n)$.
+\end{exmp}
+
+\begin{exmp}
+	Given two subspaces $\mathcal{U}, \mathcal{V} \leq \mathcal{W}$ of vector space $\mathcal{W}$,
+	then $\mathcal{U} \cap \mathcal{V} \leq \mathcal{W}$.
+	\begin{proof}
+		\begin{align*}
+			\intertext{Suppose $x, \lambda x' \in \mathcal{U} \cap \mathcal{V}$
+			with any $\lambda \in \F$. Then,}
+			x, \lambda x' \in \mathcal{U} & \text{ and } x, \lambda x' \in \mathcal{V}.
+			\intertext{Now, since both $\mathcal{U}$ and $\mathcal{V}$ are subspaces then,}
+			x + \lambda x' \in \mathcal{U} & \text{ and } x + \lambda x' \in \mathcal{V}
+			\\
+			\implies x + \lambda x' & \in \mathcal{U} \cap \mathcal{V}. \qedhere
+		\end{align*}
+	\end{proof}
+\end{exmp}
+
+\begin{lem}
+	In general, for a vector space $\mathcal{V}$ and any family of subspaces
+	$\mathcal{U}_i \leq \mathcal{V}$ for every $i \in I$, we have
+	$\bigcap_{i \in I} \mathcal{U}_i \leq \mathcal{V}$.
+\end{lem}
+
+\begin{exmp}
+	Consider the subspaces $\mathcal{V}',\mathcal{V}'',\mathcal{W} \leq \mathcal{V}$. Prove that
+	\[
+		(\mathcal{V}' \cap \mathcal{W}) + (\mathcal{V}'' \cap \mathcal{W})
+		\subseteq (\mathcal{V}' + \mathcal{V}'') \cap \mathcal{W}.
+	\]
+	\begin{proof}
+		\begin{align*}
+			\intertext{Pick some}
+			x \in (\mathcal{V}' \cap \mathcal{W}) & + (\mathcal{V}'' \cap \mathcal{W})
+			: x = u + v
+			\intertext{where $u \in \mathcal{V}' \cap \mathcal{W}$
+			and $v \in \mathcal{V}'' \cap \mathcal{W}$.}
+			\intertext{Then,}
+			u \in \mathcal{V}' \, & , u \in \mathcal{W}
+			\intertext{and}
+			v \in \mathcal{V}'' \, & , v \in \mathcal{W}.
+			\intertext{Now, since $u,v \in \mathcal{W}$ and that $\mathcal{W}$ is a subspace,}
+			x = u + v & \in \mathcal{W}.
+			\intertext{Also, since}
+			u \in \mathcal{V}' & \text{ and } v \in \mathcal{V}''
+			\intertext{then}
+			u + v & \in \mathcal{V}' + \mathcal{V}''.
+			\intertext{Hence,}
+			x & \in W \cap ( \mathcal{V}' + \mathcal{V}'' ). \qedhere
+		\end{align*}
+	\end{proof}
+	Does the reverse inclusion always hold?
+	\begin{proof}
+		\begin{align*}
+			\intertext{Pick some $y \in (\mathcal{V}' + \mathcal{V}'') \cap W$ so that}
+			y \in (\mathcal{V}' + \mathcal{V}'') & \textbf{ or } y \in \mathcal{W}.
+			\intertext{Now, write $y=y' + y''$ with
+				$y' \in \mathcal{V}'$ and $y'' \in \mathcal{V}''$. Observe that,}
+			\text{for } y' \in \mathcal{W} & \text{ so that } y' \in \mathcal{V}' \cap \mathcal{W}
+			\\
+			\nRightarrow y'' \in \mathcal{W} & \text{ so that } y'' \in \mathcal{V}'' \cap \mathcal{W}
+			\intertext{and so,}
+			y=y' + y'' & \notin (\mathcal{V}' \cap \mathcal{W}) + (\mathcal{V}'' \cap \mathcal{W}).
+		\end{align*}
+		Hence no. \qedhere
+	\end{proof}
+\end{exmp}
+
+\begin{exmp}
+	Consider the subspaces $\mathcal{V}',\mathcal{V}'' \leq \mathcal{V}$ and suppose that
+	$\mathcal{V}' \cup \mathcal{V}''$ is also a subspace of $\mathcal{V}$. Then show that
+	either $\mathcal{V}' \subseteq \mathcal{V}''$ or $\mathcal{V}'' \subseteq \mathcal{V}'$.
+	\begin{proof}
+		\begin{align*}
+			\intertext{Let $x \in \mathcal{V}'$ and $y \in \mathcal{V}''$ so that
+			$x \in \mathcal{V}' \cup \mathcal{V}''$ and
+			$y \in \mathcal{V}' \cup \mathcal{V}''$.}
+			\intertext{Now, since $\mathcal{V}' \cup \mathcal{V}''$ is a subspace then,}
+			x + y & \in \mathcal{V}' \cup \mathcal{V}''
+			\intertext{so,}
+			x + y \in \mathcal{V}' & \textbf{ or } x + y \in \mathcal{V}''.
+			\intertext{Case i.) If $x+y \in \mathcal{V}'$ while $x \in \mathcal{V}'$ and that,
+			since $\mathcal{V}'$ is a subspace then, $y \in \mathcal{V}'$. So,}
+			y \in \mathcal{V}'' & \implies y \in \mathcal{V}'
+			\\
+			\mathcal{V}' & \subseteq \mathcal{V}''.
+			\intertext{Case ii.) If $x+y \in \mathcal{V}''$ while $y \in \mathcal{V}''$ and that,
+			since $\mathcal{V}''$ is a subspace then, $x \in \mathcal{V}''$. So,}
+			x \in \mathcal{V}' & \implies x \in \mathcal{V}''
+			\\
+			\mathcal{V}'' & \subseteq \mathcal{V}'. \qedhere
+		\end{align*}
+	\end{proof}
+\end{exmp}
+
+\begin{rem}
+	Observe that, in general, unions of subspaces are not necessarily subspaces.
+\end{rem}
+
+\begin{exmp}
+	Consider the subspaces $\mathcal{W},\mathcal{W}' \leq \mathcal{V}$ of some vector space $\mathcal{V}$.
+	Show that, if $\mathcal{W}''$ is any subspace of $\mathcal{V}$ containing $\mathcal{W}$ and $\mathcal{W}'$
+	then $\mathcal{W} + \mathcal{W}' \subseteq \mathcal{W}''$.
+	\begin{proof}
+		\begin{align*}
+			\intertext{If,}
+			\mathcal{W} \cup \mathcal{W}' & \subseteq \mathcal{W}'' \text{ with } \mathcal{W}'' \leq \mathcal{V}
+			\intertext{then,}
+			\mathcal{W} \subseteq \mathcal{W}'' & \text{ and } \mathcal{W}' \subseteq \mathcal{W}''.
+			\intertext{Now, suppose $x=x' + x''$ with $x' \in \mathcal{W}$ and $x'' \in \mathcal{W}'$. Then,}
+			x \in \mathcal{W} \cup \mathcal{W}' & \implies x \in \mathcal{W}''.
+			\intertext{Hence,}
+			\mathcal{W} + \mathcal{W}' & \subseteq \mathcal{W}''. \qedhere
+		\end{align*}
+	\end{proof}
+\end{exmp}

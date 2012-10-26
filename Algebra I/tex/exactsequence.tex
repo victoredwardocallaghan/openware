@@ -1,0 +1,39 @@
+\section{Exact sequence} % (fold)
+\label{sec:exactsequence}
+An $\textbf{exact sequence}$ may  either be a finite or infinite sequence of objects and morphisms between them.
+Such a sequence is constructed so that the image of one morphism equals the kernel of the next.
+
+In particular;
+
+\begin{defn}[Exact Sequence]
+	Consider the sequence of $n$ group homomorphism between $n+1$ groups
+	in the following way:
+
+	\begin{center}
+	\begin{tikzcd}
+		\mathcal{G}_{0} \rar{\varphi_{1}} & \mathcal{G}_{1}
+		\rar{\varphi_{2}} & \mathcal{G}_{2} \rar{\varphi_{3}}
+		& \dots \rar{\varphi_{n}} & \mathcal{G}_{n}
+	\end{tikzcd}
+\end{center}
+
+Then the sequence is said to be $\emph{exact}$ if,
+\[
+	\ker(\varphi_{k+1}) = \im(\varphi_{k})
+\]
+for every $k \in \{1 \dots n\}$. For $n=3$ the sequence is said to be a
+$\textbf{short exact sequence}$.
+\end{defn}
+
+\begin{exmp}
+	Suppose we have $\mathcal{K} \unlhd \mathcal{G}$ and that
+	$q: \mathcal{G} \to \mathcal{G} / \mathcal{K}$ is the quotient mapping.
+	Then,
+	\begin{center}
+	\begin{tikzcd}
+		1 \rar & \mathcal{K} \rar{\subseteq} & \mathcal{G}
+		\rar{q} & \mathcal{G} / \mathcal{K} \rar & 1
+	\end{tikzcd}
+\end{center}
+is a short exact sequence.
+\end{exmp}

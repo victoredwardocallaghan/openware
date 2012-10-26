@@ -1,0 +1,39 @@
+\section{Normed vector space} % (fold)
+\label{sec:normedvectorspace}
+
+A norm on a complex vector space $\mathcal{V}$ is a
+real-valued function $\| \cdot \| : \mathcal{V} \to \R$
+that, to any vector $x \in \mathcal{V}$ associates a
+real number $\| x \|$, satisfies the following:
+\begin{itemize}
+	\item $\| x \| \geq 0, \, \forall x \in \mathcal{V}$
+		and in particular $\| x \| = 0 \Leftrightarrow x=0$
+		(positive definite),
+	\item $\| \alpha x \| = | \alpha | \| x \| \, \forall x \in \mathcal{V}$,
+		and $\alpha \in \C$ (uniform scaling),
+	\item $\| x + y \| \leq \| x \| + \| y \| \, \forall x,y \in \mathcal{V}$ (triangle inequality).
+\end{itemize}
+
+\subsection{Linear Operators}
+\label{subsec:linearoperator}
+
+In functional analysis one considers linear maps between normed vector spaces.
+In this context such linear mappings are termed $\emph{linear operators}$ or just operators.
+In this light one is motivated to talk about notions of $\emph{continuity}$ of such operators.
+
+For any normed vector space $(\mathcal{U}, \| \cdot \|_{\mathcal{U}})$ consider the closed unit ball
+in $\mathcal{U}$ given by $B(\mathcal{U}) = \{ x \in \mathcal{U} : \| x \|_{\mathcal{U}} \leq 1 \}$.
+Hence, we may now define boundedness of an operator formally as follows:
+
+\begin{defn}[Bounded linear operator]
+	A linear operator $T:\mathcal{U} \to \mathcal{V}$ between normed vector spaces
+	$(\mathcal{U}, \| \cdot \|_{\mathcal{U}})$ and $(\mathcal{V}, \| \cdot \|_{\mathcal{V}})$
+	is called a $\emph{bounded}$ linear operator if it maps the closed unit ball
+	$B(\mathcal{U})$ in $\mathcal{U}$ into a bounded set (a ball) in $\mathcal{V}$.
+\end{defn}
+
+\begin{cor}
+	A linear operator $T:\mathcal{U} \to \mathcal{V}$ between normed vector spaces
+	$(\mathcal{U}, \| \cdot \|_{\mathcal{U}})$ and $(\mathcal{V}, \| \cdot \|_{\mathcal{V}})$
+	is continuous if and only if it is bounded.
+\end{cor}
