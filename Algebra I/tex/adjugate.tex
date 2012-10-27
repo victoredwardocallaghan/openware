@@ -1,0 +1,182 @@
+\section{Adjugate (Classical Adjoint)} % (fold)
+\label{sec:adjugate}
+
+\begin{defn}[Cofactor]
+	For some square matrix $A \in \mathcal{M}_{n,n}(\F)$
+	then the minor of the $a_{ij}$ entry, denoted by
+	$M_{i,j}$, is defined to be the determinant of the
+	$\emph{submatrix}$ obtained by removing the $(i,j)^{th}$
+	row and column from $A$. That is,
+	\[
+		C_{i,j} = (-1)^{i+j} M_{i,j}
+	\]
+	where $C_{i,j}$ is called the $\emph{cofactor}$ of $a_{i,j}$.
+\end{defn}
+
+\begin{exmp}
+	Consider the matrix $A \in \mathcal{M}_{3,3}$ and suppose
+	\begin{align*}
+		A &=
+		\begin{pmatrix}
+			a_{11} & a_{12} & a_{13} \\
+			a_{21} & a_{22} & a_{23} \\
+			a_{31} & a_{32} & a_{33}
+		\end{pmatrix}.
+		\intertext{We may find the $C_{2,3}$ cofactor in the following way;}
+		\intertext{Observe that the minor $M_{2,3}$ may be found as follows,}
+		M_{2,3} &=
+		\begin{vmatrix}
+			a_{11} & a_{12} \\
+			a_{31} & a_{32}
+		\end{vmatrix}
+		\\
+		&= a_{11} a_{32} - a_{12} a_{31}
+		\intertext{and so the cofactor $C_{2,3}$ is by definition,}
+		C_{2,3} &= (-1)^{2+3} M_{2,3}
+		\\
+		&= (-1)^{5} ( a_{11} a_{32} - a_{12} a_{31} )
+		\\
+		&= a_{12} a_{31} - a_{11} a_{31}.
+	\end{align*}
+\end{exmp}
+
+Notice that we may now find the determinant of some $n \times n$ square matrix
+in terms of its cofactors. The process of this cofactor expansion is called the
+Laplace expansion.
+
+\begin{thm}
+	Suppose $A \in \mathcal{M}_{n,n}$ is some $n \times n$ square matrix then
+	\begin{align*}
+		\intertext{in terms of the $i^{th}$ row we have,}
+		\det(A) &= \sum_{i=1}^n a_{ij} C_{ij}
+		\intertext{or in terms of the $j^{th}$ column}
+		&= \sum_{j=1}^{n} a_{ij} C_{ij}.
+	\end{align*}
+\end{thm}
+
+\begin{proof}
+	TODO: Prove Laplace expansion.
+\end{proof}
+
+\begin{exmp}
+	Consider the matrix
+	\begin{align*}
+		A &=
+		\begin{pmatrix}
+			1 & 3 & 5 \\
+			2 & 1 & 3 \\
+			5 & 2 & 1
+		\end{pmatrix}.
+		\intertext{Then,}
+		\det(A) &=
+		1 \cdot
+		\begin{vmatrix}
+			1 & 3 \\
+			2 & 1
+		\end{vmatrix}
+		-3 \cdot
+		\begin{vmatrix}
+			2 & 3 \\
+			5 & 1
+		\end{vmatrix}
+		+5 \cdot
+		\begin{vmatrix}
+			2 & 1 \\
+			5 & 2
+		\end{vmatrix}
+		\\
+		&= 1 \cdot (-5) -3 \cdot (-13) +5 \cdot (-1) = 29.
+	\end{align*}
+\end{exmp}
+
+Recall that the determinant is a measure of overall scaling of a matrix. Observe
+that each cofactor are essentially sub determinants or sub scalings. By this we
+are motivated to form a matrix of these cofactors in the following way:
+
+\begin{defn}[Matrix of cofactors]
+	Suppose $A \in \mathcal{M}_{n,n}(\R)$ is some $n \times n$ real square matrix
+	given by,
+	\begin{align*}
+		A &=
+		\begin{pmatrix}
+			a_{11} & a_{12} & \cdots & a_{1n} \\
+			a_{21} & a_{22} & \cdots & a_{2n} \\
+			\vdots & \vdots & \ddots & \vdots \\
+			a_{n1} & a_{n2} & \cdots & a_{nn}
+		\end{pmatrix}
+		\intertext{with cofactors $C_{ij}$ of $a_{ij}$.
+		Then the $\emph{cofactor matrix}$ $C$ is defined as,}
+		C &=
+		\begin{pmatrix}
+			C_{11} & C_{12} & \cdots & C_{1n} \\
+			C_{21} & C_{22} & \cdots & C_{2n} \\
+			\vdots & \vdots & \ddots & \vdots \\
+			C_{n1} & C_{n2} & \cdots & C_{nn}
+		\end{pmatrix}.
+	\end{align*}
+\end{defn}
+
+Now since a matrix of a linear transformation is really just a linear dilation
+(\ref{eigenvalues}) of each dimension of the coordinate system (\ref{eigenvectors}).
+Then for a real matrix we may find the inverse by means of dilating each respective
+dimension back. This is essentially what the adjugate matrix is. In fact, even when
+the matrix is $\emph{singular}$ (non-invertible) the adjugate is still well defined.
+That is, the adjugate is in actual fact, the pre-image of a real linear transformation.
+
+More formally, we have the following definition;
+
+\begin{defn}[Adjugate (Classical adjoint)]
+	Suppose $A \in \mathcal{M}_{n,n}(\R)$ is some real $n \times n$ square matrix with
+	cofactor matrix $C$. Then the $\emph{adjugate}$ or classical adjoint of $A$ is
+	defined as,
+	\[
+		adj(A) = C^T.
+	\]
+\end{defn}
+
+Thus we have the following result:
+\begin{lem}
+	For some non-singular $n \times n$ real square matrix $A \in \mathcal{M}_{n,n}(\R)$
+	we have,
+	\[
+		adj(A) = A^{-1} \det(A).
+	\]
+\end{lem}
+
+\begin{proof}
+	TODO: prove this lemma..
+\end{proof}
+
+\begin{exmp}
+	\begin{align*}
+		\intertext{Suppose $A \in \mathcal{M}_{2,2}(\R)$ is given by,}
+		A &=
+		\begin{pmatrix}
+			a_{11} & a_{12} \\
+			a_{21} & a_{22}
+		\end{pmatrix}
+		\intertext{then the adjugate of $A$ is given by,}
+		adj(A) &=
+		\begin{pmatrix}
+			a_{22} & -a_{21} \\
+			-a_{12} & a_{11}
+		\end{pmatrix}^T
+		\\
+		&=
+		\begin{pmatrix}
+			a_{22} & -a_{12} \\
+			-a_{21} & a_{11}
+		\end{pmatrix}.
+	\end{align*}
+\end{exmp}
+
+Some useful properties follow from the adjugate:
+\begin{itemize}
+	\item $adj(I) = I$,
+	\item $adj(AB) = adj(B) adj(A)$,
+	\item $adj(A^T) = adj(A)^T$.
+\end{itemize}
+
+\begin{proof}
+	TODO prove the above properties.
+\end{proof}

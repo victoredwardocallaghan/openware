@@ -1,0 +1,21 @@
+% Copyright © 2012 Edward O'Callaghan. All Rights Reserved.
+\section{Gram-Schmidt} % (fold)
+\label{sec:gram-schmidt}
+
+The Gram-Schmidt algorithm is a method of orthonormalising
+a finite set of linearly independent vectors that span an
+inner product space into a orthonormal basis.
+
+\begin{defn}[Projection operator]
+	Consider two $n \times 1$ vectors $\mathbf{u},\mathbf{v} \in \F^n$.
+	Then the \textbf{orthogonal projection}
+	$\emph{of } \mathbf{v} \emph{ onto}$ the line spanned by $\mathbf{u}$
+	is given by,
+	\[
+		proj_{\mathbf{u}} (\mathbf{v})
+		= \frac{\langle \mathbf{v},\mathbf{u} \rangle}
+		{\langle \mathbf{u}, \mathbf{u} \rangle} \mathbf{u}
+	\]
+\end{defn}
+
+TODO..
