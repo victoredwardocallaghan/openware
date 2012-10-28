@@ -18,10 +18,24 @@ inner product space into a orthonormal basis.
 	\]
 \end{defn}
 
-Consider a finite sequence of vectors given by the spanning set
-$S = \{ \mathbf{v}_1 , \dots , \mathbf{v}_k \}$. Then the
-sequence of Gram-Schmidt orthogonalised vectors
-$\{\mathbf{u}_1, \dots , \mathbf{u}_k \}$ is given by,
-$\mathbf{u}_k = \mathbf{v}_k - \sum_{j=1}^{k-1} proj_{\mathbf{u}_k} (\mathbf{v}_k)$.
+\begin{align*}
+	\intertext{Consider a finite sequence of vectors given by the spanning set,}
+	S &= \{ \mathbf{v}_1 , \dots , \mathbf{v}_k \}.
+	\intertext{Then the sequence of Gram-Schmidt orthogonalised vectors,
+	$\{ \mathbf{u}_1, \dots , \mathbf{u}_k \}$ is given by,}
+	\mathbf{u}_k &= \mathbf{v}_k - \sum_{j=1}^{k-1} proj_{\mathbf{u}_k} (\mathbf{v}_k).
+	\intertext{Hence, we may normalise the sequence by,}
+	\mathbf{e}_k &= \frac{\mathbf{u}_k}{\| \mathbf{u}_k \|}.
+\end{align*}
 
-Hence, we may normalise the sequence by, $\mathbf{e}_k = \frac{\mathbf{u}_k}{\| \mathbf{u}_k \|}$.
+\begin{exmp}
+	\begin{align*}
+		\intertext{Consider the spanning set,}
+		S &= \left\{
+			\mathbf{v}_1 = \begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix},
+			\mathbf{v}_2 = \begin{pmatrix} 5 \\ 2 \\ 1 \end{pmatrix},
+			\mathbf{v}_3 = \begin{pmatrix} 3 \\ 2 \\ 4 \end{pmatrix}
+		\right\}.
+		\intertext{Let $\mathbf{u}_1 = \mathbf{v}_1$ and so,}
+	\end{align*}
+\end{exmp}

@@ -1,0 +1,40 @@
+% Copyright © 2012 Edward O'Callaghan. All Rights Reserved.
+
+\section{Jordan Canonical Form} % (fold)
+\label{sec:JordanForm}
+
+The Jordan (normal) canonical form is a set of "almost diagonal"
+matries, called the $\emph{Jordan blocks}$. The Jordan blocks
+contain the diagonal components composed of eigenvalues. We call
+this form, the $\emph{block diagonal form}$. The set of Jordan
+blocks form a $\emph{equivalence class}$ under similarity invariance
+of the eigen-invariant subspaces.
+
+\begin{defn}[Jordan block]
+	A Jordan block $\mathcal{J}_k(\lambda)$ is a $k \times k$
+	$\emph{upper triangular}$ square matrix of the form:
+	\[
+		\mathcal{J}_k(\lambda) =
+		\begin{pmatrix}
+			\lambda & 1 & & & \\
+			0 & \lambda & 1 & & \text{\huge{0}} \\
+			& & \ddots & \ddots & \\
+			\text{\huge{0}} & & & \ddots & 1 \\
+			& & & & \lambda
+		\end{pmatrix}
+	\]
+	where there are $k-1$ (+1)'s in the $\emph{superdiagonal}$ and
+	$k$ of a particular scalar eigenvalue $\lambda$ in the main
+	diagonal while all other entries are zero. The trivial $1 \times 1$
+	Jordan block of $\lambda$ is $\mathcal{J}_1(\lambda)=[\lambda]$.
+\end{defn}
+
+\begin{defn}[Jordan matrix]
+	A Jordan matrix $\mathcal{J} \in \mathcal{M}_{n,n}(\F)$ is a
+	\nameref{sec:directsum} of Jordan blocks. That is,
+	\[
+		\mathcal{J} =
+		\bigoplus_{i=1}^{k} \mathcal{J}_i(\lambda_i)
+	\]
+	where each $\lambda_i \in \sigma(A)$ for some matrix $A \in \mathcal{M}(\F)$.
+\end{defn}
