@@ -26,15 +26,127 @@ of the eigen-invariant subspaces.
 	where there are $k-1$ (+1)'s in the $\emph{superdiagonal}$ and
 	$k$ of a particular scalar eigenvalue $\lambda$ in the main
 	diagonal while all other entries are zero. The trivial $1 \times 1$
-	Jordan block of $\lambda$ is $\mathcal{J}_1(\lambda)=[\lambda]$.
+	Jordan block of $\lambda$ is $\mathcal{J}_1(\lambda) = ( \lambda )$.
 \end{defn}
 
 \begin{defn}[Jordan matrix]
 	A Jordan matrix $\mathcal{J} \in \mathcal{M}_{n,n}(\F)$ is a
-	\nameref{sec:directsum} of Jordan blocks. That is,
+	direct sum (\ref{sec:directsum}) of Jordan blocks. That is,
 	\[
 		\mathcal{J} =
-		\bigoplus_{i=1}^{k} \mathcal{J}_i(\lambda_i)
+		\bigoplus_{i=1}^{N} \mathcal{J}_{\lambda_i , m_k} : 1 \leq i \leq N.
 	\]
-	where each $\lambda_i \in \sigma(A)$ for some matrix $A \in \mathcal{M}(\F)$.
+	where each $\lambda_i \in \sigma(A)$ for some matrix $A \in \mathcal{M}(\F)$
+	need not be distinct.
 \end{defn}
+
+\begin{exmp}
+	\begin{align*}
+		\intertext{Suppose,}
+		A &=
+		\begin{pmatrix}
+			3 & 1 & 1 \\
+			-4 & -1 & 0 \\
+			0 & 0 & 1
+		\end{pmatrix}.
+		\intertext{We wish to find the Jordan canonical form so that we have the
+			usual change of basis given by, $C \mathcal{J} = A C$. First we find
+		the characteristic polynomial,}
+		\chi_{A}(\lambda) &= (3 - \lambda) (\lambda + 1)^2 - 4 (\lambda + 1)
+		\\
+		&= -(\lambda + 1) \left\{ (\lambda + 1) (\lambda - 3) + 4 \right\}
+		\\
+		&= -(\lambda + 1) (\lambda^2 - 2 \lambda + 1)
+		\\
+		\Rightarrow \chi_{A}(\lambda) &= (\lambda + 1) (\lambda - 1)^2
+		\intertext{and so, $\lambda_1 = -1$ and $\lambda_2 = 1$ with algebraic
+		multiplicity two. Next recall that,}
+		\mathcal{E}_{\lambda}(n) &= \ker (A - \lambda I)^n
+		\intertext{and, in particular, that}
+		\text{geometric multiplicity} &= \dim \mathcal{E}_{\lambda}(1).
+		\intertext{For $\lambda_1$ we recall that the geometric multiplicity is
+			always less than or equal to the algebraic multiplicity and since
+			$\lambda_1$ has algebraic multiplicity of one it has geometric
+		multiplicity of one, hence has the trivial Jordan block:}
+		\mathcal{J}_1(\lambda_1) &= \mathcal{J}_1(-1).
+		\intertext{To find the corresponding eigenvector to $\lambda_1$ we look
+		in the span of the kernel as follows}
+		\mathbf{v}_1 \in \mathcal{E}_{\lambda_1}(1) &= \mathcal{E}_{-1}(1)
+		\\
+		&= \ker (A + I)^1
+		\\
+		&= \ker
+		\begin{pmatrix}
+			4 & 1 & 1 \\
+			-4 & 0 & 0 \\
+			0 & 0 & 0
+		\end{pmatrix}
+		\\
+		&= \ker
+		\begin{pmatrix}
+			0 & 1 & 1 \\
+			1 & 0 & 0 \\
+			0 & 0 & 0
+		\end{pmatrix} \tag{after a row reduction}
+		\\
+		\Rightarrow \mathbf{v}_1 & \in span \left\{ \begin{pmatrix} 0 \\ 1 \\ -1 \end{pmatrix} \right\}.
+		\intertext{Note that it is important we find $\mathbf{v}_1$ first as we shall see. Now, see that}
+		\mathcal{E}_{\lambda_2}(1) = \mathcal{E}_{1}(1) &= \ker (A - I)^1
+		\\
+		&= \ker
+		\begin{pmatrix}
+			2 & 1 & 1 \\
+			-4 & -2 & 0 \\
+			0 & 0 & -2
+		\end{pmatrix}
+		\\
+		&= \ker
+		\begin{pmatrix}
+			2 & 1 & 1 \\
+			-2 & -1 & 0 \\
+			0 & 0 & -1
+		\end{pmatrix}
+		\\
+		&= \ker
+		\begin{pmatrix}
+			0 & 0 & 0 \\
+			2 & 1 & 0 \\
+			0 & 0 & 1
+		\end{pmatrix} \tag{after row reductions.}
+		\intertext{Hence, $\dim \mathcal{E}_{\lambda_2}(1) = 2$ and so we have the corresponding Jordan block,}
+		\mathcal{J}_2 (\lambda_2) &= \mathcal{J}_2(1).
+		\intertext{Now, to find the corresponding eigenvectors to $\lambda_2$ we need only pick a vector
+		$\textbf{not}$ in the span of $\mathcal{E}_{\lambda_2}(1)$ and is linearly independent from $\mathbf{v}_1$.
+		Consider the vector $\mathbf{v}_2 \notin \mathcal{E}_{\lambda_2}(1)$ with,}
+		\mathbf{v}_2 &= \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}.
+		\intertext{Then by the Jordan chain we see that,}
+		\mathbf{v}_3 &= \mathcal{E}_{\lambda_2}(1) \mathbf{v}_2
+		\\
+		&= \begin{pmatrix} 1 \\ -2 \\ 0 \end{pmatrix} \in span \mathcal{E}_{\lambda_2}(1)
+		\intertext{thus, $\mathcal{E}_{\lambda_2}(1) \mathbf{v}_3 = \mathbf{0}$ and since the geometric multiplicity
+		of $\lambda_2$ was two we now have the spanning set of corresponding eigenvectors $\mathbf{v}_2,\mathbf{v}_3$. So,}
+		C \mathcal{J} &= A C
+		\\
+		\Rightarrow A &= C \mathcal{J} C^{-1}
+		\\
+		\Rightarrow A &= C \mathcal{J}_{1}(\lambda_1) \oplus \mathcal{J}_{2}(\lambda_2) C^{-1}
+		\\
+		A &=
+		\begin{pmatrix}
+			0 & 0 & 1 \\
+			1 & 1 & -2 \\
+			-1 & 0 & 0
+		\end{pmatrix}
+		\begin{pmatrix}
+			-1 & 0 & 0 \\
+			0 & 1 & 1 \\
+			0 & 0 & 1
+		\end{pmatrix}
+		\begin{pmatrix}
+			0 & 0 & 1 \\
+			1 & 1 & -2 \\
+			-1 & 0 & 0
+		\end{pmatrix}^{-1}.
+	\end{align*}
+\end{exmp}
+

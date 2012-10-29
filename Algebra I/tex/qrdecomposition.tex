@@ -1,10 +1,12 @@
 % Copyright © 2012 Edward O'Callaghan. All Rights Reserved.
-\section{Gram-Schmidt} % (fold)
-\label{sec:gram-schmidt}
 
-The Gram-Schmidt algorithm is a method of orthonormalising
-a finite set of linearly independent vectors that span an
-inner product space into a orthonormal basis.
+\section{QR decomposition} % (fold)
+\label{sec:QRdecomposition}
+The QR decomposition of a matrix $A \in \mathcal{M}_{n,m}(\F)$
+into a product of an orthogonal matrix $Q$ and an upper
+triangular matrix $R$, written $A=QR$. However, first we
+must look at the Gram-Schmidt algorithm in order to obtain
+an $\emph{orthonomalised babsis}$ of $A$.
 
 \begin{defn}[Projection operator]
 	Consider two $n \times 1$ vectors $\mathbf{u},\mathbf{v} \in \F^n$.
@@ -17,6 +19,22 @@ inner product space into a orthonormal basis.
 		{\langle \mathbf{u}, \mathbf{u} \rangle} \mathbf{u}.
 	\]
 \end{defn}
+
+Recall that when the field $\F$ is taken to be real for two $n \times 1$
+vectors $\mathbf{u}, \mathbf{v} \in \R^n$ then the inner product is then
+$\langle \mathbf{u} , \mathbf{v} \rangle = \mathbf{u}^T \mathbf{v}$.
+When the field $\F$ is taken to be complex for two $n \times 1$ vectors
+$\mathbf{u}, \mathbf{v} \in \C^n$ then the inner product is then
+$\langle \mathbf{u} , \mathbf{v} \rangle = \mathbf{u}^{*} \mathbf{v}$.
+In fact, since the conjugate of a real number is itself the usual
+complex version can simply be used without issue.
+
+\subsection{Gram-Schmidt} % (fold)
+\label{subsec:gram-schmidt}
+
+The Gram-Schmidt algorithm is a method of orthonormalising
+a finite set of linearly independent vectors that span an
+inner product space into a orthonormal basis.
 
 \begin{align*}
 	\intertext{Consider a finite sequence of vectors given by the spanning set,}
