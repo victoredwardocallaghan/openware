@@ -62,4 +62,40 @@ A direct proof by construction is given:
 \end{align*}
 \end{proof}
 
+\begin{exmp}
+	Suppose $\mathbf{Y}$ is a multivariate normal random vector with expectation
+	$\mathbb{E}[\mathbf{Y}]=0$ and covariance matrix $V$. Given that $\mathbf{Y}$
+	has length $n$. Prove that $\mathbf{Y}^{\top} V^{-1} \mathbf{Y}$ has
+	chi-squared distribution with $n$-degrees of freedom. Prove also that $V$ is
+	always semi-positive definite.
+	\begin{proof}
+		\begin{align*}
+			\mathbf{Y}^{\top} V^{-1} \mathbf{Y} &= \mathbf{Y}^{\top}
+			\left( \mathbb{E} \left[
+				( \mathbf{Y} - \boldsymbol{\mu}_{Y} )
+				( \mathbf{Y} - \boldsymbol{\mu}_{Y} )^{\top}
+			\right] \right)^{-1} \mathbf{Y}
+			\intertext{where $\boldsymbol{\mu}_{Y} = \mathbb{E}[\mathbf{Y}]$.
+			Now, suppose we have the Cholesky decomposition $V^{-1} = Q^{\top} Q$ so that,}
+			\mathbf{Y}^{\top} V^{-1} \mathbf{Y} &= \mathbf{Y}^{\top} Q^{\top} Q \mathbf{Y}
+			\\
+			&= (Q \mathbf{Y})^{\top} Q \mathbf{Y}
+			\intertext{now let $Q \mathbf{Y} = Z$ and so we have,}
+			\Rightarrow \mathbf{Y}^{\top} V^{-1} \mathbf{Y} &= Z^{2}.
+			\intertext{Observe that,}
+			\mathbb{E}[Q \mathbf{Y}] &= Q \mathbb{E}[\mathbf{Y}] = \mathbf{0}
+			\tag{since $Q$ is a constant matrix}
+			\intertext{and that,}
+			Var(Q \mathbf{Y}) &= Q Var(\mathbf{Y}) Q^{\top}
+			\\
+			&= Q (Q^{\top} Q)^{-1} Q^{\top} = I_n.
+			\intertext{Since $Q$ is both square and invertible and that $Z$ is multivariate
+			standard normal,}
+			Z & \sim \mathcal{N}(\mathbf{0},I_n)
+			\intertext{so then $\mathbf{Y}^{\top} V^{-1} \mathbf{Y}$ has chi-squared
+		distribution with $n$-degrees of freedom.}
+		\end{align*}
+	\end{proof}
+\end{exmp}
+
 \end{document}% End of document.

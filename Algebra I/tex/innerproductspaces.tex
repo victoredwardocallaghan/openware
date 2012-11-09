@@ -44,7 +44,7 @@ $\emph{inner product space}$.
 \begin{exmp}
 	Consider the vector space $V=M_{mn}(\F)$. We wish to show that, for some $X,Y \in V$, that
 	$tr(X^{*} Y)$ defines an inner product in $V$.
-	Hence we have, $\langle X, Y \rangle \doteq tr(X^{*} Y) \, \forall X,Y \in V$.
+	Hence we have, $\langle X, Y \rangle \doteq tr(X^{*} Y)$ for all $X,Y \in V$.
 	\begin{proof}
 		First suppose that $\langle X, Y \rangle = tr(X^{*}Y)$ and so;
 		\begin{align*}
@@ -141,6 +141,38 @@ TODO..
 	\end{proof}
 \end{thm}
 
+\begin{defn}[Isometric]
+	Consider two inner product spaces $\mathcal{U}$ and $\mathcal{V}$ with the map
+	$T: \mathcal{U} \to \mathcal{V}$. Then the map $T$ preserves inner products ($\emph{isometric}$)
+	if, for any $\mathbf{u},\mathbf{u}' \in \mathcal{U}$, we have
+	$\langle T(\mathbf{u}), T(\mathbf{u}') \rangle = \langle \mathbf{u}, \mathbf{u}' \rangle$.
+\end{defn}
+
+\begin{rem}
+	A map need not be linear for it to be isometric.
+\end{rem}
+
+\begin{thm}
+	Isometric maps are monomorphic.
+\end{thm}
+
+\begin{proof}
+	Suppose some inner product preserving maps $T: \mathcal{U} \to \mathcal{V}$. Then it is
+	sufficient to show that the dimension of the kernel of $T$ is zero for injectivity.
+	\begin{align*}
+		\intertext{Pick some $\mathbf{u} \in \ker T$ so that,}
+		\langle T(\mathbf{u}), T(\mathbf{u}) \rangle &= \langle 0, 0 \rangle
+		\\
+		&= 0.
+		\intertext{However, since $T$ preserves inner products then}
+		\langle \mathbf{u},\mathbf{u} \rangle &= \langle T(\mathbf{u}), T(\mathbf{u}) \rangle
+		\intertext{and so,}
+		\langle \mathbf{u},\mathbf{u} \rangle &= 0
+		\\
+		\implies \mathbf{u} &= \mathbf{0}
+		\intertext{hence $T$ is monomorphic.}
+	\end{align*}
+\end{proof}
 
 TODO.. MOVE ME..
 

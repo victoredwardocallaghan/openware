@@ -1,0 +1,119 @@
+% Copyright © 2012 Edward O'Callaghan. All Rights Reserved.
+
+\section{Primary decomposition} % (fold)
+\label{sec:primarydecomposition}
+
+\begin{thm}[Bezout's theorem]
+	Let $f(x),g(x) \in \F[x]$ be polynomials such that
+	$\gcd \left( f(x) , g(x) \right) = \alpha \in \F$.
+	Then there exists some $a(x),b(x) \in \F[x]$ such that
+	\[
+		a(x) f(x) + b(x) g(x) = 1.
+	\]
+\end{thm}
+
+\begin{proof}
+	TODO..
+\end{proof}
+
+\begin{thm}[Primary decomposition]
+	Let $f(x),g(x) \in \F[x]$ such that
+	$\gcd \left( f(x), g(x) \right) = \alpha \in \F$
+	and let $T: \mathcal{V} \to \mathcal{V}$ be a linear
+	map such that $f(T) . g(T) = 0$. Then,
+	\[
+		\mathcal{V} = \ker f(T) \oplus \ker g(T).
+	\]
+\end{thm}
+
+\begin{proof}
+	\begin{align*}
+		\intertext{Pick some $a(x),b(x) \in \F[x]$.
+		Then by Bezout's theorem we have}
+		a(x) f(x) + b(x) g(x) &= 1
+		\intertext{and so we prove in both directions as follows.}
+		\intertext{First we show that $\ker f(T) + \ker g(T)$ is direct
+			by showing that $\ker f(T) \cap \ker g(T) = \{\mathbf{0}\}$.}
+		\intertext{Suppose we fix some $\mathbf{v} \in \ker f(T) \cap \ker g(T)$. Then}
+		\mathbf{v} &= \left( a(T) f(T) + b(T) g(T) \right) \mathbf{v}
+		\\
+		&= a(T) f(T) \mathbf{v} + b(T) g(T) \mathbf{v}
+		\\
+		&= 0
+		\intertext{and so we have}
+		\ker f(T) \cap \ker g(T) &= \{\mathbf{0}\}
+		\intertext{hence $\ker f(T) + \ker g(T)$ is direct.}
+		\intertext{Conversely we now wish to show that $\ker f(T) \oplus \ker g(T) = \mathcal{V}$.}
+		\intertext{Fix some $\mathbf{v} \in \mathcal{V}$ so that}
+		a(T) f(T) \mathbf{v} + b(T) g(T) \mathbf{v} &= \mathbf{v}
+		\intertext{and so}
+		a(T) f(T) \mathbf{v} + b(T) g(T) \mathbf{v} &= \mathbf{0}
+		\intertext{if and only if}
+		a(T) f(T) \mathbf{v} & \in \ker g(T)
+		\intertext{and}
+		b(T) g(T) \mathbf{v} & \in \ker f(T).
+		\intertext{So we show that}
+		a(T) f(T) \mathbf{v} & \in \ker g(T)
+		\intertext{by}
+		g(T) \left( a(T) f(T) \mathbf{v} \right) &= \left( f(T) . g(T) \right) a(T) \mathbf{v}
+		\\
+		&= (0) a(T) \mathbf{v}
+		\\
+		&= \mathbf{0}
+		\intertext{and that}
+		b(T) g(T) \mathbf{v} & \in \ker f(T)
+		\intertext{by}
+		f(T) \left( b(T) g(T) \mathbf{v} \right) &= \left( f(T) . g(T) \right) b(T) \mathbf{v}
+		\\
+		&= (0) b(T) \mathbf{v}
+		\\
+		&= \mathbf{0}. \qedhere
+	\end{align*}
+\end{proof}
+
+\begin{thm}[Generalised eigensubspace decomposition]
+	Let $T: \mathcal{V} \to \mathcal{V}$ be linear with finite dimension
+	$\dim \mathcal{V} < \infty$ and consider the characteristic polynomial
+	\[
+		\chi_{T}(\lambda) = \prod_{i=1}^{r} (\lambda - \lambda_i)^{a_i}
+	\]
+	where each eigenvalue $\lambda_i$ is distinct with corresponding algebraic
+	multiplicity $a_i$. Then we have the T-invariant direct sum
+	\[
+		\mathcal{V} = \bigoplus_{i=1}^{r} \mathcal{E}_{\lambda_i}(a_i).
+	\]
+\end{thm}
+
+\begin{proof}
+	TODO..
+\end{proof}
+
+\begin{prop}[Linear independence modulo a subspace]
+	Consider the vector space $\mathcal{V}$ and let $\mathcal{W} \leq \mathcal{V}$.
+	Observe that the set
+	$S = \{ \mathbf{v}_{1}, \dots , \mathbf{v}_{m} : \mathbf{v}_i \in \mathcal{V} \}$
+	is linearly independent $\emph{modulo}$ $\mathcal{W}$ if and only if
+	the set $S$ is linear independent and spans $\mathcal{W}^{\perp}$ in $S + \mathcal{W}$.
+	That is, the sum $S + \mathcal{W}$ is direct.
+\end{prop}
+
+\begin{exmp}
+	Suppose that we are given some subspace $\mathcal{W} \leq \mathcal{V}$ and some
+	linearly independent set
+	$S=\{ \mathbf{v}, \dots , \mathbf{v}_m : \mathbf{v}_i \in \mathcal{V} \}$
+	modulo $\mathcal{W}$. We wish to prove that $m \leq \dim \mathcal{V} - \dim \mathcal{W}$.
+	\begin{proof}
+		\begin{align*}
+			\intertext{Notice that,}
+			\mathcal{W} \cap S &= \{\mathbf{0}\}
+			\\
+			\implies \mathcal{W} \oplus S & \leq \mathcal{V}
+			\intertext{and so,}
+			\dim \mathcal{W} + \dim S & \leq \dim \mathcal{V}
+			\\
+			\implies \dim \mathcal{W} + m & \leq \dim \mathcal{V}
+			\intertext{hence,}
+			m \leq \dim \mathcal{V} & - \dim \mathcal{W}. \qedhere
+		\end{align*}
+	\end{proof}
+\end{exmp}

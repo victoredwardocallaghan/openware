@@ -40,7 +40,7 @@
 
 
 \begin{defn}[Group]
- A $\textbf{group}$ is a monoid where every element has an inverse. A abelian group is a group that is commutative.
+ A $\textbf{group}$ is a monoid where every element has an inverse. An abelian group is a group that is commutative.
 \end{defn}
 
 \begin{exmp}
@@ -49,7 +49,7 @@
 \end{exmp}
 
 \begin{question}
- Why does the set of naturals $\mathbb{N}$ not form a group under addition, however does form a monoid?
+ Why does the set of naturals $\mathbb{N}$ not form a group under multiplication, however does form a monoid?
 \end{question}
 
 \begin{defn}[Subgroup]
@@ -60,11 +60,11 @@
 	and $h^{-1} \in \mathcal{H}$ whenever $h \in \mathcal{H}$. We denote the subgroup by $\mathcal{H} \leq \mathcal{G}$.
 \end{defn}
 
-\begin{defn}[Smallest subgroup]
+\begin{thm}[Smallest subgroup]
 	If $\mathcal{A}$ is a subset of a group $\mathcal{G}$, there is a $\emph{smallest}$ subgroup
 	$\mbox{Gp}(\mathcal{A})$ of $\mathcal{G}$ which contains $\mathcal{A}$, the subgroup $\emph{generated}$
 	by $\mathcal{A}$.
-\end{defn}
+\end{thm}
 
 \begin{exmp}
 	Suppose $\mathcal{A}=\{g\}$ then $\mbox{Gp}(\mathcal{A})=\mbox{Gp}(g)$ and so
@@ -220,18 +220,18 @@ to the set category $\textbf{Set}$ that is, $\mathcal{F} : \mathcal{G} \to \text
 \subsection{Group actions} % (fold)
 \label{subsec:groupaction}
 
-For any mathematical object (e.g. sets, groups, vector spaces) $X$ a isomorphism
+For any mathematical object (e.g. sets, groups, vector spaces) $X$ an isomorphism
 of $X$ is a symmetry of $X$. The set of all isomorphisms of $X$, or symmetries
 of $X$, form a group called the symmetry group of $X$, denoted $Sym(X)$.
 More formally;
 
 \begin{defn}[Group action]
 	An $\emph{action}$ of a group $\mathcal{G}$ on a mathematical object $X$ is
-	a mapping $\mathcal{G} \times X \to X$, defined by $(g,x) \mapsto g \dot x$
+	a mapping $\mathcal{G} \times X \to X$, defined by $(g,x) \mapsto g . x$
 	satisfying:
 	\begin{itemize}
 			\item $e . x = x \, \forall x \in X$ and
-			\item $(g h) . x = g . (g . x) \, \forall g,h \in \mathcal{G}, x \in X$.
+			\item $(g h) . x = g . (h . x) \, \forall g,h \in \mathcal{G}, x \in X$.
 	\end{itemize}
 	That is, we have the ($\emph{left}$) $\mathcal{G}$-action on $X$ and denote this
 	by $\mathcal{G} \acts X$.
@@ -340,7 +340,7 @@ We now may build higher order algebraic structures using the notion of a group.
 \begin{defn}[Field]
 	A $\textbf{field}$ $\mathbb{F}$ is a set together with two binary operations, addition and multiplication, such that:
 	\begin{itemize}
-		\item addition forms a abelian group,
+		\item addition forms an abelian group,
 		\item multiplication forms a abelian quasi-group, i.e. a commutative multiplicative group on the set $\mathbb{F} - \{0\}$, 
 	\end{itemize}
 	coupled together with a law of distribution between the two binary operations.

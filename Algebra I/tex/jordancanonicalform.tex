@@ -1,10 +1,138 @@
 % Copyright © 2012 Edward O'Callaghan. All Rights Reserved.
 
+\section{Similarity} % (fold)
+\label{sec:similarity}
+
+For some matrix $A \in \mathcal{M}_{n,n}(\C)$ with $A: \C^n \to \C^n$.
+The similarity transformation of the linear map $A$ is a representation
+into another basis on $\C^n$.
+
+Hence we study similarity in order to study the properties which are
+intrinsic to a linear transformation and so common to all the various
+basis representations.
+
+\begin{defn}[Similarity]
+	A matrix $B \in \mathcal{M}_{n,n}(\F)$ is said to be $\emph{similar}$
+	to a matrix $A \in \mathcal{M}_{n,n}(\F)$ if there exists a
+	nonsingular matrix $S \in \mathcal{M}_{n,n}$ such that
+	\[
+		B = S^{-1} A S.
+	\]
+	The transformation $A \mapsto S^{-1} A S$ is called a $\emph{similarity transformation}$
+	by the similarity matrix $S$.
+\end{defn}
+
+\begin{prop}
+	Similarity is an $\emph{equivalence relation}$ on $\mathcal{M}_{n,n}$;
+	that is; similarity is
+	\begin{itemize}
+		\item reflexive: $A \sim A$,
+		\item symmetric: $B \sim A \implies A \sim B$; and
+		\item transitive: $C \sim B$ and $B \sim A \implies C \sim A$.
+	\end{itemize}
+\end{prop}
+
+\begin{proof}
+	For a matrix $B \in \mathcal{M}_{n,n}(\F)$ and nonsingular change of basis
+	matrix $S$.
+	We wish to prove that the similarity transformation $B=S^{-1} A S$ is a
+	equivalence relation, $B \sim A$.
+	\begin{align*}
+		\intertext{First notice that,}
+		A &= I^{-1} A I
+		\intertext{and so,}
+		A & \sim A.
+		\intertext{Next observe that,}
+		B \sim A & \implies B = S^{-1} A S
+		\\
+		& \implies S B = A S
+		\\
+		& \implies A = S B S^{-1}
+		\\
+		& \implies A = S'^{-1} B S' \text{ with } S' = S^{-1}
+		\\
+		& \implies A \sim B
+		\intertext{and so,}
+		B \sim A & \implies A \sim B.
+		\intertext{Finally, consider}
+		C = S^{-1} B S & \text{ and } B = S^{-1} A S
+		\intertext{and then observe that,}
+		C \sim B & \implies C = S^{-1} B S
+		\\
+		& \implies C = S^{-1} \left( S^{-1} A S \right) S
+		\\
+		&= (S^{-1})^2 A (S)^2
+		\intertext{now note
+			$S^{-1} S^{-1} S S = S^{-1} S = I \Leftrightarrow (S^{-1})^2 = (S^2)^{-1}$ hence,}
+			C &= S'^{-1} A S' \text{ with } S' = S^2
+			\intertext{and so,}
+			C \sim B \text{ and } B \sim A & \implies C \sim A. \qedhere
+		\end{align*}
+\end{proof}
+
+\begin{thm}
+	Let $A,B \in \mathcal{M}_{n,n}(\F)$. If $B$ is similar to $A$, then
+	the characteristic polynomial of $B$ is the same as that of $A$.
+\end{thm}
+
+\begin{proof}
+	\begin{align*}
+		\intertext{For any $\lambda$ we have}
+		\chi_{B}(\lambda) &= \det \left( B - \lambda I \right)
+		\\
+		&= \det \left( S^{-1} A S - \lambda S^{-1} I S \right)
+		\\
+		&= \det \left( S^{-1} ( A - \lambda I ) S \right)
+		\\
+		&= \det ( S^{-1} ) \det ( A - \lambda I ) \det ( S )
+		\\
+		&= \det ( S )^{-1} \det ( S ) \det ( A - \lambda I )
+		\\
+		&= \det ( A - \lambda I ) = \chi_{A}(\lambda). \qedhere
+	\end{align*}
+\end{proof}
+
+\begin{cor}
+	If $A,B \in \mathcal{M}_{n,n}(\F)$ and if $A$ and $B$ are similar,
+	then they have the same eigenvalues, counting multiplicity.
+\end{cor}
+
+\section{Jordan Chains} % (fold)
+
+\begin{defn}[Jordan chain]
+	Consider the linear map $T: \mathcal{V} \to \mathcal{V}$ and some nilpotent
+	matrix $N = T - \lambda I$ for some eigenvalue in the spectrum of $T$ 
+	$\lambda \in \sigma (T)$. Then let
+	$\mathbf{v} \in \left( \mathcal{E}_{\lambda}(n) - \mathcal{E}_{\lambda}(n-1) \right)$
+	so that $N^n \mathbf{v} = \mathbf{0}$ and that $N^{n-1} \mathbf{v} \neq \mathbf{0}$.
+
+	A $\emph{Jordan chain}$ of length $n$ is a row matrix $C \in \mathcal{V}$ of the form
+	\[
+		C =
+		\begin{pmatrix}
+			N^{n-1} \mathbf{v} & N^{n-2} \mathbf{v} & \dots & \mathbf{v}
+		\end{pmatrix}.
+	\]
+
+	The $\emph{Jordan chain space}$ associated to $C: \F^n \to \mathcal{V}$ is $\im C \leq \mathcal{V}$.
+\end{defn}
+
+\begin{prop}
+	Suppose
+	\[
+		C =
+		\begin{pmatrix}
+			\mathbf{v}_{n-1} & \mathbf{v}_{n-2} & \dots & \mathbf{v}_{0}
+		\end{pmatrix}
+	\]
+	is some Jordan chain. Then the Jordan chain space, $\im C$, is T-invariant.
+\end{prop}
+
 \section{Jordan Canonical Form} % (fold)
 \label{sec:JordanForm}
 
 The Jordan (normal) canonical form is a set of "almost diagonal"
-matries, called the $\emph{Jordan blocks}$. The Jordan blocks
+matrices, called the $\emph{Jordan blocks}$. The Jordan blocks
 contain the diagonal components composed of eigenvalues. We call
 this form, the $\emph{block diagonal form}$. The set of Jordan
 blocks form a $\emph{equivalence class}$ under similarity invariance
@@ -34,7 +162,7 @@ of the eigen-invariant subspaces.
 	direct sum (\ref{sec:directsum}) of Jordan blocks. That is,
 	\[
 		\mathcal{J} =
-		\bigoplus_{i=1}^{N} \mathcal{J}_{\lambda_i , m_k} : 1 \leq i \leq N.
+		\bigoplus_{i=1}^{N} \mathcal{J}_{\lambda_i , m_i} : 1 \leq i \leq N.
 	\]
 	where each $\lambda_i \in \sigma(A)$ for some matrix $A \in \mathcal{M}(\F)$
 	need not be distinct.
