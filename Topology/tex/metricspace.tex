@@ -1,0 +1,137 @@
+% Copyright © 2012 Edward O'Callaghan. All Rights Reserved.
+
+\section{Metric space} % (fold)
+\label{sec:metricspace}
+
+\subsection{Metrics}
+
+\begin{defn}[Metric space]
+	A $\emph{metric space}$ is a order pair $(X,d)$
+	where $X$ is a set and $d$ is some function
+	$d: X \times X \to X$ that satisfies, for all
+	$x,y,z \in X$,
+	\begin{itemize}
+		\item $d(x,y) \geq 0$ and $d(x,y)=0$ iff $x=y$;
+		\item $d(x,y)=d(y,x)$ (symmetric);
+		\item $d(x,z) \leq d(x,y) + d(y,z)$ (triangle inequality).
+	\end{itemize}
+	We call $d$ a metric on $X$.
+\end{defn}
+
+\begin{prob}[Discrete metric]
+	Suppose
+	\[
+		d(x,y) =
+		\begin{cases}
+			1 & \text{if } x \neq y,\\
+			0 & \text{if } x = y.
+		\end{cases}
+	\]
+	Prove $d(x,y)$ defines a metric.
+\end{prob}
+
+\begin{exmp}[Eucliean metric]
+	Consider the set of real n-tuples $M=\R^n$.
+	
+	For points $\mathbf{x}=\{x_1,\dots,x_n\}$ and
+	$\mathbf{y}=\{y_1,\dots,y_n\}$ in $\R^n$ we set
+	\[
+		d(x,y) = \left( \sum_{i=1}^{n} (x_i - y_i)^2 \right)^{\frac{1}{2}}
+	\]
+\end{exmp}
+
+\begin{defn}[Continuity]
+	Let $(X,d_{X})$ and $(Y,d_{Y})$ be metric spaces.
+	We say that the mapping $f: X \to Y$ is
+	$\emph{continuous at a point}$ $x_0 \in X$, if
+	\[
+		\forall \epsilon >0 \, \exists \delta >0 \,
+		\forall x \in X : d_{X}(x,x_0) < \delta \implies
+		d_{Y}(y,y_0) < \epsilon.
+	\]
+	The mapping $f: X \to Y$ is said to be $\emph{continuous}$
+	if $f$ is continuous $\emph{at every point}$ $x_0 \in X$.
+\end{defn}
+
+\subsection{Topology of a metric space}
+
+A metric space provides sufficient structure to study the notions of
+convergence and thus continuity. A closer study of continuity of mappings
+in the setting of metric spaces revels that a metric need not be of a
+specific type. Rather, a class of subsets defined by the metric lead to
+the concept of the underlying $\emph{topology}$ in a metric space that is
+decisive for continuity to make sense.
+
+\begin{defn}[Open set]
+	A subset $U$ of a metric space $M=(X,d)$ is said to be $\emph{open}$ if;
+	\[
+		\forall x \in U \, \exists \epsilon > 0 : d(x,y)
+		< \epsilon \, \forall y \in X \implies y \in U.
+	\]
+\end{defn}
+
+Alternatively, we may consider defining the notion of a
+$\emph{open ball}$ $B_{\epsilon}(x)$ and using this
+equivalently to redefine a $\emph{open set}$.
+
+\begin{defn}[Open ball]
+	Let $M=(X,d)$ be an arbitrary metric space and let some point
+	$x_0 \in X$ with $\epsilon \in \R^{+}$. Then an open ball
+	with center $x_0$ and radius $\epsilon$ is defined as:
+	\[
+		B_{\epsilon}(x_0) = \{ x \in X : d(x_0,x) < \epsilon \}
+	\]
+\end{defn}
+
+\begin{rem}
+	A closed ball may be defined in a similar way, that is,
+	\[
+		B_{\epsilon}(x_0) = \{ x \in X : d(x_0,x) \leq \epsilon \}
+	\]
+\end{rem}
+
+Hence we have the alternative definition in the following way.
+
+\begin{defn}[Open set - alternative]
+	For some arbitrary metric space $M=(X,d)$ and open ball $B_{\epsilon}(x)$
+	where $\epsilon>0$. A subset $U \subset X$ is said to be a $\emph{open set}$ if,
+	\[
+		\forall x \in U \, \exists \epsilon >0 \, : B_{\epsilon}(x) \subseteq U.
+	\]
+\end{defn}
+
+Another piece of terminology that is often seen in topology is
+that of a neighbourhood which we define here for completeness.
+
+\begin{defn}[Neighbourhood]
+	Suppose a arbitrary metric space $M=(X,d)$. A $\emph{neighborhood}$
+	of some point $x \in X$ is a subset $V \subset X$ such that
+	$B_{\epsilon}(x) \subseteq V$.
+
+	In this case, we call the open set $V$ the $\epsilon$-neighborhood
+	of the point $x$ in the set $X$.
+\end{defn}
+
+By the abstraction of open sets we may describe continuity of a mapping by
+way that is independent of the metric.
+
+\begin{thm}
+	Let $f:X \to Y$ be a mapping between metric spaces $(X,d_{X})$ and
+	$(Y,d_{Y})$. Then $f$ is continuous if and only if for every open
+	set $V$ in $Y$, the set $f^{-1}(V)$ is an open set in $X$.
+\end{thm}
+
+\begin{proof}
+	Consider the mapping $f:X \to Y$ between metric spaces $(X,d_{X})$
+	and $(Y,d_{Y})$. Now, suppose that $V \subset Y$ so that
+	$\forall y \in V \, \exists \epsilon >0 : B_{\epsilon}(y) \subseteq V$
+	is an open set $V$ in $Y$.
+	
+	Then, if $f$ is continuous and $U \subset X$ with $X=f^{-1}(V)$, we have
+	\begin{align*}
+		\forall x \in f^{-1}(V) \, \exists \delta & >0 : B_{\delta}(x) \subseteq f^{-1}(V)
+		\\ \implies
+		\forall x \in U \, \exists \delta & >0 : B_{\delta}(x) \subseteq U
+	\end{align*}
+	and so $U$ is a open set in $X$. Since $f^{-1}$ exists the converse is trivially so.
+\end{proof}

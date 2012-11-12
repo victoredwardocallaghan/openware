@@ -1,0 +1,45 @@
+% Copyright © 2012 Edward O'Callaghan. All Rights Reserved.
+
+\section{Topological Space} % (fold)
+\label{sec:topologicalspace}
+
+\begin{defn}[Topological space]
+	A $\emph{topological space}$ is a pair $(X, \mathcal{T})$
+	where $X$ is a set and $\mathcal{T} \subset 2^{X}$ such that:
+	\begin{itemize}
+		\item $\emptyset, X \in \mathcal{T}$;
+		\item For $\{U_i\}_{i=1}^{n} \subseteq \mathcal{T}$ we have 
+			$\displaystyle \bigcap_{i=1}^{n} U_i \in \mathcal{T}$;
+		\item For $U_{\lambda} \in \mathcal{T} : \lambda \in \Lambda$ give some
+			an arbitrary indexing set $\Lambda$ we have
+			$\displaystyle \bigcup_{\lambda \in \Lambda} U_{\lambda} \in \mathcal{T}$.
+	\end{itemize}
+	In particular $\mathcal{T}$ is \textbf{closed under} $\emph{finite}$ intersections
+	and $\emph{arbitrary}$, possibly uncountably infinite, unions. We may denote
+	the pair $(X, \mathcal{T})$ by $\mathcal{T}_{X}$.
+\end{defn}
+
+If $(X,\mathcal{T})$ is a topological space, we call $\mathcal{T}$
+a topology on $X$. A set $U \in \mathcal{T}$ is called the
+$\emph{open set}$ of the topology $\mathcal{T}$.
+
+\begin{exmp}
+	TODO..
+\end{exmp}
+
+$V \subseteq X$ is $\emph{closed}$ if its complement is $\emph{open}$.
+The topology could be defined equivalently by the collection of closed
+sets, which enjoys finite unions and arbitrary intersection.
+If $Z \subset X$, the $\emph{closure}$ of $Z$, denoted $\bar{Z}$, is
+the intersection of all closed sets containing $Z$. By the arbitrary
+intersection property of closed sets, $\bar{Z}$ is $\emph{closed}$.
+A $\emph{neighbourhood}$ of a point $x \in X$ is any open subset $V \subset X$
+containing $x$.
+
+\begin{defn}[Discrete topology]
+	A $\emph{discrete topology}$ has every subset open.
+\end{defn}
+
+\begin{defn}[Indiscrete topology]
+	A $\emph{indiscrete topology}$ has no open sets except $\emptyset$ and $X$ itself.
+\end{defn}
