@@ -1,0 +1,44 @@
+% Copyright © 2012 Edward O'Callaghan. All Rights Reserved.
+
+\section{Mean Value Theorem} % (fold)
+\label{sec:meanvaluetheorem}
+
+\begin{thm}
+	Suppose $f: \Omega \subseteq \R^n \to \R$ is some
+	differentiable function on the open $\emph{convex set}$
+	$\Omega$. Let $\vec{a},\vec{b} \in \Omega$ and
+	$\gamma(\lambda) = \vec{a} + \lambda (\vec{b} - \vec{a})$
+	be the line segment joining points $\vec{a}$ and $\vec{b}$.
+	Then there exists some point $\vec{c}$ on the line
+	$\gamma(\lambda)$ such that,
+	\[
+		f(\vec{b}) - f(\vec{a}) =
+		\langle \nabla f(\vec{c}), (\vec{b} - \vec{a}) \rangle .
+	\]
+\end{thm}
+
+\begin{proof}
+	TODO
+\end{proof}
+
+\begin{cor}
+	Let $f: \Omega \subseteq \R^n \to \R$ be a differentiable
+	function on a convex subset $K \subset \Omega$. If
+	$\| \nabla f(x) \| \leq M \, \forall x \in K$, then
+	\[
+		| f(x) - f(y) | \leq M \, \| x - y \|
+	\]
+	for all $x,y \in K$.
+\end{cor}
+
+\begin{cor}
+	Let $f$ be a differentiable function on an open convex
+	set $\Omega \subseteq \R^n$.
+	If $\nabla f(x)=0 \forall x \in \Omega$, then $f$ is
+	constant on $\Omega$.
+\end{cor}
+
+\begin{proof}
+	Let $x,y \in \Omega : x \neq y$. Then we have
+	$| f(x) - f(y) | = 0$. That is, $f(x) = f(y)$.
+\end{proof}

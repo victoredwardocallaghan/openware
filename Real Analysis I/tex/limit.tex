@@ -1,0 +1,85 @@
+% Copyright © 2012 Edward O'Callaghan. All Rights Reserved.
+
+\section{Limits} % (fold)
+\label{sec:limit}
+
+\begin{defn}
+	Let $f: \Omega \subseteq \R^n \to \R^m$ and $a \in \bar{\Omega}$.
+	A point $y \in \R^m$ is said to be the $\emph{limit}$ of $f$ as
+	$x \to \infty$, written as
+	\[
+		\lim_{x \to \infty} f(x) = y,
+	\]
+	if for every neighborhood $B_{\epsilon}(y)$ of $y \in \R^m$ there
+	exists a neighborhood $B_{\delta}(a)$ of $a \in \Omega$ such that
+	whenever $x \in \Omega \cap B_{\delta}(a)$, this implies
+	$f(x) \in B_{\epsilon}(y)$. That is,
+	\[
+		f(\Omega \cap B_{\delta}(a)) \subseteq B_{\epsilon}(y).
+	\]
+\end{defn}
+
+\begin{prop}
+	For $f,g : \Omega \subseteq \R^n \to \R^m$ we have
+	\begin{align*}
+		\lim_{x \to a} ( f(x) \pm g(x) )
+		&= \lim_{x \to a} f(x) \pm \lim_{x \to a} g(x).
+		\intertext{If, $g(x) \neq 0$ $\emph{everywhere}$ on $\Omega$, then}
+		\lim_{x \to a} \frac{f(x)}{g(x)}
+		&= \frac{\displaystyle \lim_{x \to a} f(x)}{\displaystyle \lim_{x \to a} g(x)}.
+	\end{align*}
+\end{prop}
+
+\begin{prob}
+	Let $f: \Omega \subseteq \R^n \to \R^m$ and $\vec{a} \in \Omega$.
+	Then,
+	\[
+		\lim_{\vec{x} \to \vec{a}} f(\vec{x}) = \vec{y}
+	\]
+	if and only if,
+	\[
+		\lim_{\vec{x} \to \vec{a}} f_{i}(\vec{x}) = y_i
+	\]
+	for each $i$ in $1 \leq i \leq m$.
+\end{prob}
+
+\begin{exmp}
+	Show that,
+	\[
+		\lim_{(x,y) \to (0,0)} \frac{x^3 + y^3}{x^2 + y^2} = 0.
+	\]
+
+	Let $f(x,y) = \frac{x^3 + y^3}{x^2 + y^2}$ and fix some
+	arbitrarily small $\epsilon > 0$. Then we must find a
+	$\delta > 0$ such that $| f(x,y) - 0 | < \epsilon$
+	whenever $0< \| (x,y) - (0,0) \| < \delta$.
+
+	Now, note that $|x^3| \leq (x^2 + y^2)^{3/2}$ and so
+	by the triangle inequality, we have
+	\begin{align*}
+		|f(x,y)| &= \left| \frac{x^3 + y^3}{x^2 + y^2} \right|
+		\\
+		& \leq \frac{2(x^2 + y^2)^{3/2}}{x^2 + y^2}
+		\\
+		&= 2 \sqrt{x^2 + y^2}.
+	\end{align*}
+	whence, choosing $\delta = \epsilon / 2$, we get
+	$|f(x,y)| < \epsilon$ provided that $\sqrt{x^2 + y^2} < \delta$.
+
+	Thus, $\lim_{(x,y) \to (0,0)} \frac{x^3 + y^3}{x^2 + y^2} = 0$.
+\end{exmp}
+
+\begin{exmp}
+	Show that,
+	\[
+		\lim_{(x,y) \to (0,0)} \frac{\sin(x^2 +y^2)}{x^2 + y^2} = 1.
+	\]
+
+	Let $f(x,y) = \frac{\sin(x^2 + y^2)}{x^2 + y^2}$ and take $t=x^2 + y^2$
+	so that we have,
+	\begin{align*}
+		& \lim_{(x,y) \to (0,0)} f(x,y)
+		\\
+		&= \lim_{t \to 0} \frac{\sin(t)}{t} = 1.
+	\end{align*}
+\end{exmp}

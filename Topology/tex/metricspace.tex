@@ -86,7 +86,7 @@ equivalently to redefine a $\emph{open set}$.
 \begin{rem}
 	A closed ball may be defined in a similar way, that is,
 	\[
-		B_{\epsilon}(x_0) = \{ x \in X : d(x_0,x) \leq \epsilon \}
+		\bar{B_{\epsilon}}(x_0) = \{ x \in X : d(x_0,x) \leq \epsilon \}
 	\]
 \end{rem}
 
@@ -100,6 +100,54 @@ Hence we have the alternative definition in the following way.
 	\]
 \end{defn}
 
+\begin{thm}
+	The family of open sets $\mathcal{T}$ in an arbitrary metric space
+	$(X,d)$ has the following properties:
+	\begin{itemize}
+		\item $\emptyset , X \in \mathcal{T}$;
+		\item Given some arbitrary finite set $\{U_i\}_{i=1}^{n} \subseteq \mathcal{T}$
+			where each $U_i \subset X$, then
+			$\displaystyle \bigcap_{i=1}^{n} U_i \in \mathcal{T}$;
+		\item Given some arbitrary subsets
+			$U_{\lambda} \in \mathcal{T} : \lambda \in \Lambda$ in $X$, then
+			the union $\displaystyle \bigcup_{\lambda \in \Lambda} U_{\lambda} \in \mathcal{T}$.
+	\end{itemize}
+\end{thm}
+
+Hence, a arbitrary metric space $M=(X,d)$ with some family of open sets
+$\mathcal{T}$ in $M$ is a $\textbf{topology}$ $\mathcal{T}$ of $M$. The
+pair $(M,\mathcal{T})$ is called a $\textbf{topological space}$.
+
+\begin{proof}
+	Since there are no points $x_0 \in \emptyset$, then the open ball
+	$B_{\epsilon}(x)$ exists for all $x \in \emptyset$ for any $\epsilon > 0$.
+
+	Conversely, since every point $x \in X$ exists then the open ball
+	$B_{\epsilon}(x)$ exists for all $x_0 \in X$. Hence both $\emptyset$ and $X$ are open.
+	
+	If $\displaystyle x_0 \in \bigcap_{i=1}^{n} U_i$ then $x_0 \in U_i$ for each $U_i$.
+	Now, since every $U_i$ is open, we have $B_{\epsilon_i}(x_0) \subseteq U_i$. By setting
+	$\displaystyle \epsilon = \min_{1 \leq i \leq n} \epsilon_i$ we have $B_{\epsilon}(x) \subseteq U_i$
+	for all $i$. Thus $B_{\epsilon}(x) \subseteq \displaystyle \bigcap_{i=1}^{n} U_i$ and so
+	$\displaystyle \bigcap_{i=1}^{n} U_i$ is open.
+
+	If $x_0 \in \displaystyle \bigcup_{\lambda \in \Lambda} U_{\lambda}$, then we may find
+	some $\lambda_0 \in \Lambda$ so that $x_0 \in U_{\lambda_0}$. Since $U_{\lambda_0}$ is
+	open we have $B_{\epsilon}(x) \subseteq U_{\lambda_0}$ for some $\epsilon > 0$. Now since
+	\[
+		U_{\lambda_0} \subseteq \bigcup_{\lambda \in \Lambda} U_{\lambda}
+	\]
+	then
+	\[
+		B_{\epsilon}(x) \subseteq \bigcup_{\lambda \in \Lambda} U_{\lambda}
+	\]
+	and so $\displaystyle \bigcup_{\lambda \in \Lambda} U_{\lambda}$ is open.
+\end{proof}
+
+\begin{lem}
+	Any arbitrary metric space $M=(X,d)$ induces a topology $\mathcal{T}$ in $M$.
+\end{lem}
+
 Another piece of terminology that is often seen in topology is
 that of a neighbourhood which we define here for completeness.
 
@@ -111,6 +159,8 @@ that of a neighbourhood which we define here for completeness.
 	In this case, we call the open set $V$ the $\epsilon$-neighborhood
 	of the point $x$ in the set $X$.
 \end{defn}
+
+\subsection{Continuous maps and homeomorphisms}
 
 By the abstraction of open sets we may describe continuity of a mapping by
 way that is independent of the metric.
@@ -124,14 +174,80 @@ way that is independent of the metric.
 \begin{proof}
 	Consider the mapping $f:X \to Y$ between metric spaces $(X,d_{X})$
 	and $(Y,d_{Y})$. Now, suppose that $V \subset Y$ so that
-	$\forall y \in V \, \exists \epsilon >0 : B_{\epsilon}(y) \subseteq V$
-	is an open set $V$ in $Y$.
+	$\forall y \in V \, \exists \delta >0 : B_{\delta}(y) \subseteq V$
+	is an open set $V$ in $Y$ and if $x \in f^{-1}(V)$, then there exists
+	some $y \in V$ such that $y=f(x)$.
 	
-	Then, if $f$ is continuous and $U \subset X$ with $X=f^{-1}(V)$, we have
+	Now, if $f$ is continuous and $U \subset X$ with $U=f^{-1}(V)$, we have
 	\begin{align*}
-		\forall x \in f^{-1}(V) \, \exists \delta & >0 : B_{\delta}(x) \subseteq f^{-1}(V)
+		\forall x \in f^{-1}(V) \, \exists \epsilon & >0 : B_{\epsilon}(x) \subseteq f^{-1}(V)
 		\\ \implies
-		\forall x \in U \, \exists \delta & >0 : B_{\delta}(x) \subseteq U
+		\forall x \in U \, \exists \epsilon & >0 : B_{\epsilon}(x) \subseteq U
 	\end{align*}
-	and so $U$ is a open set in $X$. Since $f^{-1}$ exists the converse is trivially so.
+	and so $U$ is a open set in $X$. We now show the converse.
+
+	Suppose that $U=f^{-1}(V)$ is open in $X$ whenever $V=f(U)$ is open in $Y$. Then,
+	\begin{align*}
+		\forall x \in U \, \exists \epsilon & >0 : B_{\epsilon}(x) \subseteq U
+		\\
+		\forall x \in f^{-1}(V) \, \exists \epsilon & >0 : B_{\epsilon}(x) \subseteq f^{-1}(V)
+		\\
+		\forall y \in f \cdot f^{-1}(V) \, \exists \delta & >0 :
+		B_{\delta}(y) \subseteq f \cdot f^{-1}(V)
+		\\ \implies
+		\forall y \in V \, \exists \delta & >0 : B_{\delta}(y) \subseteq V.
+	\end{align*}
+	Thus $f$ is continuous.
 \end{proof}
+
+\begin{defn}[Homeomorphism]
+	A map $f: X \to Y$ is a $\emph{homeomorphism}$ if $f$ is a continuous bijection.
+\end{defn}
+
+\begin{rem}
+	A homeomorphism is the structure preserving mapping between topological spaces.
+	As we shall see later, a isomorphism is insufficient to preserve the structure
+	of a topology since a isomorphism need not be continuous.
+\end{rem}
+
+\subsection{Closed sets}
+
+\begin{defn}
+	Consider a $\emph{sequence}$ $x_n$ in a metric space $(X,d)$. If $x \in X$
+	and given some fixed $\epsilon > 0$ we may find a corresponding integer
+	$N \geq 1$ such that
+	\[
+		d(x_n,x) < \epsilon \, \forall n \geq N.
+	\]
+	Alternatively, in terms of an $\epsilon$-neighbourhood we have,
+	\[
+		\lim_{n \to \infty} B_{\epsilon}(x_n) \subseteq B_{\epsilon}(x)
+		\text{ for some } \epsilon > 0.
+	\]
+	In particular, we say that $x_n \to x$ as $n \to \infty$ and that $x$ is
+	the $\emph{limit}$ of the sequence $x_n$.
+\end{defn}
+
+\begin{exmp}
+	Consider two metric spaces $(X,d_{X})$ and $(Y,d_{Y})$.
+	Show that a function $f: X \to Y$ is continuous if and only if,
+	whenever $x_n \in X$ and $x_n \to x$ as $n \to \infty$, we have
+	$f(x_n) \to f(x)$.
+
+	We need only show that, for every open set $V$ in $Y$, the
+	set $f^{-1}(V)$ is open in $X$. Hence, given some $U \subset X$
+	with $U = f^{-1}(V)$, we have
+	\begin{align*}
+		\forall x_n \in U \, \exists \epsilon & >0 : B_{\epsilon}(x_n) \subseteq U
+		\intertext{since,}
+		\lim_{n \to \infty} B_{\epsilon}(x_n) & \subseteq B_{\epsilon}(x)
+		\text{ for some } \epsilon >0
+		\\ \implies
+		\forall x \in U \, \exists \epsilon & >0 : B_{\epsilon}(x) \subseteq U
+		\intertext{and so $U$ is a open set in $X$. Therefore}
+		\forall y_n \in V \, \exists \delta & >0 : B_{\delta}(y_n) \subseteq V
+		\\ \implies
+		\forall y \in V \, \exists \delta & >0 : B_{\delta}(y) \subseteq V
+	\end{align*}
+	and so $V$ is open in $Y$ whenever $U$ is open in $X$.
+\end{exmp}

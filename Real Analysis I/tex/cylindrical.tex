@@ -1,0 +1,39 @@
+% Copyright © 2012 Edward O'Callaghan. All Rights Reserved.
+
+\section{Cylindrical Coordinates} % (fold)
+\label{sec:cylindrical}
+
+\begin{defn}[Cylindrical Coordinates]
+	The $\emph{cylindrical coordinates}$ are defined
+	to be the polar map with z-coordinate. That is,
+	\[
+		\phi(r,\theta,z) =
+		\begin{pmatrix}
+			r \cos(\theta), & r \sin(\theta), & z
+		\end{pmatrix}
+	\]
+\end{defn}
+
+\begin{tikzpicture}[x={(0.707cm,0.707cm)},z={(0cm,1cm)},y={(-0.866cm,0.5cm)}]
+	\draw[->] (-2,0,0) -- (2,0,0) node[right] {x};
+	\draw[->] (0,-2,0) -- (0,2,0) node[left] {y};
+	\draw[->] (0,0,-2) -- (0,0,5) node[above] {z};
+	\draw (1,0,0);
+	%\draw plot[t domain=0:2*pi,smooth] (\t,{cos(\t r)^2 + sin(\t r)^2 - 1});
+	%\foreach \z in {0,0.1,...,10}
+	%{ -- ({cos(\z*100)},{sin(\z*100)},{\z})};
+	\node[right=1cm] at (0,0,3) {$\phi$};
+\end{tikzpicture}
+
+%\begin{tikzpicture}
+%	[declare function={
+%		g(\t) = (\t);
+%	}]
+%	\begin{axis}[domain=-10:10,
+%			xlabel=$x$,
+%			ylabel=$y$,
+%			grid=major,
+%		title=$\phi(r,\theta,z)$]
+%		\plot3[] (\x,{g(\x)});
+%	\end{axis}
+%\end{tikzpicture}

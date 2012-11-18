@@ -1,0 +1,94 @@
+% Copyright © 2012 Edward O'Callaghan. All Rights Reserved.
+
+\section{Differentiable} % (fold)
+\label{sec:differentiable}
+
+\begin{defn}[Differentiable]
+	Let $f: \Omega \to \R^m$ be a function defined
+	on an open set $\Omega \in \R^n$ and point
+	$\vec{a} \in \Omega$. The function $f$ is said
+	to be $\emph{differentiable}$ at $\vec{a}$ if
+	there is a linear transformation $T: \R^n \to \R^m$
+	such that,
+	\[
+		\lim_{\mathbf{x} \to \vec{a}}
+		\frac{\|f(\mathbf{x}) - f(\vec{a}) - T(\mathbf{x} - \vec{a})\|_{m}}
+		{\|\mathbf{x} - \vec{a}\|_{n}} = 0.
+	\]
+	If $f$ is differentiable at every point $\vec{a} \in \Omega$
+	then $f$ is differentiable $\emph{on}$ $\Omega$.
+\end{defn}
+
+\begin{thm}[Linear Approximation]
+	The function $f: \Omega \subseteq \R^n \to \R^m$ is
+	differentiable at point $\vec{a}$ if and only if
+	there is a function $\epsilon(\mathbf{x})$ so that
+	for $\mathbf{x} \in \Omega$ we have,
+	\[
+		f(\mathbf{x}) = f(\vec{a}) + T(\mathbf{x} - \vec{a})
+		+ \epsilon(\mathbf{x}) \| \mathbf{x} - \vec{a} \|
+	\]
+	with $\epsilon(\mathbf{x}) \to 0$ as $\mathbf{x} \to \vec{a}$.
+\end{thm}
+
+\begin{proof}
+	\begin{align*}
+		\intertext{Set}
+		\epsilon(\mathbf{x}) &=
+		\frac{f(\mathbf{x}) - f(\vec{a}) - T(\mathbf{x} - \vec{a})}
+		{\| \mathbf{x} - \vec{a} \|} : \mathbf{x} \neq \vec{a}.
+		\intertext{Now, if $f$ is differentiable at $\vec{a}$, then
+		$\lim_{\mathbf{x} \to \vec{a}} \epsilon(\mathbf{x}) = 0$.}
+		\intertext{Conversely, suppose}
+		f(\mathbf{x}) &= f(\vec{a}) + T(\mathbf{x} - \vec{a})
+		+ \epsilon(\mathbf{x}) \| \mathbf{x} - \vec{a} \|
+		\intertext{holds, and since $\mathbf{x} \neq \vec{a}$, we have}
+		& \frac{f(\mathbf{x}) - f(\vec{a}) - T(\mathbf{x} - \vec{a})}
+		{\| \mathbf{x} - \vec{a} \|} = \epsilon(\mathbf{x}) \to 0
+		\intertext{as $\mathbf{x} \to \vec{a}$ and so $f$ is differentiable
+		at the point $\vec{a}$.}
+	\end{align*}
+\end{proof}
+
+\begin{thm}[Chain Rule]
+	Let $\Omega$ be a open set in $\R^n$ and $f: \Omega \to \R^m$
+	and $g: U \to \R^p$, where $U$ is a open set in $\R^m$ with
+	$f(\Omega) \subseteq U$. If $f$ is differentiable at
+	$\vec{a} \in \Omega$ and $g$ is differentiable at $f(\vec{a})$,
+	then $g \circ f$ is differentiable at $\vec{a}$ and
+	\[
+		D_{(g \circ f)}(\vec{a}) = D_{g}(f(\vec{a})) D_{f}(\vec{a}).
+	\]
+\end{thm}
+
+\begin{proof}
+	TODO
+\end{proof}
+
+\subsection{Partial derivatives}
+
+\begin{defn}[Directional Derivative]
+	The directional derivative of $f$ at $\vec{a}$ in the direction
+	of a non-zero vector $\vec{u} \in \R^n$, denoted by
+	$D_{\vec{u}} f(\vec{a})$ is defined by,
+	\[
+		D_{\vec{u}} f(\vec{a}) = \lim_{t \to 0}
+		\frac{f(\vec{a} + t \vec{u}) - f(\vec{a})}{t},
+	\]
+	whenever the limit exists.
+\end{defn}
+
+\begin{thm}
+	If $f: \Omega \subseteq \R^n \to \R$ is differentiable at
+	$\vec{a} \in \Omega$, then for any direction non-zero
+	$\vec{u} \neq 0$, $\vec{u} \in \R^n$,
+	$D_{\vec{u}} f(\vec{a})$ exists and
+	\[
+		D_{\vec{u}} f(\vec{a}) =
+		\langle \nabla f(\vec{a}), \vec{u} \rangle .
+	\]
+\end{thm}
+
+\begin{proof}
+	TODO
+\end{proof}

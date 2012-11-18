@@ -1,0 +1,61 @@
+% Copyright © 2012 Edward O'Callaghan. All Rights Reserved.
+
+\section{Green's theorem} % (fold)
+\label{sec:greenstheorem}
+
+Green's theorem is a two dimensional analog of the
+Fundamental Theorem of Calculus.
+
+\begin{thm}
+	Let $\mathbf{F}(x,y) = \left( F(x,y), G(x,y) \right)$ be,
+	$\mathcal{C}^1(\bar{\Omega})$, a continuous vector field on an
+	open set containing domain $\Omega \subseteq \R^2$ whose boundary
+	curve, $C = \partial \Omega$, is closed and piecewise smooth.
+	Then, by considering $\partial \Omega$ to have positive,
+	or counterclockwise, orientation, we have:
+	\[
+		\iint_{\Omega} \left(
+		\frac{\partial G(x,y)}{\partial x} - \frac{\partial F(x,y)}{\partial y}
+		\right) \mathrm{d}y \, \mathrm{d}x =
+		\int_{\partial \Omega} \left( F(x,y) \mathrm{d}x + G(x,y) \mathrm{d}y \right).
+	\]
+\end{thm}
+
+\begin{proof}
+	\begin{align*}
+		\intertext{First suppose $\Omega$ is an elementary region of the form:}
+		\Omega = \{ (x,y) : a \leq x \leq b &, \phi_1(x) \leq y \leq \psi_1(x) \}
+		\tag{$x$-simple}
+		\intertext{where $\phi_1,\psi_1 \in \mathcal{C}([a,b])$ and}
+		\Omega = \{ (x,y) : c \leq y \leq d &, \phi_2(y) \leq x \leq \psi_2(y) \}
+		\tag{$y$-simple}
+		\intertext{where $\phi_2,\psi_2 \in \mathcal{C}([c,d])$.}
+		\intertext{Since $\mathbf{F}(x,y) \in \mathcal{C}^1(\bar{\Omega})$ then
+		$F(x,y) \in \mathcal{C}^1(\bar{\Omega})$. Hence we first show,}
+		- \iint_{\Omega} \frac{\partial F}{\partial y} \mathrm{d}y \, \mathrm{d}x
+		&= \int_{\partial \Omega} F(x,y) \mathrm{d}x.
+		\intertext{By writing $\Omega$ as $x$-simple we see that,}
+		\int_{\partial \Omega} F(x,y) \mathrm{d}x
+		= \int_{C_1} F \mathrm{d}x + \underbrace{\int_{C_2} F \mathrm{d}x}_{\dag}
+		& + \int_{C_3} F \mathrm{d}x + \underbrace{\int_{C_4} F \mathrm{d}x}_{\dag}.
+		\intertext{Observe$^\dag$ that the curves $C_2,C_4$ are the vertical line
+			portions $x=a$ and $x=b$ respectively. So any parametrisation $x'(t)=0$
+			of constant terms gives us $\mathrm{d}x=0$ and so the sums are zero measure.}
+			\intertext{Consider also the parameterisations $\gamma_1(x)=(x,\phi_1(x))$ and
+				$\gamma_3(x)=(x,\psi_1(x))$ for the curves $C_1$ and $C_3$ respectively with
+			$x \in [a,b]$. Since $C_3$ has negative orientation, we have}
+			\int_{\partial \Omega} F(x,y) \mathrm{d}x
+			&= \int_{a}^{b} \left( F(x,\phi_1(x)) - F(x,\psi_1(x)) \right) \mathrm{d}x.
+			\intertext{Holding $x$ fixed we have, by the Fundamental Theorem of Calculus, the following}
+			\iint_{\Omega} \frac{\partial F(x,y)}{\partial y} \mathrm{d}y \, \mathrm{d}x
+			&= \int_{a}^{b} \left( \int_{\phi_1(x)}^{\psi_1(x)}
+			\frac{\partial F(x,y)}{\partial y} \mathrm{d}y \right) \mathrm{d}x
+			\intertext{and so,}
+			\iint_{\Omega} \frac{\partial F(x,y)}{\partial y} \mathrm{d}y \, \mathrm{d}x
+			&= - \int_{\partial \Omega} F(x,y) \mathrm{d}x. \tag{1}
+			\intertext{Similarly, expressing $\Omega$ as a $y$-simple region, we obtain,}
+			\iint_{\Omega} \frac{\partial G(x,y)}{\partial x} \mathrm{d}y \, \mathrm{d}x
+			&= \int_{\partial \Omega} G(x,y) \mathrm{d}y. \tag{2}
+			\intertext{By adding (1) and (2) together we have the required result in this simple case.}
+	\end{align*}
+\end{proof}

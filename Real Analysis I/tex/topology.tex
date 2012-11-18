@@ -1,0 +1,35 @@
+% Copyright © 2012 Edward O'Callaghan. All Rights Reserved.
+
+\section{Convergence} % (fold)
+\label{sec:convergence}
+
+\begin{defn}[Limit]
+	Let $\{x_k\}_{k=1}^{\infty}$ be a sequence of
+	vectors in $\R^n$ and $x \in \R^n$. We say that
+	$\{x_k\}_{k=1}^{\infty}$ $\emph{converges}$ to
+	a $\emph{limit}$ $x$ if,
+	\[
+		\lim_{k \to \infty} d(x_k,x) =
+		\lim_{k \to \infty} \| x_k - x \| \to 0 \in \R
+	\]
+	written $x_k \to x$.
+\end{defn}
+
+\section{Compactness} % (fold)
+\label{sec:compactness}
+
+Let $I$ denote any, possibly infinite, indexing set.
+
+\begin{defn}[Open Cover]
+	A $\textbf{open cover}$ of a set $S \subseteq \R^n$
+	is a collection $\{V_i\}_{i \in I}$ of open sets of
+	$\R^n$ such that $S \subset \bigcup_{i \in I} V_i$.
+	A $\emph{subcover}$ is a subcollection which also
+	covers $S$.
+\end{defn}
+
+\begin{defn}[Compact]
+	A subset $S \subseteq \R^n$ is said to be $\textbf{compact}$
+	if from every open cover of $S$ we may find a $\emph{finite}$
+	subcover of $S$.
+\end{defn}

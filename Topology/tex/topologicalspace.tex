@@ -3,6 +3,32 @@
 \section{Topological Space} % (fold)
 \label{sec:topologicalspace}
 
+Topological spaces allow for the formal definition of
+$\emph{convergence, continuity and connectedness}$.
+These are central concepts found typically in analysis.
+However topology, the study of topological spaces, is more
+general and allows for study of the mechanisms behind analysis
+in this light.
+A mathematical hierarchy of generality can be view in this way;
+\begin{center}
+	Normed vector spaces $\subset$ Metric spaces $\subset$ Topological spaces.
+\end{center}
+
+In truth, topology captures the main aspects of geometry however
+dispenses with some notions, in particular, that of an angle. So
+topology is geometry with no such notion of angle and thus more general.
+Here is a light example:
+
+\begin{exmp}
+	\[
+		\heartsuit = 0 = \square.
+	\]
+	However,
+	\[
+		\angle \neq \square.
+	\]
+\end{exmp}
+
 \begin{defn}[Topological space]
 	A $\emph{topological space}$ is a pair $(X, \mathcal{T})$
 	where $X$ is a set and $\mathcal{T} \subset 2^{X}$ such that:
@@ -23,9 +49,11 @@ If $(X,\mathcal{T})$ is a topological space, we call $\mathcal{T}$
 a topology on $X$. A set $U \in \mathcal{T}$ is called the
 $\emph{open set}$ of the topology $\mathcal{T}$.
 
-\begin{exmp}
-	TODO..
-\end{exmp}
+\begin{prob}
+	Pick any arbitrary metric space $M=(X,d)$ and show this
+	induces a topology $\mathcal{T}_{X}$. In particular,
+	the metric topological space $(M, \mathcal{T}_{M})$.
+\end{prob}
 
 $V \subseteq X$ is $\emph{closed}$ if its complement is $\emph{open}$.
 The topology could be defined equivalently by the collection of closed
@@ -43,3 +71,37 @@ containing $x$.
 \begin{defn}[Indiscrete topology]
 	A $\emph{indiscrete topology}$ has no open sets except $\emptyset$ and $X$ itself.
 \end{defn}
+
+\begin{defn}[Closure operator]
+	A $\emph{closure operator}$ is a function
+	\[
+		\operatorname{cl}: 2^{X} \to 2^{X}
+	\]
+	that satisfies, for $A,B \in 2^{X}$,
+	\begin{itemize}
+		\item $A \subset \operatorname{cl}(A)$ (extensively);
+		\item $\operatorname{cl}(\operatorname{cl}(A)) = \operatorname{cl}(A)$ (idempotent);
+		\item $\operatorname{cl}(\emptyset)=\emptyset$ (preserves nullary unions);
+		\item $\operatorname{cl}(A \cup B) = \operatorname{cl}(A) \cup \operatorname{cl}(B)$
+			(preserves binary unions).
+	\end{itemize}
+	Note here that $2^{X}$ denotes the $\emph{power set}$ of $X$.
+\end{defn}
+
+We may redefine a topological space equivalently in terms of a closure operator
+in the following way:
+
+\begin{defn}[Topological space - alternative]
+	A $\emph{topological space}$ $(X, \operatorname{cl})$ is a set $X$
+	endowed with closure operator from the power set of $X$ to itself
+	$\operatorname{cl}: 2^{X} \to 2^{X}$.
+\end{defn}
+
+Notice that we may recover the topological definitions in terms of the
+closure operator.
+By considering a function $f: (X, \operatorname{cl}) \to (Y, \operatorname{cl}')$
+between topological spaces $(X, \operatorname{cl})$ and $(Y, \operatorname{cl}')$.
+See that $f$ is then said to be continuous if, for all $A \subset X$, we have
+$f(\operatorname{cl}(A)) \subset \operatorname{cl}'(f(A))$. A point
+$x \in A$ is closed in $(X,\operatorname{cl})$ if $x \in \operatorname{cl}(A)$
+and the set $A$ is closed in $(X, \operatorname{cl})$ if $A=\operatorname{cl}(A)$.

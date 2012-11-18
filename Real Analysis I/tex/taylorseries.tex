@@ -1,0 +1,15 @@
+% Copyright © 2012 Edward O'Callaghan. All Rights Reserved.
+
+\section{Taylor Series} % (fold)
+\label{sec:taylorseries}
+
+\begin{thm}[Taylor Series]
+	Let $f: \Omega \subseteq \R^n \to \R$ be
+	$f \in \mathcal{C}^2(\Omega)$ on the open convex set
+	$\Omega$ and $a,x \in \Omega$. Then there exists a point
+	$c$ on the line segment joining $a$ and $x$, such that
+	\[
+		f(x) = f(a) + \langle \nabla f(a), (x - a) \rangle
+		+ \frac{1}{2!} \langle H_{f}(c)(x - a), (x - a) \rangle .
+	\]
+\end{thm}
