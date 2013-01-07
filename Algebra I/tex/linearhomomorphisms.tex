@@ -27,6 +27,28 @@
 	The set or space of elements inside the kernel is thus called the $\emph{null space}$.
 \end{defn}
 
+Notice that the null space is a subspace of the linear map where any elements inside this
+subspace are taken to the trivial vector space of $\mathcal{V} = \mathbf{0}$ under the linear
+map.
+
+\begin{exmp}
+	Consider the linear map $T:\R^3 \to \R^2$ where,
+	\[
+		T=
+		\begin{pmatrix}
+			1 & 3 & 2 \\
+			1 & 2 & 5 
+		\end{pmatrix}.
+	\]
+	To find the kernel, $\ker(T)$, we must use the definition and hence solve,
+	$T(\mathbf{x}) = \mathbf{0}$ for some $\mathbf{x} \in \R^3$. Hence, by Gaussian
+	elimination augmenting $(T | \mathbf{0})$, we have;
+	\[
+		\ker(T) = \{ \lambda \begin{pmatrix} -11 \\ 3 \\ 1 \end{pmatrix} : \lambda \in \F \}
+	\]
+\end{exmp}
+% TODO ..
+
 % Nullity
 \begin{defn}[Nullity]
 	The $\emph{nullality}$ is the dimension of the null space or kernel.

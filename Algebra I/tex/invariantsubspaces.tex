@@ -3,6 +3,19 @@
 \section{Invariant Subspaces} % (fold)
 \label{sec:invariantsubspace}
 
+We begin our treatment of invariance of a linear map by considering
+some linear map $T: \mathcal{V} \to \mathcal{V}$ and asking which non-zero
+vectors are dilated \textbf{only}? That is, for which $\mathbf{x} \in \mathcal{V}$
+does $T(\mathbf{x})= \lambda \mathbf{x}$ for some scalar $\lambda \in \F$.
+We define this as the eigen-invariance of the linear map $T$ where we call,
+$\lambda \in \F$ the \emph{eigenvalue} and $\mathbf{x} \in \mathcal{V}$ the
+corresponding eigenvector. The word \emph{eigen} is German for \emph{self} or
+intrinsic and so the eigenvectors span the intrinsic bases of the linear map.
+The set of eigenvalues of the linear map are called the \emph{spectrum} of the
+linear map. It is these eigenvalues the fully characterise the map, and for
+any two linear maps that share the same set of eigenvalues are therefore 
+equivalent under eigen-invariance. You will see why this is the case as we progress.
+
 \begin{defn}[Characteristic polynomial]
 	Consider some matrix $A \in \mathcal{M}_{n,n}(\F)$ with
 	the eigenvector $\mathbf{x}$ and eigenvalue $\lambda \in \F$ relation,

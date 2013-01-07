@@ -1,0 +1,34 @@
+% Copyright © 2012 Edward O'Callaghan. All Rights Reserved.
+
+\section{System Services} % (fold)
+\label{sec:systemservices}
+
+System services are the client applications that work in the
+background when the system boots. These services provide
+various house keeping and user services which are called
+demons. Some of these demons you interact with directly such
+as SLiM and others you most likely don't even think about
+such as NTP.
+
+\begin{exmp}[Various common services]
+	Some example services are as follows;
+	\begin{itemize}
+		\item NTP - Keeps the system clock in sync with the time
+			from the internet.
+		\item SLiM - Provides a graphical login authentication
+			service for the window manager though the X server.
+		\item Autofs - Checks for things like USB storage devices
+			and automatically mounts them for you.
+		\item WPA\_Supplicant - Configures wireless connections
+			by automatically authenticating with the access point
+			and connecting for you.
+		\item DHCPD - Automatically sets up your IP address and
+			DNS settings for your network connection.
+	\end{itemize}
+\end{exmp}
+
+Various GNU/Linux distributions come with their own system
+service manager. However, a typically common one is called
+\emph{systemd}. SystemD handles when services should start/stop
+and reports on their status should you wish to inquire about it.
+Consult the man page for \emph{systemd} for details.

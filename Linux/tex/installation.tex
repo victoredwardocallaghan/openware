@@ -1,0 +1,73 @@
+% Copyright © 2012 Edward O'Callaghan. All Rights Reserved.
+
+\section{Installation} % (fold)
+\label{sec:installation}
+
+\subsection{Disk Partitions}
+
+Disk partitions are essentially the way in which we may divide
+up the disk. For example, we may wish for our personal files
+in our \emph{home} directory to be separate from the rest of the
+system files. By partitioning the disk we may \emph{format} each
+partition separately, typically with different filesystems. The
+advantage in the case of the \emph{home} directory having a different
+filesystem is that of performance and increased safety. For example,
+if, for whatever reason, our system was unbootable and irreparable
+(broken) our files are safe from doing a clean install without the
+worry of overwriting them. Although it is \textbf{always} a good
+idea to regularly backup important personal data and configuration
+files.
+
+\subsection{File-systems}
+
+The filesystem is the software to which the Linux kernel
+uses when reading and writing data to some storage media
+such as a disk. The filesystem is essentially a algorithmic
+software description as to how to organise data on the storage
+media in an optimal and consistent way. Hence, we typically say
+that a disk has been \emph{formated} with a particular filesystem.
+For example, ``the USB pen has been formated with FAT32''.
+
+\begin{exmp}[Common Filesystems]
+	Here is a short list of commonly found Linux filesystems:
+	\begin{itemize}
+		\item XFS,
+		\item JFS,
+		\item EXTended 2,3 and 4,
+		\item BTFS,
+		\item ZFS,
+		\item procfs,
+		\item tempfs,
+		\item swapfs.
+	\end{itemize}
+	Some common filesystems found both in Linux and other places
+	such as Microsoft Windows and Apple OSX are given:
+	\begin{itemize}
+		\item FAT32,
+		\item NTFS,
+		\item HFS+.
+	\end{itemize}
+\end{exmp}
+
+The EXTended filesystem, or \emph{ext}, is the usual default Linux
+filesystem software. However, ethier JFS or XFS is recommended for
+its greater maturity and hence stability and reliability. Something
+of a critical concern considering the filesystem takes care of your
+data! USB storage devices are usually formated with FAT32 since
+almost every system can read and write this very basic filesystem
+formatting and hence is very compatible, however it is very minimal.
+
+In Windows, NTFS is the default filesystem and you have little to no
+choice about that. NTFS is proprietary software and so if something goes
+wrong you really have no possible way to find out how NTFS went wrong
+since we have no access to its code. Apple's OSX uses HFS+ which has its
+own set of problems and is becoming somewhat long in the tooth. The most
+critical point about proprietary filesystem software, like NTFS, is that
+your data is trapped in this format and only systems that have access to
+the code that makes NTFS work may read and write to these filesystems. In
+this way, proprietary software traps you and your rights to your data!
+Worse still is that, if you recall, propriary software licensing is typically
+written so that you buy the rights to \emph{use} the software not \emph{own} it.
+Hence, by storing your data on filesystems like NTFS you only have the rights
+to \emph{use} your data even though you may own your data you may not always
+have the right to \emph{access} it!

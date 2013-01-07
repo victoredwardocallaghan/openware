@@ -1,0 +1,108 @@
+% Copyright © 2012 Edward O'Callaghan. All Rights Reserved.
+
+\subsection{X Server} % (fold)
+\label{sec:xserver}
+
+The \emph{X Server}, much like the terminal emulator, provides graphical
+windowing functionality as the fundamental object of control. This is in
+contrast with the terminal emulator that instead uses shells that use
+individual commands as the fundamental objects of control. Notice the
+distinction! The X server windowing system \emph{environment} is where
+graphical client applications can ask the X server to draw them a window
+from which you can control the console though the mouse. Conversely, the
+shell asks the terminal emulator to output results from commands and takes
+input from the console though the terminal emulator.
+
+In summary:
+\begin{itemize}
+	\item A terminal emulator \emph{abstracts} the console away from commands
+		in a shell.
+	\item The X server \emph{abstracts} the drawing of graphical objects on the
+		console away from the client applications.
+\end{itemize}
+
+\subsubsection{Toolkits}
+
+Applications typically want to draw more complex things such as triangles and
+squares. However the X server does not attempt to draw sophisticated graphical
+objects, keeping true to the GNU/Linux philosophy. In this way the X server provides
+the flexibility to draw whatever kind of object you would like in a graphical way
+on the screen. However, applications typically would like to draw the same kind of
+thing over and over and that various applications on a graphical desktop would
+ideally like to look consistent from a usability prospective. Hence, on a typical
+GNU/Linux installation one normally installs a \emph{toolkit} to go with the X server
+and the preferred range of applications that make use of the said toolkit. Toolkits
+provide another abstraction on top of the X server to draw graphical applications to
+look in a consistent and feature full way.
+
+\begin{exmp}[Some common X toolkits]
+	Some example toolkits that are typically found;
+	\begin{itemize}
+		\item Gtk2/3,
+		\item Qt,
+		\item Clutter.
+	\end{itemize}
+\end{exmp}
+
+The X server is not the only place graphical toolkits are found. In fact, in the shell
+one can draw \emph{ASCII} art type graphical interfaces though a common toolkit known
+as \textbf{ncurses}. Ncurses once again abstracts away the terminal emulators ability
+to draw ASCII text to the screen and provides a rang of \emph{API}'s, or
+Application Programmer Interface's, that allow programmers to draw graphical interfaces
+in the form of text on the console though a terminal emulator.
+
+\subsubsection{Window Manager}
+
+The window manager is essentially the \emph{job control} of the graphically world on
+a GNU/Linux system. The window manager is the main program the X server runs that
+controls how applications behave with one another and how they are presented to the
+user in terms of method of control. Typically the window manager is what the user
+perceives to be \emph{the desktop}! So the window manager is a important choice
+as to how you prefer to work and prefer your desktop to act and look. The window
+managers environment is analogous to the shell language that comes with the shell
+of choice. Hence, desktop environment settings such as setting your wallpaper is
+equivalent to setting, say for example, the \emph{PATH} environment variable of
+your shell.
+
+\begin{exmp}[Some common window managers]
+	Some example window managers that are popular;
+	\begin{itemize}
+		\item XMonad,
+		\item KDE,
+		\item Gnome.
+	\end{itemize}
+\end{exmp}
+
+Typically two main paradigms exist for window managers, \textbf{tilling} and \emph{stacking}.
+The most popular of which is typically the stacking paradigm in which program windows are
+layer on top of each other. Both Gnome and KDE are example window managers that are of the
+stacking sort, although can be manually configured otherwise. However the very minimalistic
+XMonad window manager is extremely small, uses almost no memory at all (i.e., less than 1MB)
+and is of the tiling sort. The main advantage of tiling window managers comes in when you are
+running more than a few programs and spend more time switching between programs than actually
+doing your intended work inside the programs. Another advantage of the usually minimal nature
+of tiling window managers is the desktop is not cluttered with random applications popping out
+everywhere and arbitrarily large unnecessary boarders around menu parts taking up valuable
+screen real estate.
+
+\subsubsection{Login Manager}
+
+To start the X server one can run \emph{startx} as the intended user and configure which window
+manager the X server should start in \emph{.xinitrc} in their home directory. However, on a
+desktop workstation these days you typically wish for the X server to start immediately and be
+presented a graphical method of login. This is the intended task of a login manager, at boot
+the system start the graphical login manager as a system service and the login manager starts
+the X server in turn. Various login managers exist.
+
+\begin{exmp}[Some common login managers]
+	Some example login managers, some of which come with the window manager for a more
+	transparent experience.
+	\begin{itemize}
+		\item KDM - comes with the KDE window manager,
+		\item GDM - comes with the Gnome window manager,
+		\item SLiM - a light weight login manager that is independent of any particular window manger.
+	\end{itemize}
+\end{exmp}
+
+A good match with the XMonad window manager is the SLiM login manager. Since SLiM is very
+minimal and does not reply on the toolkit libraries Qt or Gtk3 from KDE or GDM respectively.

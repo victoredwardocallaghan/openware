@@ -1,0 +1,141 @@
+% Copyright © 2012 Edward O'Callaghan. All Rights Reserved.
+
+\section{Files} % (fold)
+\label{sec:files}
+
+First consider the following proposition and remember this as it
+is essentially the whole design premise of the Linux operating system!
+
+\begin{prop}
+	Everything in Linux is consider a file of two main kinds:
+	\begin{itemize}
+		\item Block, or
+		\item Character Stream.
+	\end{itemize}
+	A \textbf{Block} is a contiguous chunk of binary data whereas
+	a \textbf{Stream} is a flow of binary data bit by bit where a
+	bit is one or zero.
+\end{prop}
+
+Now we may consider some concrete examples in order to fix our ideas
+of what this actually means in practice.
+
+\begin{exmp}[Block Device]
+	A block device or block file comes up in various places such as;
+	\begin{enumerate}
+		\item A hard disk.
+		\item A USB pen (data is buffered in VFS since the USB port is serial).
+		\item The screen ``framebuffer''.
+		\item A file on the disk.
+		\item A allocated chunk of memory can be consider a block of memory.
+	\end{enumerate}
+\end{exmp}
+
+\begin{exmp}[Character Device]
+	A character device is a very typical type of file used to stream
+	binary content to some kind of media such as;
+	\begin{enumerate}
+		\item A printer.
+		\item A serial port, (i.e., RS232, i2c, USB).
+		\item Audio jack out.
+		\item A Linux pipe stream.
+	\end{enumerate}
+\end{exmp}
+
+The Linux kernel deals with files by a layer called \textbf{VFS} or
+\emph{Virtual File System}. The detail of this is not important to
+understand how things work in general.
+
+Three main special stream device files are used to interact with the system:
+\begin{defn}[Standard Input/Output (IO)]
+	The \emph{Standard IO} streams are how programs talk with the screen
+	and other programs, in this case programs interact in a general way
+	with the following standard IO streams:
+	\begin{enumerate}[1] % FIXME: Start at zero?
+		\item Standard Input or /dev/stdin
+		\item Standard Out or /dev/stdout
+		\item Standard Error or /dev/stderr
+	\end{enumerate}
+\end{defn}
+
+Consider some web browser application that would like to print a page
+then save it. The browser need not known anything about the type of
+printer or type of media it is storing files to. Only that it needs to
+\emph{write} something to a printer and \emph{write} something to a file.
+This is exactly how applications interact with VFS in the Linux kernel.
+
+A application simply writes to a printer file or writes to a disk file
+and VFS \textbf{abstracts} the writing operation to whatever subsystem
+takes care of the detail of the write.
+
+In Linux printer files are represented though a userland program called
+CUPS or \emph{Common Unix Printer System} which presents \emph{printer files}
+that are software block devices, called a \emph{spool}, that buffer the
+page and streams it to the physical device.
+
+In the situation where we are writing a file to a disk, VFS now presents
+a software block device that \emph{represents} the physical disk. In
+particular, VFS takes the content of the software block device buffer,
+finds the correct filesystem software that the disk is formated with
+and uses this to correctly write the data to the physical media in the
+respective filesystem formating. Some example disk filesystems are;
+XFS, JFS, NTFS, FAT32, etc..
+
+\begin{rem}
+	Notice that VFS represents physical storage media as software
+	buffers in memory. This is why we must \emph{umount} a disk
+	such as a USB storage pen \textbf{before} physically removing
+	it from the system. Since, when we write to the software
+	representation we are \emph{not} writing to the actual disk
+	and so we \emph{must} ensure that everything in the software
+	buffer has been flushed or \emph{sync}'ed to the physical disk!
+	Failure to do this may result in loss of data!
+\end{rem}
+
+Similarly to the printer situation, in the case of audio mixing
+Linux presents the sound card by an equivalent software representation.
+This particular representation is achieved by \emph{ALSA} or the
+Advanced Linux Sound Architecture. That is, when playing a song we
+write the song file to ALSA's representation of the sound card
+(i.e., a software buffer block device) and ALSA takes care of reading
+this block of data out of memory bit by bit and streaming that to the
+physical sound card.
+
+A somewhat special file exists that you may of considered by now, a
+\emph{directory}. A directory is simply a file that contains the location
+of all the files it has assigned as children. This design choice naturally
+leads to the representation of all files on the system as a tree-like structure.
+Note that the structure is not a pure tree, since some files are software links
+to other files or essentially a directory with one and only one entry. Hence,
+the structure in actual fact is more like a graph on a real system. In any
+case this should provide us with the understanding of why \emph{mount} points
+are required.
+
+A \emph{mount point} is simply a directory in which we mount the software file
+representation from VFS of a physical disk. The directory we mount to simply
+has the pointer to location of the memory where VFS looks for data to read and
+write to a physical disk. When we call the command \textbf{mount} we are writing
+this address into the directory used as the mount point. When we call the command
+\textbf{umount} we are forcing the data in VFS's buffer to be flush to the physical
+disk and then removing the address entry from the original mount point directory.
+
+\subsection{File-system Heredity}
+..
+
+\subsection{File Manipulation}
+
+\begin{defn}[Moving files]
+	To move a file we use the command \textbf{mv}.
+\end{defn}
+
+\begin{defn}[Copying files]
+	To copy a file we use the command \textbf{cp}.
+\end{defn}
+
+\begin{defn}[Renaming files]
+	To rename a file we use the command \textbf{rename}.
+\end{defn}
+
+\begin{defn}[Removing files]
+	To remove a file we use the command \textbf{rm}.
+\end{defn}

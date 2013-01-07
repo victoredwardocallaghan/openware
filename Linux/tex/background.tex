@@ -1,0 +1,49 @@
+% Copyright © 2012 Edward O'Callaghan. All Rights Reserved.
+
+\section{Background} % (fold)
+\label{sec:background}
+
+The Linux kernel is the piece of software that mediates the interaction
+of the needs of client applications to the underling physical hardware.
+A typical scenario is that of a text editor which asks the operating system
+to print some displayed text, the operating system then works out how to
+talk to the printer hardware correctly to get this done. Another such
+example is reading a file off a USB storage device in a file manager.
+In this case the file manager asks the operating system what files are
+stored on the media and the operating system returns a list of names
+and locations.
+
+In this course we study the GNU/Linux operating system. This is the
+Linux kernel with the GNU \emph{userland} built on top. The GNU userland
+provides various simple client applications to get common tasks done
+such as moving, copying and renaming files. The userland also provides
+system \emph{libraries} that provide common bits of code that these
+userland applications share in their functionality. The central
+system library on GNU/Linux is called \textbf{glibc}. This library
+is probably the most important since it is the glue that fuses the
+Linux kernel to userland programs for the fundamental operations such
+as file manipulation. Any other client program you may be running is
+also part of the userland however need not be part of the GNU core
+system tools and libraries.
+
+GNU itself stands for Gnu Not Unix. GNU is arguably the ordinal ideology
+behind the \emph{open source} movement. Although other ideologies now
+exist, such as the BSD's, the \textbf{GNU/GPL}, or General Public License,
+has dominated the scene with its far left ideals. The GPL essentially
+asserts that any changes to the code of the system must be published with
+the original code and a copy of the GPL license with corresponding references
+to who wrote the original works. The central idea is to \emph{force} the
+workings of the system to be \emph{always open} and free to use! In this
+way, the system is owned by no one and made by everyone who is feels the
+need to contribute. Companies may contribute to GNU/Linux and may own the
+rights to the original work. However, they do not own the right to demand
+anything from you or force upon you questionable practices typically found
+in the world of proprietary software.
+
+Open source empowers you with the control and ownership of your own system.
+Proprietary technologies are typically licensed in a way that gives you the
+rights to \emph{use} the software \emph{subject} to be removed at \emph{any}
+time they see fit and not \emph{own} the software you may of just payed for!
+In actual fact, if you do not use the software as they specify in their
+license agreement you are typically legally liable of braking sometimes
+multiple laws if you ever got caught.

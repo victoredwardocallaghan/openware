@@ -1,0 +1,32 @@
+% Copyright © 2012 Edward O'Callaghan. All Rights Reserved.
+
+\section{Networking} % (fold)
+\label{sec:networking}
+
+\subsection{Basics}
+
+Basic networking starts with setting up what the machines
+\emph{hostname} should be. This is some arbitrary name we
+give to the physical machine console on the network. To
+specify the name of the machine, simply make something up
+and do the follow:
+\begin{center}
+	\$ echo "starkid" $>$ /etc/hostname
+\end{center}
+You will also need to append this name in /etc/hosts as
+an alias to \emph{localhost}. The \emph{localhost} is the
+default name that simply means the local machine.
+
+A \emph{fully qualified} \emph{username} is then of the form:
+\begin{center}
+	username@hostname
+\end{center}
+For example, joebobs@starkid.
+
+\subsection{Dynamic IP}
+
+\subsection{Static IP}
+
+\subsection{Wired}
+
+\subsection{Wireless}

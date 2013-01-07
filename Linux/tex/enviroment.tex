@@ -1,0 +1,26 @@
+% Copyright © 2012 Edward O'Callaghan. All Rights Reserved.
+
+\section{Environments} % (fold)
+\label{sec:environment}
+
+Two main console environment exist, the textural and the
+graphical. In the textural environment we make use of the
+shell interpreter to communicate our commands to the
+system console. Whereas in the graphical environment we
+make use of abstract graphical constructs to communicate
+our ideas on what we wish the system console to do for us.
+
+Both environment have various runtime variables that can
+be tweaked as needed. For example, in the graphical
+environment we may wish to tweak the wallpaper environment
+variable. Whereas in the shell we may wish to set things
+like the system search path. Various path variables exist
+such as where to look for executable commands, set by
+\textbf{PATH} or where to find system libraries, set by
+\textbf{LIBS}. The details vary and you will need to
+consult your environment documentation for the details.
+That is, your shell man page or your window manager
+documentations.
+
+\input{shellinterpreter.tex}
+\input{xserver.tex}

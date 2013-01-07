@@ -1,0 +1,61 @@
+% Copyright © 2012 Edward O'Callaghan. All Rights Reserved.
+
+\section{The Console} % (fold)
+\label{sec:console}
+
+The \emph{console} is essentially the way in which we interact
+with a computer. The console is just a fancy name for the mouse,
+keyboard and screen set. Before graphical enabled console was
+introduced consoles were presented as a terminal. Today our
+consoles are graphical and so we have \textbf{terminal emulators}.
+
+In Microsoft Windows the emphasis is on the windowing graphical
+side of the console whereas GNU/Linux emphasises \emph{the terminal}
+as the preferred choice of control. This is not to say that
+GNU/Linux is not capable of a comprehensive array of graphical
+capabilities, in fact the case is quite the opposite. However,
+the terminal provides greater flexibility and more precise control
+of the system console and most importantly, efficiently, the
+primary reason for desktop computing in many respects. Some
+drawbacks exist as with any trade off, with increased functionality
+there is increased complexity. The GNU/Linux paradigm of simplicity
+leads to vast flexibility and so inherently can be a little tough
+to understand at first sight coming from a graphical only background.
+
+To motivate consider the summary that, if there is no button to click
+then you can't do it, whereas in the terminal when there is a will
+there is a way! Thus, some old ideas should be carefully considering
+before throwing them away so readily. Perhaps for some wizy-bang pretty
+looking graphical interface some company is trying to sell you but really
+does not actually add to your productivity in reality. 
+
+Another main task of the terminal emulator is to authenticate the user
+upon login, although this is typically done by the \emph{virtual terminal}.
+The virtual terminal is the terminal emulator that is run by the kernel
+itself.
+
+Various terminal emulators exist however we consider \emph{urxvt} as
+the best blend of simplicity and stability while maintaining various
+useful features. The \emph{command interpreter} we shall use runs inside
+the terminal emulator and allows the machine to interpret user command input.
+
+Various command interpreters exist (i.e., zsh, ksh93, bash,...),
+again giving you the freedom of choice. However \textbf{bash} or
+Born Again SHell is the typically most commonly found command interpreter,
+or just \emph{shell}. Since the shell is an interpreter each shell has
+its own little language and so you can \emph{script} how you wish the
+console to play. That is, you write \textbf{shell scripts} to automate
+common tasks in our shell that you would normally do at your console.
+For example, rename a directory of pictures according to some naming scheme
+such as by date-location. For such a task, as a graphical user, you would
+typically download some random special program in the hope that it would
+do something similar to what you wish or you may spend hours manually
+renaming each file at a time. This is where the power of interacting with
+the console in a command fashion comes into its own. Here, we need only
+specify the task in terms of a chain of a few short commands in some file,
+which we call a script, and then run this file in the shell interpreter.
+The shell interpreter will interpret the script as if you were siting in
+front of the console doing the task and automate this task exactly how
+you specified. The detail of interacting in this way with the console
+will take some time to get use to and only comes with practice however
+give yourself time and take it easy.
