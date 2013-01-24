@@ -14,3 +14,28 @@ This is called job control.
 	Mozilla Firefox web browser and try some various bits
 	of job control.
 \end{prob}
+
+\subsubsection{Bash Aliases}
+
+Sometimes chains of commands can become quite complex for sometimes
+trivial tasks you may want to do fairly often or some common program
+may have a obscure name. In this case we may wish to define some
+shell \emph{aliases} for our continence. Here is a example snip
+of $.bash\_alias$ that resides in the home directory.
+
+\begin{lstlisting}
+alias printers='lpstat -p -d'
+alias print='lp -o "sides=two-sided-long-edge prettyprint" '
+
+# modified commands
+alias diff='colordiff'              # requires colordiff package
+alias top='htop'
+alias pacman='pacman-color'
+alias tree='tree -C'
+alias wifi-menu='sudo wifi-menu'
+
+# Tmux aliases
+alias tatt='tmux attach-session -t'
+alias tlist='tmux list-sessions'
+alias tnew='tmux new -s'
+\end{lstlisting}
