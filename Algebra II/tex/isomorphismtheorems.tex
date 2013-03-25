@@ -1,0 +1,33 @@
+% Copyright © 2012 Edward O'Callaghan. All Rights Reserved.
+
+\section{First Isomorphism Theorem} % (fold)
+\label{sec:firstisomorphismtheorem}
+
+\begin{thm}
+Let $\mathcal{G}$ and $\mathcal{H}$, and let
+$\varphi : \mathcal{G} \to \mathcal{H}$ be a group homomorphism.
+Then:
+\begin{itemize}
+	\item The kernel of $\varphi$ is a normal subgroup of $\mathcal{G}$;
+		$\ker(\varphi) \unlhd \mathcal{G}$,
+	\item The image of $\varphi$ is a subgroup of $\mathcal{H}$;
+		$\im(\varphi) \leq \mathcal{H}$, and
+	\item The image of $\varphi$ is also isomorphic to the factor group
+		$\mathcal{G} / \ker(\varphi)$;
+		$\im(\varphi) \cong \mathcal{G} / \ker(\varphi)$.
+\end{itemize}
+In particular, if $\varphi$ is epimorphic then
+$\mathcal{H} \cong \mathcal{G} / \ker(\varphi)$.
+\end{thm}
+
+We may represent these fundamental relations in the following commutative diagram.
+
+\begin{tikzcd}
+    & & 0 \ar{dr} &  & 0\\
+	& & & \stack{\mathcal{G} / \ker(\varphi)}{\cong\;\im(\varphi)} \ar{ur} \ar{dr}{\iota} & \\
+	& & \mathcal{G} \ar{rr}{\varphi} \ar{ur}{\pi} &  & \mathcal{H} \\
+    & \ker(\varphi) \ar{ur}{\kappa} &  &  & \\
+    0 \ar{ur} & 
+\end{tikzcd}
+
+Notice the $\emph{exact sequence}$ that runs from the lower left to the upper right of the commutative diagram.

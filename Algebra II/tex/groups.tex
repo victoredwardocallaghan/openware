@@ -1,0 +1,347 @@
+% Copyright © 2012 Edward O'Callaghan. All Rights Reserved.
+
+\section{Groups} % (fold)
+\label{sec:groups}
+
+\begin{defn}[Binary operation]
+ A $\textbf{binary operation}$ on a set $\mathcal{X}$ is a map
+ $\circ : \mathcal{X} \times \mathcal{X} \to \mathcal{X}$.
+ $\textbf{N.B.}$ that the binary operation is $\emph{closed}$.
+\end{defn}
+
+\begin{defn}[Magma]
+ A $\textbf{magma}$ is a set $\mathcal{M}$ equipped with a binary operation $\circ$.
+ We denote the magma as the tuple pair $(\mathcal{M}, \circ)$.
+\end{defn}
+
+
+\begin{defn}[Semi-group]
+ A $\textbf{semi-group}$ is a set $\mathcal{G}$ equipped with binary operation that is $\emph{associative}$.
+ Hence, a semi-group is a magma where the operation is $\emph{associative}$;
+ That is, given any $x,y,z \in \mathcal{G}$ then $x \circ (y \circ z) = (x \circ y) \circ z \in \mathcal{G}$.
+ We denote the semi-group as the tuple pair $(\mathcal{G}, \circ)$, not to be confused with a magma from context.
+\end{defn}
+
+\begin{defn}[Monoid]
+ A $\textbf{semi-group with idenitity}$ or, $\textbf{monoid}$ for short, is a semi-group $(\mathcal{G}, \circ)$
+ with a unique identity element $e \in \mathcal{G}$ such that $x \circ e = x = e \circ x \, \forall x \in \mathcal{G}$
+\end{defn}
+
+
+\begin{proof}[Proof: unquieness of idenitity]
+ Assume some other identity $e^{'}$ exists in $\mathcal{G}$ then, $e^{'} = e^{'} \circ e = e \circ e^{'} = e. \qedhere$
+\end{proof}
+
+
+\begin{exmp}
+ Given $\mathcal{G} = \mathbb{N}$ with the binary law of composition $\circ$ to be defined as arithmetic addition $+$.
+ Then, $(\mathbb{N}, +)$ forms a semi-group with identity $0$. Verify the axioms.
+\end{exmp}
+
+
+\begin{defn}[Group]
+ A $\textbf{group}$ is a monoid where every element has an inverse. An abelian group is a group that is commutative.
+\end{defn}
+
+\begin{exmp}
+ Given $\mathcal{G} = \mathbb{Z}$ with the binary law of composition $\circ$ to be defined as arithmetic addition $+$.
+ Then, $(\mathbb{Z}, +)$ forms a semi-group with identity $0$. Verify the axioms.
+\end{exmp}
+
+\begin{question}
+ Why does the set of naturals $\mathbb{N}$ not form a group under multiplication, however does form a monoid?
+\end{question}
+
+\begin{defn}[Subgroup]
+	A group $\mathcal{H}$ is a $\textbf{subgroup}$ of a group $\mathcal{G}$ if the restriction of the binary operation
+	$\circ : \mathcal{H} \times \mathcal{H} \to \mathcal{H}$ is a group operation on $\mathcal{H}$.
+	In particular, A non-empty subset $\mathcal{H}$ of a group $\mathcal{G}$ is a subgroup of
+	$\mathcal{G}$ if and only if $h_1 \circ h_2 \in \mathcal{H}$ whenever $h_1, h_2 \in \mathcal{H}$,
+	and $h^{-1} \in \mathcal{H}$ whenever $h \in \mathcal{H}$. We denote the subgroup by $\mathcal{H} \leq \mathcal{G}$.
+\end{defn}
+
+\begin{thm}[Smallest subgroup]
+	If $\mathcal{A}$ is a subset of a group $\mathcal{G}$, there is a $\emph{smallest}$ subgroup
+	$\mbox{Gp}(\mathcal{A})$ of $\mathcal{G}$ which contains $\mathcal{A}$, the subgroup $\emph{generated}$
+	by $\mathcal{A}$.
+\end{thm}
+
+\begin{exmp}
+	Suppose $\mathcal{A}=\{g\}$ then $\mbox{Gp}(\mathcal{A})=\mbox{Gp}(g)$ and so
+	$\mbox{Gp}(g) = \{ g^n : n \in \Z \}$, where $g^0 = e$, $g^n$ is the product of $n$ copies of $g$
+	where $n>0$, and $g^n$ is the product of $|n|$ copies of $g^{-1}$ when $n<0$.
+\end{exmp}
+
+\begin{defn}[Cyclic group]
+	A group $\mathcal{G}$ is $\emph{cyclic}$ if $\mathcal{G}=\mbox{Gp}(g)$ for some $g \in \mathcal{G}$.
+	Such a element is called a $\emph{generator}$ of the group.
+\end{defn}
+
+\begin{defn}[Group order]
+	If a group $\mathcal{G}$ has finitely many elements, then the $\emph{order}$
+	$o(\mathcal{G})$ is the number of elements of $\mathcal{G}$.
+\end{defn}
+
+\begin{defn}[Normal subgroup]
+	A subgroup $\mathcal{H}$ of a group $\mathcal{G}$ is a $\textbf{normal}$, or $\emph{self-conjugate}$, if
+	$g^{-1} h g \in \mathcal{H} \, \forall g \in \mathcal{G}$ and $h \in \mathcal{H}$. We denote the normal
+	$\mathcal{H} \unlhd \mathcal{G}$.
+\end{defn}
+
+\begin{defn}[Simple group]
+	A group $\mathcal{G}$ is $\textbf{simple}$ if it has no normal subgroups other than $\{e\}$ and $\mathcal{G}$.
+\end{defn}
+
+\subsection{Group Homomorphisms} % (fold)
+\label{subsec:homomorphisms}
+Homomorphisms are structure preserving mappings. In group homomorphisms we preserve the structure of
+the binary operation $\circ$ as follows;
+\begin{defn}[Homomorphism]
+	Let $\mathcal{G}$ and $\mathcal{H}$ be two groups. Then a mapping
+	\[
+		\varphi : \mathcal{G} \to \mathcal{H}
+	\]
+	is called a $\emph{homomorphism}$ if
+	\[
+		\varphi(x \circ y) = \varphi(x) \circ \varphi(y) : x,y \in \mathcal{G}
+	\]
+\end{defn}
+It follows that, for some $g \in \mathcal{G}$ we have,
+\begin{align*}
+	\varphi ( e_g ) &= \varphi (g \circ g^{-1})
+	\\
+	&= \varphi (g) \circ \varphi (g^{-1})
+	\\
+	&= \varphi (g) \circ (\varphi (g) )^{-1}
+	\\
+	&= e_h \in \mathcal{H}.
+\end{align*}
+That is the identity $e$ has been preserved.
+Hence, it does not matter if we compose in $\mathcal{G}$ and map to $\mathcal{H}$ or take two elements in $\mathcal{G}$
+then compose the mapped elements in $\mathcal{H}$, since the group structure has been preserved.
+
+How much information about the elements inside the structure is, however, another quality to consider. Hence we fix some
+terminology here.
+\begin{itemize}
+	\item A homomorphism that is injective is called monomorphic.
+	\item A homomorphism that is surjective is called epimorphic.
+	\item A homomorphism that is bijective is called isomorphic.
+\end{itemize}
+Thus we have the following definitions by considering a group homomorphism $\varphi : \mathcal{G} \to \mathcal{H}$.
+
+\begin{defn}[Monomorphic]
+	$\varphi$ is $\textbf{monomorphic}$ if for $\varphi(x) = \varphi(y) \implies x = y \, \forall x,y \in \mathcal{G}$.
+\end{defn}
+
+\begin{defn}[Epimorphic]
+	$\varphi$ is $\textbf{epimorphic}$ if $\forall h \in \mathcal{H} \exists g \in \mathcal{G}$ so that $\varphi(g) = h$.
+\end{defn}
+
+\begin{defn}[Isomorphic]
+	$\varphi$ is $\textbf{isomorphic}$ if $\varphi$ is $\textbf{both}$ mono- and epic- morphic.
+\end{defn}
+
+Some special cases are sometimes of particular interest and we shall outline them now.
+
+\begin{defn}[Endomorphic]
+	A monomorphism $\mathcal{G} \to \mathcal{G}$ for a group $\mathcal{G}$
+	is called an $\emph{endomorphism}$ of $\mathcal{G}$.
+\end{defn}
+
+\begin{defn}[Automorphic]
+	A isomorphism $\mathcal{G} \to \mathcal{G}$ for a group $\mathcal{G}$
+	is called an $\emph{automorphism}$ of $\mathcal{G}$.
+\end{defn}
+
+\begin{rem}
+	The set $Aut(\mathcal{G})$ of automorphisms of $\mathcal{G}$ forms a group, when composition of
+	mappings is taken as the group law of composition.
+\end{rem}
+
+\subsection{Properties of homomorphisms} % (fold)
+\label{subsec:propertiesofhomomorphisms}
+
+\begin{defn}[kernel]
+	If $\varphi : \mathcal{G} \to \mathcal{H}$ is a group homomorphism,
+	then the $\emph{kernel}$ is the set
+	$\ker(\varphi) = \{ g \in \mathcal{G} : \varphi (g) = e_h \in \mathcal{H} \}$.
+\end{defn}
+
+If $\varphi : \mathcal{G} \to \mathcal{H}$ is a group homomorphism, then
+observe that $\ker(\varphi)$ is a normal subgroup of of $\mathcal{G}$.
+
+\subsection{Cosets} % (fold)
+\label{subsec:cosets}
+
+Let $\mathcal{G}$ be a group and $\mathcal{H}$ be a subgroup of $\mathcal{G}$ with $g \in \mathcal{G} : g \notin H$, then
+\begin{defn}[Left Coset]
+	$gH = \{gh : h \in H\}$ is a $\textbf{left coset of } \mathcal{H}$ in $\mathcal{G}$.
+\end{defn}
+
+\begin{defn}[Right Coset]
+	$Hg = \{hg : h \in H\}$ is a $\textbf{right coset of } \mathcal{H}$ in $\mathcal{G}$.
+\end{defn}
+
+\begin{defn}[Normal Subgroup]
+	If $gH = Hg$ then $\mathcal{H}$ is a $\textbf{normal}$ subgroup of $\mathcal{G}$, denoted by $\mathcal{H} \unlhd \mathcal{G}$.
+\end{defn}
+
+\subsection{Factor (or Quotient) groups} % (fold)
+\label{subsec:factorgroups}
+Let $\mathcal{G}$ be a commutative group and consider a subgroup $\mathcal{H}$.
+Then $\mathcal{H}$ determines an equivalence relation in $\mathcal{G}$ given by
+\[
+	x \sim x' \mbox{ iff } x - x' \in \mathcal{H}.
+\]
+..
+
+\subsection{Non-commutative Groups} % (fold)
+\label{sec:noncommutative-groups}
+A common class of non-commutative groups are transformation groups.
+Note:
+\begin{defn}[Transformation]
+ A bijective map $\varphi: X \to X$ is called a $\textbf{transformation}$ of X.
+ \begin{note}
+  The most trivial case is the $\emph{idenitity map} \, \Id{X}$ by $\Id{X}(x) = x, \, \forall x \in X$.
+ \end{note}
+\end{defn}
+Hence, there exists a inverse $\varphi^{-1}$ of $\varphi$ such that $\varphi^{-1} \circ \varphi = \Id{X} = \varphi \circ \varphi^{-1}$.
+Now, take two transformations of X, $\varphi$ and $\psi$, and let the product $\varphi \circ \psi$ be well defined.
+Then the set of all transformations of X form the group $\textbf{Transf(X)}$.
+Since, given $\varphi , \psi , \phi \in Transf(X)$ then we have associativity, $\varphi \circ (\psi \circ \phi) = (\varphi \circ \psi) \circ \phi$.
+We have identity $e = \Id{X} \in Transf(X)$ and so, inverses $\forall \varphi \in Transf(X) \exists ! \varphi^{-1} : \varphi \circ \varphi^{-1} = e$.
+Closure follows from the composition of two transformations $\varphi$ and $\psi$, since $(\varphi \circ \psi)^{-1} = \psi^{-1} \circ \varphi^{-1}$.
+
+A transformation group is a type of group action which describes symmetries of objects. More abstractly,
+since a group $\mathcal{G}$ is a category with a single object in which every morphism is bijective.
+Then, a group action is a $\emph{forgetful functor}$ $\mathcal{F}$ from the group $\mathcal{G}$ in the category $\textbf{Grp}$
+to the set category $\textbf{Set}$ that is, $\mathcal{F} : \mathcal{G} \to \textbf{Set}$.
+
+\subsection{Group actions} % (fold)
+\label{subsec:groupaction}
+
+For any mathematical object (e.g. sets, groups, vector spaces) $X$ an isomorphism
+of $X$ is a symmetry of $X$. The set of all isomorphisms of $X$, or symmetries
+of $X$, form a group called the symmetry group of $X$, denoted $Sym(X)$.
+More formally;
+
+\begin{defn}[Group action]
+	An $\emph{action}$ of a group $\mathcal{G}$ on a mathematical object $X$ is
+	a mapping $\mathcal{G} \times X \to X$, defined by $(g,x) \mapsto g . x$
+	satisfying:
+	\begin{itemize}
+			\item $e . x = x \, \forall x \in X$ and
+			\item $(g h) . x = g . (h . x) \, \forall g,h \in \mathcal{G}, x \in X$.
+	\end{itemize}
+	That is, we have the ($\emph{left}$) $\mathcal{G}$-action on $X$ and denote this
+	by $\mathcal{G} \acts X$.
+\end{defn}
+
+Notice that we may study properties of the symmetries of some mathematical object $X$
+without reference to the structure of $X$ in particular.
+
+\subsection{Permutations} % (fold)
+\label{sec:permutations}
+Take a finite set X with $|X|=n$, then the transformations of X are called $\textbf{permutations}$ of the
+elements of X. In particular, the group of permutations of $X=\{ 1, 2, \cdots, n \}$ is a $\textbf{symmetric group}$,
+denoted $S_n$, with $\textbf{order}$ $|S_n|=n!$. Thus, by taking any subgroup of $S_n$ we have a
+$\textbf{permutation group}$. Also note that, for finite sets, $\emph{permutation}$ and $\emph{bijective maps}$
+refer to the same operation, namely rearrangement of elements of X.
+Another way is to consider, a group $\mathcal{G}$ and set X.
+Then a group action is defined as a group homomorphism $\varphi$ from $\mathcal{G}$ to the symmetric group of X.
+That is, the action $\varphi: \mathcal{G} \to S_n(X)$, assigns a permutation of X to each element of the group $\mathcal{G}$ in the following way:
+\begin{itemize}
+ \item From the identity element $e \in \mathcal{G}$ to the identity transformation $\Id{X}$ of X, that is, $\varphi : e \to \Id{X}$;
+ \item A product of group homomorphisms $\varphi \circ \psi \in \mathcal{G}$ is then the composite of permutations given by $\varphi$ and $\psi$ in X.
+\end{itemize}
+Given that each element of $\mathcal{G}$ is represented as a permutation. Then a group action can also be consider as a permutation representation.
+
+A permutation $\sigma \in S_n$ can be written,
+\[
+ \sigma =
+ \begin{pmatrix}
+  1 & 2 & \cdots & n \\
+  a_1 & a_2 & \cdots & a_n
+ \end{pmatrix}
+ \, \, \,
+ \text{where } a_1 = \sigma(1), a_2 = \sigma(2), \cdots .
+\]
+
+The idenitity permutation $\Id{n} \in S_n$ is simply,
+\[
+ \Id{n} =
+ \begin{pmatrix}
+  1 & 2 & \cdots & n \\
+  1 & 2 & \cdots & n
+ \end{pmatrix}
+\].
+
+Since $|S_n|=n!$ then the total number of ways n elements maybe permuted is $n!$.
+
+Take any two permutations $\sigma,\pi \in S_n$ then composition is well defined as $\textbf{functional composition}$
+as follows.
+
+Given,
+\[
+ \sigma =
+ \begin{pmatrix}
+  1 & 2 & \cdots & n \\
+  a_1 & a_2 & \cdots & a_n
+ \end{pmatrix}
+ \, \, and \, \,
+ \pi =
+ \begin{pmatrix}
+  a_1 & a_2 & \cdots & a_n \\
+  b_1 & b_2 & \cdots & b_n
+ \end{pmatrix}
+\]
+then,
+
+\begin{align*}
+ \pi \circ \sigma &=
+ \begin{pmatrix}
+  1 & 2 & \cdots & n \\
+  \pi(a_1) & \pi(a_2) & \cdots & \pi(a_n)
+ \end{pmatrix}
+ \\
+ &=
+ \begin{pmatrix}
+  1 & 2 & \cdots & n \\
+  b_1 & b_2 & \cdots & b_n
+ \end{pmatrix}
+\end{align*}
+.
+
+A inverse of any permutation $\sigma \in S_n$ is given by,
+\[
+ \sigma^{-1} =
+ \begin{pmatrix}
+  1 & 2 & \cdots & n \\
+  a_1 & a_2 & \cdots & a_n
+ \end{pmatrix}^{-1}
+ =
+ \begin{pmatrix}
+  a_1 & a_2 & \cdots & a_n \\
+  1 & 2 & \cdots & n
+ \end{pmatrix}
+\]
+
+\subsection{Permutation parity}
+Consider the algebraic structure:
+\[
+	\triangle_n (x_1, \dots , x_n) = \prod_{i<j} (x_i - x_j)
+\]
+TODO..
+
+\subsection{Fields} % (fold)
+\label{subsec:fields}
+We now may build higher order algebraic structures using the notion of a group.
+
+\begin{defn}[Field]
+	A $\textbf{field}$ $\mathbb{F}$ is a set together with two binary operations, addition and multiplication, such that:
+	\begin{itemize}
+		\item addition forms an abelian group,
+		\item multiplication forms a abelian quasi-group, i.e. a commutative multiplicative group on the set $\mathbb{F} - \{0\}$, 
+	\end{itemize}
+	coupled together with a law of distribution between the two binary operations.
+\end{defn}

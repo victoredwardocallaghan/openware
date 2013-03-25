@@ -1,0 +1,30 @@
+% Copyright © 2012 Edward O'Callaghan. All Rights Reserved.
+
+\section{Algebras} % (fold)
+\label{sec:algebras}
+
+\begin{defn}[Algebras]
+	A finite-dimensional (associative) $\emph{algebra}$ $\mathcal{A}$
+	over a field $\mathbb{F}$ is a finite-dimensional vector space over
+	$\mathbb{F}$ equipped with a law of composition, that is, a mapping
+	(multiplication) $(a,b) \to ab$ from $\mathcal{A} \times \mathcal{A}$
+	into $\mathcal{A}$ which satisfies
+	\begin{itemize}
+		\item $(ab)c=a(bc)$ (associativity),
+		\item $a(b + c) = ab + ac$,
+		\item $(a + b)c = ac + bc$,
+		\item $\lambda (ab) = (\lambda a)b = a(\lambda b)$,
+	\end{itemize}
+	for $\lambda \in \mathbb{F}$ and $a,b,c \in \mathcal{A}$.
+\end{defn}
+
+\begin{rem}
+	A algebra $\mathcal{A}$ is called $\emph{unital}$ if there exists
+	$1 \in \mathcal{A}$, the $\emph{idenity element}$, such that
+	$1a=a1=a \, \forall a \in \mathcal{A}$.
+\end{rem}
+
+\begin{rem}
+	A algebra $\mathcal{A}$ is $\emph{commutative}$ if
+	$ab=ba \, \forall a,b \in \mathcal{A}$.
+\end{rem}

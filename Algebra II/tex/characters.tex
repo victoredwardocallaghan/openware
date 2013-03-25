@@ -1,0 +1,159 @@
+% Copyright © 2013 Edward O'Callaghan. All Rights Reserved.
+
+\section{Characters} % (fold)
+\label{sec:characters}
+A \emph{group character} is a group homomorphism,
+$\chi : \mathcal{G} \to \C^{\times}$, from a finite abelian group
+to the multiplicative group of nonzero complex numbers.
+In particular;
+
+\begin{defn}[Character]
+	Let $\mathcal{G}$ be a finite abelian group of order $n$, written additively.
+	A \emph{character} of $\mathcal{G}$ is a group homomorphism,
+	$\chi : \mathcal{G} \to \C^{\times}$, of $\mathcal{G}$ such that:
+
+	\[
+		\chi (g_1 + g_2) = \chi(g_1) \chi(g_2) : g_1,g_2 \in \mathcal{G}.
+	\]
+\end{defn}
+
+\begin{lem}
+	\begin{align*}
+		\chi(g)^n &= \chi(ng)
+		\\
+		&= \chi(0) = 1 : g \in \mathcal{G}.
+	\end{align*}
+	Hence the values of $\chi$ are the $n^{th}$ roots of unity.
+\end{lem}
+
+\begin{lem}
+	\begin{align*}
+		\chi(-g) &= \chi(g)^{-1}
+		\\
+		&= \overline{\chi(g)}
+	\end{align*}
+	where the bar denotes the complex conjugation.
+\end{lem}
+
+\begin{defn}[Principle Character]
+	The \emph{principle character}, denoted by $\chi_{0}$, is defined by
+	\[
+		\chi_{0}(g) \doteq 1 : g \in \mathcal{G}.
+	\]
+\end{defn}
+
+\begin{prop}
+	For any non-principle character $\chi$ of $\mathcal{G}$,
+	\[
+		\sum_{g \in \mathcal{G}} \chi(g) = 0.
+	\]
+\end{prop}
+
+\begin{proof}
+	Let $h \in \mathcal{G} : \chi(h) \neq 1$ and let
+	$S = \sum_{g \in \mathcal{G}} \chi(g)$. Then,
+	\begin{align*}
+		\chi(h) \cdot S &= \chi(h) \sum_{g \in \mathcal{G}} \chi(g)
+		\\
+		&= \sum_{g \in \mathcal{G}} \chi(h) \chi(g)
+		\\
+		&= \sum_{g \in \mathcal{G}} \chi(g + h)
+		\\
+		&= S.
+		\intertext{Hence it follows that,}
+		\chi(h) \cdot S &= S
+		\\
+		\left( \chi(h) - 1 \right) \cdot S &= 0
+		\intertext{and since $\chi(h) \neq 1$ then,}
+		\Rightarrow S &= 0. \qedhere
+	\end{align*}
+\end{proof}
+
+\begin{cor}[First orthogonality relation for characters]
+	Let $\chi$ and $\psi$ be two characters of $\mathcal{G}$. Then
+	\[
+		\sum_{g \in \mathcal{G}} \overline{\chi(g)} \psi(g) =
+		\begin{cases}
+			n & \text{if } \chi = \psi , \\
+			0 & \text{otherwise}.
+		\end{cases}
+	\]
+\end{cor}
+
+\begin{proof}
+	Consider the two cases.
+	\begin{enumerate}[i.)]
+		\item
+			For when $\chi = \psi$ it is trivially so, by that,
+			\begin{align*}
+				\overline{\chi(g)} &=  \chi(g)^{-1}
+				\\
+				\Rightarrow \overline{\chi(g)} \chi(g) &= 1 \tag{for each $g \in \mathcal{G}$}
+				\intertext{and that $\left| \mathcal{G} \right| = n$.}
+			\end{align*}
+		\item
+			If $\chi \neq \psi$ then $\overline{\chi} \psi$ is a
+			non-principle character and so $\overline{\chi(g)} \psi(g) = 0$
+			for each $g \in \mathcal{G}$. \qedhere
+	\end{enumerate}
+\end{proof}
+
+\begin{rem}
+	As observed in the last proof, the point wise product of the
+	characters $\chi$ and $\psi$ is again a character:
+	\[
+		(\chi \psi)(g) \doteq \chi(g) \psi(g).
+	\]
+\end{rem}
+
+\begin{prob}
+	Let $\hat{\mathcal{G}}$ denote the set of characters.
+	Check that $\hat{\mathcal{G}}$ forms an abelian group
+	under the operation defined by
+	$(\chi \psi)(g) \doteq \chi(g) \psi(g)$ for every $g \in \mathcal{G}$.
+	We call $\hat{\mathcal{G}}$ the \emph{dual group} of $\mathcal{G}$.
+\end{prob}
+
+\begin{prop}
+	Let $\omega$ be a \emph{primitive} $n^{th}$ root of unity. Then the
+	map $\chi_j : \Z_n \to \C^{\times}$ defined by $\chi_j(k) = \omega^{k j} : k \in \Z_n$
+	is a character of $\Z_n$ for every $j \in \Z$. Moreover,
+	\begin{enumerate}
+		\item $\chi_i = \chi_j \Leftrightarrow i \equiv j (\mod n)$;
+		\item $\chi_j = \chi_{1}^{j}$;
+		\item $\hat{\Z_n} = \{ \chi_0, \dots , \chi_{n-1} \}$;
+		\item Consequently, $\hat{\Z_n} = \Z_n$. % FIXME: should be isomorphic symbole?
+	\end{enumerate}
+\end{prop}
+
+\begin{proof}
+	TODO..
+\end{proof}
+
+\begin{prop}
+	If $\mathcal{G}$ is a direct sum, $\mathcal{G} = H_1 \oplus H_2$, and
+	$\psi_i : H_i \to \C^{\times}$ is a character of $H_i$, with $i \in \{1,2\}$,
+	then $\chi = \psi_1 \oplus \psi_2$, defined by
+	\[
+		\chi(h_1,h_2) \doteq \psi_1(h_1) \cdot \psi_2(h_2),
+	\]
+	is a character of $\mathcal{G}$. Moreover, all characters of $\mathcal{G}$ are
+	of this form. Consequently,
+	\[
+		\hat{\mathcal{G}} = \hat{H_1} \oplus \hat{H_2}.
+	\]
+\end{prop}
+
+\begin{proof}
+	TODO..
+\end{proof}
+
+\begin{cor}
+	\[
+		\hat{\mathcal{G}} = \mathcal{G}. % FIXME: Should be isomorphic symbole!
+	\]
+\end{cor}
+
+\begin{proof}
+	TODO..
+\end{proof}
