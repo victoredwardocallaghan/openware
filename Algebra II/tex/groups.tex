@@ -1,17 +1,17 @@
-% Copyright © 2012 Edward O'Callaghan. All Rights Reserved.
+% Copyright © 2013 Edward O'Callaghan. All Rights Reserved.
 
 \section{Groups} % (fold)
 \label{sec:groups}
 
 \begin{defn}[Binary operation]
  A $\textbf{binary operation}$ on a set $\mathcal{X}$ is a map
- $\circ : \mathcal{X} \times \mathcal{X} \to \mathcal{X}$.
- $\textbf{N.B.}$ that the binary operation is $\emph{closed}$.
+ $\circ : \mathcal{X} \times \mathcal{X} \to \mathcal{X}'$.
+ $\textbf{N.B.}$ that the binary operation need not be closed.
 \end{defn}
 
 \begin{defn}[Magma]
- A $\textbf{magma}$ is a set $\mathcal{M}$ equipped with a binary operation $\circ$.
- We denote the magma as the tuple pair $(\mathcal{M}, \circ)$.
+ A $\textbf{magma}$ is a set $\mathcal{M}$ equipped with a binary operation $\circ$ that is closed
+ under the operation on $\mathcal{M}$. We denote the magma as the tuple pair $(\mathcal{M}, \circ)$.
 \end{defn}
 
 
@@ -52,193 +52,94 @@
  Why does the set of naturals $\mathbb{N}$ not form a group under multiplication, however does form a monoid?
 \end{question}
 
-\begin{defn}[Subgroup]
-	A group $\mathcal{H}$ is a $\textbf{subgroup}$ of a group $\mathcal{G}$ if the restriction of the binary operation
-	$\circ : \mathcal{H} \times \mathcal{H} \to \mathcal{H}$ is a group operation on $\mathcal{H}$.
-	In particular, A non-empty subset $\mathcal{H}$ of a group $\mathcal{G}$ is a subgroup of
-	$\mathcal{G}$ if and only if $h_1 \circ h_2 \in \mathcal{H}$ whenever $h_1, h_2 \in \mathcal{H}$,
-	and $h^{-1} \in \mathcal{H}$ whenever $h \in \mathcal{H}$. We denote the subgroup by $\mathcal{H} \leq \mathcal{G}$.
-\end{defn}
-
-\begin{thm}[Smallest subgroup]
-	If $\mathcal{A}$ is a subset of a group $\mathcal{G}$, there is a $\emph{smallest}$ subgroup
-	$\mbox{Gp}(\mathcal{A})$ of $\mathcal{G}$ which contains $\mathcal{A}$, the subgroup $\emph{generated}$
-	by $\mathcal{A}$.
-\end{thm}
-
-\begin{exmp}
-	Suppose $\mathcal{A}=\{g\}$ then $\mbox{Gp}(\mathcal{A})=\mbox{Gp}(g)$ and so
-	$\mbox{Gp}(g) = \{ g^n : n \in \Z \}$, where $g^0 = e$, $g^n$ is the product of $n$ copies of $g$
-	where $n>0$, and $g^n$ is the product of $|n|$ copies of $g^{-1}$ when $n<0$.
-\end{exmp}
-
-\begin{defn}[Cyclic group]
-	A group $\mathcal{G}$ is $\emph{cyclic}$ if $\mathcal{G}=\mbox{Gp}(g)$ for some $g \in \mathcal{G}$.
-	Such a element is called a $\emph{generator}$ of the group.
-\end{defn}
-
 \begin{defn}[Group order]
-	If a group $\mathcal{G}$ has finitely many elements, then the $\emph{order}$
-	$o(\mathcal{G})$ is the number of elements of $\mathcal{G}$.
+	If a group $\mathcal{G}$ has $n$ finitely many elements the $\emph{order}$, denoted
+	$\left| \mathcal{G} \right| = n$, is the number of elements of $\mathcal{G}$.
 \end{defn}
 
-\begin{defn}[Normal subgroup]
-	A subgroup $\mathcal{H}$ of a group $\mathcal{G}$ is a $\textbf{normal}$, or $\emph{self-conjugate}$, if
-	$g^{-1} h g \in \mathcal{H} \, \forall g \in \mathcal{G}$ and $h \in \mathcal{H}$. We denote the normal
-	$\mathcal{H} \unlhd \mathcal{G}$.
-\end{defn}
-
-\begin{defn}[Simple group]
-	A group $\mathcal{G}$ is $\textbf{simple}$ if it has no normal subgroups other than $\{e\}$ and $\mathcal{G}$.
-\end{defn}
-
-\subsection{Group Homomorphisms} % (fold)
-\label{subsec:homomorphisms}
-Homomorphisms are structure preserving mappings. In group homomorphisms we preserve the structure of
-the binary operation $\circ$ as follows;
-\begin{defn}[Homomorphism]
-	Let $\mathcal{G}$ and $\mathcal{H}$ be two groups. Then a mapping
-	\[
-		\varphi : \mathcal{G} \to \mathcal{H}
-	\]
-	is called a $\emph{homomorphism}$ if
-	\[
-		\varphi(x \circ y) = \varphi(x) \circ \varphi(y) : x,y \in \mathcal{G}
-	\]
-\end{defn}
-It follows that, for some $g \in \mathcal{G}$ we have,
-\begin{align*}
-	\varphi ( e_g ) &= \varphi (g \circ g^{-1})
-	\\
-	&= \varphi (g) \circ \varphi (g^{-1})
-	\\
-	&= \varphi (g) \circ (\varphi (g) )^{-1}
-	\\
-	&= e_h \in \mathcal{H}.
-\end{align*}
-That is the identity $e$ has been preserved.
-Hence, it does not matter if we compose in $\mathcal{G}$ and map to $\mathcal{H}$ or take two elements in $\mathcal{G}$
-then compose the mapped elements in $\mathcal{H}$, since the group structure has been preserved.
-
-How much information about the elements inside the structure is, however, another quality to consider. Hence we fix some
-terminology here.
-\begin{itemize}
-	\item A homomorphism that is injective is called monomorphic.
-	\item A homomorphism that is surjective is called epimorphic.
-	\item A homomorphism that is bijective is called isomorphic.
-\end{itemize}
-Thus we have the following definitions by considering a group homomorphism $\varphi : \mathcal{G} \to \mathcal{H}$.
-
-\begin{defn}[Monomorphic]
-	$\varphi$ is $\textbf{monomorphic}$ if for $\varphi(x) = \varphi(y) \implies x = y \, \forall x,y \in \mathcal{G}$.
-\end{defn}
-
-\begin{defn}[Epimorphic]
-	$\varphi$ is $\textbf{epimorphic}$ if $\forall h \in \mathcal{H} \exists g \in \mathcal{G}$ so that $\varphi(g) = h$.
-\end{defn}
-
-\begin{defn}[Isomorphic]
-	$\varphi$ is $\textbf{isomorphic}$ if $\varphi$ is $\textbf{both}$ mono- and epic- morphic.
-\end{defn}
-
-Some special cases are sometimes of particular interest and we shall outline them now.
-
-\begin{defn}[Endomorphic]
-	A monomorphism $\mathcal{G} \to \mathcal{G}$ for a group $\mathcal{G}$
-	is called an $\emph{endomorphism}$ of $\mathcal{G}$.
-\end{defn}
-
-\begin{defn}[Automorphic]
-	A isomorphism $\mathcal{G} \to \mathcal{G}$ for a group $\mathcal{G}$
-	is called an $\emph{automorphism}$ of $\mathcal{G}$.
+\begin{defn}[Group element order]
+	For a element $g$ in some group $\mathcal{G}$ the order of $g$ is defined to be
+	the least positive integer $k$ such that $g^k = e$, where $e$ denotes the group identity,
+	with respect to the groups law of composition. In symbols, $o(g)=k$. If no such $k$ exists
+	then $g$ is said to have infinite order.
 \end{defn}
 
 \begin{rem}
-	The set $Aut(\mathcal{G})$ of automorphisms of $\mathcal{G}$ forms a group, when composition of
-	mappings is taken as the group law of composition.
+	A non-trivial element, $g \neq e$, of finite order, $o(g)=k < \infty$, is called a
+	\emph{torsion element} and for when $k=2$ it is called an \emph{involution}.
 \end{rem}
 
-\subsection{Properties of homomorphisms} % (fold)
-\label{subsec:propertiesofhomomorphisms}
+\begin{thm}
+	Every finite group of even order has a non-trivial involution. That is, for some group
+	$\mathcal{G}$ where $|\mathcal{G}| = 2n < \infty$ we have that, there exists some
+	non-trivial element $g \neq e$ in $\mathcal{G}$ such that $g^2 = e$.
+\end{thm}
 
-\begin{defn}[kernel]
-	If $\varphi : \mathcal{G} \to \mathcal{H}$ is a group homomorphism,
-	then the $\emph{kernel}$ is the set
-	$\ker(\varphi) = \{ g \in \mathcal{G} : \varphi (g) = e_h \in \mathcal{H} \}$.
+\begin{exmp}[Matrix Groups]
+	Linear maps of vector spaces form groups that have characteristic properties. For some
+	vector space $\mathcal{V}$ over some field $\F$ we may define the following groups taking
+	matrix multiplication as the binary law of composition.
+	\begin{enumerate}[i.)]
+		\item The \emph{General Linear} group defined by,
+			\[
+				GL(\F) \doteq \{ M \in \mathcal{M} : det(M) \neq 0 \}.
+			\]
+		\item The \emph{Special Linear} group defined by,
+			\[
+				SL(\F) \doteq \{ M \in GL(\F) : \det(M) = 1 \}.
+			\]
+		\item The \emph{Orthogonal} group defined by,
+			\[
+				O(\R) \doteq \{ M \in GL(\R) : M^{T} M = I \}.
+			\]
+		\item The \emph{Special Orthogonal} group defined by,
+			\[
+				SO(\R) \doteq \{ M \in O(\R) : \det(M) = 1 \}.
+			\]
+		\item The \emph{Unitary} group defined by,
+			\[
+				U(\C) \doteq \{ M \in GL(\C) : M^{*} M = I \}.
+			\]
+		\item The \emph{Special Unitary} group defined by,
+			\[
+				SU(\C) \doteq \{ M \in U(\C) : \det(M) = 1 \}.
+			\]
+	\end{enumerate}
+\end{exmp}
+
+\begin{exmp}[Lorentz Group]
+	The Lorentz group is defined as,
+	\[
+		\mathcal{L}(\R) \doteq
+		\{ M \in \mathcal{M}_{2}(\R) : M^{T} C M = C \}
+	\]
+	where $C$ describes the Lorentz inner product with respect to the
+	standard basis, i.e.
+	\[
+		C =
+		\begin{pmatrix}
+			1 & 0 \\
+			0 & -1
+		\end{pmatrix}.
+	\]
+\end{exmp}
+
+\begin{defn}[Automorphism Group]
+	Suppose $\mathcal{S}=(S,*)$ is some algebraic structure and $\mathbb{S}$ is the set
+	of automorphism of $\mathcal{S}$. Then we may define the structure $(\mathbb{S}, \circ)$,
+	where $\circ$ is defined as functional composition, as the \emph{group of automorphisms}
+	of $\mathcal{S}$, denoted $Aut(\mathcal{S})$ or $\mathscr{A}(\mathcal{S})$. That is,
+	\[
+		\mathscr{A}(\mathcal{S}) \doteq (\mathbb{S}, \circ) \text{ where }
+		\mathbb{S} \doteq
+		\{ \phi : \mathcal{S} \to \mathcal{S}, \text{ where } \phi \text{ is a bijection}. \}
+	\]
+	For some algebraic structure $\mathcal{S}$ on set $S$.
 \end{defn}
 
-If $\varphi : \mathcal{G} \to \mathcal{H}$ is a group homomorphism, then
-observe that $\ker(\varphi)$ is a normal subgroup of of $\mathcal{G}$.
 
-\subsection{Cosets} % (fold)
-\label{subsec:cosets}
-
-Let $\mathcal{G}$ be a group and $\mathcal{H}$ be a subgroup of $\mathcal{G}$ with $g \in \mathcal{G} : g \notin H$, then
-\begin{defn}[Left Coset]
-	$gH = \{gh : h \in H\}$ is a $\textbf{left coset of } \mathcal{H}$ in $\mathcal{G}$.
-\end{defn}
-
-\begin{defn}[Right Coset]
-	$Hg = \{hg : h \in H\}$ is a $\textbf{right coset of } \mathcal{H}$ in $\mathcal{G}$.
-\end{defn}
-
-\begin{defn}[Normal Subgroup]
-	If $gH = Hg$ then $\mathcal{H}$ is a $\textbf{normal}$ subgroup of $\mathcal{G}$, denoted by $\mathcal{H} \unlhd \mathcal{G}$.
-\end{defn}
-
-\subsection{Factor (or Quotient) groups} % (fold)
-\label{subsec:factorgroups}
-Let $\mathcal{G}$ be a commutative group and consider a subgroup $\mathcal{H}$.
-Then $\mathcal{H}$ determines an equivalence relation in $\mathcal{G}$ given by
-\[
-	x \sim x' \mbox{ iff } x - x' \in \mathcal{H}.
-\]
-..
-
-\subsection{Non-commutative Groups} % (fold)
-\label{sec:noncommutative-groups}
-A common class of non-commutative groups are transformation groups.
-Note:
-\begin{defn}[Transformation]
- A bijective map $\varphi: X \to X$ is called a $\textbf{transformation}$ of X.
- \begin{note}
-  The most trivial case is the $\emph{idenitity map} \, \Id{X}$ by $\Id{X}(x) = x, \, \forall x \in X$.
- \end{note}
-\end{defn}
-Hence, there exists a inverse $\varphi^{-1}$ of $\varphi$ such that $\varphi^{-1} \circ \varphi = \Id{X} = \varphi \circ \varphi^{-1}$.
-Now, take two transformations of X, $\varphi$ and $\psi$, and let the product $\varphi \circ \psi$ be well defined.
-Then the set of all transformations of X form the group $\textbf{Transf(X)}$.
-Since, given $\varphi , \psi , \phi \in Transf(X)$ then we have associativity, $\varphi \circ (\psi \circ \phi) = (\varphi \circ \psi) \circ \phi$.
-We have identity $e = \Id{X} \in Transf(X)$ and so, inverses $\forall \varphi \in Transf(X) \exists ! \varphi^{-1} : \varphi \circ \varphi^{-1} = e$.
-Closure follows from the composition of two transformations $\varphi$ and $\psi$, since $(\varphi \circ \psi)^{-1} = \psi^{-1} \circ \varphi^{-1}$.
-
-A transformation group is a type of group action which describes symmetries of objects. More abstractly,
-since a group $\mathcal{G}$ is a category with a single object in which every morphism is bijective.
-Then, a group action is a $\emph{forgetful functor}$ $\mathcal{F}$ from the group $\mathcal{G}$ in the category $\textbf{Grp}$
-to the set category $\textbf{Set}$ that is, $\mathcal{F} : \mathcal{G} \to \textbf{Set}$.
-
-\subsection{Group actions} % (fold)
-\label{subsec:groupaction}
-
-For any mathematical object (e.g. sets, groups, vector spaces) $X$ an isomorphism
-of $X$ is a symmetry of $X$. The set of all isomorphisms of $X$, or symmetries
-of $X$, form a group called the symmetry group of $X$, denoted $Sym(X)$.
-More formally;
-
-\begin{defn}[Group action]
-	An $\emph{action}$ of a group $\mathcal{G}$ on a mathematical object $X$ is
-	a mapping $\mathcal{G} \times X \to X$, defined by $(g,x) \mapsto g . x$
-	satisfying:
-	\begin{itemize}
-			\item $e . x = x \, \forall x \in X$ and
-			\item $(g h) . x = g . (h . x) \, \forall g,h \in \mathcal{G}, x \in X$.
-	\end{itemize}
-	That is, we have the ($\emph{left}$) $\mathcal{G}$-action on $X$ and denote this
-	by $\mathcal{G} \acts X$.
-\end{defn}
-
-Notice that we may study properties of the symmetries of some mathematical object $X$
-without reference to the structure of $X$ in particular.
+% Cyclic Group Section.
+\input{cyclicgroups.tex}
 
 \subsection{Permutations} % (fold)
 \label{sec:permutations}
@@ -267,7 +168,7 @@ A permutation $\sigma \in S_n$ can be written,
  \text{where } a_1 = \sigma(1), a_2 = \sigma(2), \cdots .
 \]
 
-The idenitity permutation $\Id{n} \in S_n$ is simply,
+The identity permutation $\Id{n} \in S_n$ is simply,
 \[
  \Id{n} =
  \begin{pmatrix}
@@ -333,15 +234,76 @@ Consider the algebraic structure:
 \]
 TODO..
 
-\subsection{Fields} % (fold)
-\label{subsec:fields}
-We now may build higher order algebraic structures using the notion of a group.
 
-\begin{defn}[Field]
-	A $\textbf{field}$ $\mathbb{F}$ is a set together with two binary operations, addition and multiplication, such that:
-	\begin{itemize}
-		\item addition forms an abelian group,
-		\item multiplication forms a abelian quasi-group, i.e. a commutative multiplicative group on the set $\mathbb{F} - \{0\}$, 
-	\end{itemize}
-	coupled together with a law of distribution between the two binary operations.
+\subsection{Symmetric Group}
+TODO FIX sections??
+
+\begin{defn}[Dihedral group]
+	The \emph{dihedral group} $\mathcal{D}_n$ is defined as the symmetries of a regular n-gon.
+	The order $| \mathcal{D}_n | = 2n$ as there are $n$ rotations and $n$ reflections.
 \end{defn}
+
+\subsection{Group actions} % (fold)
+\label{subsec:groupaction}
+
+For any mathematical object (e.g. sets, groups, vector spaces) $X$ an isomorphism
+of $X$ is a symmetry of $X$. The set of all isomorphisms of $X$, or symmetries
+of $X$, form a group called the symmetry group of $X$, denoted $Sym(X)$.
+More formally;
+
+\begin{defn}[Group action]
+	An $\emph{action}$ of a group $\mathcal{G}$ on a mathematical object $X$ is
+	a mapping $\mathcal{G} \times X \to X$, defined by $(g,x) \mapsto g . x$
+	satisfying:
+	\begin{itemize}
+			\item $e . x = x \, \forall x \in X$ and
+			\item $(g h) . x = g . (h . x) \, \forall g,h \in \mathcal{G}, x \in X$.
+	\end{itemize}
+	That is, we have the ($\emph{left}$) $\mathcal{G}$-action on $X$ and denote this
+	by $\mathcal{G} \acts X$.
+\end{defn}
+
+Notice that we may study properties of the symmetries of some mathematical object $X$
+without reference to the structure of $X$ in particular.
+
+
+% Subgroup Section.
+\input{subgroups.tex}
+
+% Group Homomorphism Section.
+\input{grouphomomorphisms.tex}
+\input{characters.tex}
+
+% Cosets Section.
+\input{cosets.tex}
+
+\subsection{Factor (or Quotient) groups} % (fold)
+\label{subsec:factorgroups}
+Let $\mathcal{G}$ be a commutative group and consider a subgroup $\mathcal{H}$.
+Then $\mathcal{H}$ determines an equivalence relation in $\mathcal{G}$ given by
+\[
+	x \sim x' \mbox{ iff } x - x' \in \mathcal{H}.
+\]
+..
+
+\subsection{Non-commutative Groups} % (fold)
+\label{sec:noncommutative-groups}
+A common class of non-commutative groups are transformation groups.
+Note:
+\begin{defn}[Transformation]
+ A bijective map $\varphi: X \to X$ is called a $\textbf{transformation}$ of X.
+ \begin{note}
+  The most trivial case is the $\emph{idenitity map} \, \Id{X}$ by $\Id{X}(x) = x, \, \forall x \in X$.
+ \end{note}
+\end{defn}
+Hence, there exists a inverse $\varphi^{-1}$ of $\varphi$ such that $\varphi^{-1} \circ \varphi = \Id{X} = \varphi \circ \varphi^{-1}$.
+Now, take two transformations of X, $\varphi$ and $\psi$, and let the product $\varphi \circ \psi$ be well defined.
+Then the set of all transformations of X form the group $\textbf{Transf(X)}$.
+Since, given $\varphi , \psi , \phi \in Transf(X)$ then we have associativity, $\varphi \circ (\psi \circ \phi) = (\varphi \circ \psi) \circ \phi$.
+We have identity $e = \Id{X} \in Transf(X)$ and so, inverses $\forall \varphi \in Transf(X) \exists ! \varphi^{-1} : \varphi \circ \varphi^{-1} = e$.
+Closure follows from the composition of two transformations $\varphi$ and $\psi$, since $(\varphi \circ \psi)^{-1} = \psi^{-1} \circ \varphi^{-1}$.
+
+A transformation group is a type of group action which describes symmetries of objects. More abstractly,
+since a group $\mathcal{G}$ is a category with a single object in which every morphism is bijective.
+Then, a group action is a $\emph{forgetful functor}$ $\mathcal{F}$ from the group $\mathcal{G}$ in the category $\textbf{Grp}$
+to the set category $\textbf{Set}$ that is, $\mathcal{F} : \mathcal{G} \to \textbf{Set}$.

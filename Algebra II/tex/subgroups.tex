@@ -1,0 +1,124 @@
+% Copyright © 2013 Edward O'Callaghan. All Rights Reserved.
+
+\subsection{Subgroups} % (fold)
+\label{sec:subgroups}
+
+\begin{defn}[Subgroup]
+	A group $\mathcal{H}$ is a $\textbf{subgroup}$ of a group $\mathcal{G}$ if the restriction of the binary operation
+	$\circ : \mathcal{H} \times \mathcal{H} \to \mathcal{H}$ is a group operation on $\mathcal{H}$.
+	In particular, A non-empty subset $\mathcal{H}$ of a group $\mathcal{G}$ is a subgroup of
+	$\mathcal{G}$ if and only if $h_1 \circ h_2 \in \mathcal{H}$ whenever $h_1, h_2 \in \mathcal{H}$,
+	and $h^{-1} \in \mathcal{H}$ whenever $h \in \mathcal{H}$. We denote the subgroup by $\mathcal{H} \leq \mathcal{G}$.
+\end{defn}
+
+\begin{thm}[Smallest subgroup]
+	If $\mathcal{A}$ is a subset of a group $\mathcal{G}$, there is a $\emph{smallest}$ subgroup
+	$\mbox{Gp}(\mathcal{A})$ of $\mathcal{G}$ which contains $\mathcal{A}$, the subgroup $\emph{generated}$
+	by $\mathcal{A}$.
+\end{thm}
+
+\begin{exmp}
+	Suppose $\mathcal{A}=\{g\}$ then $\mbox{Gp}(\mathcal{A})=\mbox{Gp}(g)$ and so
+	$\mbox{Gp}(g) = \{ g^n : n \in \Z \}$, where $g^0 = e$, $g^n$ is the product of $n$ copies of $g$
+	where $n>0$, and $g^n$ is the product of $|n|$ copies of $g^{-1}$ when $n<0$.
+\end{exmp}
+
+\begin{defn}[Normal subgroup]
+	A subgroup $\mathcal{H}$ of a group $\mathcal{G}$ is a $\textbf{normal}$, or $\emph{self-conjugate}$, if
+	$g h g^{-1} = h$ for all $g \in \mathcal{G}$ and for all $h \in \mathcal{H}$. We denote the normal
+	$\mathcal{H} \unlhd \mathcal{G}$.
+\end{defn}
+
+\begin{defn}[Simple group]
+	A group $\mathcal{G}$ is $\textbf{simple}$ if it has no normal subgroups other than the trivial normal
+	subgroups $\{e\}$ and $\mathcal{G}$.
+\end{defn}
+
+
+\subsubsection{Sylow's Theorems}
+
+The Norwegian mathematician \emph{Ludwig Sylow} established
+some important results while investigating subgroups of prime
+order.
+
+\begin{defn}[p-subgroup]
+	TODO.
+\end{defn}
+
+\begin{defn}[Sylow p-subgroup]
+	TODO.
+\end{defn}
+
+\begin{thm}[First Sylow Theorem]
+	Let $p$ be prime and $\mathcal{G}$ be a group such that
+	$\left| \mathcal{G} \right| = k p^n$ where $p\not| k$.
+	Then $\mathcal{G}$ has \emph{at least} one Sylow
+	p-subgroup.
+\end{thm}
+
+\begin{thm}[Second Sylow Theorem]
+	Let $P$ be a Sylow p-subgroup of some finite group $\mathcal{G}$.
+	Let $Q$ be any p-subgroup of $\mathcal{G}$. Then $Q$ is contained
+	in a conjugate of $P$.
+\end{thm}
+
+\begin{thm}[Third Sylow Theorem]
+	All the Sylow p-subgroups of a finite group are conjugate.
+\end{thm}
+
+\begin{thm}[Fourth Sylow Theorem]
+	The number of Sylow p-subgroups of a finite group is congruent to
+	$1(\mod p)$.
+\end{thm}
+
+\begin{thm}[Fifth Sylow Theorem]
+	The number of Sylow p-subgroups of a finite group is a divisor of
+	their common subgroup index.
+\end{thm}
+
+%%%%%
+% TODO: Improve me and perhaps MOVE ME..?
+We now look at a representation theorem for groups known as Cayley's Theorem.
+This theorem informs us that; In order to study finite groups it is only
+necessary to study subgroups of the symmetric group. In particular,
+
+\begin{thm}[Cayley's Theorem]
+	Let $S_n$ denote the symmetric group on $n$ letters. Every finite group
+	is isomorphic to a subgroup of $S_n$ for some $n \in \Z$.
+\end{thm}
+
+\begin{proof}
+	Let $\mathcal{H} = \{e\}$. By applying permutation of Cosets to $\mathcal{H}$
+	so that $\mathbb{S} = \mathcal{G}$ and $\ker (\theta) = \{e\}$. The result
+	follows by the First Isomorphism Theorem. \qedhere
+\end{proof}
+%%%%%
+
+\begin{defn}[Characteristic Subgroup]
+	Let $\mathcal{G}$ be a group and $\mathcal{H}$ be a subgroup $\mathcal{H} \leq \mathcal{G}$
+	such that for every $\phi \in Aut(\mathcal{G})$ we have $\phi (\mathcal{H})=\mathcal{H}$,
+	where $Aut(\mathcal{G})$ denotes the group of automorphisms of $\mathcal{G}$. Then $\mathcal{H}$
+	is \emph{characteristic in} $\mathcal{G}$, or \emph{a characteristic subgroup of} $\mathcal{G}$.
+\end{defn}
+
+\begin{thm}[Characteristic Subgroup Transivity]
+	Suppose $\mathcal{G}$ is a group and let $\mathcal{H}$ be a characteristic subgroup of $\mathcal{G}$
+	and $\mathcal{K}$ a characteristic subgroup of $\mathcal{H}$. Then $\mathcal{K}$ is a characteristic
+	subgroup of $\mathcal{G}$.
+\end{thm}
+
+\begin{proof}
+	Let $\phi : \mathcal{G} \to \mathcal{G}$ be a group automorphism. Since $\mathcal{H}$ is a characteristic
+	subgroup of $\mathcal{G}$, by definition, we have that
+	\[
+		\phi(\mathcal{H})=\mathcal{H}.
+	\]
+	That is, the restriction of $\phi$ to $\mathcal{H}$, written $\phi |_{\mathcal{H}}$, is a automorphism
+	of $\mathcal{H}$. Now, since $\mathcal{K}$ is a characteristic subgroup of $\mathcal{H}$, we have that
+	\begin{align*}
+		\phi |_{\mathcal{H}}(\mathcal{K}) &= \mathcal{K}
+		\\
+		\Rightarrow \phi(\mathcal{K}) &= \mathcal{K}
+	\end{align*}
+	and so $\mathcal{K}$ is a characteristic subgroup pf $\mathcal{G}$.
+\end{proof}

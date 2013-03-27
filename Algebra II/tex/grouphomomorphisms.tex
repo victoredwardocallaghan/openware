@@ -1,0 +1,168 @@
+% Copyright © 2013 Edward O'Callaghan. All Rights Reserved.
+
+\subsection{Group Homomorphisms} % (fold)
+\label{subsec:homomorphisms}
+
+Homomorphisms are structure preserving mappings. In group homomorphisms we preserve the
+group structure, defined by the binary law of composition. In particular,
+
+\begin{defn}[Group Homomorphism]
+	Let $(\mathcal{G}, \circ)$ and $(\mathcal{H},\dagger)$ be two groups. Then a mapping
+	$\varphi : \mathcal{G} \to \mathcal{H}$ is called a $\emph{group homomorphism}$ if
+	\[
+		\varphi(g_1 \circ g_2) = \varphi(g_1) \dagger \varphi(g_2) : g_1,g_2 \in \mathcal{G}.
+	\]
+\end{defn}
+
+It follows that, for some $g \in \mathcal{G}$ we have,
+\begin{align*}
+	\varphi ( e_g ) &= \varphi (g \circ g^{-1})
+	\\
+	&= \varphi (g) \dagger \varphi (g^{-1})
+	\\
+	&= \varphi (g) \dagger (\varphi (g) )^{-1}
+	\\
+	&= e_h \in \mathcal{H}.
+\end{align*}
+That is the identity $e$ has been preserved.
+
+In this way, it does not matter if we compose in $\mathcal{G}$ and map to $\mathcal{H}$ or take two elements
+in $\mathcal{G}$ then compose the mapped elements in $\mathcal{H}$, since the group structure has been preserved.
+
+How much information about the elements inside the structure is, however, another quality to consider. Hence we fix some
+terminology here.
+\begin{itemize}
+	\item A homomorphism that is injective is called monomorphic.
+	\item A homomorphism that is surjective is called epimorphic.
+	\item A homomorphism that is bijective is called isomorphic.
+\end{itemize}
+Thus we have the following definitions by considering a group homomorphism $\varphi : \mathcal{G} \to \mathcal{H}$.
+
+\begin{defn}[Monomorphic]
+	$\varphi$ is $\textbf{monomorphic}$ if for $\varphi(x) = \varphi(y) \implies x = y \, \forall x,y \in \mathcal{G}$.
+\end{defn}
+
+\begin{defn}[Epimorphic]
+	$\varphi$ is $\textbf{epimorphic}$ if $\forall h \in \mathcal{H} \exists g \in \mathcal{G}$ so that $\varphi(g) = h$.
+\end{defn}
+
+\begin{defn}[Isomorphic]
+	$\varphi$ is $\textbf{isomorphic}$ if $\varphi$ is $\textbf{both}$ mono- and epic- morphic.
+\end{defn}
+
+Some special cases are sometimes of particular interest and we shall outline them now.
+
+\begin{defn}[Endomorphic]
+	A monomorphism $\mathcal{G} \to \mathcal{G}$ for a group $\mathcal{G}$
+	is called an $\emph{endomorphism}$ of $\mathcal{G}$.
+\end{defn}
+
+\begin{defn}[Automorphic]
+	A isomorphism $\mathcal{G} \to \mathcal{G}$ for a group $\mathcal{G}$
+	is called an $\emph{automorphism}$ of $\mathcal{G}$.
+\end{defn}
+
+\begin{rem}
+	The set $Aut(\mathcal{G})$ of automorphisms of $\mathcal{G}$ forms a group, when composition of
+	mappings is taken as the group law of composition.
+\end{rem}
+
+\begin{exmp}[Trivial Homomorphism]
+	The trivial group homomorphism $id_{\mathcal{G}} : \mathcal{G} \to \mathcal{G}$, given
+	by the mapping $g \mapsto g$ for every $g \in \mathcal{G}$, is in fact a group automorphism.
+\end{exmp}
+
+\begin{exmp}
+	Consider $\psi : GL_n(\R) \to \R^{\times}$ defined by the mapping
+	$A \mapsto \det(A)$ and recall that $\det(AB) = \det(A) \det(B)$.
+	That is, the determinant is a group homomorphism.
+\end{exmp}
+
+\begin{exmp}
+	Consider $\psi : \mathcal{G} \to S_n / A_n$ where $\mathcal{G}=\{-1,1\}$, defined by
+	$1 \mapsto A_n$ and $-1 \mapsto (1 \, 2) A_n$, and observe that $\phi$ is a group homomorphism.
+\end{exmp}
+
+\begin{prob}
+	Consider the map $\phi : \R \to SL_2(\R)$ defined by,
+	\[
+		x \mapsto
+		\begin{pmatrix}
+			1 & x \\
+			0 & 1
+		\end{pmatrix}.
+	\]
+	Show that $\phi(x + y) = \phi(x) \cdot \phi(y)$.
+	Also, prove that $\phi$ is injective.
+\end{prob}
+
+\begin{exmp}
+	Consider the map $\exp : \R^{+} \to \R^{\times}$ from the additive to the
+	multiplicative group, defined by $x \mapsto e^x$, is a group homomorphism.
+	Since, $\exp{(x + y)} = \exp{(x)} \cdot \exp{(y)}$.
+\end{exmp}
+
+\begin{exmp}
+	Consider the linear transformation $T : \mathcal{V} \to \mathcal{W}$.
+	By definition of linearity, $T(\vec{v}_1 + \vec{v}_2) = T(\vec{v}_1) + T(\vec{v}_2)$,
+	the mapping $T$ is a group homomorphism from the additive group of vector space $\mathcal{V}$
+	to the additive group of vector space $\mathcal{W}$.
+\end{exmp}
+
+\begin{prob}
+	Suppose $N \unlhd \mathcal{G}$ and $\pi : \mathcal{G} \to \mathcal{G} / N$,
+	given by the mapping $g \mapsto g N$ for every $g \in \mathcal{G}$. Show that $\pi$
+	is a group homomorphism and then show that it is surjective.
+\end{prob}
+
+\begin{prob}
+	Suppose $\phi : \C^{\times} \to \R^{\times}$ given by the mapping $z \mapsto | z |$. Show
+	that $\phi$ is a group homomorphism. Is $\phi$ bijective?
+\end{prob}
+
+\begin{prop}
+	Let $\varphi : \mathcal{G} \to \mathcal{H}$ be a group homomorphism.
+	\begin{enumerate}[i.)]
+		\item $\varphi(1_{\mathcal{G}}) = 1_{\mathcal{H}}$,
+		\item $\varphi(g^{-1}) = \varphi(g)^{-1}$ for all $g \in \mathcal{G}$,
+		\item If $\mathcal{G}' \leq \mathcal{G}$ then $\varphi(\mathcal{G}') \leq \mathcal{H}$ when the restriction
+			$\mathcal{H} = \varphi |_{\mathcal{G}'} (\mathcal{G})$ holds,
+		\item If $\varphi$ is an isomorphism, then so is its inverse $\varphi^{-1} : \mathcal{H} \to \mathcal{G}$,
+		\item If $\psi : \mathcal{G} \to \mathcal{H}$ and $\varphi : \mathcal{H} \to \mathcal{K}$ are group
+			homomorphisms then so is $\varphi \circ \psi$.
+	\end{enumerate}
+\end{prop}
+
+\begin{proof}
+	For $i.)$ we see that,
+	\begin{align*}
+		1_{\mathcal{H}} \cdot \varphi(1_{\mathcal{G}}) &= \varphi(1_{\mathcal{G}}) \tag{and that} \\
+		\varphi(1_{\mathcal{G}}) &= \varphi(1_{\mathcal{G}} \circ 1_{\mathcal{G}}) \\
+		&= \varphi(1_{\mathcal{G}}) \cdot \varphi(1_{\mathcal{G}})
+		\intertext{so we have that,}
+		1_{\mathcal{H}} \cdot \varphi(1_{\mathcal{G}}) &= \varphi(1_{\mathcal{G}}) \\
+		\Rightarrow 1_{\mathcal{H}} \cdot \varphi(1_{\mathcal{G}}) \cdot \varphi(1_{\mathcal{G}})^{-1}
+		&= \varphi(1_{\mathcal{G}}) \cdot \varphi(1_{\mathcal{G}})^{-1} \\
+		\Rightarrow 1_{\mathcal{H}} &= \varphi(1_{\mathcal{G}}). \qedhere
+	\end{align*}
+\end{proof}
+
+\begin{proof}
+	For $ii.)$ we see that,
+	\begin{align*}
+		g g^{-1} = 1_{\mathcal{G}} &= g^{-1} g \\
+		\Rightarrow 1_{\mathcal{H}} &= \varphi(g) \varphi(g^{-1}) \\
+		&= \varphi(g^{-1}) \varphi(g).
+		\intertext{Hence,}
+		\varphi(g^{-1}) &= \varphi(g)^{-1}. \qedhere
+	\end{align*}
+\end{proof}
+
+\begin{defn}[kernel]
+	If $\varphi : \mathcal{G} \to \mathcal{H}$ is a group homomorphism,
+	then the $\emph{kernel}$ is the set
+	$\ker(\varphi) = \{ g \in \mathcal{G} : \varphi (g) = e_h \in \mathcal{H} \}$.
+\end{defn}
+
+If $\varphi : \mathcal{G} \to \mathcal{H}$ is a group homomorphism, then
+observe that $\ker(\varphi)$ is a normal subgroup of of $\mathcal{G}$.

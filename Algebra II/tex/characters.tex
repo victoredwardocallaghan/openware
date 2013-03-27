@@ -1,6 +1,6 @@
 % Copyright © 2013 Edward O'Callaghan. All Rights Reserved.
 
-\section{Characters} % (fold)
+\subsection{Characters} % (fold)
 \label{sec:characters}
 A \emph{group character} is a group homomorphism,
 $\chi : \mathcal{G} \to \C^{\times}$, from a finite abelian group
@@ -10,7 +10,7 @@ In particular;
 \begin{defn}[Character]
 	Let $\mathcal{G}$ be a finite abelian group of order $n$, written additively.
 	A \emph{character} of $\mathcal{G}$ is a group homomorphism,
-	$\chi : \mathcal{G} \to \C^{\times}$, of $\mathcal{G}$ such that:
+	$\chi : \mathcal{G} \to \C^{\times}$, of $\mathcal{G}$, that is:
 
 	\[
 		\chi (g_1 + g_2) = \chi(g_1) \chi(g_2) : g_1,g_2 \in \mathcal{G}.
@@ -107,11 +107,11 @@ In particular;
 \end{rem}
 
 \begin{prob}
-	Let $\hat{\mathcal{G}}$ denote the set of characters.
-	Check that $\hat{\mathcal{G}}$ forms an abelian group
+	Let $\widehat{\mathcal{G}}$ denote the set of characters.
+	Check that $\widehat{\mathcal{G}}$ forms an abelian group
 	under the operation defined by
 	$(\chi \psi)(g) \doteq \chi(g) \psi(g)$ for every $g \in \mathcal{G}$.
-	We call $\hat{\mathcal{G}}$ the \emph{dual group} of $\mathcal{G}$.
+	We call $\widehat{\mathcal{G}}$ the \emph{dual group} of $\mathcal{G}$.
 \end{prob}
 
 \begin{prop}
@@ -119,10 +119,10 @@ In particular;
 	map $\chi_j : \Z_n \to \C^{\times}$ defined by $\chi_j(k) = \omega^{k j} : k \in \Z_n$
 	is a character of $\Z_n$ for every $j \in \Z$. Moreover,
 	\begin{enumerate}
-		\item $\chi_i = \chi_j \Leftrightarrow i \equiv j (\mod n)$;
+		\item $\chi_i = \chi_j \Leftrightarrow i \equiv j \pmod{n}$;
 		\item $\chi_j = \chi_{1}^{j}$;
-		\item $\hat{\Z_n} = \{ \chi_0, \dots , \chi_{n-1} \}$;
-		\item Consequently, $\hat{\Z_n} = \Z_n$. % FIXME: should be isomorphic symbole?
+		\item $\widehat{\Z_n} = \{ \chi_0, \dots , \chi_{n-1} \}$;
+		\item Consequently, $\widehat{\Z_n} \cong \Z_n$.
 	\end{enumerate}
 \end{prop}
 
@@ -140,7 +140,7 @@ In particular;
 	is a character of $\mathcal{G}$. Moreover, all characters of $\mathcal{G}$ are
 	of this form. Consequently,
 	\[
-		\hat{\mathcal{G}} = \hat{H_1} \oplus \hat{H_2}.
+		\widehat{\mathcal{G}} = \widehat{H_1} \oplus \widehat{H_2}.
 	\]
 \end{prop}
 
@@ -150,10 +150,18 @@ In particular;
 
 \begin{cor}
 	\[
-		\hat{\mathcal{G}} = \mathcal{G}. % FIXME: Should be isomorphic symbole!
+		\widehat{\mathcal{G}} \cong \mathcal{G}.
 	\]
 \end{cor}
 
 \begin{proof}
-	TODO..
+	\begin{align*}
+		\intertext{Observe that,}
+		\mathcal{G} &\cong \Z_{n1} \oplus \dots \oplus \Z_{nk}
+		\\
+		\Rightarrow \widehat{\mathcal{G}}
+		&\cong \widehat{\Z_{n1}} \oplus \dots \oplus \widehat{\Z_{nk}}
+		\\
+		&\cong \mathcal{G}. \qedhere
+	\end{align*}
 \end{proof}
