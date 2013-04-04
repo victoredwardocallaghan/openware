@@ -1,0 +1,41 @@
+% Copyright © 2013 Edward O'Callaghan. All Rights Reserved.
+
+\section{Introduction} % (fold)
+\label{sec:introduction}
+
+The $\lcal$ formalism was introduced in the 1930s by Akonzo Church
+to provide a framework for the concept of effective computability.
+In this course we build up the rudiments of $\lcal$. We study the
+$\lcal$ mathematical formalism of computable functions. The
+properties of $\lcal$ have provided both the theoretical and
+rigorous foundations to functional programming.
+
+In actual fact the whole of classical computation can be understood
+though the $\lcal$ formalism of the classical Turning machine. This
+is known as the Church-Turing thesis that sates the follow:
+
+\begin{conj}[Church-Turing thesis]
+A function is computable if and only if it is computable by a
+Turing machine.
+\end{conj}
+
+Hence, if some algorithm exists to carry out some calculation
+then so too can a Turing machine compute the result and hence
+a recursively definable function and by a $\lambda$-function.
+
+In this way $\lcal$ can be thought of as the
+\emph{smallest universal programming language}. To justify this
+claim we remark that $\lcal$ only consists of of \emph{single}
+transformation rule called \textbf{variable substitution} and
+a single function definition scheme. We also make note that
+the transformation rule does not refer to the underlaying
+hardware implementation and so is independent of the actual
+machine implementation and so is a pure software formalisation.
+
+The key concept that motivates this is central to mathematics,
+and more generally to language in general, is that of
+\emph{representation}. Mathematical computation is essentially
+the act of symbolic re-representation based on self consistent
+pattern matching. The $\lcal$ is a natural formalisation to this
+concept and so this provides useful motivating terms to think in
+to familiarise yourself with the $\lcal$.

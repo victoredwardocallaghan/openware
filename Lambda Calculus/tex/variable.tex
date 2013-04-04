@@ -1,0 +1,66 @@
+% Copyright © 2013 Edward O'Callaghan. All Rights Reserved.
+
+\section{Variables} % (fold)
+\label{sec:variables}
+
+In $\lcal$ all names are local to the definitions. In the
+function $\lambda x.x$ we say that $x$ is \emph{bound}
+since its occurrence in the body of the definition is
+preceded by $\lambda x$. A name that is not preceded by a
+$\lambda$ is said to be a \emph{free variable}.
+
+%
+\subsection{Free}
+
+Formally we define a \emph{free} variable in the following
+way:
+
+\begin{defn}[Free Variable]
+	We say that a variable $<name>$ is \emph{free} in an
+	expression if one of the following cases holds:
+	\begin{itemize}
+		\item $<name>$ is free in $<name>$.
+		\item $<name>$ is free in $\lambda <name'>.<exp>$
+			if the identifier $<name> \neq <name'>$ and
+			$<name>$ is free in $<exp>$.
+		\item $<name>$ is free in $\textbf{E}_1 \textbf{E}_2$
+			if $<name>$ is free in $\textbf{E}_1$ or free in
+			$\textbf{E}_2$.
+	\end{itemize}
+\end{defn}
+
+\begin{exmp}
+	Consider the expression,
+	\[
+		(\lambda x.x)(\lambda y.yx).
+	\]
+	Then the $x$ in the body of the first expression from the left is
+	bound to the first $\lambda$ and the $y$ in the body of the second
+	expression is bound to the second $\lambda$ and the $x$ is said to
+	be \emph{free}.
+\end{exmp}
+
+\begin{rem}
+	Variables with the same name in different $\lambda$-expressions are
+	independent. That is, $x$ is independent in the second expression
+	from the $x$ in the first expression of $(\lambda x.x)(\lambda y.yx)$.
+\end{rem}
+
+%
+\subsection{Bound}
+
+Formally we define a \emph{bound} variable in the following
+way:
+
+\begin{defn}
+	We say that a variable $<name>$ is \emph{bound} in an
+	expression if one of the following cases hold:
+	\begin{itemize}
+		\item $<name>$ is bound in $\lambda <name'>.<exp>$
+			if the identifier $<name>=<name'>$ or if
+			$<name>$ is bound in $<exp>$.
+		\item $<name>$ is bound in $\textbf{E}_1 \textbf{E}_2$
+			if $<name>$ is bound in $\textbf{E}_1$ or if it is
+			bound in $\textbf{E}_2$.
+	\end{itemize}
+\end{defn}

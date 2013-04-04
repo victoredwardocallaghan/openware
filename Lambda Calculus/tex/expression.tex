@@ -1,0 +1,69 @@
+% Copyright © 2013 Edward O'Callaghan. All Rights Reserved.
+
+\section{Definition} % (fold)
+\label{sec:definition}
+
+The $\lcal$ is defined by the concept of an ``expression''
+defined in the following way:
+
+\begin{defn}[Expression]
+	An \emph{expression} in $\lcal$ is defined recursively as:
+	\begin{align*}
+		<expression> & \doteq <name> | <function> | <application>
+		\\
+		<function> & \doteq \lambda <name>.<expression>
+		\\
+		<application> & \doteq <expression><expression>
+	\end{align*}
+	where ``name'' (or ``variable'') is some arbitrary identifier.
+\end{defn}
+
+A trivial example of a $\lambda$-expression is given here.
+
+\begin{exmp}[Identity function]
+	The following $\lambda$-expression defines the identity function:
+	\[
+		\lambda x.x
+	\]
+\end{exmp}
+
+Arguments to functions have no relevance on the behaviour of the function
+and so serve only as place holders to specify the substitution rule
+when the function is evaluated. So we can write various synonyms for
+the above identity function as,
+\[
+	(\lambda x.x) \equiv (\lambda y.y) \equiv (\lambda t.t)
+\]
+and so forth.
+
+Notice that an expression \textbf{E} is usually enclosed in parenthesis
+for clarity, that is (\textbf{E}). We adopt the convention that
+function application \emph{associates} from the left, that is
+we evaluate expressions in the following way:
+\[
+	\textbf{E}_1 \textbf{E}_2 \textbf{E}_3 \dots \textbf{E}_n
+	= (\dots ((\textbf{E}_1 \textbf{E}_2) \textbf{E}_3) \dots \textbf{E}_n).
+\]
+
+\begin{defn}
+	Their are only two \emph{keywords} used in the language,
+	$\lambda$ and the \emph{dot}.
+	\begin{itemize}
+		\item The \emph{name} after $\lambda$ the identifier of the
+			\emph{argument} of a function.
+		\item The \emph{expression} after the dot is called the ``body'',
+			or \emph{definition} of a function.
+	\end{itemize}
+\end{defn}
+
+The application of a function to an expression is made clear by example:
+
+\begin{exmp}
+	\begin{align*}
+		(\lambda x.x)y &= [y/x]x
+		\\
+		&= y.
+	\end{align*}
+	That is, we substitute $x$ by $y$ in the expression to the right, which
+	is simply $x$ and so we have $y$.
+\end{exmp}

@@ -128,8 +128,8 @@ Some special cases are sometimes of particular interest and we shall outline the
 		\item If $\mathcal{G}' \leq \mathcal{G}$ then $\varphi(\mathcal{G}') \leq \mathcal{H}$ when the restriction
 			$\mathcal{H} = \varphi |_{\mathcal{G}'} (\mathcal{G})$ holds,
 		\item If $\varphi$ is an isomorphism, then so is its inverse $\varphi^{-1} : \mathcal{H} \to \mathcal{G}$,
-		\item If $\psi : \mathcal{G} \to \mathcal{H}$ and $\varphi : \mathcal{H} \to \mathcal{K}$ are group
-			homomorphisms then so is $\varphi \circ \psi$.
+		\item If $\psi : \mathcal{G} \to \mathcal{H}$ and $\phi : \mathcal{H} \to \mathcal{K}$ are group
+			homomorphisms then so is $\phi \circ \psi$.
 	\end{enumerate}
 \end{prop}
 
@@ -155,6 +155,45 @@ Some special cases are sometimes of particular interest and we shall outline the
 		&= \varphi(g^{-1}) \varphi(g).
 		\intertext{Hence,}
 		\varphi(g^{-1}) &= \varphi(g)^{-1}. \qedhere
+	\end{align*}
+\end{proof}
+
+\begin{proof}
+	For $iii.)$ we check for closure and inverses as follows.
+	Define:
+	\begin{align*}
+		\varphi(\mathcal{G}') & \doteq \{ \varphi(g) : g \in \mathcal{G}' \} \\
+		\varphi(g) \varphi(g') &= \varphi(g g') \in \varphi(\mathcal{G}') : g,g' \in \mathcal{G}'
+		\intertext{and so $\varphi(\mathcal{G}')$ is closed. Now given,}
+		\varphi(g) & \in \varphi(\mathcal{G}') : g \in \mathcal{G}'
+		\intertext{then we have that,}
+		\varphi(g)^{-1} = \varphi(g^{-1}) & \in \varphi(\mathcal{G}') : g^{-1} \in \mathcal{G}'
+		\intertext{and so $\varphi(\mathcal{G}')$ has inverses. Hence $\varphi(\mathcal{G}')$ is a subgroup.}
+	\end{align*}
+\end{proof}
+
+\begin{proof}
+	For $iv.)$ we consider the mapping $\varphi^{-1} : \mathcal{H} \to \mathcal{G}$ defined by
+	$h \mapsto g$ if $\varphi(g)=h$. First we check that $\varphi^{-1}$ is a group homomorphism, that is:
+	\begin{align*}
+		\varphi(h h')^{-1} &= \varphi(h)^{-1} \varphi(h')^{-1}.
+		\intertext{Suppose that $g=\varphi(h)^{-1}$ and $g'=\varphi(h')^{-1}$ and since,}
+		\varphi(g g') &= \varphi(g) \varphi(g') \\
+		&= h h' \\
+		\Rightarrow \varphi(h h')^{-1} &= g g' \\
+		&= \varphi(h)^{-1} \varphi(h')^{-1}
+	\end{align*}
+	and so $\varphi^{-1}$ is a group homomorphism. It now trivially follows that $\varphi^{-1}$ is
+	isomorphic if $\varphi$ is isomorphic. \qedhere
+\end{proof}
+
+\begin{proof}
+	For $v.)$ we see directly that, given $\psi(g g') = \psi(g) \cdot \psi(g')$ and
+	$\phi(h h') = \phi(h) \dagger \phi(h')$, we have that:
+	\begin{align*}
+		\phi \circ \psi (g g') &= \phi ( \psi(g) \cdot \psi(g') ) \\
+		&= \phi \circ \psi(g) \dagger \phi \circ \psi(g') \\
+		&= \phi(h) \dagger \phi(h') = \phi(h h'). \qedhere
 	\end{align*}
 \end{proof}
 
