@@ -10,9 +10,9 @@ vector valued functions called the \emph{Leibniz Rule}.
 
 \begin{prop}
   Suppose that $f,g \in \mathcal{C}^n(\R)$ are n-times differentiable.
-  Then the $\nth$ derivative of the product $f \circ g$ is given by,
+  Then the $\nth$ derivative of the product $f \cdot g$ is given by,
   \[
-    (f \circ g)^n = \sum_{k=0}^{\infty} \binom{n}{k} f^{k} g^(n-k).
+    (f \cdot g)^n = \sum_{k=0}^{\infty} \binom{n}{k} f^{k} g^{(n-k)}.
   \]
 \end{prop}
 
@@ -25,14 +25,14 @@ holds for vector valued functions.
 
 \begin{prop}
   Suppose that the vector valued functions $\vec{f},\vec{g} \in \mathcal{C}^k(\R^n)$.
-  Then the $k^{th}$ partial derivative of the product $\vec{f} \circ \vec{g}$ is given by,
+  Then the $k^{th}$ partial derivative of the product $\vec{f} \cdot \vec{g}$ is given by,
   \[
-  \delta^{\alpha} (\vec{f} \circ \vec{g}) =
+  \delta^{\alpha} (\vec{f} \cdot \vec{g}) =
   \sum_{\beta : \beta \leq \alpha} \binom{\alpha}{\beta} (\delta^{(\alpha - \beta)} \vec{f}) (\delta^{\beta} \vec{g})
  \]
  where we make use of the \emph{multi-index} notation that,
  $\alpha = (\alpha_1, \alpha_2, \dots, \alpha_n)$ and $\beta = (\beta_1, \beta_2, \dots, \beta_n)$
- are both n-tuples.
+ are both n-tuples i.e., $\alpha, \beta \in \N^n_0$.
 \end{prop}
 
 \begin{proof}
