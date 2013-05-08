@@ -1,4 +1,125 @@
-% Copyright © 2012 Edward O'Callaghan. All Rights Reserved.
+% Copyright © 2012-2013 Edward O'Callaghan. All Rights Reserved.
+% !Tex root = Real Analysis I.tex
+
+\section{Metric Spaces} % (fold)
+\label{sec:metricspaces}
+
+\begin{defn}[Metric]
+  A \emph{metric} $d_X$ on set $X$ is a function
+  $d_X : X \times X \to \R$ such that, for any $x,y,z \in X$;
+  \begin{enumerate}[i.)]
+      \item $d_X (x,y) \geq 0$ and $d_X (x,y)=0$ iff $x=y$ (semi-positive definate),
+      \item $d_X (x,y)=d_X (y,x)$ (symmetric),
+      \item $d_X (x,z) \leq d_X (x,y) + d_X (y,z)$ (triangle inequality).
+  \end{enumerate}
+\end{defn}
+
+\begin{defn}[Metric Space]
+  A \emph{metric space} is the pair $(X, d_X)$ where $X$ is a set
+  and $d_X$ is the metric defined on the set $X$.
+\end{defn}
+
+% TODO examples of metric spaces..
+
+\begin{defn}[Open Ball]
+  An \emph{open ball} in a metric space $(X,d_X)$ with center
+  $x_0 \in X$ and $\epsilon$-neighborhood with $\epsilon > 0$ is defined as the set;
+  \begin{align*}
+    \mathcal{B}_{\epsilon}(x_0) & \doteq
+    \{ x \in X : d_X(x_0,x) < \epsilon \}.
+  \end{align*}
+\end{defn}
+
+\begin{defn}[Closed Ball]
+  A \emph{closed ball} in $X$ with center $x_0 \in X$ and
+  $\epsilon$-neighborhood with $\epsilon > 0$ is defined as the set;
+  \begin{align*}
+    \overline{\mathcal{B}_{\epsilon}(x_0)} & \doteq
+    \{ x \in X : d_X(x_0,x) \leq \epsilon \}.
+  \end{align*}
+\end{defn}
+
+\begin{defn}[Open set]
+  Let $\Omega \subseteq X$ of a metric space $(X,d_X)$. The set $\Omega$ is called
+  an \emph{open set} in $X$ if; for each $x \in \Omega$ there exists
+  some $\delta>0$ such that $\mathcal{B}_{\delta}(x) \subseteq \Omega$.
+\end{defn}
+
+\begin{lem}
+  The whole space $X$ and the empty set $\emptyset$ are trivially open.
+\end{lem}
+
+\begin{defn}[Closed set]
+  A \emph{closed set} is the complement, denoted $\Omega^c$, of
+  the open set $\Omega$.
+\end{defn}
+
+\begin{lem}
+  The whole space $X$ and the empty set $\emptyset$ are trivially closed.
+\end{lem}
+
+\begin{defn}[Clopen set]
+  A set that is both open and closed is said to be an \emph{clopen set}.
+\end{defn}
+
+\begin{defn}[Boundary]
+  The \emph{boundary} of a set $\Omega \subseteq X$ of a metric space $(X,d_X)$,
+  denoted by $\delta \Omega$, is defined as;
+  \begin{align*}
+    \delta \Omega & \doteq \{
+  x \in X : \mathcal{B}_{\epsilon}(x) \cap \Omega \neq \emptyset ,
+  \mathcal{B}_{\epsilon}(x) \cap \Omega^c \neq \emptyset \}.
+  \end{align*}
+\end{defn}
+
+\begin{lem}
+  We have that, $\delta \Omega = \delta (\Omega^c)$, is trivially so.
+\end{lem}
+
+\begin{prop}
+  Any open set does not contain any of its boundary points.
+\end{prop}
+
+\begin{proof}
+  Let $\Omega \subseteq X$ be open so that $\Omega^c$ is closed. It remains that
+  $\delta \Omega^c \subseteq \Omega^c$. \qedhere
+\end{proof}
+
+\begin{prop}
+  A set $S$ is \emph{closed} if and only if it contains
+  all its boundary $\delta S \subseteq S$.
+\end{prop}
+
+\begin{proof}
+  Suppose that $S$ is closed so that $S^c$ is open.
+  It follows that $S^c \cap \delta S = \emptyset$ and hence $\delta S \subseteq S$.
+  Conversely, now consider some $x \in S^c$. Since $\delta S \subseteq S$,
+  it follows that $x \notin \delta S$. It remains by definition of
+  boundary point, we have some $\epsilon>0$ such that
+  $\mathcal{B}_{\epsilon}(x) \cap S = \emptyset$.
+  Thus, $\mathcal{B}_{\epsilon}(x) \subseteq S$ and so $S^c$ is open. \qedhere
+\end{proof}
+
+\begin{defn}[Interior (Point)]
+  Let $\Omega \subseteq X$ be some region of a metric space $(X,d_X)$.
+  A point $x \in \Omega$ is said to be an \emph{interior point} if
+  there exists some $\delta>0$ such that $\mathcal{B}_{\delta}(x) \subseteq \Omega$.
+  The set of all interior points, denoted $\Omega^{\circ}$,
+  is called the \emph{interior} of the region $\Omega$.
+\end{defn}
+
+\begin{defn}[Closure]
+  Let $S \subseteq X$. We define the \emph{closure} of $S$, denoted
+  $\overline{S}$, by the set $\overline{S}=S \cup \delta S$.
+\end{defn}
+
+\begin{defn}[Accumulation Point]
+  Let $\Omega \subseteq X$ and fix some point $x \in X$. We call $x$
+  an \emph{accumulation}, or \emph{limit}, \emph{point} of
+  $\Omega$ if every open ball around $x$ contains atleast one distinct point
+  $y \in \Omega$. In particular, for every $\epsilon > 0$ we have that,
+  $(\mathcal{B}_{\epsilon}(x) - {y}) \cap \Omega \neq \emptyset$.
+\end{defn}
 
 \section{Convergence} % (fold)
 \label{sec:convergence}
