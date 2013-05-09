@@ -12,28 +12,57 @@ vector valued functions called the \emph{Leibniz Rule}.
   Suppose that $f,g \in \mathcal{C}^n(\R)$ are n-times differentiable.
   Then the $\nth$ derivative of the product $f \cdot g$ is given by,
   \[
-    (f \cdot g)^n = \sum_{k=0}^{\infty} \binom{n}{k} f^{k} g^{(n-k)}.
+    (f \cdot g)^{(n)} = \sum_{k=0}^{n} \binom{n}{k} f^{(k)} g^{(n-k)}.
   \]
 \end{prop}
 
 \begin{proof}
-  TODO.. by mathematical induction..
+  We prove by mathematical induction.
+  \begin{align*}
+    \intertext{For the base case, let $n=1$,}
+    \sum_{k=0}^{n=1} \binom{n}{k} f^{k} g^{(n-k)}
+    &= \binom{1}{0} f^{(0)} g^{(1)} + \binom{1}{1} f^{(1)} g^{(0)}
+    \\
+    &= f \frac{d g}{d x} + g \frac{d f}{d x}.
+    \intertext{Now assume that,}
+    (f \cdot g)^{(t)} &= \sum_{k=0}^{t} \binom{t}{k} f^{(k)} g^{(t-k)}.
+    \intertext{Hence for $t+1$ we have,}
+    (f \cdot g)^{(t+1)} &= \sum_{k=0}^{t+1} \binom{t+1}{k} f^{(k)} g^{(t+1-k)}
+    \\
+    ...
+  \end{align*}
 \end{proof}
 
 Even more generally we can show that the product rule in this way
-holds for vector valued functions.
+holds for vector valued functions by the multinomial theorem.
 
 \begin{prop}
   Suppose that the vector valued functions $\vec{f},\vec{g} \in \mathcal{C}^k(\R^n)$.
   Then the $k^{th}$ partial derivative of the product $\vec{f} \cdot \vec{g}$ is given by,
   \[
-  \delta^{\alpha} (\vec{f} \cdot \vec{g}) =
-  \sum_{\beta : \beta \leq \alpha} \binom{\alpha}{\beta} (\delta^{(\alpha - \beta)} \vec{f}) (\delta^{\beta} \vec{g})
+  \partial^{\alpha} (\vec{f} \cdot \vec{g}) =
+  \sum_{\beta : \beta \leq \alpha} \binom{\alpha}{\beta} (\partial^{(\alpha - \beta)} \vec{f}) (\partial^{\beta} \vec{g})
  \]
  where we make use of the \emph{multi-index} notation that,
  $\alpha = (\alpha_1, \alpha_2, \dots, \alpha_n)$ and $\beta = (\beta_1, \beta_2, \dots, \beta_n)$
  are both n-tuples i.e., $\alpha, \beta \in \N^n_0$.
 \end{prop}
+
+\begin{proof}
+  TODO..
+\end{proof}
+
+
+% TODO..
+
+\begin{thm}[Leibniz Rule of Integration]
+  Let $\vec{f}=f(x,t) \in \mathcal{C}^{1}(\R^2)$ and $a(t),b(t) \in \mathcal{C}^{1}(\R)$ exist. Then,
+  \[
+    \frac{d}{d t} \int_{a(t)}^{b(t)} \vec{f} \mathrm{d} x
+    = \int_{a(t)}^{b(t)} \frac{\partial \vec{f}}{\partial t} \mathrm{d} x
+    + \frac{\partial b(t)}{\partial t} f(b(t),t) - \frac{\partial a(t)}{\partial t} f(a(t),t).
+  \]
+\end{thm}
 
 \begin{proof}
   TODO..
