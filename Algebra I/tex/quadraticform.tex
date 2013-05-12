@@ -1,0 +1,50 @@
+% Copyright © 2013 Edward O'Callaghan. All Rights Reserved.
+
+\section{Quadratic Form} % (fold)
+\label{sec:quadraticform}
+
+\begin{defn}[Quadratic Form]
+For an $n \times 1$ vector $\mathbf{x}$ and $n \times n$
+symmetric matrix $A$ \emph{quadratic form} is defined as:
+\[
+ Q = \mathbf{x}^{T} A \mathbf{x}.
+\]
+\end{defn}
+
+
+\begin{exmp}
+Given $3x^2 - 10xy + 3y^2 = 24$ find the shortest distance
+to the origin.
+
+\begin{align*}
+\intertext{Consider the quadratic form, $Q=\mathbf{x}^{T} A \mathbf{x}$, and let}
+A &=
+\begin{pmatrix}
+3 & -5 \\
+-5 & 3
+\end{pmatrix}
+\intertext{which has eigenvalues $\lambda_1 = 8$ and $\lambda_2 = -2$ with
+eigen vectors,}
+\mathbf{v}_1 = \begin{pmatrix} 1 \\ -1 \end{pmatrix} , &\,
+\mathbf{v}_2 = \begin{pmatrix} 1 \\ 1 \end{pmatrix}.
+\intertext{Let us know write a matrix $S$ of the othogonal eigenvectors normalised,}
+S &= \frac{1}{\sqrt{2}} \begin{pmatrix} \mathbf{v}_1 & \mathbf{v}_2 \end{pmatrix}
+\intertext{and matrix $\Lambda$ with eigenvalues down the diagonal as so,}
+\Lambda &= \begin{pmatrix} \lambda_1 & 0 \\ 0 & \lambda_2 \end{pmatrix}.
+\intertext{Hence we have that,}
+Q &= \mathbf{x}^{T} A \mathbf{x}
+\\
+&= \mathbf{x}^{T} (S \Lambda S^{-1}) \mathbf{x}
+\\
+&= (S^{T} \mathbf{x}) \Lambda (S^{T} \mathbf{x}).
+\intertext{It remains that,}
+Q &= (S^{T} \mathbf{x}) \Lambda (S^{T} \mathbf{x})
+\\
+&= \frac{1}{2} \begin{pmatrix} (x-y) & (x+y) \end{pmatrix}
+\begin{pmatrix} 8 & 0 \\ 0 & -2 \end{pmatrix}
+\begin{pmatrix} (x-y) \\ (x+y) \end{pmatrix}
+\\
+&= 4 (x-y)^2 - 1 (x+y)^2.
+\intertext{Thus we have the hyperboloid $4(x-y)^2 - 1(x+y)^2 = 24$.}
+\end{align*}
+\end{exmp}
