@@ -3,16 +3,289 @@
 \section{Quadratic Form} % (fold)
 \label{sec:quadraticform}
 
+A quadratic or more generally, a \emph{quadric}, form is the
+linear combination of quadratic terms with scalar coefficients
+with possible cross terms. More precisely, quadratic forms are
+in fact homogeneous quadratic polynomials in $n$ variables.
+
+The special case from the quadratic equation,
+\[
+ a x^2 + b x + c = 0
+\]
+where $a \in \R : a \neq 0$, $x \in \F$ and fix $b=c=0$ so
+to be homogeneous, then it remains that we have the unary
+quadratic function,
+\[
+ q(x) = a x^2
+\]
+
+This is a primary example of a simple one dimensional
+quadratic form. It however, turns out more generally that a
+\emph{quadric} has a more generalised linear algebraic form
+known as the \emph{quadratic form} which is defined herein.
+
 \begin{defn}[Quadratic Form]
 For an $n \times 1$ vector $\mathbf{x}$ and $n \times n$
-symmetric matrix $A$ \emph{quadratic form} is defined as:
+symmetric matrix $A$ the \emph{quadratic form} is defined as:
 \[
- Q = \mathbf{x}^{T} A \mathbf{x}.
+ Q(\mathbf{x}) = \mathbf{x}^{T} A \mathbf{x}.
 \]
 \end{defn}
 
+Notice that in the special case of the unary quadratic function
+the $x$ term is a scalar in the field $\F$. However in the
+more generalised form $\mathbf{x}$ is now a vector with
+components in some field $\F$ where the vector space is
+defined on, typically $\F = \R$. Observe that, if the
+quadratic form $Q(\mathbf{x})$ is defined over some vector space
+$\mathcal{V}(\F)$ then the quadratic form defines a mapping in
+following way, $Q : \mathcal{V} \to \F$.
+Such a quadratic mapping motivates the following definition:
+
+\begin{defn}[Quadratic Space]
+ A \emph{quadratic space} is the pairing $(\mathcal{V}, q)$
+ of some vector space $\mathcal{V}(\F)$ over some field $\F$
+ and the quadratic map $q : \mathcal{V} \to \F$ defined by
+ the quadratic form $q = Q(\mathbf{v}) = \mathbf{v}^{T} A \mathbf{v}$
+ for some symmetric matrix $A$ that is well defined for vectors
+ from the vector space $\mathcal{V}$.
+\end{defn}
 
 \begin{exmp}
+ Consider the vector space $\R^2$ and the quadratic map,
+ $q : \R^2 \to \R$ defined by the square of the Euclidean norm.
+ That is, $q(\mathbf{v}) = \| \mathbf{v} \|^2 = x^2 + y^2$.
+ Hence a Euclidean normed vector space is a \emph{quadratic space}.
+\end{exmp}
+
+In any case, digressing back to the quadratic form consider for example,
+some of the following motivating cases given,
+\begin{exmp}
+\begin{align*}
+ q(x) &= \alpha x^2 \tag{unary}
+ \\
+ q(x,y) &= \alpha x^2 + \beta x y + \gamma y^2 \tag{binary}
+ \\
+ q(x,y,z) &= \alpha x^2 + \beta y^2 + \gamma z^2 + a xy + b xz + c yz \tag{ternary}
+\end{align*}
+\end{exmp}
+By re-representing these forms in terms of the more compact matrix
+representations we may make use of various linear algebraic tools
+such as eigen-decomposition.
+
+\begin{rem}
+ The quadratic form is analogous to the notion of \emph{completing the square}.
+ By way of this, we can remember the quadratic form in the geometric context as
+ completing the hypersquares.
+\end{rem}
+
+Quadratic forms allow us to characterise various geometric curves and surfaces.
+In particular,
+\begin{align*}
+ \left( \frac{x}{a} \right)^2 + \left( \frac{y}{b} \right)^2 &= c^2 \tag{eclipse}
+ \\
+ \left( \frac{x}{a} \right)^2 - \left( \frac{y}{b} \right)^2 &= c^2 \tag{hyperbola}
+\end{align*}
+
+Consider then an examples of a quadric form,
+\begin{exmp}
+ $Q(x,y) = x^2 + 2 \sqrt{2} xy + 4y^2$.
+\end{exmp}
+It is not yet apparent as to what this surface looks like geometrically. However,
+by a change of bases we may derive a more familiar representation to characterise
+the surface. The change of bases we pick will be the normalised orthogonal eigenbasis.
+The rational for this choose is that the eigenvectors are \emph{stretched only} by
+a scalar amount (the corresponding eigenvalues), and so are invariant to rotation or
+reflection under the curve. We are guarantied that the eigenvectors are orthogonal by
+the spectral theorem when $A$ is symmetric and that all the eigenvalues are real.
+Moreover, by normalising the eigenvectors we remain with a representation in a new
+coordinate system that does not `interfere` with the `look`, if you like, of the curve.
+This orthonormal basis is called the \emph{principle axes} given in the following theorem.
+
+First recall that,
+\begin{lem}
+ If $A$ is a real symmetric matrix, then by the spectral theorem
+ $A$ has all real eigenvalues and the eigenspaces of $A$ are
+ mutually orthogonal and so $A$ is orthonormally diagonalisable.
+\end{lem}
+
+\begin{thm}[Principal Axis Theorem]
+ Given the quadratic form,
+ $Q(\mathbf{x}) = \mathbf{x}^{T} A \mathbf{x}$
+ where $A$ is a real symmetric matrix. Then by the above lemma,
+ we have that, in particular by Gram-Schmidt, $A$ is orthogonally
+ diagonalisable into an orthonormal eigenbasis.
+
+ Suppose then that
+ $\{\lambda_1, \lambda_2, \dots, \lambda_n\}$
+ are the eigenvalues of $A$ and
+ $\{\mathbf{u}_1, \mathbf{u}_2, \dots, \mathbf{u}_n\}$
+ the eigenvectors of $A$. Then let
+ $\{\hat{\mathbf{u}}_1, \hat{\mathbf{u}}_2, \dots, \hat{\mathbf{u}}_n\}$
+ denote the set of normalised eigenvectors of $A$ and let $S$ be the
+ matrix of the orthogonal eigenvectors normalised,
+ \begin{align*}
+  S &=
+  \begin{pmatrix}
+  \frac{\mathbf{u}_1}{\| \mathbf{u}_1 \|}
+  &
+  \frac{\mathbf{u}_2}{\| \mathbf{u}_2 \|}
+  &
+  \dots
+  &
+  \frac{\mathbf{u}_n}{\| \mathbf{u}_n \|}
+  \end{pmatrix}
+  \\
+  \Rightarrow
+  S &=
+  \begin{pmatrix}
+  \hat{\mathbf{u}}_1
+  &
+  \hat{\mathbf{u}}_2
+  &
+  \dots
+  &
+  \hat{\mathbf{u}}_n
+  \end{pmatrix}.
+ \end{align*}
+
+ Then with the substitution $\mathbf{x} = S \mathbf{y}$
+ we have the \emph{principle axes form}:
+ \[
+ Q(\mathbf{x})
+ = \mathbf{y}^{T} \Lambda \mathbf{y}
+ = \sum_{i=1}^{n} \lambda_i y_{i}^{2}.
+ \]
+ The set of normalised eigenvectors,
+ $\{\hat{\mathbf{u}}_1, \hat{\mathbf{u}}_2, \dots, \hat{\mathbf{u}}_n\}$
+ is said to be the \emph{principle axes} of the quadratic form $Q(\mathbf{x})$.
+\end{thm}
+
+\begin{proof}
+  Consider the quadratic form, $Q(\mathbf{x}) = \mathbf{x}^{T} A \mathbf{x}$
+  and suppose that the matrix $A$ is real and symmetric, i.e. $A=A^{T}$.
+  Suppose then that the set $\{\lambda_1, \lambda_2, \dots, \lambda_n\}$
+  are the eigenvalues of $A$ and $\{\mathbf{u}_1, \mathbf{u}_2, \dots, \mathbf{u}_n\}$
+  are the eigenvectors of $A$. Then let,
+  \begin{align*}
+   \Lambda &=
+   \begin{pmatrix}
+   \lambda_1 & 0 & \dots & 0 \\
+   0 & \lambda_2 & & \vdots \\
+   \vdots & & \ddots & 0 \\
+   0 & \dots & 0 & \lambda_n
+   \end{pmatrix}
+  \end{align*}
+  be the matrix with eigenvalues down the diagonal as so that we may diagonalise
+  $A$ by the change of basis $A= \mathcal{B} \Lambda \mathcal{B}^{-1}$
+  where $\mathcal{B}$ is the matrix,
+  \begin{align*}
+   \mathcal{B} &=
+   \begin{pmatrix}
+    \mathbf{u}_1 & \mathbf{u}_2 & \dots & \mathbf{u}_n
+   \end{pmatrix}
+  \end{align*}
+  of eigenvectors.
+  Let us now write a matrix $S$ of the orthogonal eigenvectors normalised,
+  \begin{align*}
+   S &=
+   \begin{pmatrix}
+   \frac{\mathbf{u}_1}{\| \mathbf{u}_1 \|}
+   &
+   \frac{\mathbf{u}_2}{\| \mathbf{u}_2 \|}
+   &
+   \dots
+   &
+   \frac{\mathbf{u}_n}{\| \mathbf{u}_n \|}
+   \end{pmatrix}.
+   \intertext{Hence we have that,}
+   Q &= \mathbf{x}^{T} A \mathbf{x}
+   \\
+   &= \mathbf{x}^{T} (S \Lambda S^{-1}) \mathbf{x}
+   \\
+   &= \mathbf{x}^{T} (S \Lambda S^{T}) \mathbf{x}
+   \\
+   &= (S^{T} \mathbf{x})^{T} \Lambda (S^{T} \mathbf{x}).
+   \intertext{It remains that,}
+   Q &= (S^{T} \mathbf{x})^{T} \Lambda (S^{T} \mathbf{x}).
+   \intertext{Consider now the substitution $\mathbf{x} = S \mathbf{y}$}
+   \Rightarrow Q &= (S^{T} (S \mathbf{y}))^{T} \Lambda (S^{T} (S \mathbf{y}))
+   \\
+   &= \mathbf{y}^{T} (S^{T} S) \Lambda (S^{T} S) \mathbf{y}
+   \\
+   &= \mathbf{y}^{T} \Lambda \mathbf{y}
+   \\
+   &= \sum_{i=1}^{n} \lambda_i y_{i}^{2}. \qedhere
+  \end{align*}
+\end{proof}
+
+\begin{lem}
+ For the quadratic form $Q(\mathbf{x}) = \mathbf{x}^{T} A \mathbf{x}$, if
+ all the eigenvalues of $A$ are strictly positive then the quadric $Q(\mathbf{x})$
+ is an \emph{ellipsoid}. If all the eigenvalues are strictly negative then the quadric
+ is an \emph{imaginary ellipsoid}. If some eigenvalues are negative and some positive
+ then the quadric is said to be an \emph{hyperboloid}. Finally, if there exists at least
+ one eigenvalues of scale zero then the quadric is some kind of \emph{paraboloid} to be
+ determined.
+\end{lem}
+
+\begin{exmp}
+ Consider again the quadric form, $Q(x,y) = x^2 + 2 \sqrt{2} xy + 4y^2$ and rewrite this
+ in the matrix quadratic form in the following way,
+ \begin{align*}
+  Q(x,y) = Q(\mathbf{x}) &= \mathbf{x}^{T} A \mathbf{x}
+  \\
+  &= \mathbf{x}^{T}
+  \begin{pmatrix}
+   1 & \sqrt{2} \\
+   \sqrt{2} & 4
+  \end{pmatrix}
+  \mathbf{x} \tag{division by two much like completing the square.}
+  \end{align*}
+  Now we wish to diagonalise the matrix $A$ and so we find the eigenvectors
+  and corresponding eigenvalues of $A$ in the usual way. By direct computation
+  we see that $A$ has eigenvalues $\lambda_1 = 5$ and $\lambda_2 = 2$. Hence,
+  by the principal axes theorem we have that,
+  \begin{align*}
+   Q(\mathbf{y}) &= 5 y_1^{2} + 2 y_2^{2}.
+  \end{align*}
+
+  We may wish to sketch the level curve when $Q=1$.
+  Consider then the curve $5 y_1^{2} + 2 y_2^{2} = 1$ and observe that this
+  is an \emph{ellipse} that intersects with the $y_1$-axis at $-1/\sqrt{5}$
+  and $1/\sqrt{5}$ and intersects with the $y_2$ axis at $1/\sqrt{2}$ and
+  $-1/\sqrt{2}$.
+
+  By direct computation we find the eigenvectors are,
+  \begin{align*}
+   \mathbf{v}_1 &= \begin{pmatrix} \sqrt{2} \\ -1 \end{pmatrix},
+   \\
+   \mathbf{v}_2 &= \begin{pmatrix} 1 \\ \sqrt{2} \end{pmatrix}.
+  \end{align*}
+  Recall now the substitution $\mathbf{x} = S \mathbf{y}$ and set the matrix
+  $S$ as the orthogonal eigenvectors normalised in the following way,
+  \begin{align*}
+   S &= \frac{1}{\sqrt{3}}
+   \begin{pmatrix}
+    \sqrt{2} & 1 \\
+    -1 & \sqrt{2}
+   \end{pmatrix}.
+  \end{align*}
+  Where $\mathbf{y} = \begin{pmatrix} y_1 \\ y_2 \end{pmatrix}$ and
+  $\mathbf{x} = \begin{pmatrix} x \\ y \end{pmatrix}$. Hence, if we then
+  plot the normalised eigenbasis on the $XY$-plane and then plot the ellipse
+  on the normalised eigenbasis we may observe that the original quadratic form of
+  $Q(x,y) = x^2 + 2 \sqrt{2} xy + 4y^2$ is merely a rotated ellipse in the usual XY-plane.
+  In particular, the matrix $S$ is a rotation matrix of the ellipse on the principal axes
+  (normalised eigenbasis) into the $XY$-plane.
+
+  Finally we can find the closes points to the origin by observing that in the eigen
+  coordinate system, that is the $Y_1 Y_2$-plane, we have the closes points as
+  $\pm \frac{1}{\sqrt{5}}$.
+\end{exmp}
+
+\begin{exmp}
+FIXME: Fix this example!!
 Given $3x^2 - 10xy + 3y^2 = 24$ find the shortest distance
 to the origin.
 
