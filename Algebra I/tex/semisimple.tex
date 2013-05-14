@@ -38,3 +38,118 @@ unitarily diagonalisable.
 \begin{proof}
  TODO..
 \end{proof}
+
+\begin{prop}
+ Let $S: \mathcal{V} \to \mathcal{V}$ and $T: \mathcal{V} \to \mathcal{V}$
+ be two linear operators defined on a finite vector space $\mathcal{V}$.
+ Let $\mathcal{E}_{\lambda}^{S}$ and $\mathcal{E}_{\mu}^{T}$ denote the
+ eigen invariant subspaces. Then, if the commutator of $S$ and $T$ is
+ zero $[S, T] = S T - T S = 0$, we have that $\mathcal{E}_{\lambda}^{S}$
+ is $T$-invariant and $\mathcal{E}_{\mu}^{T}$ is $S$-invariant.
+\end{prop}
+
+\begin{proof}
+ Let $\mathcal{E}_{\lambda}^{s} = \ker(S - \lambda I)$ and note that
+ $\mathcal{E}_{\lambda}^{s} \leq \mathcal{V}$. Then by definition we
+ are required to show that
+ $T(\mathcal{E}_{\lambda}^{S}) \subseteq \mathcal{E}_{\lambda}^{S}$
+ for $T$-invariancy. Given that the commutator $[S,T]=0$ we see that,
+ \begin{align*}
+  T(\mathcal{E}_{\lambda}^{S})
+  &= T(\{ \mathbf{x} \in \mathcal{V} : (S - \lambda I) \mathbf{x} = \mathbf{0} \})
+  \\
+  &= \ker(T(S - \lambda I))
+  \\
+  &= \ker(TS - \lambda T)
+  \\
+  &= \ker(ST - \lambda T) \tag{Since $ST=TS$}
+  \\
+  &= \ker((S - \lambda I)T)
+  \\
+  &= \{ \mathbf{x} \in \mathcal{V} : (S - \lambda I) T \mathbf{x} = \mathbf{0} \}
+  \\
+  & \subseteq \{ \mathbf{x} \in \mathcal{V} : (S - \lambda I) \mathbf{x} = \mathbf{0} \}
+  = \mathcal{E}_{\lambda}^{S}. \qedhere
+ \end{align*}
+\end{proof}
+
+\begin{thm}[Simultaneous diagonalisation]
+ Let $X: \mathcal{V} \to \mathcal{V}$ and $Y: \mathcal{V} \to \mathcal{V}$
+ be commuting semi-simple operators defined on some finite vector space
+ $\mathcal{V}$. Let $\mathcal{E}_{\lambda_1}^{X}, \dots, \mathcal{E}_{\lambda_r}^{X}$
+ and $\mathcal{E}_{\mu_1}^{Y}, \dots, \mathcal{E}_{\mu_s}^{Y}$ denote the eigen
+ invariant subspaces respectively. Then,
+ \[
+  \mathcal{V} = \bigoplus_{i=1}^{r} \bigoplus_{j=1}^{s}
+  \mathcal{E}_{\lambda_i}^{X} \cap \mathcal{E}_{\mu_j}^{Y}.
+ \]
+\end{thm}
+
+\begin{proof}
+ TODO..
+\end{proof}
+
+\begin{defn}[Normal Operator]
+ A linear map $T : \mathcal{V} \to \mathcal{V}$ on the vector space $\mathcal{V}(\C)$
+ is said to be \emph{normal} if the commutator $[T, T^{*}]=0$.
+\end{defn}
+
+\begin{thm}[Spectral Theorem for Normal Operators]
+ A linear operator $T : \mathcal{V} \to \mathcal{V}$ defined on a finite vector space
+ $\mathcal{V}(\C)$ is \emph{unitarily diagonalisable} if and only if it is \emph{normal}.
+\end{thm}
+
+\begin{proof}
+ Consider the linear operator $T : \mathcal{V} \to \mathcal{V}$ with $\dim \mathcal{V} < \infty$.
+ Let $U : \C^n \to \mathcal{V}$ be unitary and so orthonormal and let $\Lambda = U^{-1} T U$ be
+ diagonal. Since then $U$ is unitary we that $U^{-1}=U^{*}$ and since $\Lambda$ is diagonal we
+ have that the commutator is $[\Lambda,\Lambda^{*}]=0$. Hence,
+ \begin{align*}
+  T T^{*} &= (U \Lambda U^{*}) (U \Lambda U^{*})^{*}
+  \\
+  &= (U \Lambda U^{*}) (U \Lambda^{*} U^{*})
+  \\
+  &= U (\Lambda \Lambda^{*}) U^{*}
+  \\
+  &= U (\Lambda^{*} \Lambda) U^{*}
+  \\
+  &= (U \Lambda^{*} U^{*}) (U \Lambda U^{*})
+  \\
+  &= (U \Lambda U^{*})^{*} (U \Lambda U^{*})
+  = T^{*} T
+  \\
+  & \Rightarrow [T,T^{*}] = 0.
+ \end{align*}
+ Conversaly, suppose now that $[T,T^{*}]=0$. TODO.. Finish proof..
+\end{proof}
+
+\begin{lem}
+ Let $T: \mathcal{V} \to \mathcal{V}$ be a linear operator on the finite vector space
+ $\mathcal{V}(\C)$. Let $X= \frac{1}{2}(T+T^{*})$ and $Y=\frac{1}{2 i}(T - T^{*})$.
+ Then both $X$ and $Y$ are hermitian operators such that $T=X + i Y$ and if $T$ is normal
+ then $X$ and $Y$ commute $[X,Y]=0$. The operator $X$ is said to be the self-adjoint part
+ of $T$ and the operator $Y$ is the (anti)self-adjoint part of $T$.
+\end{lem}
+
+\begin{proof}
+ By the spectral theorem for self-adjoint operators, $X$ and $Y$ are semi-simple operators.
+ Suppose then that $\mathcal{E}_{\lambda_1}^{X}, \dots, \mathcal{E}_{\lambda_r}^{X}$
+ and $\mathcal{E}_{\mu_1}^{Y}, \dots, \mathcal{E}_{\mu_s}^{Y}$ denote the eigen
+ invariant subspaces respectively. Then we have that they are pairwise mutually orthogonal.
+ By the simultaneous diagonalisation theorem we can find an orthonormal coordinate system
+ $U : \C^n \to \mathcal{V}$ to the direct sum orthogonal decomposition,
+ \[
+  \mathcal{V} = \bigoplus_{i=1}^{r} \bigoplus_{j=1}^{s}
+  \mathcal{E}_{\lambda_i}^{X} \cap \mathcal{E}_{\mu_j}^{Y}.
+ \]
+ such that we have both $\Lambda_{X} = U^{*} X U$ and $\Lambda_{Y} = U^{*} Y U$ as diagonal.
+ Hence,
+ \begin{align*}
+ U^{*} T U &= U^{*} (X + i Y) U
+ \\
+ &= U^{*} X U + i U^{*} Y U
+ \\
+ &= \Lambda_X + i \Lambda_Y
+ \end{align*}
+ which is diagonal.
+\end{proof}
