@@ -1,0 +1,70 @@
+% Copyright © 2013 Edward O'Callaghan. All Rights Reserved.
+% !Tex root = Algebra I.tex
+
+\section{Self-Adjoint Hermitian Operators} % (fold)
+\label{sec:hermitian}
+
+\begin{defn}[Hermitian Self-Adjoint]
+ The linear map $T: \mathcal{V} \to \mathcal{V}$ is said to
+ be \emph{self-adjoint}, or \emph{hermitian}, if
+ \[
+  \langle \mathbf{x}, T \mathbf{x} \rangle
+  = \langle T \mathbf{x}, \mathbf{x} \rangle.
+ \]
+\end{defn}
+
+\begin{lem}
+ If $T$ is self-adjoint hermitian then $T^{*}=T$.
+\end{lem}
+
+\begin{rem}
+ If the vector space $\mathcal{V}$ is defined over the reals
+ then we have that $T=T^{T}$, that is $T$ is \emph{symmetric}.
+\end{rem}
+
+\begin{prop}
+ Suppose $T:\mathcal{V} \to \mathcal{V}$ is hermitian self-adjoint.
+ Then $T$ has all real eigenvalues.
+\end{prop}
+
+\begin{proof}
+ By definition $T \mathbf{x} = \lambda \mathbf{x} : \mathbf{x} \neq \mathbf{0}$.
+ Hence,
+ \begin{align*}
+  T \mathbf{x} &= T^{*} \mathbf{x}
+  \\
+  \Rightarrow \lambda \mathbf{x} &= \bar{\lambda} \mathbf{x}
+  \\
+  \Rightarrow \lambda &= \bar{\lambda}
+  \\
+  \Rightarrow \lambda & \in \R. \qedhere
+ \end{align*}
+\end{proof}
+
+\begin{lem}
+ If $T:\mathcal{V} \to \mathcal{V}$ is hermitian self-adjoint.
+ Then the characteristic polynomial $\chi_{T}(\lambda)$ factors
+ completely into linear factors over the reals $\R$.
+\end{lem}
+
+\begin{prop}
+ Suppose that $T: \mathcal{V} \to \mathcal{V}$ is hermitian
+ self-adjoint and let $\mathcal{W} \leq \mathcal{V}$ be a
+ $T$-invariant subspace. Then $\mathcal{W}^{\perp}$ is $T$-invariant.
+ Furthermore, if $\dim(\mathcal{W}) < \infty$ is finite dimensional
+ then $\mathcal{V} = \mathcal{W} \oplus \mathcal{W}^{\perp}$ is a
+ $T$-invariant direct sum.
+\end{prop}
+
+\begin{proof}
+ Suppose that $\mathbf{x} \in \mathcal{W}$ and
+ $\mathbf{x}' \in \mathcal{W}^{\perp}$ and $\mathcal{W} \leq \mathcal{V}$
+ is a finite dimensional $T$-invariant subspace.
+ Then $T \mathbf{x} \in \mathcal{W}$ and so,
+ \begin{align*}
+  \langle \mathbf{x}, T \mathbf{x}' \rangle &=
+  \langle T \mathbf{x}, \mathbf{x}' \rangle = 0
+  \\
+  & \Rightarrow  T \mathbf{x}' \perp \mathcal{W}. \qedhere
+ \end{align*}
+\end{proof}
