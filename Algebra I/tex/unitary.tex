@@ -7,7 +7,9 @@
 A linear operator whose inverse is its adjoint is said to be
 \emph{unitary}. Unitary operators can thus be thought of as
 generalizations of complex numbers whose absolute value is
-\emph{unity} and hence the name. More precisely,
+\emph{unity} and hence the name. We should this later by
+considering the eigenvalues of such operators. However,
+more precisely,
 
 \begin{defn}[Unitary]
  A linear map $U : \mathcal{V} \to \mathcal{V}$ is said to be
@@ -24,3 +26,64 @@ called the \emph{unitary group} defined as,
  If $U$ is unitary then we have that adjoint of $U$
  acts as its inverse $U^{*}=U^{-1}$.
 \end{cor}
+
+\begin{lem}
+ Suppose that $U$ is unitary then $| \det(U) | = 1$.
+\end{lem}
+
+\begin{proof}
+ Observe that,
+ \begin{align*}
+  1 &= \det(I)
+  \\
+  &= \det(U^{*} U)
+  \\
+  &= \det(\bar{U}^{T}) \det(U)
+  \\
+  &= \overline{\det(U^{T})} \det(U)
+  \\
+  &= \left| \det(U) \right|^{2}. \qedhere
+ \end{align*}
+\end{proof}
+
+\begin{lem}
+ Suppose that $U$ is unitary then modulus of the eigenvalues
+ $| \lambda | = 1$ is unity.
+\end{lem}
+
+\begin{proof}
+ By definition $U \mathbf{x} = \lambda \mathbf{x} : \mathbf{x} \neq \mathbf{0}$.
+ Hence,
+ \begin{align*}
+  U \mathbf{x} &= \lambda \mathbf{x}
+  \\
+  U^{*} U \mathbf{x} &= \bar{\lambda} \lambda \mathbf{x}
+  \\
+  \Rightarrow I \mathbf{x} &= \bar{\lambda} \lambda \mathbf{x}
+  \\
+  \Rightarrow \bar{\lambda} \lambda &= 1. \qedhere
+ \end{align*}
+\end{proof}
+
+\begin{prop}
+ Let $\mathcal{H},\mathcal{K}$ be two Hilbert spaces and
+ $U : \mathcal{H} \to \mathcal{K}$ be a unitary operator
+ mapping between them. Then $U$ is a \emph{normal isometry}.
+\end{prop}
+
+\begin{proof}
+ We are required to show that, for every $g,h \in \mathcal{H}$,
+ \[
+  \langle g, h \rangle_{\mathcal{H}}
+  = \langle U(g), U(h) \rangle_{\mathcal{K}}.
+ \]
+ Hence,
+ \begin{align*}
+  \langle U(g), U(h) \rangle_{\mathcal{K}}
+  &= (U h)^{*} (U g)
+  \\
+  &= h^{*} U^{*} U g
+  \\
+  &= h^{*} g = \langle g, h \rangle_{\mathcal{H}}. \qedhere
+ \end{align*}
+\end{proof}
