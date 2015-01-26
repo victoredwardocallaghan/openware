@@ -1,0 +1,608 @@
+
+% Copyright © 2015 Edward McDonald. All Rights Reserved.
+\documentclass{owmaths}
+
+\usepackage{owshortcuts}
+\usepackage[all]{xy}
+\usepackage{csquotes}
+
+\begin{document}
+
+\subject{Misc.}
+\author{Edward McDonald}
+\title{The Ultimate Guide to Tensors}
+\studentno{616}
+
+\newcommand{\Cliff}{\operatorname{Cliff}}
+\newcommand{\Cl}{C\ell}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\com}{\mathrm{com}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\Hilb}{\mathcal{H}}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Mult}{\operatorname{Mult}}
+\newcommand{\isom}{\cong}
+
+\setlength\parindent{0pt}
+
+
+\section{Introduction}
+Tensors are a vital tool in modern mathematics. They see
+frequent use in representation theory, module theory, linear algebra, differential
+geometry and physics. 
+
+Unfortunately for a beginner, it can be very difficult to start learning
+the theory of tensors. There are several reasons for this.
+Most importantly is that there is a bewildering variety of 
+definitions of tensors in the literature. It is not obvious
+how these definitions relate to each other or which definition is ``best".
+
+Another issue is that it is very hard to find a clear exposition of even one 
+of these definitions. For example, the oldest definition, which is still
+widely used in physics books, goes something like:
+\begin{displayquote}
+A tensor is a quantity that transforms according to the tensor 
+transformation law.
+\end{displayquote}
+These books will then give a thoroughly unsatisfactory explanation of this
+``tensor transformation law". There are many questions left unanswered.
+What is a ``quantity"? What does it mean to ``transform" anyway?
+
+Physics students often do not mind this 
+vagueness, since it is clear from context which quantities are thought of as tensors,
+and the transformation law can be learned from examples so it does not need a
+precise statement.
+
+This can be infuriating to a mathematics student who is accustomed to
+precise definitions. However, if one opens a mathematics textbook to find a definition
+of a tensor, one is faced with many pages of esoteric abstract algebra. Algebraists
+have abstracted the notion of a tensor so far that it would be unrecognisable
+to a physicist, and learning the modern mathematical definition of a tensor
+can be difficult if one does not understand the historical notion which
+motivates it.
+
+The purpose of these notes is to give a clear exposition of the concept of a tensor.
+The general philosophy is that even though there are many different definitions,
+none is ``best". In fact, in order to get a ``stereoscopic" view
+of the subject, all different definitions must be learned and understood, as
+well as the relationships between the different definitions.
+
+One thing that I hope to make clear is that, if one is interested
+in studying multilinear maps, \emph{tensors are inevitable}. What I mean by
+this is that one cannot study multilinear algebra without at least implicitly
+defining a tensor.
+
+\section{An initial definition}
+Multilinear maps are ubiquitous in mathematics, and we shall take for granted 
+that this makes them worthy of study. Our first definition of tensors
+is very clear: a tensor is simply a multilinear map.
+
+Let $k$ be a field, and let $V$ be a finite dimensional vector space over $k$.
+We define the \emph{tensor space} as follows,
+\begin{definition}
+    Let $r,s \geq 0$ be non-negative integers. Define
+    \begin{equation*}
+        T^{r,s}(V) = \{f:\underbrace{V\times \cdots \times V}_{r\text{ times}} \times \underbrace{V^* \times \cdots \times V^*}_{s\text{ times}} \rightarrow k\;:\; f\text{ is multilinear}\}.
+    \end{equation*}
+    The elements of $T^{r,s}(V)$ are called tensors of type $(r,s)$.
+    It is easily verified that $T^{r,s}(V)$ forms a vector space over $k$, with
+    addition of tensors given by pointwise addition of multilinear functions.    
+\end{definition}
+
+We denote by $\End_k(V)$ the space of $k$-linear maps from $V$ to $V$. Our
+first theorem for this notes relates linear maps to multilinear maps.
+\begin{proposition}
+    There is a natural and canonical isomorphism,
+    \begin{equation*}
+        \End_k(V) \cong T^{1,1}(V).
+    \end{equation*}
+\end{proposition}
+\begin{proof}
+    The idea here is that to specify a linear map $T:V\rightarrow V$
+    you need to give $T(v) \in V$ for each $V$, and it is enough
+    to know the value of $w(T(v))$ for each $w \in V^*$.
+
+    We build an isomorphism $\psi:\End_k(V)\rightarrow T^{1,1}(V)$ as follows. 
+    For $T \in \End_k(V)$, $v \in V$ and $w \in V^*$, define
+    \begin{equation*}
+        \psi(T)(v,w) = w(T(v)).
+    \end{equation*}
+    It is clear that $\psi(T) \in T^{1,1}(V)$. We now need to show that $\psi$ is
+    an isomorphism. To do this, we define an inverse map $\varphi$. 
+    
+    For $S \in T^{1,1}(V)$, and $v \in V$, define $\varphi(S)(v)$
+    as the unique vector such that $w(\varphi(S))(v) = S(v,w)$ for
+    all $w \in V^*$. The existence of this vector is guaranteed by 
+    the fact that $V$ is finite dimensional.
+    
+    It is an exercise to check that $\psi\circ \varphi = \mathrm{id}_{T^{(1,1)}(V)}$
+    and $\varphi \circ \psi = \mathrm{id}_{\End_k(V)}$.
+\end{proof}
+
+We now define the \emph{tensor product}, which will allow
+us to provide a simple description of every tensor space. 
+\begin{definition}
+    Let $S \in T^{r,s}(V)$ and $T \in T^{p,q}(V)$. Define $S \otimes T \in T^{r+p,s+q}(V)$
+    as
+    \begin{equation*}
+        (S\otimes T)(v_1,\ldots,v_{r+p},w_1,\ldots,v_{s+q}) = S(v_1,\ldots,v_r,w_1,\ldots,w_s)T(v_{r+1},\ldots,v_{r+p},w_{s+1},\ldots,w_{s+q}).
+    \end{equation*}
+    for $v_i \in V$, $i = 1,\ldots,r+p$ and $w_j\in V^*$, $j = 1,\ldots,s+q$.
+\end{definition}
+
+I would like to make a point about canonical identifications. In what follows,
+we will identify a finite dimensional vector space $V$ with its double dual $V^{**}$
+in a standard way: the vector $v$ will be associated with the linear map consisting
+of evaluation at $v$. I wish to argue that this map is \emph{natural}, where I mean 
+the word natural in a specific technical sense. Namely, for any two vector
+spaces $V$ and $W$, and a linear map $T:V\rightarrow W$, we have a corresponding
+map $T^{**}:V^{**}\rightarrow W^{**}$, and if $\varphi$ denotes the isomorphism from
+$V$ to $V^{**}$ and $\psi$ is the isomorphism from $W$ to $W^{**}$, then $T^{**} = \psi \circ T \circ \varphi$.
+
+This may all seem like abstract nonsense: but the idea is that we have a \emph{natural transformation}
+connecting $V$ and $V^{**}$, which means that we can identify them freely.
+
+With this in mind, we note that
+\begin{align*}
+    V^* &\cong T^{1,0}(V)\\
+    V   &\cong T^{0,1}(V).
+\end{align*}
+
+Since $V$ is finite dimensional, we can choose a basis $\{e_1,\ldots,e_n\}$,
+where $n$ is the dimension of $V$. We can choose a basis for $V^*$ which is compatible
+with this basis in a very logical way. Define the linear functionals $e^{i}$, $i = 1,\ldots,n$
+as follows,
+\begin{equation*}
+    e^{i}(e_j) = \begin{cases}
+        1\text{ if }i = j\\
+        0\text{ otherwise.}
+    \end{cases}
+\end{equation*}
+The set $\{e^1,e^2,\ldots,e^n\}$ spans $V^*$ and is called the dual basis to $\{e_1,e_2,\ldots,e_n\}$.
+
+Using tensor products and these bases, we can find a basis for every tensor space.
+
+\begin{proposition}
+    A basis for $T^{r,s}(V)$ is given by
+    \begin{equation*}
+        \{ e^{i_1}\otimes e^{i_2}\otimes\cdots\otimes e^{i_r} \otimes e_{j_1}\otimes e_{j_2} \otimes \cdots\otimes e_{j_s}\;:\; 1\leq  i_1,\ldots,i_r,j_1,\ldots,j_s \leq n\}
+    \end{equation*}
+\end{proposition}
+
+\section{Tensor products of vector spaces}
+The content and definition of the previous section allows us to study
+multilinear maps on a single vector space $V$, however
+often we are interested in multilinear maps between multiple vector spaces. How 
+do we use this definition to study maps from $V\times U \rightarrow W$, where $V$,$U$
+and $W$ are all vector spaces over $k$, of potentially different dimension?
+
+We could in principle define tensor spaces, $T(U,V,W^*)$ of multilinear maps
+from $U\times V\times W^*$ to $k$, but this point of view quickly becomes cumbersome,
+and there is a better way.
+
+Note that in the previous section we could conveniently describe any tensor
+space by using the simple machinery of a tensor product. We can now
+use a similar idea, in greater abstraction, to build all spaces of multilinear maps
+between arbitrary numbers of different vector spaces. 
+
+The tensor product of two vector spaces is determined uniquely by a \emph{universal 
+property}. However, this is very abstract and difficult to approach at
+first. Therefore, we will construct the tensor product explicitly,
+in order to explain the universal property.
+\begin{definition}
+    Let $V$ and $W$ be two finite dimensional vector spaces over a
+    field $k$. We define the \emph{tensor product} $V \otimes W$
+    to be the vector space spanned by all the symbols of the form
+    \begin{equation*}
+        \{ v\otimes w\;:\; v \in V, w \in W\}.
+    \end{equation*}
+    Subject to the restriction that,
+    \begin{align*}
+        \alpha(v\otimes w) = (\alpha v)\otimes w &= v\otimes (\alpha w), \text{ for all }\alpha \in k, v \in V, W\in W\\
+        (u+v)\otimes w &= u\otimes w+v\otimes w, \text{ for all }u,v \in V, w \in W\\
+        v \otimes (w+x) &= u\otimes w + u\otimes x, \text{ for all }v \in V, w,x \in W.
+    \end{align*}
+\end{definition}
+Note that, in the previous section, the tensor product $v\otimes w$
+of two vectors has a specific meaning: it was a multilinear map on $V^*\times V^*$.
+But at the moment, we are taking $v\otimes w$ to be simply a formal symbol. Later
+on we will see how to recover a multilinear map. Elements of $V\otimes W$
+of the form $v\otimes w$ are called \emph{elementary tensors}. An arbitrary element
+of $V\otimes W$ is a sum of elementary tensors, $v_1\otimes w_1+v_2\otimes w_2 + \cdots + v_k\otimes w_k$.
+It is a common mistake to think that $V\otimes W$ consists only of elementary tensors.
+
+We now cover the universal property. Universal properties are beloved
+by modern algebraists, because they provide an elegant way of defining an object.
+However, to a beginner, they appear abstruse or even unnecessary. A universal
+property is used to define an object that is the ``largest" or ``smallest"
+of a given type. 
+
+The universal property for tensor products can be taken to mean two things:
+\begin{itemize}
+    \item{} The tensor product $V\otimes W$ is the largest vector space
+    which is the image of a multilinear map from $V\times W$.
+    \item{} Any multilinear map from $V\times W$ can be considered
+    as a linear map from $V\otimes W$.
+\end{itemize}
+The beauty of the universal property is that it explains how these two points
+of view are equivalent. 
+
+So finally we state the universal property:
+\begin{theorem}
+    Suppose $U$,$V$ and $W$ are finite dimensional vector spaces over $k$.
+    
+    Note that there is a multilinear ``inclusion" map, $\iota:U\times V\rightarrow U\otimes V$,
+    where $\iota(u,v) = u\otimes v$.
+    
+    If $\theta:U\times V\rightarrow W$ is a multilinear map, there exists
+    a unique linear map $\tilde{\theta}:U\otimes V\rightarrow W$ such that the following
+    diagram commutes,
+    \begin{displaymath}
+    \xymatrix{
+        {U\times V} \ar[r]^\iota \ar[rd]^\theta &
+         {U\otimes V} \ar@{.>}[d]^{\tilde{\theta}}&\\
+         &
+         W
+    }    
+    \end{displaymath}
+    
+\end{theorem}
+Another way to see the universal property is as an isomorphism of $k$ spaces,
+namely
+\begin{equation*}
+    \Mult(U\times V,W) \isom L(U\otimes V,W)
+\end{equation*}
+Where the left hand side is multilinear maps from $U\times V$ to $W$, and
+the right hand side is linear maps from $U\otimes V$ to $W$.
+
+The next proposition may seem innocuous, but it is crucial to connecting
+this definition of a tensor with the definition in the previous section.
+This is also practice at using the universal property.
+\begin{proposition}
+    There is a natural isomorphism,
+    \begin{equation*}
+        (V\otimes W)^* \cong V^*\otimes W^*.
+    \end{equation*}
+\end{proposition}
+\begin{proof}
+    By the universal property, any linear map on $U\otimes V$
+    is determined by its values on elementary tensors. So let $v\otimes w \in V\otimes W$,
+    for $f\otimes g \in V^*\otimes W^*$, define $(f\otimes g)(v\otimes w) = f(v)g(w)$,
+    and extend this to all of $V^*\otimes W^*$ by linearity. 
+\end{proof}
+
+By the universal property,
+\begin{equation*}
+    T^{1,1}(V) = \Mult(V\times V^*,k) \isom L(V\otimes V^*,k) = (V\otimes V^*)^* \isom V^*\times V. 
+\end{equation*}
+And this shows how section 2 is a special case of section 3.
+
+Similarly, we may obtain an isomorphism,
+\begin{proposition}
+    $L(V,W) \isom V^* \otimes W$
+\end{proposition}
+\begin{proof}
+    We construct the map $\psi: V^* \otimes W \rightarrow L(V,W)$. By the universal
+    property, this map is determined by its values on elementary tensors,
+    so we only need to consider a multilinear map $V^*\times W \rightarrow L(V,W)$.
+    Given $f \in V^*$ and $w \in W$, define $\psi(f\otimes w)$ as the map
+    $v\mapsto f(v)w$.
+\end{proof} 
+
+It is then straightforward to define higher tensor products: such as $U \otimes V \otimes W$.
+
+
+\section{Tensor Algebras}
+The Tensor Algebra is a phenomenally useful tool, and once we define it, it
+will be used to construct a variety of other algebras.
+
+Let $V$ be a finite dimensional vector space over a field $k$. The
+\emph{tensor algebra} of $V$ is the ``largest algebra generated by $V$".
+Accordingly, it is defined by a universal property. However, first we
+give an explicit construction.
+
+We must define what it meant by algebra. An algebra $A$ over a field
+$k$ is a ring that is also a $k$ vector space. The ring multiplication
+must be compatible with the scalar multiplication in the following sense: 
+\begin{align*}
+    \alpha(vu) = (\alpha v)u = v(\alpha u)
+\end{align*}
+for all $v,u \in A$ and $\alpha \in k$. 
+
+An algebra homomorphism is a ring homomorphism that is also $k$-linear.
+
+An explicit construction of the tensor algebra follows,
+\begin{definition}
+    For $n > 0$, define
+    \begin{equation*}
+        V^{\otimes n} := \underbrace{V \otimes \ldots \otimes V}_{n\text{ times}}
+    \end{equation*}
+    and $V^{\otimes 0} := k$. The \emph{tensor algebra}, $T(V)$, is defined as 
+    the direct sum of vector spaces,
+    \begin{equation*}
+        T(V) := \bigoplus_{n=0}^\infty V^{\otimes n}.
+    \end{equation*}
+    This is a priori a vector space over $k$. However it is also an algebra, an
+    arbitrary element of $T(V)$ is of the form,
+    \begin{equation*}
+        v_0+v_1+v_2+\cdots+v_m
+    \end{equation*}
+    for $v_i \in V^{\otimes i}$, $i = 1,\ldots m$. However, we can multiply 
+    elements like this formally. Suppose $v \in V^{\otimes i}$, and $u \in V^{\otimes j}$
+    are elementary tensors, then $v \otimes u$ is an elementary tensor in $V^{\otimes i+j}$.
+    
+    Then the multiplication is extended to all of $T(V)$ by linearity.
+    Note that the identity in $T(V)$ is simply the identity in $k$.
+    
+    Frequently the $\otimes$ symbol is omitted, so we write $uv = u \otimes v$.
+\end{definition}
+
+One may think of $T(V)$ as being the algebra built up from
+formal multiplications of elements of $V$, with the assumption
+that multiplication is $k$-linear and associative. We place no other assumptions on $T(V)$,
+so $T(V)$ is somehow the ``largest" algebra built from $V$.
+
+The universal property of tensor algebras says that:
+\begin{itemize}
+    \item{} $T(V)$ is the largest algebra that is the image of $V$ as a linear map.
+    \item{} Any linear map from $V$ to an algebra $A$, can be extended to an algebra homomorphism from $T(V)$ to $A$.
+\end{itemize}
+
+More precisely,
+\begin{proposition}
+    Note that since $V = V^{\otimes 1}$, there is a natural
+    inclusion map $\iota: V \rightarrow T(V)$.
+    
+    Suppose that $A$ is a $k$-algebra, and let $\theta:V\rightarrow A$
+    be any $k$-linear map. Then there exists a unique algebra homomorphism
+    $\tilde{\theta}$ such that the following diagram commutes,
+    \begin{displaymath}
+    \xymatrix{
+        V \ar[r]^\iota \ar[rd]^\theta &
+        T(V) \ar@{.>}[d]^{\tilde{\theta}} &\\
+        &
+        A
+    }
+    \end{displaymath}
+\end{proposition}
+
+\section{Algebras Built from the Tensor Algebra}
+\subsection{Quotients of algebras}
+
+An ideal $I \unlhd A$ is an (two-sided) ideal of $A$ as a ring, and a $k$-subspace of $A$. 
+
+Given an ideal $I \unlhd A$, we can describe the quotient algebra, $A/I$,
+as being the quotient ring $A/I$, where the $k$ vector space structure
+is given by $\alpha(x+I) = (\alpha x) + I$ for $x + I \in A/I$
+and $\alpha \in k$. This is well defined since $I$ is a $k$-subspace of $A$.
+
+There is a projection map $\pi:A\rightarrow A/I$, that maps $x \mapsto x+I$.
+
+The feature of quotient spaces that will be relevant to us is the universal property.
+This is in fact an elegant way of defining the quotient space. In brief, what it
+means is that $A/I$ is the largest algebra which is the image of an algebra homomorphism
+from $A$ with kernel containing $I$.
+\begin{proposition}
+    Suppose that $A$ is an algebra over $k$, and $I \unlhd A$ is an ideal.
+    
+    Let $M$ be another $k$ algebra, and $\varphi:A\rightarrow M$
+    is an algebra homomorphism such that $I \subseteq \ker\varphi$.
+    Then there is a unique map $\tilde{\varphi}$ such that the following
+    diagram commutes,
+    \begin{displaymath}
+    \xymatrix{
+        A \ar[r]^\pi \ar[rd]^\varphi&
+        A/I \ar@{.>}[d]^{\tilde{\varphi}}&\\
+        &
+        M
+    }
+    \end{displaymath}
+\end{proposition}
+
+Now we will use this property extensively. 
+
+\subsection{The exterior algebra}
+
+$T(V)$ was built from all formal multiplications of elements of $V$. We 
+can place additional restrictions on this multiplication. In the \emph{exterior algebra}
+construction, we require that multiplication is \emph{alternating}.
+\begin{definition}
+    Let $V$ be a finite dimensional vector space over $k$. 
+    Let $I$ be the ideal of $T(V)$ generated by all elements of the form
+    $v \otimes v$, for $v \in T(V)$.
+    Define,
+    \begin{equation*}
+        \bigwedge V := \frac{T(V)}{I}.
+    \end{equation*}
+    This is called the exterior algebra of $V$, and we denote
+    the image of $u \otimes v$ in $\bigwedge T$ as $u \wedge v$, that is
+    \begin{equation*}
+        u \wedge v := u \otimes v + I.
+    \end{equation*}
+    
+    See that by construction, $u \wedge u = 0$, and since $(u+v)\wedge(u+v) = 0$,
+    we conclude that $u\wedge v = - v \wedge u$. An algebra where the product
+    is antisymmetric like this is called alternating.
+\end{definition}
+
+By the universal property for quotients, $\bigwedge V$ satisfies the following
+universal property.
+\begin{proposition}
+    See that we still have an inclusion map, $\iota:V\rightarrow \bigwedge V$.
+    
+    Let $A$ be any algebra, and let $\varphi:V\rightarrow A$
+    be a $k$-linear map such that $\varphi(v)\varphi(v) = 0$. Then there exists
+    a unique algebra homomorphism $\tilde{\varphi}$ such that the following diagram
+    commutes,
+    \begin{displaymath}
+    \xymatrix{
+        V \ar[r]^\iota \ar[rd]^\varphi&
+        \bigwedge V \ar@{.>}[d]^{\tilde{\varphi}}&\\
+        &
+        A
+    }   
+    \end{displaymath}
+\end{proposition}
+
+One may freely think of $\bigwedge V$ as the algebra
+generated by symbols of the form $v_1 \wedge v_2 \wedge \cdots \wedge v_m$,
+where we say that the $\wedge$ operation is bilinear and associative, and $v \wedge v = 0$
+for any $v \in \wedge V$.
+
+\subsection{The symmetric algebra}
+In a very similar way, we may define the \emph{symmetric tensor algebra}.
+
+$T(V)$ was built from all formal multiplications of elements of $V$. We 
+can place additional restrictions on this multiplication. In the \emph{symmetric algebra}
+construction, we require that multiplication is \emph{commutative}.
+\begin{definition}
+    Let $V$ be a finite dimensional vector space over $k$. 
+    Let $J$ be the ideal of $T(V)$ generated by all elements of the form
+    $v \otimes u - u\otimes v$, for $u,v \in T(V)$.
+    Define,
+    \begin{equation*}
+        S(V) := \frac{T(V)}{J}.
+    \end{equation*}
+    This is called the symmetric tensor algebra of $V$, and we denote
+    the image of $u \otimes v$ in $S(T)$ as $uv$, that is
+    \begin{equation*}
+        uv := u \otimes v + J.
+    \end{equation*}
+    
+    See that by construction, $uv = vu$.
+\end{definition}
+
+By the universal property for quotients, $S(V)$ satisfies the following
+universal property.
+\begin{proposition}
+    See that we still have an inclusion map, $\iota:V\rightarrow S(V)$.
+    
+    Let $A$ be any algebra, and let $\varphi:V\rightarrow A$
+    be a $k$-linear map such that $\varphi(u)\varphi(v) = \varphi(v)\varphi(u)$. Then there exists
+    a unique algebra homomorphism $\tilde{\varphi}$ such that the following diagram
+    commutes,
+    \begin{displaymath}
+    \xymatrix{
+        V \ar[r]^\iota \ar[rd]^\varphi&
+        S(V) \ar@{.>}[d]^{\tilde{\varphi}}&\\
+        &
+        A
+    }   
+    \end{displaymath}
+\end{proposition}
+
+\subsection{Clifford algebras}
+The constructions of the exterior algebra and the symmetric algebra are nearly
+identical. In fact, to write the section on the symmetric algebra I simply
+copy-pasted the construction of the exterior algebra, and changed a few words.
+The purpose of this is to show the great utility of the tensor algebra: any
+algebra built from a vector space $V$ can be constructed as a quotient
+of $T(V)$. We will use exactly this trick to construct clifford algebras. 
+
+However before we jump into the definition
+I should say something about the historical motivation behind this concept.
+
+The laplacian operator on $\Rl^2$ is given by
+\begin{equation*}
+    \Delta = -\frac{\partial^2}{\partial x^2}-\frac{\partial^2}{\partial y^2}.
+\end{equation*}
+
+For reasons to do with quantum mechanics, the famous physicist P. Dirac sought a linear
+operator $D$ such that
+\begin{equation*}
+    D^2 = \Delta.
+\end{equation*}
+Dirac wanted $D$ to be a first order partial differential operator, that is,
+a linear combination,
+\begin{equation*}
+    D = \gamma_1 \frac{\partial}{\partial x}+\gamma_2 \frac{\partial}{\partial y}
+\end{equation*}
+for some coefficients $\gamma_1$ and $\gamma_2$. However, if one attempts to find
+such an operator one ends up with the system of equations:
+\begin{align*}
+    \gamma_1^2 = \gamma_2^2 &= -1\\
+    \gamma_1\gamma_2+\gamma_2\gamma_1 &= 0.
+\end{align*}
+But this system has no solution over the complex numbers, because
+complex numbers commute. 
+
+Dirac had the brilliant idea that while these equations do not have complex solutions,
+they do have matrix solutions.
+If we choose
+\begin{align*}
+    \gamma_1 &= \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}\\
+    \gamma_2 &= \begin{pmatrix} 0 & i \\ i & 0 \end{pmatrix}
+\end{align*}
+then the problem is solved. 
+
+However, it would be nice to be able to do this in an arbitrary number
+of dimensions, rather than just $2$.
+
+But first,
+we must say something about quadratic forms.
+\begin{definition}
+    A symmetric bilinear form $b:V\times V\rightarrow k$
+    is a map that is linear in both arguments (In other words, $b \in T^{2,0}(V)$
+    or $b \in V^* \otimes V^*$) and $b(u,v) = b(v,u)$ for all $u,v \in V$. 
+    
+    Associated to any bilinear form is a \emph{quadratic form},
+    \begin{equation*}
+        Q(v) = b(v,v).
+    \end{equation*}
+\end{definition}
+
+
+Basically, the clifford algebra $\Cl(V,b)$
+on a vector space $V$ and a symmetric bilinear form $b \in V^* \otimes V^*$
+is going to be the algebra generated by $V$ modulo the relation
+that $uv+vu = -2b(u,v)$, or equivalently that $u^2 = -b(u,u)$. 
+\begin{definition}
+    Let $V$ be a finite dimensional vector space over $k$, and 
+    let $b \in T^{2,0}(V) = V^* \otimes V^*$ be a symmetric bilinear form.
+    
+    Let $K$ be the ideal of $T(V)$ generated by all elements
+    of the form $u\otimes u + b(u,u)1$, where $1$ is the identity
+    in $T(V)$. Then, the \emph{clifford algebra} associated to
+    $V$ and $b$ is defined as
+    \begin{equation*}
+        \Cl(V,b) := \frac{T(V)}{K}
+    \end{equation*}
+    We denote the image of $u \otimes v$ in $\Cl(V,b)$ as $uv$.
+\end{definition}
+
+
+\section{Tensor products of vector bundles}
+So far we have been working in single vector spaces
+over an arbitrary field $k$. A \emph{vector bundle} is a powerful
+generalisation of a vector space, which consists of a collection
+of vector spaces indexed by a topological space. 
+\begin{definition}
+    A vector bundle is a triple $(E,\pi,X)$ where $E$
+    and $X$ are topological spaces, and $\pi:E\rightarrow X$
+    is a continuous surjection.
+\end{definition}
+
+\section{Tensor calculus}
+
+\section{Tensor products of topological vector spaces}
+All of the vector spaces that we have defined up to this point
+have been finite dimensional. There is a good reason for this:
+infinite dimensional spaces require a more advanced theory.
+
+We are interested in three classes of infinite dimensional
+spaces, which we classify by their topology. In order from
+least to most general,
+\begin{enumerate}
+\item{} Hilbert spaces have a topology induced by an inner product.
+\item{} Banach spaces have a topology induced by a norm.
+\item{} Locally convex spaces have a topology induced by a family of semi-norms.
+\end{enumerate}
+finish writing this later...
+\section{Tensor products of modules}    
+
+    
+    
+\section{Monoidal categories}
+\end{document}

@@ -1,0 +1,536 @@
+
+% Copyright © 2015 Edward McDonald. All Rights Reserved.
+
+\documentclass{owmaths}
+
+\usepackage{owshortcuts}
+\usepackage[all]{xy}
+\usepackage{csquotes}
+
+\begin{document}
+
+\subject{Misc.}
+\author{Edward McDonald}
+\title{Filters and Applications}
+\studentno{616}
+
+\newcommand{\Cliff}{\operatorname{Cliff}}
+\newcommand{\Cl}{C\ell}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\com}{\mathrm{com}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\Hilb}{\mathcal{H}}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Mult}{\operatorname{Mult}}
+\newcommand{\isom}{\cong}
+
+\setlength\parindent{0pt}
+
+\section{Introduction}    
+A \emph{filter} is a mathematical concept from order theory that is
+very useful in topology and mathematical logic. As is well known, to study
+continuity and convergence on a topological space
+it is not enough to study convergence of sequences. Instead, the concept
+of a \emph{generalised sequence} also known as a \emph{net} is introduced. Nets are 
+very useful, and their similarity to sequences makes them very easy to understand.
+
+However, nets are somewhat unnatural to use as the concept of a subnet is unwieldy. 
+An alternative is provided by the concept of a filter. Filters are in a sense more natural 
+to use than nets for topology.
+
+Filters also naturally arise in logic. The most spectacular
+application of filters to metamathematics is probably in the \emph{ultrapower
+construction}. This is an exceptionally useful tool and is used
+to construct the hyperreal numbers, a powerful and fascinating number system
+which contains the real numbers and a plentiful supply of infinitesimals.
+
+\section{Definitions}
+\subsection{Filters}
+Here we define a filter in the greatest possible abstraction. This will
+actually be more abstract than is needed for these notes but certain features
+of the definition are made clear from this point of view.
+
+\begin{definition}
+    Let $(P,\leq)$ be a partially ordered set. A \emph{filter} is a 
+    proper subset $\mathcal{F} \subset P$
+    satisfying the following two properties:
+    \begin{enumerate}
+        \item{} If $x \in \mathcal{F}$ and $x \leq y$, then $y \in \mathcal{F}$.
+        \item{} If $x,y \in \mathcal{F}$, then there exists $z \in \mathcal{F}$
+        with $z \leq x$ and $z \leq y$.
+    \end{enumerate}
+    The first property is called \emph{upward closure}. A set with property
+    $1$ is called upward closed. 
+    
+    The second property is called \emph{downward direction}. A set
+    with property $2$ is called downward directed.
+\end{definition}
+Note that we have defined a filter as a proper subset. That is, we
+cannot have $\mathcal{F} = P$. This is not followed by all authors. Some
+authors say that a filter can be any subset, and a filter which is a proper
+subset is called a proper filter. All filters in these 
+notes are proper filters.
+
+A convenient way of specifying a filter is by a filter base:
+\begin{definition}
+    Let $(P,\leq)$ be a partially ordered set. A subset of $P$
+    which is downward directed is called a \emph{filter base}.
+    
+    That is, a subset $A \subset P$ is a filter base if for any $x,y \in A$, 
+    there exists a $z \in A$ with $z \leq x$ and $z \leq y$.
+    
+    Obviously, a filter base which is upward closed is a filter. We can generate
+    a filter from a filter base by taking the upward closure,
+    \begin{equation*}
+        \mathcal{F}_A := \{ x \in P\;:\;\exists z \in A, z \leq x\}
+    \end{equation*}
+    is called the upward closure of $A$. If $A$ contains
+    no minimal element of $P$, then it is easy to check that $\mathcal{F}_A$
+    is a filter.
+\end{definition}
+
+It is very easy to find examples of filters.
+\begin{example}
+    Let $(P,\leq)$ be a partially ordered set. Let $p \in P$ be such
+    that $p$ is not a minimal element of $P$. Define
+    \begin{equation*}
+        \mathcal{F} := \{x \in P\;:\; p\leq x\}.
+    \end{equation*}    
+    Then $\mathcal{F}$ is a filter for $(P,\leq)$.
+\end{example}
+\begin{example}
+    Let $X$ be a set, and let $\mathcal{P}(X)$ be the power set
+    of $X$, partially ordered by inclusion. If $x \in X$, then
+    \begin{equation*}
+        \mathcal{F} := \{ A \in \mathcal{P}(X)\;:\; x \in A\}
+    \end{equation*}
+    is a filter for $(\mathcal{P}(X),\subseteq)$. This is called a principal
+    filter for $x$.\\
+    
+\end{example}
+\begin{example}
+    Let $X$ be any infinite set, Let 
+    \begin{equation*}
+        \mathcal{F} := \{ A \in \mathcal{P}(X)\;:\;|X\setminus A| < \infty\}.
+    \end{equation*}
+    Then $\mathcal{F}$ is a filter for $(\mathcal{P}(X),\subseteq)$. This
+    is called the cofinite filter on $X$.
+\end{example}
+
+The previous two examples were examples of filters on the partially ordered
+set $\mathcal{P}(X)$ for some set $X$. The filters we are mostly
+interested in for these notes are of this form, so we single
+them out and give them a name:
+\begin{definition}
+    A \emph{filtered set} $(X,\mathcal{F})$ is a set $X$
+    with a filter $\mathcal{F}$ for $(\mathcal{P}(X),\subseteq)$. 
+    We say that $\mathcal{F}$ is a filter of $X$.
+\end{definition}
+
+We give a very easy proposition which characterises filtered sets.
+\begin{proposition}
+    A subset $\mathcal{F} \subseteq \mathcal{P}(X)$ is a filter of $X$
+    if and only if it satisfies the following three properties:
+    \begin{enumerate}
+    \item{} $\emptyset \notin \mathcal{F}$
+    \item{} $\mathcal{F}$ is closed under intersection. That is, if $A,B\in \mathcal{F}$,
+    then $A \cap B \in \mathcal{F}$.
+    \item{} $\mathcal{F}$ is upward closed. That is, if $A \in \mathcal{F}$
+    and $A \subseteq B$ then $B \in \mathcal{F}$.
+    \end{enumerate}
+\end{proposition}
+
+\subsection{Ultrafilters}
+An ultra filter is a filter that is not contained in any larger
+filter, that is,
+\begin{definition}
+    An ultrafilter on $(P,\leq)$ is a filter $\mathcal{U}$
+    such that if $\mathcal{F}$ is a filter on $(P,\leq)$, 
+    with $\mathcal{U} \subseteq \mathcal{F}$, then $\mathcal{U} = \mathcal{F}$.
+\end{definition}
+
+There are simple examples of ultrafilters. For example, if $X$
+is a set with $x \in X$ and $\mathcal{F}$ is the subset of $\mathcal{P}(X)$
+consisting of sets containing $x$. Then $\mathcal{F}$ is an ultrafilter.
+An ultrafilter built as the set of all sets containing some point is called
+a principal ultrafilter.
+
+It is not at all obvious that non-principal ultrafilters should exist. However,
+they exist in great abundance. The following theorem
+shows that this is a consequence of Zorn's lemma:
+\begin{theorem}
+\label{ultrafilter}
+    Let $(P,\leq)$ be a partially ordered set with a minimal element $0$. Let
+    $\mathcal{F}$ be a filter on $(P,\leq)$. Then there is an ultrafilter 
+    $\mathcal{U}$ on $(P,\leq)$ containing $\mathcal{F}$.
+\end{theorem}
+\begin{proof}
+    Let $V$ be the collection of filters on $(P,\leq)$ containing $\mathcal{F}$.
+    We will use Zorn's lemma to show that $V$ has a maximal element, which must
+    be an ultrafilter.
+    
+    Clearly $\mathcal{F} \in V$, so $V$ is not empty. Now let $S \subseteq V$
+    be a linearly ordered subset. Let $K = \cup S$. 
+    
+    If $x,y \in K$, then $x,y \in A$ for some $A \in S$. But
+    $A$ is a filter, so there exists some $z \in A$ with $z \leq x$ and $z \leq y$,
+    hence $z \in K$.
+    
+    Also, if $x \leq w$, then $w \in A$, hence $w \in K$.
+    
+    Since each $A \in S$ is proper subset, we cannot have $0 \in A$ for any $A \in S$.
+    Hence, $0 \notin K$. So $K \neq P$.
+    
+    Thus, $K$ is a filter containing $\mathcal{F}$. 
+    
+    Hence any linearly ordered subset of $V$ has an upper bound. So by Zorn's lemma
+    $V$ has a maximal element. Let $\mathcal{U}$
+    be this maximal element. $\mathcal{U}$ is an ultrafilter by construction,
+    and if $\mathcal{U}$ is properly contained in any other filter, then it would not
+    be maximal for $V$. Hence $\mathcal{U}$ is an ultrafilter.
+\end{proof}
+\begin{example}
+    Let $X$ be an infinite set, and let $\mathcal{F}$ be the filter
+    of cofinite subsets of $X$. By theorem \ref{ultrafilter},
+    $\mathcal{F}$ is contained in an ultrafilter $\mathcal{U}$.
+    
+    By construction, this ultrafilter is not principal.
+\end{example}
+
+There is a useful characterisation of ultrafilters among filters on sets, described
+by the next proposition,
+\begin{proposition}
+    Let $\mathcal{F}$ be a filter of a set $X$. Then $\mathcal{F}$
+    is an ultrafilter if and only if it has the property that if $A \subseteq X$,
+    then either $A \in \mathcal{F}$ or $X \setminus A \in \mathcal{F}$.
+\end{proposition}
+\begin{proof}
+    Suppose that $\mathcal{F}$ is an ultrafilter and there is some set $A \subseteq X$
+    such that both $A \notin \mathcal{F}$ and $X\setminus A \notin \mathcal{F}$. Then
+    we may form the set
+    \begin{equation*}
+        D := \{A \cap F\;:\;F \in \mathcal{F}\}.
+    \end{equation*}
+    It is easy to see that $D$ is downward directed.
+    Since $X \setminus A \notin \mathcal{F}$, no subset of $X \setminus A$ is
+    in $\mathcal{F}$. Hence $\emptyset \notin D$.
+    
+    Hence $D$
+    is a filter base. The filter
+    generated by $D$ must contain $A$, and hence strictly contains $\mathcal{F}$.
+    But $\mathcal{F}$ is an ultrafilter, so this is a contradiction. 
+    
+    Conversely, suppose that $\mathcal{F}$ is a filter of $X$ that is not
+    an ultrafilter. Hence there is a filter $\mathcal{U}$
+    strictly containing $\mathcal{F}$. Let $A \in \mathcal{U} \setminus \mathcal{F}$. 
+    Then by construction we cannot have $A \in \mathcal{F}$. However,
+    if $X \setminus A \in \mathcal{F}$, then $X \setminus A \in \mathcal{U}$.
+    But then $\emptyset \in \mathcal{U}$, so this is a contradiction.
+\end{proof}
+
+Hence, we can characterise ultrafilters on sets as follows,
+\begin{corollary}
+    A collection $\mathcal{U}$ of subsets of a set $X$ is an ultrafilter
+    if and only if the following four properties hold,
+    \begin{enumerate}
+        \item{} $\emptyset \notin \mathcal{U}$.
+        \item{} If $A,B \in \mathcal{U}$, then $A \cap B \in \mathcal{U}$
+        \item{} If $A \in \mathcal{U}$, and $A \subseteq B$, then $B \in \mathcal{U}$.
+        \item{} If $A \subseteq X$, then either $A \in \mathcal{U}$
+        or $X \setminus A \in \mathcal{U}$.
+    \end{enumerate}
+\end{corollary}
+
+\section{Applications to General Topology}
+The main application of filters and ultrafilters in mathematics is to 
+general topology, where they provide an excellent means of describing convergence.
+
+Let $(X,\tau)$ be a topological space. For $x \in X$, define
+$\mathcal{N}(x)$ to be the filter generated by all open sets containing $x$.
+
+\begin{definition}
+    Let $\mathcal{F}$ be a filter of the set $X$. Then we say $\mathcal{F}$
+    converges to $x \in X$ if $\mathcal{N}(x) \subseteq \mathcal{F}$. We
+    write this as $\mathcal{F} \rightarrow x$.
+\end{definition}
+
+\begin{proposition}
+    Limits of filters are unique in a Hausdorff space.
+\end{proposition}
+\begin{proof}
+    Suppose that $(X,\tau)$ is Hausdorff. Let $\mathcal{F}$
+    be a filter on $X$ such that $\mathcal{F} \rightarrow x$
+    and $\mathcal{F}\rightarrow y$ for distinct points
+    $x$ and $y$. But then $\mathcal{N}(x), \mathcal{N}(y) \subseteq \mathcal{F}$.
+    However, since $X$ is Hausdorff, there exist neighbourhoods separating
+    $x$ and $y$. Hence there are two disjoint sets in $\mathcal{F}$,
+    but this is impossible since $\mathcal{F}$ is a filter.
+\end{proof} 
+
+\begin{proposition}
+    Let $A \subseteq X$. Then a point $x$ is in the closure of $A$,
+    $x \in \overline{A}$, if and only if there exists
+    a filter $\mathcal{F}$ on $X$ such that $A \in \mathcal{F}$
+    and $\mathcal{F} \rightarrow x$. 
+\end{proposition}
+\begin{proof}
+    Suppose that $x \in \overline{A}$. Then consider
+    the set $S = \{A \cap U\;:\;U \in \mathcal{N}(x)\}$. Since
+    $x \in \overline{A}$, we cannot have $\emptyset \in S$,
+    and $S$ is closed under intersection since $\mathcal{N}(x)$
+    is a filter. 
+    
+    Thus $S$ is a filterbase. Let $\mathcal{F}$ be the filter
+    generated by $S$. Then $\mathcal{N}(x) \subseteq \mathcal{F}$,
+    so $\mathcal{F} \rightarrow x$.
+    
+    Conversely, suppose that $x \in X$, and there is a filter
+    $\mathcal{F} \rightarrow x$ such that $A \in \mathcal{F}$. 
+    Then $\mathcal{N}(x) \subseteq \mathcal{F}$, 
+    so if $U$ is a neighbourhood of $x$, then $U\cap A \neq 0$. 
+    Hence $x \in \overline{A}$.
+\end{proof}
+
+\begin{definition}
+    Let $X$ and $Y$ be sets, and let $\mathcal{F}$ be a filter of $X$.
+    If $f:X\rightarrow Y$, the image set $\{f(F)\;:\;F \in \mathcal{F}\}$
+    is a filter base, since $f(F_1\cap F_2) \subseteq f(F_1)\cap f(F_2)$. 
+    Denote the filter generated by this filterbase as $f(\mathcal{F})$.
+\end{definition}
+
+\begin{proposition}
+    Let $f:X\rightarrow Y$ be a function between topological spaces $X$ and $Y$.    
+    $f$ is continuous if and only if, for any filter $\mathcal{F}$
+    on $X$ with $\mathcal{F} \rightarrow x$, then $f(\mathcal{F}) \rightarrow f(x)$.
+\end{proposition}
+\begin{proof}
+    First suppose that $f$ is continuous. Let $U$
+    be a neighbourhood of $f(x)$. By continuity, $f^{-1}(U) \in \mathcal{F}$.
+    Hence $U \in f(\mathcal{F})$. Thus $f(\mathcal{F}) \rightarrow f(x)$.
+    
+    Conversely, suppose that for any filter $\mathcal{F}\rightarrow x$,
+    $f(\mathcal{F})\rightarrow f(x)$. 
+    
+    Suppose that $U$ is open in $Y$. Suppose that $x \in f^{-1}(U)$. 
+    Let $\mathcal{F} = \mathcal{N}(x)$. Then $\mathcal{F}\rightarrow x$,
+    hence $f(\mathcal{F})\rightarrow f(x)$. Then $U \in f(\mathcal{F})$. 
+    So there is a $V \in \mathcal{N}(x)$ such that $f(V) \subseteq U$.
+    Thus $x \in V \subseteq f^{-1}(U)$.
+    
+    This shows that $f^{-1}(U)$ is open. Hence $f$ is continuous.
+\end{proof}
+
+\begin{proposition}
+    Suppose that $X$ is a set, and $\{Y_\alpha\}_{\alpha \in A}$
+    is a collection of topological spaces, and $X$ is provided
+    with the weak topology of the maps $f_\alpha:X\rightarrow Y_\alpha$.
+    Then a filter $\mathcal{F}$ of $X$
+    has $\mathcal{F}\rightarrow x$ if and only if for
+    every $\alpha$, $f_\alpha(\mathcal{F})\rightarrow f_\alpha(x)$. 
+\end{proposition}
+\begin{proof}
+    Since by definition each $f_\alpha$ is continuous, if $\mathcal{F}\rightarrow x$
+    then for every $\alpha$, $f_\alpha(\mathcal{F})\rightarrow f_\alpha(x)$. 
+    
+    Now suppose the converse, that for every $\alpha$, 
+    for some filter $\mathcal{F}$ of $X$, we have $f(\mathcal{F})\rightarrow f_\alpha(x)$
+    for every $\alpha$. 
+    
+    The topology on $X$ is generated by sets of the form $\bigcap_{i=1}^n f_{\alpha_i}^{-1}(U_{\alpha_i})$
+    for $U_{\alpha_i}$ open in $Y_{\alpha_i}$. 
+    
+    Let $x \in U = \bigcap_{i=1}^n f_{\alpha_i}^{-1}(U_{\alpha_i})$. Then 
+    for each $i$, 
+    $f_{\alpha_i}(x) \in U_{\alpha_i}$, 
+    so $U_{\alpha_i} \in f_{\alpha_i}(\mathcal{F})$. Hence for each $i$
+    there is some $V_i \in \mathcal{F}$
+    such that $V_i \subseteq f_{\alpha_i}^{-1}(U_{\alpha_i})$.
+    But since $\mathcal{F}$ is a filter,
+    it is upward closed, thus $f_{\alpha_i}(U_{\alpha_{i}}) \in\mathcal{F}$.
+    
+    Thus $U \in \mathcal{F}$, so $\mathcal{F} \rightarrow x$. 
+\end{proof}
+
+\begin{proposition}
+    Let $X$ and $Y$ be sets, and let $f:X\rightarrow Y$ be a surjection.
+    Then if $\mathcal{U}$ is an ultrafilter on $X$, then $f(\mathcal{U})$
+    is an ultrafilter on $Y$.
+\end{proposition}
+\begin{proof}
+    Suppose that $\mathcal{F}$ is some filter on $Y$ 
+    that contains $f(\mathcal{U})$. Let $A \in \mathcal{F}\setminus f(\mathcal{U})$. 
+    
+    Let $B = f^{-1}(A)$. Since $f$ is surjective, $A = f(B)$, and $X\setminus B = f^{-1}(Y\setminus A)$.
+    
+    As $\mathcal{U}$ is an ultrafilter, we have either $B \in \mathcal{U}$
+    or $X\setminus B \in \mathcal{U}$.
+    
+    If $B \in \mathcal{U}$, then since $A = f(B)$ we have $A \in f(\mathcal{U})$,
+    a contradiction.
+    
+    Otherwise, if $X\setminus B \in \mathcal{U}$, then $Y \setminus A \in \mathcal{F}$.
+    
+    But then $Y \setminus A \in \mathcal{U}$. But $A \in \mathcal{U}$.
+    Hence $\emptyset \in \mathcal{U}$, which is impossible.
+    
+    Thus $f(\mathcal{U})$ is an ultrafilter.
+\end{proof}
+
+\begin{definition}
+    Let $\mathcal{F}$ be a filter on a topological space $X$. Then we
+    say that $\mathcal{F}$ clusters at the point $x \in X$ if
+    \begin{equation*}
+        x \in \cap\{ \overline{F}\;:\;F \in \mathcal{F}\}.
+    \end{equation*}
+\end{definition}
+
+\begin{proposition}
+\label{clusterImpliesConverge}
+    Let $\mathcal{U}$ be an ultrafilter for a space $X$.
+    
+    If $\mathcal{U}$ has a cluster point, then $\mathcal{U}$
+    converges.
+\end{proposition}
+\begin{proof}
+    Suppose that $\mathcal{U}$
+    clusters at $x$. Let
+    \begin{equation*}
+        B := \{ F\cap V\;:\;F \in\mathcal{U},V \in \mathcal{N}(x)\}.
+    \end{equation*}
+    Then since $\mathcal{U}$ clusters at $x$, for any neighbourhood $V$
+    of $x$, and any $F \in \mathcal{U}$, $V \cap F \neq \emptyset$. Hence $\emptyset \notin B$,
+    so $B$ is a filter base.
+    
+    Let $\mathcal{F}$ be the filter generated by $B$. If $\mathcal{U}$
+    does not contain $\mathcal{N}(x)$, then $\mathcal{F}$ is strictly
+    larger than $\mathcal{U}$. But this is impossible, 
+    so $\mathcal{U}\rightarrow x$. 
+\end{proof}
+
+
+\begin{proposition}
+    Let $X$ be a topological space. The following are equivalent:
+    \begin{enumerate}
+        \item{} $X$ is compact.
+        \item{} Any filter of $X$ clusters at a point.
+        \item{} Any ultrafilter on $X$ converges.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    First we show that $(1)\Rightarrow(2)$. Since $X$ is compact, any set
+    with the finite intersection property has nonempty intersection. Indeed,
+    let $\mathcal{F}$ be a filter on $X$. Then clearly $\{\overline{F}\;:\;F \in\mathcal{F}\}$
+    has the finite intersection property. So $\cap\{\overline{F}\;:\;F \in\mathcal{F}\} \neq \emptyset$,
+    so $\mathcal{F}$ has a cluster point.
+    
+    Now we prove that $(2)\Leftrightarrow(3)$. Suppose that $(2)$ is true,
+    then if $\mathcal{U}$ is an ultrafilter on $X$, then $X$ must have a cluster
+    point. By proposition \ref{clusterImpliesConverge}, $\mathcal{U}$
+    must converge.
+    
+    Now suppose that $(3)$ is true. Let $\mathcal{F}$ be a filter on $X$,
+    and $\mathcal{F} \subseteq \mathcal{U}$
+    where $\mathcal{U}$ is an ultrafilter. Then suppose that $\mathcal{U}$
+    converges to $x$. Let $U$ be an open neighbourhood of $x$, and let $F \in \mathcal{F}$.
+    Then we must have $U\cap F \neq \emptyset$, since $U \cap F \in \mathcal{U}$. 
+    Hence $x \in \overline{F}$, so $\mathcal{F}$ clusters at $x$.
+    
+    Now we prove that $(2)\Rightarrow(1)$. Suppose that $\mathcal{C}$ is a cover
+    for $X$ with no finite subcover. Let
+    \begin{equation*}
+        V := \{X \setminus \cup \mathcal{V}\;:\;\mathcal{V} \subset \mathcal{C}, |\mathcal{V}| < \infty\}.
+    \end{equation*}
+    Since $\mathcal{C}$ has no finite subcover, $\emptyset \notin V$. $V$ is closed
+    under intersection by De Morgan's laws, so $V$ is a filterbase. Let $\mathcal{F}$
+    be the filter generated by $V$, and suppose that $\mathcal{F}$ clusters at $x \in X$. 
+    
+    Hence $x \in X \setminus \cup \mathcal{V}$ for any finite subset $\mathcal{V}$
+    of $\mathcal{C}$. But since $\mathcal{C}$ covers $X$, $X \in U$ for some $U \in \mathcal{C}$.
+    But we have shown that $x \in X\setminus U$. This is a contradiction,
+    hence $X$ is compact.
+    
+\end{proof} 
+
+With this machinery, we can give a simple proof of the famous Tychonoff theorem:
+\begin{theorem}
+    Let $X = \prod_{\alpha \in A} X_\alpha$ be a product space. Then $X$
+    is compact if and only if for each $\alpha \in A$, $X_\alpha$ is compact.
+\end{theorem}
+\begin{proof}
+    Suppose that each $X_\alpha$ is compact. (The converse is easy).
+
+    Let $\mathcal{U}$ be an ultrafilter on $X$. Then for each $\alpha$,
+    the projection $\pi_\alpha(\mathcal{U})$ is an ultrafilter on $X_\alpha$
+    and hence converges to a point $x_\alpha$. Hence $\mathcal{U}$
+    converges to the point $(x_\alpha\;:\;\alpha\in A)$.
+\end{proof}
+
+\section{Applications to Pointless Topology}
+
+Pointless topology is a beautiful generalisation of general topology. The idea
+is that a lot of topology can be done without any reference to the points
+of a space, instead one only needs the open sets. A frame is an abstraction
+of the lattice of open sets on a topological space.
+\begin{definition}
+    A frame is a bounded lattice $(F,\vee,\wedge,0,1)$ that is closed under finite meets
+    and arbitrary joins, where meets distribute over arbitrary joins.
+\end{definition}
+A frame is an abstract version of the lattice of open sets on a topological space.
+A natural question is to ask if we can recover the points of a space from a frame.
+We can do this using the concept of a \emph{completely prime filter}.
+\begin{definition}
+    A filter $\mathcal{F}$ on a frame $F$ is prime if $a \vee b \in \mathcal{F}$
+    implies that $a \in \mathcal{F}$ or $b \in \mathcal{F}$. A filter
+    is completely prime if $\bigvee_{i} a_i \in \mathcal{F}$ implies that for some $j$,
+    $a_j \in \mathcal{F}$.
+\end{definition}
+finish this later...
+
+
+\section{Applications to non-standard analysis}
+When calculus was invented in the 17th century, mathematicians were
+fascinated by the concept of an \emph{infinitesimal}. The idea 
+was that a line can be though of as being composed of indivisible points. This
+vague concept
+caused a number of difficulties and paradoxes, but infinitesimals were so useful
+that they were applied to great success in calculus. 
+
+19th century mathematicians refounded calculus without infinitesimals,
+since the logical difficulties were considered insurmountable.
+
+However, using the machinery of ultrafilters, we can construct
+an ordered field containing the real numbers with a plentiful
+supply of infinitesimals. It is possible to do a lot of real analysis with this
+field. Firstly, we introduce the idea of an ultraproduct.
+\begin{definition}
+    Let $\{X_i\}_{i \in I}$ be a collection of sets indexed by a set $I$. 
+    Let $\mathcal{U}$ be an ultrafilter of $I$. Then define
+    \begin{equation*}
+        \prod_{i\in I} X_i/\mathcal{U}
+    \end{equation*}
+    as the set of equivalence classes in $\prod_{i \in I} X_i$, where
+    $(x_i)_{i \in I}$ is equivalent to $(y_i)_{i \in I}$
+    when $\{ i\;:\;x_i = y_i\} \in \mathcal{U}$.
+\end{definition}
+
+\begin{proposition}
+    The definition of an ultraproduct makes sense. That is, the claimed
+    equivalence relation is in fact an equivalence relation.
+\end{proposition}
+\begin{proof}
+    Let $\sim$ be the stated relation. Clearly we have $x \sim x$
+    for any $x$, since $I \in \mathcal{U}$. Similarly, the relation
+    is symmetric and transitive.
+\end{proof}
+
+An ultrapower is an ultraproduct where all of the factors are the same.
+\begin{definition}
+    Let $\mathcal{U}$ be a non-principal ultrafilter of $\Ntrl$. Then define
+    \begin{equation*}
+        ^*\Rl := \Rl^{\Ntrl}/\mathcal{U}.
+    \end{equation*}
+    This is the set of hyperreal numbers.
+\end{definition}
+\end{document}

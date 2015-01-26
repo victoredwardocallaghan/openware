@@ -1,0 +1,302 @@
+
+%Copyright © 2015 Edward McDonald. All Rights Reserved.
+
+\documentclass{owmaths}
+
+\usepackage{owshortcuts}
+\usepackage[all]{xy}
+
+\begin{document}
+
+\subject{Non-Commutative Geometry}
+\author{Edward McDonald}
+\title{Non-commutative Differential Algebras}
+\studentno{616}
+
+\newcommand{\Cliff}{\operatorname{Cliff}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\com}{\mathrm{com}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\Hilb}{\mathcal{H}}
+\newcommand{\D}{\mathcal{D}}
+
+
+\setlength\parindent{0pt}
+
+
+\section{Introduction}
+For several decades now, mathematicians have been attempting to find analogues
+of theorems of differential and algebraic geometry in noncommutative 
+algebra.
+The biggest obstacle to learning this topic is that many of the definitions
+were arrived at through many years of hard work, and may seem unmotivated at first.
+The purpose of these notes is to explain the algebra of Connes Differentials,
+which were invented by Alain Connes as a noncommutative generalisation
+of the exterior algebra bundle on a manifold.
+
+\section{Classical Differential Algebra}
+Let $M$ be an $n$ dimensional manifold. The cotangent bundle $\Omega^1(M)$
+is a rank $n$ vector bundle on $M$. We build higher bundles by wedge products,
+\begin{equation*}
+    \Omega^p(M) := \bigwedge_p \Omega^1(M).
+\end{equation*}
+and define $\Omega^0(M) := C^\infty(M)$. See that $\dim_\Rl(\Omega^p(M)) = \binom{n}{p}$.
+
+
+The exterior algebra bundle is the direct sum of all the $\Omega^p(M)$,
+\begin{equation*}
+    \Omega(M) := \bigoplus_{p=0}^\infty \Omega^p(M).
+\end{equation*}
+
+
+$\Omega(M)$ is a \emph{graded algebra}.
+
+
+In general, if $A$ is an algebra over a ring $R$, we say that $A$ is $\Ntrl$-graded
+if there exists a decomposition into submodules $A^{(p)}$,
+\begin{equation*}
+    A = \bigoplus_{p=0}^\infty A^{(p)}
+\end{equation*}
+such that $A^{(n)}A^{(m)} \subseteq A^{(n+m)}$.
+
+In the case $A = \Omega(M)$, we have $R = \Rl$, and $A^{(p)} = \Omega^p(M)$.
+
+The exterior derivative, $d:\Omega(M)\rightarrow \Omega(M)$ acts on the grading by,
+\begin{equation*}
+    d:\Omega^p(M) \rightarrow \Omega^{p+1}(M).
+\end{equation*}
+and $d^2 = 0$. Hence we have a sequence,
+
+\begin{equation*}
+    0\rightarrow \Omega^{0}(M) \xrightarrow{d} \Omega^1(M) \xrightarrow{d} \cdots \xrightarrow{d} \Omega^n(M) \xrightarrow{d} 0.
+\end{equation*}
+Denote $d_p$ as the restriction of $d$ to $\Omega^p(M)$. Then we have the \emph{de Rham cohomology}
+spaces,
+\begin{equation*}
+    H^p_{dR}(M) = \frac{\ker(d_{p})}{\im(d_{p-1})}
+\end{equation*}
+This is a sequence of real vector spaces, and their dimensions are topological
+invariants of $M$.
+
+The maps $d_p$ satisfy a graded version of Leibniz's rule, for $a \in \Omega^n(M)$
+and $b \in \Omega^m(M)$, we have:
+\begin{equation*}
+    d_{n+m}(ab) = d_n(a)b+(-1)^nad_m(b)
+\end{equation*}
+
+\section{Abstract Differential Algebra}
+\subsection{Graded Differential Algebras}
+We now take the ideas of the previous section and move them to a more abstract setting.
+Let $R$ be a commutative ring, and let $A$ be an $\Ntrl$-graded algebra over $R$, with decomposition
+\begin{equation*}
+    A = \bigoplus_{p=0}^\infty A^{(p)}
+\end{equation*}
+
+There is also an $R$-linear map $d:A\rightarrow A$ such that,
+\begin{equation*}
+    d:A^{(p)}\rightarrow A^{(p+1)}.
+\end{equation*}
+and $d^2 = 0$.
+If we denote the restriction of $d$ to $A^{(p)}$ as $d_p$, we
+require that the maps $d_p$ satisfy a graded Leibniz rule, for $a \in A^{(n)}$
+and $b \in A^{(m)}$,
+\begin{equation*}
+    d_{n+m}(ab) = d_n(a)b+(-1)^nad_m(b).
+\end{equation*}
+
+A pair $(A,d)$ satisfying these conditions is called a \emph{differential graded algebra}.
+
+Thus we have a sequence,
+\begin{equation*}
+    0\rightarrow A^{(0)} \xrightarrow{d} A^{(1)} \xrightarrow{d} \cdots \xrightarrow{d} A^{(n)} \xrightarrow{d} \cdots
+\end{equation*}
+The quotient $R$-modules,
+\begin{equation*}
+    H^p_{dR}(M) := \frac{\ker(d_{p})}{\im(d_{p-1})}.
+\end{equation*}
+are the de Rham cohomology modules for the graded differential algebra $(A,d)$.
+\subsection{K\"ahler Differentials}
+Given an $R$-algebra $A$, we would like to be able to build an algebra
+of differential forms over $A$, in a manner analogous to how $\Omega^1(M)$
+is constructed from $C^\infty(M)$. It turns out that there is a good way of doing
+this, called the algebra of \emph{K\"ahler differentials}. This is simplest in the commutative case,
+which we briefly outline here.
+
+Let $R$ be a commutative ring, and let $A$ be a unital commutative $R$-algebra. The module
+$\Omega^1_{\com}(A)$
+of K\"ahler differentials is defined as
+\begin{equation*}
+    \Omega^1_{\com}(A) := \frac{A\otimes_R A}{\langle c\otimes(ab)-(ca)\otimes b-(bc)\otimes a\rangle}
+\end{equation*}
+The idea here is that $\Omega^1_{\com}(A)$ is the left $A$-module spanned by all
+symbols of the form $adb$, where $d(ab) = adb+bda$. We think of $a\otimes b$
+as $adb$.
+
+More precisely, we let $d:A\rightarrow \Omega^1_{\com}(A)$ be given by
+\begin{equation*}
+    da := 1_A\otimes a
+\end{equation*}
+Where $1_A$ is the unit in $A$.
+
+The utility of $\Omega^1_{\com}(A)$ is that it allows us to study all
+derivations on $A$. 
+
+In full abstraction, a derivation on $A$ is a map $\theta:A\rightarrow M$, where
+$M$ is some left $A$-module, such that $\theta$ satisfies the leibniz rule,
+\begin{equation*}
+    \theta(ab) = a\theta(b)+b\theta(a).
+\end{equation*}
+
+We see that $d$ is a derivation on $A$ to the $A$-module $\Omega^1_{\com}(A)$.
+It is in fact universal with this property,
+\begin{theorem}
+    Let $A$ be a unital commutative $R$-algebra, and let $\theta:A\rightarrow M$
+    be a derivation to some left $A$-module $M$. There exists a unique $R$-linear 
+    map $\Omega(\theta)$ such that the following diagram commutes,\\
+    \begin{displaymath}
+    \xymatrix{
+        A \ar[r]^d \ar[rd]^\theta & 
+        \Omega^1_{\com}(A) \ar@{.>}[d]^{\Omega(\theta)} &\\
+         &
+        M
+  } 
+  \end{displaymath}
+  In other words, there is an isomorphism of $R$-modules,
+  \begin{equation*}
+    D(A,M) \cong \Hom_R(\Omega^1_{\com}(A),M).
+  \end{equation*}
+  Where $D(A,M)$ is the set of derivations from $A$ to $M$.
+  Note that this universal property defines $\Omega^1_{\com}(A)$ up
+  to unique isomorphism.
+\end{theorem}
+\begin{proof}
+    Basically, $\Omega(\theta)$ maps $adb$ to $a\theta(b)$. Checking the universal property
+    is routine.
+\end{proof}
+
+We would now like to create a similar algebra of differentials for a non-commutative
+associative algebra $A$ over $R$. In the noncommutative case, we must restrict
+attention to derivations that take values in $A$-bimodules, rather than left
+$A$ modules.
+\begin{definition}
+    Let $A$ be an associative
+    unital algebra over a commutative ring $R$. 
+    Let $m:A\otimes A\rightarrow A$ be the multiplication map. We define
+    \begin{equation*}
+        \Omega^1(A) = \ker(m)
+    \end{equation*}
+    This is an $A$ bimodule.
+\end{definition}
+This the motivation behind this definition is not at all clear. However, this
+does agree with the commutative case and this provides the appropriate definition
+for noncommutative K\"ahler differentials. To see this, we define the map
+$d:A\rightarrow \Omega^1(A)$, by
+\begin{equation*}
+    d(a) = 1_A\otimes a-a\otimes 1_A.
+\end{equation*}
+We see that $d$ is a derivation. In fact, $\Omega^1(A)$
+should be thought of as the space of all linear combinations
+of terms of the form $ad(b)$.
+
+
+$\Omega^1(A)$ satisfies the 
+same universal property as $\Omega^1_{\com}$. Namely, if $M$ is an $A$-bimodule,
+and $\theta:A\rightarrow M$ is a derivation, then there exists a unique $R$-linear
+map $\Omega(\theta)$ such that the following diagram commutes,
+
+    \begin{displaymath}
+    \xymatrix{
+        A \ar[r]^d \ar[rd]^\theta & 
+        \Omega^1(A) \ar@{.>}[d]^{\Omega(\theta)} &\\
+         &
+        M
+  } 
+  \end{displaymath}
+  
+\subsection{Universal Differential Algebra}
+Given an associative unital algebra $R$ over a commutative ring $R$,
+we define
+\begin{equation*}
+    \Omega^p(A) := \bigotimes_{A,p} \Omega^1(A).
+\end{equation*} 
+And the algebra,
+\begin{equation*}
+    \Omega A = \bigoplus_{p} \Omega^p(A).
+\end{equation*}
+We extend the function $d:A\rightarrow \Omega^1(A)$ to $\Omega A$
+by
+\begin{equation*}
+    d(ada_1da_2\cdots da_n) = dada_1da_2\cdots da_n.
+\end{equation*}
+ 
+\begin{theorem}
+    $\Omega A$ is the ``largest" graded differential algebra generated by $A$. 
+    
+    If $(\Gamma,\Delta)$ is a graded differential algebra, with grading $\Gamma = \bigoplus_n \Gamma^{(n)}$,
+    and $\rho:A\rightarrow \Gamma^{(0)}$ is an algebra homomorphism, then $\rho$
+    extends uniquely to a morphism $\Omega A\rightarrow \Gamma$ such that the following
+    diagram commutes,
+    \begin{displaymath}
+    \xymatrix{
+        \Omega^p(A) \ar[r]^\rho \ar[d]^{d} & 
+        \Gamma^{(p)} \ar[d]^\Delta&\\
+        \Omega^{p+1}(A) \ar[r]^\rho & 
+        \Gamma^{(p+1)}&
+    }
+    \end{displaymath}
+\end{theorem}
+
+\section*{Non-commutative Geometry}
+\subsection{Spectral Triples}
+Non-commutative geometry is an attempt to generalise theorems of differential geometry
+to non-commutative algebras. The basic object of study in non-commutative differential
+geometry is the \emph{spectral triple}. A spectral triple plays the role of a 
+``manifold". The definition is as follows.
+\begin{definition}
+    A spectral triple is a triple, $(\A,\Hilb,\D)$. Where,
+    $\A$ is a $*$-algebra of bounded operators on a Hilbert space $\Hilb$, and
+    $\D$ is a densely defined unbounded self adjoint operator on $\Hilb$, such
+    that $[\D,a] \in \mathcal{B}(\Hilb)$ for all $a \in \A$ and $(\D-\lambda)^{-1}$
+    is compact for all $\lambda \in \Cplx\setminus \Rl$.
+\end{definition}
+
+This is supposed to be an abstract version of a spin manifold. The commutative case
+is when $M$ is a Riemannian manifold with a spin bundle $S$, then we have $\A = C^\infty(M)$,
+acting by pointwise multiplication on the bundle $\Hilb = L^2(S)$, and $\D$
+is the dirac operator.
+
+It can be shown, under fairly general conditions, that when $\A$ is commutative, then 
+such a spin manifold can be constructed. Hence a spectral triple deserves
+the name of ``non-commutative manifold".
+\subsection{Connes Differentials}
+Given a spectral triple, $(\A,\Hilb,\D)$, we would like to construct an ``exterior algebra"
+on $\A$. Connes does this by identifying the $1$-form $da$ with $[D,a]$.
+
+Since $[D,a]$ is a derivation on $\A$, by the universal property we have a map, $\pi:\Omega\A\rightarrow \mathcal{B}(\Hilb)$
+given by $\pi(ada_1da_2\cdots da_n) = a[D,a_1][D,a_2]\cdots[D,a_n]$.
+
+One may then na\"ively define the algebra of differential forms as $\pi(\Omega \A)$,
+but this does not work since there exists $a \in \Omega \A$ such that $\pi(a) = 0$
+but $\pi(da) \neq 0$. These are called ``junk forms" and we must factor them out to get
+a good differential algebra. Hence, define
+\begin{theorem}
+    Let $J_0$ be the graded ideal of $\Omega \A$ defined by 
+    \begin{equation*}
+        J_0^{(p)} = \{a \in \Omega^p(\A) \;:\; \pi(a) = 0\}
+    \end{equation*}
+    And define $J^{(p)} = J_0^{(p)} + dJ_0^{(p)}$. Then $J = \bigoplus_p J^{(p)}$.
+\end{theorem}
+
+Now we can define the algebra of Connes' forms,
+\begin{equation*}
+    \Omega_{\D}\A = \frac{\Omega \A}{J} \cong \frac{\pi(\Omega \A)}{\pi(dJ_0)}
+\end{equation*}
+
+$\Omega_\D \A$ is naturally graded by the gradings on $\Omega \A$ and $J$, with the 
+space of $p$-forms being $\Omega^p_\D \A = \Omega^p(\A)/J^{(p)}$.
+
+Since $J$ is a differential ideal, the operator $d$ on $\Omega \A$
+extends to $\Omega_\D \A$. 
+
+\end{document}
