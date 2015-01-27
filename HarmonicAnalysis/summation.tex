@@ -1,0 +1,552 @@
+% Copyright © 2015 Edward McDonald. All Rights Reserved.
+\documentclass{owmaths}
+
+\usepackage{owshortcuts}
+\usepackage[all]{xy}
+\usepackage{csquotes}
+
+\begin{document}
+
+\subject{Harmonic Analysis}
+\author{Edward McDonald}
+\title{Ces\`aro convergence of Fourier Series}
+\studentno{616}
+
+
+\setlength\parindent{0pt}
+
+\newcommand{\clim}{\operatorname{c-lim}\;}
+\newcommand{\Circ}{\mathbb{T}}
+\newcommand{\ha}{\boldsymbol{m}}
+
+\section{Introduction}
+One of the oldest and most difficult problems in harmonic analysis is
+the problem of determining the convergence of Fourier series. Given a periodic
+function $f$, the following questions arise:
+\begin{enumerate}
+    \item{} Does $f$ have a Fourier series?
+    \item{} If so, does the Fourier series converge to $f$?
+    \item{} In what sense does it converge?
+\end{enumerate}
+These questions have been extensively studied, and the answer is very complicated.
+The purpose of these notes is to study one particular mode of
+convergence, namely Ces\`aro convergence. Ces\`aro convergence has good properties 
+for Fourier series, and we shall show that
+even in a very general situation, the fourier series of a function
+or function-like object will converge in the Ces\`aro sense.
+
+\section{Ces\`aro Convergence}
+Ces\`aro convergence is a means of summing a divergent series, or 
+of taking the limit of a divergent sequence. 
+
+In the most possible generality, we define the Ces\`aro limit of a sequence
+as follows,
+\begin{definition}
+    Suppose that $\{x_k\}_{k=1}^\infty$ is a sequence in a Banach space $X$. 
+    Define the $n$th mean as
+    \begin{equation*}
+        s_n := \frac{1}{n}(x_1+x_2+\cdots+x_n).
+    \end{equation*}    
+    If the limit $\lim_{n\rightarrow\infty}s_n$ exists, then 
+    we define the \emph{Ces\`aro limit} of the sequence $\{x_k\}_{k=1}^\infty$ as
+    \begin{equation*}
+        \underset{{k\rightarrow\infty}}\clim x_k := \lim_{n\rightarrow\infty} s_n = \lim_{n\rightarrow\infty} \frac{1}{n}\sum_{k=1}^n x_k
+    \end{equation*}
+\end{definition}
+\begin{example}
+    Consider the sequence $x_k = (-1)^k$. Clearly $\lim_{k\rightarrow\infty} x_k$
+    does not exist, but it is possible to show that $\underset{k\rightarrow\infty}\clim x_k = 0$.
+\end{example}
+\begin{proposition}
+    If the ordinary limit of the sequence $\{x_k\}_{k=1}^\infty$ exists, then 
+    the Ces\`aro limit exists and is equal to the ordinary limit.
+\end{proposition}
+\begin{proof}
+    Let $\lim_{k\rightarrow\infty} x_k = L$,
+    in a Banach space $X$ with norm $\|.\|$ and let $\varepsilon > 0$.
+    Choose $N$ large enough such that $k > N$ implies that $\|x_k - L\| < \varepsilon/2$. 
+    
+    Let $s_n = \frac{1}{n}(x_1+\ldots+x_n)$ for $n \geq 1$. Then,
+    for $k > N$ and $n > k$,
+    \begin{align*}
+        \|s_n - L\| &\leq \frac{1}{n}\sum_{j=1}^n \|x_j-L\|\\
+        &= \frac{1}{n}\sum_{j=1}^k \|x_j-L\| + \frac{1}{n}\sum_{j=k+1}^n \|x_j-L\|\\
+        &\leq \frac{1}{n} \sum_{j=1}^k \|x_j-L\| + \frac{1}{n}(n-k)\varepsilon/2.
+    \end{align*}
+    
+    Choose $n$ large enough such that $\frac{1}{n}\sum_{j=1}^k x_j< \varepsilon/2$.
+    Then,
+    \begin{equation*}
+        \|s_n - L\| \leq \varepsilon
+    \end{equation*}
+    Where $\varepsilon$ is arbitrary.
+    
+    
+    Thus, $\underset{k\rightarrow\infty}\clim x_k = L$.
+\end{proof}
+
+The main application of Ces\`aro convergence is to the summation
+of divergent series. Thus we define
+\begin{definition}
+    Given a (possibly divergent) series
+    \begin{equation*}
+        \sum_{k=1}^\infty x_k
+    \end{equation*}
+    define the \emph{Ces\`aro sum} to be
+    \begin{equation*}
+        (C,1)-\sum_{k=1}^\infty x_k := \underset{n\rightarrow\infty}\clim \sum_{k=1}^n x_k.
+    \end{equation*}
+    
+    If we have a double indexed sum, 
+    \begin{equation*}
+        \sum_{n \in \Itgr} y_n.
+    \end{equation*}
+    we define,
+    \begin{equation*}
+        (C,1)-\sum_{n \in \Itgr} y_n := \underset{n\rightarrow\infty} \clim \sum_{k=-n}^n y_k.
+    \end{equation*}
+\end{definition}
+The $(C,1)$ notation is suggestive that there is a generalisation of Ces\`aro
+summation, called $(C,\alpha)$ summation for a parameter $\alpha$. This
+is true, but we will not use this generalisation in this set of notes.
+
+Ces\`aro summation is described as the limit of averages of sums. That is, if
+$s_n = \sum_{k=1}^n x_k$, we have, 
+\begin{equation*}
+    (C,1)-\sum_{k=1}^\infty x_k = \lim_{n\rightarrow\infty} \frac{1}{n}\sum_{k=1}^n s_k.
+\end{equation*}
+
+There are of course series which are divergent in the usual sense which have 
+Ces\`aro sums. For example,
+\begin{example}
+    Let $x_k = (-1)^k$. Then $\sum_{k=1}^\infty x_k$ is divergent. But
+    \begin{equation*}
+        (C,1)-\sum_{k=1}^\infty x_k = \frac{1}{2}
+    \end{equation*}
+\end{example}
+
+\section{Analysis of periodic functions}
+Let $\Circ = \{ \zeta\in \Cplx\;:\;|\zeta| = 1\}$ be the unit
+circle in the complex plane, considered as a group
+with normalised Haar measure $\ha$. 
+
+We can of course identify periodic functions on $\Rl$
+with functions on $\Circ$. 
+
+Denote the identity function on $\Circ$ as $z$. Then we
+can write polynomials on $\Circ$, as
+\begin{equation*}
+    f = c_0 + c_1 z + c_2 z^2 + \cdots + c_n z^n.
+\end{equation*}
+Which of course correspond to trigonometric polynomials on $\Rl$. 
+
+Given $f \in L^1(\Circ,\ha)$, define the $n$th fourier coefficient as
+\begin{equation*}
+    \hat{f}(n) = \int_\Circ z^{-n}fd\ha = \int_{\Circ} \zeta^{-n} f(\zeta)d\ha(\zeta).
+\end{equation*}
+For $n \in \Itgr$.
+
+We wish to study conditions under which
+\begin{equation*}
+    f = \sum_{n \in \Itgr} \hat{f}(n) z^n.
+\end{equation*}
+Where the convergence is in some appropriate Banach space of functions on $\Circ$,
+and the summation may be in the Ces\`aro sense.
+
+Since $\Circ$ is a space of finite measure, we have the nested inclusion
+of $L^p$ spaces,
+\begin{equation*}
+    L^p(\Circ,\ha) \subseteq L^q(\Circ,\ha)
+\end{equation*}
+for $1 \leq q \leq p \leq \infty$, and the embedding is continuous in the norm sense.
+
+This follows from Jensen's inequality. Recall that Jensen's inequality implies
+that if $F:[0,\infty)\rightarrow [0,\infty)$ is a convex function (i.e.
+it lies above a tangent line at each point), then for any positive measurable function on $\Circ$,
+\begin{equation*}
+      F\left(\int f d\ha\right)\leq\int F\circ f d\ha.
+\end{equation*}
+
+Suppose that $q \leq p$. Consider $f(x) = |x|^q$ and $F(y) = y^{p/q}$. 
+$F$ is convex since $p\geq q$. Then,
+\begin{equation*}
+    \left(\int |f|^qd\ha\right)^{p/q} \leq \int |f|^pd\ha.
+\end{equation*}
+Hence $\|f\|_q \leq \|f\|_p$. 
+
+This further implies that $L^p$ convergence
+for any $p \geq 1$ implies $L^1$ convergence. $L^1$ convergence
+implies that we can interchange integrals with limits. That is,
+\begin{proposition}
+    Suppose that $\{f_k\}_{k=1}^\infty \subset L^p(\Circ,\ha)$
+    converges to $f \in L^p(\Circ,\ha)$ in the $L^p$ norm, for $p \geq 1$.
+    Then 
+    \begin{equation*}
+        \lim_{k\rightarrow\infty} \int_\Circ f_k d\ha = \int_\Circ \lim_{k\rightarrow\infty} f_kd\ha.
+    \end{equation*}
+\end{proposition}
+\begin{proof}
+    This follows from the estimate,
+    \begin{equation*}
+        \left| \int_{\Circ} f_k-fd\ha\right| \leq \int_\Circ |f_k-f|d\ha 
+    \end{equation*}
+    Since $L^p$ convergence implies $L^1$ convergence, the result follows.
+\end{proof}
+
+A consequence of this is the following,
+\begin{lemma}
+    Suppose that $f \in L^p(\Circ,\ha)$ for $p \geq 1$, and
+    \begin{equation*}
+        f = \sum_{n\in \Itgr} c_n z^n
+    \end{equation*}
+    where the sum converges in the $L^p$ sense. Then $c_n = \hat{f}(n)$. 
+    
+    Similarly, if
+    \begin{equation*}
+        f = (C,1)-\sum_{n \in \Itgr} c_n z^n
+    \end{equation*}
+    and the sum converges in the $L^p$ sense, then $c_n = \hat{f}(n)$.
+\end{lemma}     
+\begin{proof}
+    Since the limit is in the $L^p$ sense, we may compute it with the integral,
+    \begin{equation*}
+        \hat{f}(k) = \sum_{n \in \Itgr} c_n \int_{\Circ} z^n z^{-k}d\ha.
+    \end{equation*}
+    So $\hat{f}(k) = c_k$. The proof is identical for the Ces\`aro sum.
+\end{proof}
+
+
+Now we define the \emph{convolution} of two functions on the circle. Let $f$
+and $g$ be measurable functions on $\Circ$, then
+\begin{equation*}
+    (f*g)(\zeta) := \int_\Circ f(\zeta \tau^{-1}) g(\tau)d\ha(\tau).
+\end{equation*}
+
+We then have Young's inequality,
+\begin{proposition}
+    Suppose that $f,g \in L^1(\Circ,\ha)$, and $p \geq 1$. Then
+    \begin{equation*}
+        \|f*g\|_p \leq \|f\|_p\|g\|_1.
+    \end{equation*}
+\end{proposition}
+
+\section{Fourier kernels}
+We want to study conditions under which
+\begin{equation*}
+    f = \sum_{n \in \Itgr} \hat{f}(n) z^n.
+\end{equation*}
+
+To this end, define
+\begin{equation*}
+    S_N f := \sum_{n=-N}^N \hat{f}(n)z^n.
+\end{equation*}
+for $f \in L^1(\Circ)$.
+
+The key to this analysis is that $S_N f$ can be written as a convolution.
+\begin{proposition}
+    We can write
+    \begin{equation*}
+        S_N f = D_N * f
+    \end{equation*}
+    where 
+    \begin{equation*}
+        D_N = \frac{z^{N+1/2}-z^{-N-1/2}}{z^{1/2}-z^{-1/2}}
+    \end{equation*}
+    for $f \in L^1(\Circ,\ha)$ and the fractional power of $z$ is interpreted
+    as the principal value.
+\end{proposition}
+\begin{proof}
+    Using the definition of $\hat{f}(n)$,
+    \begin{align*}
+        S_N f &= \sum_{n=-N}^N \int_\Circ f(\zeta)\zeta^{-n}z^nd\ha(\zeta)\\
+        &= \int_\Circ \sum_{n=-N}^N f(\zeta) (z\zeta^{-1})^n d\ha(\zeta)\\
+        &= \int_\Circ f(\zeta) \sum_{n=-N} \sum_{n=-N}^N (z\zeta^{-1})^n d\ha(\zeta)\\
+        &= D_N * f.
+    \end{align*}
+    Where,
+    \begin{align*}
+        D_N(\zeta) &= \sum_{n=-N}^N \zeta^n\\
+        &= \frac{\zeta^{-N}(\zeta^{2N+1}-1)}{\zeta-1}\\
+        &= \frac{\zeta^{N+1}-\zeta^{-N}}{\zeta-1}\\
+        &= \frac{\zeta^{N+1/2}-\zeta^{-N-1/2}}{\zeta^{1/2}-\zeta^{-1/2}}
+    \end{align*}
+\end{proof}
+
+This function $D_N$ is called the Dirichlet kernel. For Ces\`aro summation,
+we have the Fej\'er kernel.
+
+Define the Ces\`aro means,
+\begin{equation*}
+    \sigma_N f = \frac{1}{N} \sum_{n=0}^{n-1} S_n f
+\end{equation*}
+
+So that,
+\begin{equation*}
+    (C,1)-\sum_{n\in \Itgr} \hat{f}(n) z^n = \lim_{N\rightarrow\infty} \sigma_N f.
+\end{equation*}
+
+We can similarly express $\sigma_N f$ as a convolution,
+\begin{proposition}
+    Let $f \in L^1(\Circ,\ha)$. Then we can write
+    \begin{equation*}
+        \sigma_N f = F_N * f
+    \end{equation*}
+    where
+    \begin{equation*}
+        F_N = \frac{z^{N}-2+z^{-N}}{N(z^{1/2}-z^{-1/2})^2}
+    \end{equation*}
+\end{proposition}
+\begin{proof}
+    Let $N \geq 0$. By definition, 
+    \begin{equation*}
+        \sigma_N f = \frac{1}{N} \sum_{n=0}^{N-1} D_n * f
+    \end{equation*}
+    So we can write
+    \begin{equation*}
+        F_N := \frac{1}{N} \sum_{n=0}^{N-1} D_n
+    \end{equation*}
+    
+    Hence,
+    \begin{align*} 
+%        F_N &= \frac{1}{N} \sum_{n=0}^{N-1} \frac{z^{n+1/2}-z^{-n-1/2}}{z^{1/2}-z^{-1/2}}\\
+%        &= \left(\frac{z^{1/2}}{N(z^{1/2}-z^{-1/2})}\sum_{n=0}^{N-1} z^{n}\right) - \left(\frac{z^{-1/2}}{N(z^{1/2}-z^{-1/2})}\sum_{n=0}^{N-1} z^{-n}\right)+\frac{1}{N}\\
+%        &= \left(\frac{z^{1/2}}{N(z^{1/2}-z^{-1/2})}\frac{z^N-1}{z-1}\right) -      \left(\frac{z^{-1/2}}{N(z^{1/2}-z^{-1/2})}\frac{z^{-N}-1}{z^{-1}-1}\right)+\frac{1}{N}\\
+%        &= \frac{1}{N(z^{1/2}-z^{-1/2})}\left(\frac{z^{N+1/2}-z^{1/2}}{z-1}-\frac{z^{-N-1/2}-z^{-1/2}}{z^{-1}-1}\right)+\frac{1}{N}\\
+%        &= \frac{1}{N(z^{1/2}-z^{-1/2})}\left(\frac{z^{N+1/2}-z^{1/2}}{z-1}+\frac{z^{-N+1/2}+z^{1/2}}{z-1}\right)+\frac{1}{N}\\
+%        &= \frac{1}{N(z^{1/2}-z^{-1/2})}\left(\frac{z^{N+1/2}+z^{-N+1/2}}{z-1}\right)+\frac{1}{N}\\
+%        &= \frac{1}{N(1-z^{-1})}\left(\frac{z^N+z^{-N}}{z-1}\right)+\frac{1}{N}\\
+%        &= \frac{z}{N}\frac{z^N+z^{-N}}{(z-1)^2}+\frac{1}{N}\\
+%        &= \frac{1}{N}\frac{z^N+z^{-N}}{(z^{1/2}-z^{-1/2})^2}+\frac{1}{N}.
+        F_n &= \frac{1}{N}\sum_{n=0}^{N-1} \frac{z^{n+1/2}-z^{-n-1/2}}{z^{1/2}-z^{-1/2}}\\
+        &= \frac{1}{N(z^{1/2}-z^{-1/2})}\left( \sum_{n=1}^{N-1} z^{n+1/2} -\sum_{n=1}^{N-1} z^{-n-1/2}   \right) + \frac{1}{N}\\
+        &= \frac{1}{N} + \frac{1}{N(z^{1/2}-z^{-1/2})}\left( z^{3/2} \frac{z^{N-1}-1}{z-1} - z^{-3/2}\frac{z^{-N+1}-1}{z^{-1}-1} \right)\\
+        &= \frac{1}{N} + \frac{1}{N(z^{1/2}-z^{-1/2})}\left(z^{3/2} \frac{z^{N-1}-1}{z-1} + z^{-3/2}\frac{z^{-N+2}-z}{z-1} \right)\\
+        &= \frac{1}{N}+ \frac{1}{N(z^{1/2}-z^{-1/2})}\left( \frac{z^{N+1/2}-z^{3/2} + z^{-N+1/2}-z^{-1/2}}{z-1} \right)\\
+        &= \frac{1}{N} + \frac{1}{N(1-z^{-1})}\left( \frac{z^N - z + z^{-N} - z^{-1}}{z-1} \right)\\
+        &= \frac{1}{N} + \frac{z}{N(z-1)}\left( \frac{z^N+z^{-N} - z - z^{-1}}{z-1} \right)\\
+        &= \frac{1}{N} + \frac{z^{N+1} + z^{-N+1} - z^2 -1}{N(z-1)^2}\\
+        &= \frac{(z-1)^2 + z^{N+1} + z^{-N+1} - z^2 - 1}{N(z-1)^2}\\
+        &= \frac{z^{N+1}-2z+z^{-N+1}}{N(z-1)^2}\\
+        &= \frac{z^{N}-2-z^{-N}}{N(z^{1/2}-z^{-1/2})^2}
+    \end{align*}
+\end{proof}
+
+The key property of the Fej\'er kernels is that they form an approximate identity.
+We shall study approximate identities in greater abstraction in the next section.
+
+\section{Approximate identities on the circle}
+We define an approximate to the identity on the circle as follows,
+\begin{definition}
+    A sequence $\{\psi_n\}_{n=0}^\infty \subset L^1(\Circ,\ha)$ is an \emph{approximation to the identity}
+    if:
+    \begin{enumerate}
+        \item{} $\psi_n \geq 0$ $\ha$-almost everywhere.
+        \item{} $\int_\Circ \psi_nd\ha = 1$, for each $n \geq 0$.
+        \item{} For ever $\epsilon > 0$, there is some neighbourhood
+        $U$ of $1$ such that
+        \begin{equation*}
+            \int_{\Circ\setminus U} \psi_nd\ha < \varepsilon.
+        \end{equation*}
+    \end{enumerate}
+\end{definition}
+
+The key to approximate identities, and the justification
+of the name, comes from the following two propositions, 
+\begin{proposition}
+    Suppose that $f \in C(\Circ)$, and $\{\psi_n\}_{n=0}^\infty$ is an 
+    approximate identity. Then we have $\psi_n * f\rightarrow f$
+    uniformly, that is
+    \begin{equation*}
+        \lim_{n\rightarrow\infty}\|\psi_n*f-f\|_\infty = 0
+    \end{equation*}
+\end{proposition}
+\begin{proof}
+    Since $f$ is continuous, it is uniformly continuous. Thus for
+    $\varepsilon > 0$, we can find a neighbourhood $U$ of $1$
+    such that
+    \begin{equation*}
+        \sup_{x \in \Circ} \sup_{y \in U} |f(xy^{-1})-f(x)| < \varepsilon.
+    \end{equation*}
+    
+    Then we can compute,
+    \begin{align*}
+        |\psi_n * f(x) - f(x)| &= \left|\int_\Circ \psi_n(y)f(xy^{-1})-f(x)\psi_n(y) d\ha(y)\right|\\
+        &= \left| \int_\Circ \psi_n(y)(f(xy^{-1})-f(x)) d\ha(y)\right|\\
+        &\leq \left| \int_{U} \psi_n(y)(f(xy^{-1})-f(x))d\ha(y)\right| + \left|\int_{\Circ\setminus U} \psi_n(y)(f(xy^{-1})-f(x))d\ha(y)\right|\\
+        &\leq \varepsilon + 2\|f\|_\infty \int_{\Circ\setminus U}\psi_n(y)d\ha(y)
+    \end{align*}
+    
+    Taking the limit as $n\rightarrow\infty$, we find that $\|\psi_n*f-f\|_\infty\rightarrow 0$.
+\end{proof}
+
+\begin{proposition}
+    Suppose that $f \in L^p(\Circ,\ha)$ for $1 \leq p < \infty$, and $\{\psi_n\}_{n=0}^\infty$
+    is an approximation to the identity. Then $\psi_n * f\rightarrow f$ as $n\rightarrow \infty$
+    in the $L^p$ sense. That is,
+    \begin{equation*}
+        \lim_{n\rightarrow\infty} \|\psi_n*f-f\|_p = 0.
+    \end{equation*}
+\end{proposition}
+\begin{proof}
+    Let $\varepsilon > 0$, and choose $g \in C(\Circ)$, with $\|f-g\|_p < \varepsilon$. 
+    Then we have
+    \begin{equation*}
+        \|\psi_n*f-f\|_p \leq \|\psi_n*f-\psi_n*g\|_p + \|\psi_n*g-g\|_p + \|g-f\|_p.
+    \end{equation*}
+    So by young's inequality, we have
+    \begin{equation*}
+        \|\psi_n*f-f\|_p \leq \|\psi_n\|_1 \|f-g\|p + \|\psi_n*g-g\|_p + \|g-f\|_p.
+    \end{equation*}
+    Since $\psi_n*g$ converges to $g$ uniformly, we then have
+    \begin{equation*}
+        \lim_{n\rightarrow\infty} \|\psi_n*f-f\|_p \leq 2\varepsilon.
+    \end{equation*}
+    Hence, $\lim_{n\rightarrow\infty} \|\psi_n*f-f\|_p = 0$.
+\end{proof}
+
+\section{Convergence of Ces\`aro sums of fourier series}
+The $n$th Ces\`aro sum of $f \in L^1(\Circ, \ha)$
+is $F_n*f$ where $F_n$ is the Fej\'er kernel. In fact, $\{F_n\}_{n=0}^\infty$
+is an approximation to the identity.
+\begin{proposition}
+    The sequence $\{F_n\}_n=0^\infty$ of Fej\'er kenels is an approximation
+    to the identity on $\Circ$. 
+\end{proposition}
+\begin{proof}
+
+    To show that $\int_\Circ F_nd\ha = 1$, we use the definition of the Fej\'er kernel,
+    \begin{equation*}
+        F_N = \frac{1}{N}\sum_{n=0}^{N-1} D_n.
+    \end{equation*}
+    But it is easy to see that since $D_n = z^{-n} + \ldots + z^n$, we
+    have $\int_{\Circ} D_n d\ha = 1$. Hence $\int_\Circ F_n d\ha = 1$.
+    
+    So we need to prove the remaining two conditions for $\{F_n\}_{n=0}^\infty$
+    to be an approximation to the identity.      
+
+
+    We have,
+    \begin{equation*}
+        F_N(\zeta) = \frac{\zeta^{N}-2+\zeta^{-N}}{N(\zeta^{1/2}-\zeta^{-1/2})^2}.
+    \end{equation*}
+    We can parametrise the circle by replacing $\zeta$ with $e^{i\theta}$,
+    for $\theta \in [-\pi,\pi)$. We can then consider $F_n$ as a function of $\theta$,
+    \begin{equation*}
+        F_N(\theta) = \frac{1}{N}\left(\frac{\sin(N\theta/2)}{\sin(\theta/2)}\right)^2
+    \end{equation*}
+
+    Hence, $F_N(\theta) \geq 0$, so the first property of being an approximate
+    identity is true.
+    
+    Suppose that $\theta \in \theta \in [-\pi, -\pi/t) \cup (\pi/t,\pi)$. 
+    
+    Then the minimum value of $\sin^2(\theta/2)$ is $\sin^2\left(\frac{\pi}{2t}\right)$,
+    and the maximum value of $\sin^2(N\theta/2)$ is $\sin^2\left(\frac{N\pi}{2t}\right)$
+    \begin{align*}
+        F_N(\theta) &\leq \frac{\sin^2\left(\frac{N\pi}{2t}\right)}{N\sin^2\left(\frac{\pi}{2t}\right)}\\
+        &\leq \frac{1}{N\sin^2\left(\frac{\pi}{2t}\right)}
+    \end{align*}
+    Hence if we integrate $F_N$ outside the region $[-\pi/t,\pi/t]$, we find
+    the integral vanishes as $N\rightarrow \infty$. 
+    
+    Thus the sequence $\{F_N\}_{N=0}^\infty$ forms an approximate identity.
+   
+\end{proof}
+The consequences of this fact are:
+\begin{enumerate}
+    \item{} If $f \in C(\Circ)$, then $\sigma_N f\rightarrow f$
+    uniformly.
+    \item{} If $f \in L^p(\Circ)$, with $1 \leq p < \infty$, then 
+    $\sigma_N f \rightarrow f$ in the $L^p$ sense.
+\end{enumerate}
+
+We have a useful corollary:
+\begin{corollary}
+    If $f \in L^1(\Circ,\ha)$, then $\hat{f}(n)\rightarrow 0$
+    as $|n|\rightarrow \infty$. 
+\end{corollary}
+\begin{proof}
+    Since $f \in L^1(\Circ,\ha)$, we have that $\sigma_N\rightarrow f$
+    in the $L^1$ sense. So we can compute,
+    \begin{align*}
+        |\hat{f}(n)| &= \left|\int_\Circ f-\sigma_{|n|-1}f d\ha\right|\\
+        &\leq \int_\Circ |f-\sigma_{|n|-1}f|d\ha\\
+        &= \|f-\sigma_{|n|-1}f\|_1.
+    \end{align*}
+    Hence as $|n|\rightarrow\infty$, we have $|\hat{f}(n)|\rightarrow 0$.
+\end{proof}
+
+\section{Fourier series of measures}
+
+Suppose that $\mu$ is a complex Borel regular measure on $\Circ$. Then 
+we can define the fourier coefficients of $\mu$,
+\begin{equation*}
+    \hat{\mu}(n) := \int_\Circ z^{-n} d\mu.
+\end{equation*}
+
+So each measure $\mu$ is associated to a fourier series,
+\begin{equation*}
+    \mu \sim \sum_{n \in \Itgr} \hat{\mu}(n)z^n.
+\end{equation*}
+Using Ces\`aro convergence, we can interpret this equivalence in a precise way.
+
+First of all, we need to define convergence of measures,
+\begin{definition}
+    A sequence $\{\mu_n\}_{n=0}^\infty$ of complex borel regular measures
+    on $\Circ$ converges in the weak* sense if for any $f \in C(\Circ)$, we have
+    \begin{equation*}
+        \int_\Circ fd\mu_n \rightarrow \int_\Circ fd\mu
+    \end{equation*}
+    as $n\rightarrow\infty$.
+\end{definition}
+
+Given $f \in L^1(\Circ,\mu)$ we can identify $f$
+with a measure $\mu$ by $d\mu = fd\ha$. Thus we have the following proposition,
+\begin{proposition}
+    Suppose that $\mu$ is a complex Borel regular measure on $\Circ$. Then 
+    the Ces\`aro partial sums of the fourier series of $\mu$, interpreted
+    as measures, converge in the weak* sense to $\mu$. 
+\end{proposition}
+\begin{proof}
+    Let $\sigma_n \mu$ be the $n$th partial Ces\`aro sum of $\mu$. Then a simple
+    computation shows that
+    \begin{equation*}
+        \int_\Circ f \sigma_n \mu d\ha = \int_\Circ \sigma_n f d\mu.
+    \end{equation*}
+    So we have 
+    \begin{equation*}
+        \left|\int_\Circ f d\mu - \int_\Circ f \sigma_n \mu d\ha\right| \leq \int |f-\sigma_n f|d\mu.
+    \end{equation*}
+    Since $\sigma_n f$ converges uniformly to $f$, the result follows. 
+\end{proof}
+
+\section{Fourier series of Distributions}
+The space $C^\infty(\Circ)$ is given the topology generated by all
+the seminorms, $\rho_n(f) := \|f^{(n)}\|_\infty$, where the superscript
+denotes differentiation. 
+
+The topological dual of this space, denoted $\mathcal{D}'(\Circ)$,
+is the space of distributions. Given a distribution $\varphi$, we
+can define the fourier coefficients of $\varphi$ as
+\begin{equation*}
+    \hat{\varphi}(n) := \varphi(z^{-n}).
+\end{equation*}
+So each distribution is associated with a fourier series,
+\begin{equation*}
+    \varphi \sim \sum_{n \in \Itgr} \hat{\varphi}(n)z^n.
+\end{equation*}
+
+In a manner analogous to the case of measures on the circle, we can interpret
+this equivalence in a precise way. 
+
+A sequence $\{\varphi_n\}_{n=0}^\infty$ of distributions converges to $\varphi \in \mathcal{D}'(\Circ)$ if 
+for any $f \in C^\infty(\Circ)$, we have $\varphi_n(f)\rightarrow \varphi(f)$. 
+
+Any function $f \in L^1(\Circ)$ can be interpreted as a distribution,
+by $f(g) := \int_\Circ fg d\ha$ for all $g \in C^\infty(\Circ)$. 
+
+If we interpret partial sums of the fourier series of a distribution as a sequence
+of distributions in this way, then their Ces\'aro sum converges to the original
+distribution in the sense of convergence of distributions. 
+
+\end{document}
