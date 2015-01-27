@@ -1,21 +1,9 @@
-
 % Copyright © 2015 Edward McDonald. All Rights Reserved.
-\documentclass{owmaths}
-
-\usepackage{owshortcuts}
-\usepackage[all]{xy}
-\usepackage{csquotes}
-
-\begin{document}
-
-\subject{Misc.}
-\author{Edward McDonald}
-\title{The Ultimate Guide to Tensors}
-\studentno{616}
+% !Tex root = Algebra III.tex
 
 \newcommand{\Cliff}{\operatorname{Cliff}}
 \newcommand{\Cl}{C\ell}
-\newcommand{\im}{\operatorname{im}}
+%\newcommand{\im}{\operatorname{im}}
 \newcommand{\com}{\mathrm{com}}
 \newcommand{\Hom}{\operatorname{Hom}}
 \newcommand{\A}{\mathcal{A}}
@@ -27,11 +15,15 @@
 
 \setlength\parindent{0pt}
 
+%
+\section{Tensors} % (fold)
+\label{sec:tensors}
 
-\section{Introduction}
+%%
+\subsection{Introduction}
 Tensors are a vital tool in modern mathematics. They see
 frequent use in representation theory, module theory, linear algebra, differential
-geometry and physics. 
+geometry and physics.
 
 Unfortunately for a beginner, it can be very difficult to start learning
 the theory of tensors. There are several reasons for this.
@@ -74,7 +66,8 @@ in studying multilinear maps, \emph{tensors are inevitable}. What I mean by
 this is that one cannot study multilinear algebra without at least implicitly
 defining a tensor.
 
-\section{An initial definition}
+\subsection{An initial definition}
+
 Multilinear maps are ubiquitous in mathematics, and we shall take for granted 
 that this makes them worthy of study. Our first definition of tensors
 is very clear: a tensor is simply a multilinear map.
@@ -111,12 +104,12 @@ first theorem for this notes relates linear maps to multilinear maps.
     \end{equation*}
     It is clear that $\psi(T) \in T^{1,1}(V)$. We now need to show that $\psi$ is
     an isomorphism. To do this, we define an inverse map $\varphi$. 
-    
+
     For $S \in T^{1,1}(V)$, and $v \in V$, define $\varphi(S)(v)$
     as the unique vector such that $w(\varphi(S))(v) = S(v,w)$ for
     all $w \in V^*$. The existence of this vector is guaranteed by 
     the fact that $V$ is finite dimensional.
-    
+
     It is an exercise to check that $\psi\circ \varphi = \mathrm{id}_{T^{(1,1)}(V)}$
     and $\varphi \circ \psi = \mathrm{id}_{\End_k(V)}$.
 \end{proof}
@@ -171,7 +164,8 @@ Using tensor products and these bases, we can find a basis for every tensor spac
     \end{equation*}
 \end{proposition}
 
-\section{Tensor products of vector spaces}
+%%
+\subsection{Tensor products of vector spaces}
 The content and definition of the previous section allows us to study
 multilinear maps on a single vector space $V$, however
 often we are interested in multilinear maps between multiple vector spaces. How 
@@ -232,10 +226,10 @@ of view are equivalent.
 So finally we state the universal property:
 \begin{theorem}
     Suppose $U$,$V$ and $W$ are finite dimensional vector spaces over $k$.
-    
+
     Note that there is a multilinear ``inclusion" map, $\iota:U\times V\rightarrow U\otimes V$,
     where $\iota(u,v) = u\otimes v$.
-    
+
     If $\theta:U\times V\rightarrow W$ is a multilinear map, there exists
     a unique linear map $\tilde{\theta}:U\otimes V\rightarrow W$ such that the following
     diagram commutes,
@@ -293,8 +287,8 @@ Similarly, we may obtain an isomorphism,
 
 It is then straightforward to define higher tensor products: such as $U \otimes V \otimes W$.
 
-
-\section{Tensor Algebras}
+%%
+\subsection{Tensor Algebras}
 The Tensor Algebra is a phenomenally useful tool, and once we define it, it
 will be used to construct a variety of other algebras.
 
@@ -332,10 +326,10 @@ An explicit construction of the tensor algebra follows,
     for $v_i \in V^{\otimes i}$, $i = 1,\ldots m$. However, we can multiply 
     elements like this formally. Suppose $v \in V^{\otimes i}$, and $u \in V^{\otimes j}$
     are elementary tensors, then $v \otimes u$ is an elementary tensor in $V^{\otimes i+j}$.
-    
+
     Then the multiplication is extended to all of $T(V)$ by linearity.
     Note that the identity in $T(V)$ is simply the identity in $k$.
-    
+
     Frequently the $\otimes$ symbol is omitted, so we write $uv = u \otimes v$.
 \end{definition}
 
@@ -354,7 +348,7 @@ More precisely,
 \begin{proposition}
     Note that since $V = V^{\otimes 1}$, there is a natural
     inclusion map $\iota: V \rightarrow T(V)$.
-    
+
     Suppose that $A$ is a $k$-algebra, and let $\theta:V\rightarrow A$
     be any $k$-linear map. Then there exists a unique algebra homomorphism
     $\tilde{\theta}$ such that the following diagram commutes,
@@ -368,8 +362,10 @@ More precisely,
     \end{displaymath}
 \end{proposition}
 
-\section{Algebras Built from the Tensor Algebra}
-\subsection{Quotients of algebras}
+%%
+\subsection{Algebras Built from the Tensor Algebra}
+%%%
+\subsubsection{Quotients of algebras}
 
 An ideal $I \unlhd A$ is an (two-sided) ideal of $A$ as a ring, and a $k$-subspace of $A$. 
 
@@ -386,7 +382,7 @@ means is that $A/I$ is the largest algebra which is the image of an algebra homo
 from $A$ with kernel containing $I$.
 \begin{proposition}
     Suppose that $A$ is an algebra over $k$, and $I \unlhd A$ is an ideal.
-    
+
     Let $M$ be another $k$ algebra, and $\varphi:A\rightarrow M$
     is an algebra homomorphism such that $I \subseteq \ker\varphi$.
     Then there is a unique map $\tilde{\varphi}$ such that the following
@@ -403,7 +399,8 @@ from $A$ with kernel containing $I$.
 
 Now we will use this property extensively. 
 
-\subsection{The exterior algebra}
+%%%
+\subsubsection{The exterior algebra}
 
 $T(V)$ was built from all formal multiplications of elements of $V$. We 
 can place additional restrictions on this multiplication. In the \emph{exterior algebra}
@@ -421,7 +418,7 @@ construction, we require that multiplication is \emph{alternating}.
     \begin{equation*}
         u \wedge v := u \otimes v + I.
     \end{equation*}
-    
+
     See that by construction, $u \wedge u = 0$, and since $(u+v)\wedge(u+v) = 0$,
     we conclude that $u\wedge v = - v \wedge u$. An algebra where the product
     is antisymmetric like this is called alternating.
@@ -431,7 +428,7 @@ By the universal property for quotients, $\bigwedge V$ satisfies the following
 universal property.
 \begin{proposition}
     See that we still have an inclusion map, $\iota:V\rightarrow \bigwedge V$.
-    
+
     Let $A$ be any algebra, and let $\varphi:V\rightarrow A$
     be a $k$-linear map such that $\varphi(v)\varphi(v) = 0$. Then there exists
     a unique algebra homomorphism $\tilde{\varphi}$ such that the following diagram
@@ -442,7 +439,7 @@ universal property.
         \bigwedge V \ar@{.>}[d]^{\tilde{\varphi}}&\\
         &
         A
-    }   
+    }
     \end{displaymath}
 \end{proposition}
 
@@ -451,7 +448,8 @@ generated by symbols of the form $v_1 \wedge v_2 \wedge \cdots \wedge v_m$,
 where we say that the $\wedge$ operation is bilinear and associative, and $v \wedge v = 0$
 for any $v \in \wedge V$.
 
-\subsection{The symmetric algebra}
+%%%
+\subsubsection{The symmetric algebra}
 In a very similar way, we may define the \emph{symmetric tensor algebra}.
 
 $T(V)$ was built from all formal multiplications of elements of $V$. We 
@@ -470,7 +468,7 @@ construction, we require that multiplication is \emph{commutative}.
     \begin{equation*}
         uv := u \otimes v + J.
     \end{equation*}
-    
+
     See that by construction, $uv = vu$.
 \end{definition}
 
@@ -478,7 +476,7 @@ By the universal property for quotients, $S(V)$ satisfies the following
 universal property.
 \begin{proposition}
     See that we still have an inclusion map, $\iota:V\rightarrow S(V)$.
-    
+
     Let $A$ be any algebra, and let $\varphi:V\rightarrow A$
     be a $k$-linear map such that $\varphi(u)\varphi(v) = \varphi(v)\varphi(u)$. Then there exists
     a unique algebra homomorphism $\tilde{\varphi}$ such that the following diagram
@@ -489,11 +487,12 @@ universal property.
         S(V) \ar@{.>}[d]^{\tilde{\varphi}}&\\
         &
         A
-    }   
+    }
     \end{displaymath}
 \end{proposition}
 
-\subsection{Clifford algebras}
+%%%
+\subsubsection{Clifford algebras}
 The constructions of the exterior algebra and the symmetric algebra are nearly
 identical. In fact, to write the section on the symmetric algebra I simply
 copy-pasted the construction of the exterior algebra, and changed a few words.
@@ -546,7 +545,7 @@ we must say something about quadratic forms.
     A symmetric bilinear form $b:V\times V\rightarrow k$
     is a map that is linear in both arguments (In other words, $b \in T^{2,0}(V)$
     or $b \in V^* \otimes V^*$) and $b(u,v) = b(v,u)$ for all $u,v \in V$. 
-    
+
     Associated to any bilinear form is a \emph{quadratic form},
     \begin{equation*}
         Q(v) = b(v,v).
@@ -561,7 +560,7 @@ that $uv+vu = -2b(u,v)$, or equivalently that $u^2 = -b(u,u)$.
 \begin{definition}
     Let $V$ be a finite dimensional vector space over $k$, and 
     let $b \in T^{2,0}(V) = V^* \otimes V^*$ be a symmetric bilinear form.
-    
+
     Let $K$ be the ideal of $T(V)$ generated by all elements
     of the form $u\otimes u + b(u,u)1$, where $1$ is the identity
     in $T(V)$. Then, the \emph{clifford algebra} associated to
@@ -573,7 +572,9 @@ that $uv+vu = -2b(u,v)$, or equivalently that $u^2 = -b(u,u)$.
 \end{definition}
 
 
-\section{Tensor products of vector bundles}
+%%
+\subsection{Tensor products of vector bundles}
+
 So far we have been working in single vector spaces
 over an arbitrary field $k$. A \emph{vector bundle} is a powerful
 generalisation of a vector space, which consists of a collection
@@ -584,9 +585,13 @@ of vector spaces indexed by a topological space.
     is a continuous surjection.
 \end{definition}
 
-\section{Tensor calculus}
+%%
+\subsection{Tensor calculus}
+...
 
-\section{Tensor products of topological vector spaces}
+%%
+\subsection{Tensor products of topological vector spaces}
+
 All of the vector spaces that we have defined up to this point
 have been finite dimensional. There is a good reason for this:
 infinite dimensional spaces require a more advanced theory.
@@ -600,9 +605,11 @@ least to most general,
 \item{} Locally convex spaces have a topology induced by a family of semi-norms.
 \end{enumerate}
 finish writing this later...
-\section{Tensor products of modules}    
 
-    
-    
-\section{Monoidal categories}
-\end{document}
+%%
+\subsection{Tensor products of modules}
+..
+
+%%
+\subsection{Monoidal categories}
+..
