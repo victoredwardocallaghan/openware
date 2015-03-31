@@ -1,0 +1,1324 @@
+\documentclass{owmaths}
+
+\usepackage{owshortcuts}
+\usepackage[all]{xy}
+\usepackage{csquotes}
+
+\begin{document}
+
+\subject{Measure Theory}
+\author{Edward McDonald}
+\title{Elementary measure theory from an abstract point of view}
+\studentno{616}
+
+
+\setlength\parindent{0pt}
+
+\section{Introduction}
+The purpose of these notes is to go over the elementary concepts of
+abstract measure theory. There will be few original ideas of proofs. Instead
+of being original, the purpose of these notes is to:
+\begin{enumerate}
+    \item{} Cover the basic ideas of measure theory without getting bogged
+    down in specific examples, like the Carath\'erodory construction, or Lebesgue
+    measure
+    \item{} To include all proofs, so the measure theory is presented
+    as a coherent whole
+    \item{} To present ideas in as abstract a manner as possible
+\end{enumerate}
+
+\section{Concepts from order theory}
+As a reminder, we provide the definition of a partially ordered set.
+\begin{definition}
+    A \emph{partially ordered set} (a.k.a. a poset) is a pair $(P,\leq)$
+    where $\leq$ is a relation, such that: 
+    \begin{enumerate}
+        \item{} $\leq$ is reflexive: for all $a \in P$, $a \leq a$.
+        \item{} $\leq$ is antisymmetric: if $a,b \in P$ with $a\leq b$ and $b\leq a$, then $a = b$.
+        \item{} $\leq$ is transitive: if $a,b,c \in P$, with $a \leq b$ and $b\leq c$, then $a\leq c$.
+    \end{enumerate}
+\end{definition}
+We shall make extensive use of the concepts of least upper bound
+and greatest lower bound. Thus we introduce a specific notation for them.
+\begin{definition}
+    Let $\{a_i\}_{i \in I}$ be an indexed subset of a partially ordered set $(P,\leq)$. Then
+    an element $b \in P$ is set to be the least upper bound of $\{a_i\}_{i \in I}$ if,
+    for any $c \in P$ such that $a_i \leq c$ for all $i \in I$, we have $b \leq c$.
+    We write symbollically,
+    \begin{equation*}
+        b = \bigvee_{i \in I} a_i.
+    \end{equation*}
+    If $x,y \in P$, we write the least upper bound of $\{x,y\}$ as $x \vee y$.
+    
+    Similarly, the greatest lower bound of a set $\{a_i\}_{i \in I}$ is denoted
+    \begin{equation*}
+        \bigwedge_{i \in I} a_i.
+    \end{equation*}
+    
+    Theese operations are called \emph{meet} and \emph{join} respectively.
+\end{definition}
+In a general poset, there is no reason why the meet of
+join of an arbitrary subset should exist. A lattice
+is a poset where we assume that greatest lower bounds
+and least upper bounds of pairs of elements always exist. That is,
+\begin{definition}
+    A \emph{lattice} is a poset $(P,\leq)$ where for any $a,b \in P$,
+    we have $a\vee b,a\wedge b \in P$.
+    
+    A lattice is distributive if for any $a,b,c \in P$, we have
+    \begin{equation*}
+        a \vee (b \wedge c) = (a\vee b)\wedge (a\vee c)
+    \end{equation*}
+    or
+    \begin{equation*}
+        a \wedge (b \vee c) = (a \wedge b) \vee (a \wedge c).
+    \end{equation*}
+\end{definition}
+\begin{proposition}
+    One notion of distributivity implies the other.
+\end{proposition}
+\begin{proof}
+    Suppose that for all $a,b,c \in P$, we have
+    \begin{equation*}
+        a \vee (b \wedge c) = (a \vee b)\wedge (a \vee c).
+    \end{equation*}
+    
+    Then compute,
+    \begin{align*}
+        (a \wedge b) \vee (a \wedge c) &= (a\vee(a\wedge c)) \wedge (b\vee (a\wedge c))\\
+        &= a \wedge (b \vee a) \wedge (b\vee c)\\
+        &= a \wedge (b \vee c).        
+    \end{align*}
+    Here we have used the associative laws and absorption law, that $a \wedge (b\vee a) = a$.
+    These are easy to prove.
+\end{proof}
+
+
+
+All posets that we deal with in these notes are bounded. So we define a bounded
+poset.
+\begin{definition}
+    A poset $(P,\leq)$ is bounded if there exist elements $0,1 \in P$
+    such that $0\leq a \leq 1$ for all $a \in P$.
+\end{definition}
+
+So far we have defined posets as abstract sets with relations. However, we shall
+mostly be interested in \emph{concrete posets}. That is, given a set
+$X$, any subset $A \subseteq \mathcal{P}(X)$ is a poset,
+with the partial order being given by inclusion.
+
+In order to introduce Boolean algebras, we need to introduce complements.
+This is a concept that makes sense for bounded posets.
+\begin{definition}
+    Suppose that $(P,\leq,0,1)$ is a bounded poset. Then given $a \in P$,
+    an element $b \in P$ is called a complement of $b$ if
+    \begin{align*}
+        a \wedge b &= 0\\
+        a \vee b &= 1
+    \end{align*}
+\end{definition}
+\begin{proposition}
+    Complements in bounded distributive lattices are unique, if they exist.
+\end{proposition}
+\begin{proof}
+    Let $(P,\leq,0,1)$ be a bounded distributive lattice. Suppose that $a \in P$,
+    and $b,c \in P$ are complements of $a$. Then,
+    \begin{equation*}
+        (a \vee  b) \wedge c = c
+    \end{equation*}
+    Hence,
+    \begin{equation*}
+        (a \wedge c) \vee (b \wedge c) = c
+    \end{equation*}
+    Thus $b \wedge c = c$, so $b \leq c$. By symmetry, $c \leq b$. So $c = b$.
+\end{proof}
+
+Now we introduce the important concept of a Boolean algebra.
+\begin{definition}
+    A \emph{Boolean algebra} is a bounded distributive lattice 
+    such that every element has a complement. The complement of an element
+    $a$ is denoted $a'$.
+\end{definition}    
+\begin{remark}
+    The unary $'$ operation is well defined, since complements are unique
+    in a distributive lattice. It is easy to see that $'$ is involutive, that is
+    $a'' = a$ for any $a$. Also, $0' = 1$.
+\end{remark}
+\begin{proposition}
+    Suppose that $B$ is a Boolean algebra, and $a,b \in B$. Then $(a\vee b)' = a'\wedge b'$
+    and $(a \wedge b)' = a' \vee b'$.
+\end{proposition}
+\begin{proof}
+    This is a simple verification. By uniquenss, we need to check that
+    \begin{equation*}
+        (a \wedge b) \wedge (a' \vee b') = 1
+    \end{equation*}
+    and that
+    \begin{equation*}
+        (a \wedge b) \vee (a' \vee b') = 0.
+    \end{equation*}
+    This follows from distributivity.
+\end{proof} 
+
+\begin{definition}
+    Given a set $X$, a Boolean algebra on $X$ is a subset of $\mathcal{P}(X)$
+    ordered by inclusion, with meet and join given by intersection and union,
+    bounds $\emptyset$ and $X$ 
+    and complement given by set complementation.
+\end{definition}    
+
+
+For measure theory, Boolean algebras are not enough. We must instead 
+introduce the concept of a Boolean $\sigma$-algebra.
+\begin{definition}
+    A Boolean $\sigma$-algebra is a Boolean algebra that is closed
+    under countable meets and countable joins. That is,
+    a Boolean algebra
+    $A$ is a Boolean $\sigma$-algebra if for any $\{a_i\}_{i=1}^\infty \subseteq A$, we have
+    \begin{equation*}
+        \bigwedge_{i=1}^\infty a_i,\;\bigvee_{i=1}^\infty a_i \in A.
+    \end{equation*}
+    
+    Furthermore we ask that countable least upper bounds and greatest lower bounds
+    satisfy \emph{infinite distributive laws}: for any countable subsets $\{a_i\}_{i=1}^\infty$
+    and $\{a_j\}_{j=1}^\infty$, we have
+    \begin{align*}
+        \left(\bigvee_{i=1}^\infty a_i\right)\wedge\left(\bigvee_{j=1}^\infty b_j \right) &= \bigvee_{i,j=1}^\infty (a_i \wedge b_j)\\
+        \left(\bigwedge_{i=1}^\infty a_i\right)\vee\left(\bigwedge_{j=1}^\infty b_j\right) &= \bigwedge_{i,j=1}^\infty (a_i \vee b_j)
+    \end{align*}
+\end{definition}
+\begin{proposition}
+    In a Boolean $\sigma$-algebra, De Morgan's laws generalise to countable meets and joins.
+\end{proposition}
+\begin{proof}
+    Again, by uniqueness of complements, we only need to check that
+    \begin{equation*}
+        \left(\bigvee_{i=1}^\infty a_i\right)' = \bigwedge_{i=1}^\infty a_i'.
+    \end{equation*}
+    and similarly with joins and meets interchanged. This is a simple verification.
+\end{proof}
+
+\begin{definition}
+    A $\sigma$-algebra on a set $X$ is a subset of $\mathcal{P}(X)$
+    with meet and join given by intersection and union, with bounds $\emptyset$ and $X$ 
+    and complement given by set complementation.
+\end{definition}
+
+$sigma$-algebras on sets are usually specified by a generating set. This is justified
+by the following proposition.
+\begin{proposition}
+    Let $X$ be a set, and let $\mathcal{C} \subseteq \mathcal{P}(X)$. There
+    is a unique smallest $\sigma$-algebra containing $\mathcal{C}$, which we
+    denote $\sigma(\mathcal{C})$.
+\end{proposition}
+\begin{proof}
+    The key here is that $\mathcal{P}(X)$ is a $\sigma$-algebra
+    containing $\mathcal{C}$, and an intersection of an arbitrary family 
+    of $\sigma$-algebras is again a $\sigma$-algebra. 
+    
+    Hence, take the intersection of all the $\sigma$-algebras containing $\mathcal{C}$.
+\end{proof}
+
+
+\section{Monotone class theorem}
+$\sigma$-algebras on sets are the posets which appear most frequently in measure theory.
+However, also of great importance are $\pi$-classes and $d$-classes, which
+are connected to $\sigma$-algebras by the monotone class theorem.
+
+\begin{definition}
+    Suppose that $X$ is a set. A $\pi$-class on $X$ is a non-empty collection of subsets
+    of $X$ closed under intersection.
+\end{definition}
+
+\begin{definition}
+    Suppose that $X$ is a set. A $d$-class on $X$ (also called a Dynkin class, or a monotone class, but
+    we will exclusively call it a $d$-class) is a collection of subsets
+    of $X$ closed under increasing countable union, that is, for any countable collection
+    of subsets, $\{A_i\}_{i=1}^\infty \subseteq \mathcal{P}(X)$ with $A_i \subseteq A_j$
+    for $i \leq j$, we have
+    \begin{equation*}
+        \bigcup_{i=1}^\infty A_i
+    \end{equation*}
+    in the $d$-class.
+    
+    A $d$ class must contain $X$.
+    
+    A $d$-class also must be closed under relative complements. That is, if $A,B$
+    are in the $d$-class, with $B \subseteq A$ then $A \setminus B$ is in the $d$-class.
+    
+\end{definition}
+
+An important feature of $d$-classes is that they can be generated by sets, similar
+to $\sigma$-algebras.
+\begin{proposition}
+    Let $X$ be a set, and let $\mathcal{C} \subseteq \mathcal{P}(X)$
+    be a collection of subsets of $X$. There is a unique smallest $d$-class
+    containing $\mathcal{C}$, which we denote $d(\mathcal{C})$.
+\end{proposition}
+\begin{proof}
+    This is identitical to the case with $\sigma$-algebras. Since $\mathcal{P}(X)$
+    is a $d$-class containing $\mathcal{C}$, and any intersection of a family of $d$-classes
+    is again a $d$-class, simply take the intersection of all $d$-classes containing $\mathcal{C}$.
+\end{proof}
+
+Now we state and prove the important monotone class theorem:
+\begin{theorem}
+    Let $X$ be a set, and suppose that $\mathcal{C}$ is a $\pi$-class
+    on $X$. Then $\sigma(\mathcal{C}) = d(\mathcal{C})$.
+\end{theorem}
+\begin{proof}
+    We clearly have that $d(\mathcal{C}) \subseteq \sigma(\mathcal{C})$,
+    since any $\sigma$-algebra is a $d$-class. So we must prove
+    the reverse inclusion. We can accomplish this by proving that $d(\mathcal{C})$
+    is a $\sigma$-algebra. 
+    
+    Since $X \in \mathcal{C}$, we have that $X \setminus A \in d(\mathcal{C})$
+    for any $A \in d(\mathcal{C})$ since $d(\mathcal{C})$ is closed under
+    relative complements. Hence $d(\mathcal{C})$ is closed under complementation.
+    
+    Let us show that $d(\mathcal{C})$ is closed under finite intersections. Let
+    \begin{equation*}
+        \mathcal{D}_1 = \{A \in d(\mathcal{C}) \;:\;A\cap C \in d(\mathcal{C}),\text{ for all }C \in \mathcal{C}\}.
+    \end{equation*}
+    It is easily verified that $\mathcal{D}$ is a $d$-class, and since $\mathcal{C}$ is a $\pi$-class, we
+    have $\mathcal{C} \subseteq \mathcal{D}_1$, so $d(\mathcal{C}) \subseteq \mathcal{D}_1$.
+    Hence, $\mathcal{D}_1 = d(\mathcal{C})$.
+    
+    Now define,
+    \begin{equation*}
+        \mathcal{D}_2 = \{A \in d(\mathcal{C})\;:\;A\cap B \in \mathcal{D}_1,\text{ for all }B \in d(\mathcal{C})\}.
+    \end{equation*}
+    We have $\mathcal{C} \subseteq \mathcal{D}_2$, and again it is easily
+    verified that $\mathcal{D}_2$ is a $d$-class. Hence $\mathcal{D}_2 = d(\mathcal{C})$.
+    
+    Thus $d(\mathcal{C})$ is closed under finite intersection. Let $A,B \in d(\mathcal{C})$. 
+    Then $X \setminus A,X\setminus B \in \mathcal{C}$. Hence $A \cup B = X\setminus ((X\setminus A)\cap (X\setminus B))$.
+    
+    So $d(\mathcal{C})$ is closed under finite unions.
+    
+    Given any countable subset, $\{A_i\}_{i=1}^\infty$, we can write $\bigcup_{i=1}^\infty A_i$
+    as an increasing union by defining $B_i = \bigcup_{j=1}^i A_i$, and then
+    $\bigcup_{i=1}^\infty A_i = \bigcup_{i=1}^\infty B_i$. Hence
+    since $d(\mathcal{C})$ is closed under finite union, and countable increasing union,
+    it is closed under countable union. By taking complements, it is closed
+    under countable intersection. Hence $d(\mathcal{C})$ is a $\sigma$-algebra,
+    so finally we have $\sigma(\mathcal{C}) = d(\mathcal{C})$.
+\end{proof}
+
+\section{Measurable functions}
+First we define measurable functions on a concrete $\sigma$-algebra, and then talk
+about how the concept is generalised to abstract $\sigma$-algebras.
+Despite the name, one does not need a measure to define measurable functions,
+and the concept is one that is purely to do with $\sigma$-algebras, and is therefore
+within the topic of order theory.
+\begin{definition}
+    Let $(X,\mathcal{A})$ and $(Y,\mathcal{B})$ be two sets equipped
+    with $\sigma$-algebras. A function $f:X\rightarrow Y$
+    is measurable if, for each $B \in \mathcal{B}$, $f^{-1}(B) \in \mathcal{A}$.
+\end{definition}
+
+There is a very important lemma, which we shall use frequently:
+\begin{lemma}
+    Suppose that $(X,\mathcal{A})$, $(Y,\mathcal{B})$ are $\sigma$-algebras.
+    Further suppose that $\mathcal{B} = \sigma(\mathcal{C})$ for some
+    collection $\mathcal{C}$ of subsets of $Y$. Then $f:X\rightarrow Y$
+    is measurable if and only if $f^{-1}(C) \in \mathcal{A}$ for each $C \in \mathcal{C}$.
+\end{lemma}
+\begin{proof}
+    One direction of implication is clear, so suppose that $f^{-1}(C) \in \mathcal{A}$
+    for each $C \in \mathcal{C}$. Let $\mathcal{F}$ be the set of all $A \subset Y$
+    such that $f^{-1}(A) \in \mathcal{A}$. We have $\mathcal{C} \subseteq \mathcal{F}$
+    by construction. However, it is easy to see that $\mathcal{F}$ is a $\sigma$-algebra.
+    Hence, $\sigma(\mathcal{C}) \subseteq F$. And we are done.
+\end{proof}
+
+
+\begin{proposition}
+    The compostion of measurable functions is measurable.
+\end{proposition}
+\begin{proof}
+    This is obvious.
+\end{proof}
+
+The correct way to think about measurable functions is, for a measurable
+function $f:X\rightarrow Y$, we have a map $f^{-1}:\mathcal{B}\rightarrow\mathcal{A}$,
+and because preimages preserve unions, intersections and complements, this is an
+\emph{algebra homomorphism}. We define this now.
+\begin{definition}
+    Let $A$ and $B$ be abstract Boolean $\sigma$-algebras. A function $f:A\rightarrow B$
+    is an algebra homomorphism if, for any collection $\{a_i\}_{i=1}^\infty \subseteq A$, we have
+    \begin{align*}
+        f\left(\bigvee_{i=1}^\infty a_i \right) &= \bigvee_{i=1}^\infty f(a_i)\\
+        f\left(\bigwedge_{i=1}^\infty a_i\right) &= \bigwedge_{i=1}^\infty f(a_i).
+    \end{align*}
+    And furthermore, for any $a \in A$ we have $f(a') = f(a)'$, and $f(1) = 1$
+    and $f(0) = 0$.
+\end{definition}
+
+
+The concrete case of a measurable function motivates the abstract case:
+\begin{definition}
+    Given two Boolean $\sigma$-algebras, $A$ and $B$, a measurable function 
+    $f:A\rightarrow B$ is an algebra homomorphism, from $B$ to $A$.
+\end{definition}
+
+
+\section{Products of $\sigma$-algebras}
+Given two concrete $\sigma$-algebras, $(X,\mathcal{A})$ and $(Y,\mathcal{B})$,
+it is natural to want to find a compatibile $\sigma$-algebra on the
+cartesian product $X \times Y$. This is described in the product sigma
+algebra construction, which actually works for arbitrarily many factors.
+The ``compatibility" is provided by the universal property. 
+\begin{definition}
+    Let $\{(X_i,\mathcal{A}_i)\}_{i\in I}$ be an indexed collection of concrete
+    $\sigma$-algebras. Define,
+    \begin{equation*}
+        \prod_{i \in I} \mathcal{A}_i := \{ \prod_{i \in I} A_i\;:\;A_i \in \mathcal{A}_i,\text{ and }A_i = X_i\text{ for all but finitely many }i \in I\}
+    \end{equation*}
+    and then,
+    \begin{equation*}
+        \bigotimes_{i \in I} \mathcal{A}_i := \sigma\left(\prod_{i \in I} \mathcal{A}_i\right).
+    \end{equation*}
+    This is a $\sigma$-algebra on $\prod_{i\in I} X_i$.
+    
+    The pair $\left(\prod_{i \in I} X_i,\bigotimes_{i \in I} \mathcal{A}_i\right)$ is 
+    called the product $\sigma$-algebra.
+    
+    Let the projection onto the $X_j$ factor be denoted $\pi_j:\prod_{j \in I} X_i \rightarrow X_i$
+\end{definition}
+
+The crucial theorem characterising the product is the \emph{universal property}, defined
+and proved below.
+\begin{proposition}
+    Let $\{(X_i,\mathcal{A}_i)\}_{i \in I}$ be an indexed collection of $\sigma$-algebras.
+    Let $(Y,\mathcal{B})$ be a $\sigma$-algebra, and suppose that for each $i \in I$, 
+    there is a measurable function $f_i:Y\rightarrow X_i$. Then there exists a unique
+    measurable function $f:Y\rightarrow \prod_{i \in I} X_i$, such that for each $i$
+     the following diagram commutes.
+    \begin{displaymath}
+        \xymatrix{
+           &
+           (Y,\mathcal{B}) \ar@{.>}[d]^f \ar[ld]^{f_i}& \\
+           (X_i,\mathcal{A}_i) & 
+           \left(\prod_{i\in I} X_i,\bigotimes_{i \in I} \mathcal{A}_i\right)\ar[l]^{\pi_i}&     
+        }
+    \end{displaymath}
+\end{proposition}
+\begin{proof}
+    Define the function $f = (f_i)_{i \in I}$. We need to show that $f^{-1}(C) \in \mathcal{B}$
+    for each $\mathcal{C} \in \prod_{i \in I} \mathcal{A}_i$. So we can say that $C = \prod_{i \in I} A_i$
+    for some selection $A_i \in \mathcal{A}_i$, where $A_i \neq X_i$ for only finitely
+    many $i$. Then 
+    \begin{equation*}
+        f^{-1}(C) = \bigcap_{\{i \in I\;:\;A_i \neq X_i\}}f_{i}^{-1}(A_i) \in \mathcal{B}.
+    \end{equation*}
+\end{proof}
+
+The product $\sigma$-algebra satisfies numerous nice properties. We document a
+few now.
+\begin{proposition}
+    Suppose that $(X,\mathcal{A})$ and $(Y,\mathcal{B})$ are concrete $\sigma$-algebras.
+    Let $E \subseteq X\times Y$. Then for each $x \in X$ and $y \in Y$,
+    define
+    \begin{align*}
+        E^x &:= \{y \in Y\;:\;(x,y) \in E\}\\
+        E^y &:= \{x \in X\;:\;(x,y) \in E\}.
+    \end{align*}
+    $E^x$ is called the $x$-slice of $E$, and $E^y$ is the $y$-slice of $E$. 
+    If $E \in \mathcal{A} \otimes \mathcal{B}$, then $E^x \in \mathcal{B}$
+    and $E^y \in \mathcal{A}$.
+\end{proposition}
+\begin{proof}
+    It is sufficient to prove the following. Denote by $\mathcal{F}$
+    the following set,
+    \begin{equation*}
+        \mathcal{F} = \{E \subseteq X\times Y\;:\;\forall (x,y) \in X\times Y, E^x \in \mathcal{B},E^y \in \mathcal{A}\}.
+    \end{equation*}
+    We wish to prove that $\mathcal{F} = \mathcal{A}\otimes \mathcal{B}$.
+       
+    We have $\mathcal{A} \times \mathcal{B} \subseteq \mathcal{F}$.
+   
+    If $A,B \in \mathcal{F}$, with $B \subseteq A$, then $A \setminus B \in \mathcal{F}$
+    since $(A \setminus B)^x = A^x \setminus B^x$.
+    
+    If $\{A_n\}_{n=1}^\infty \subseteq \mathcal{F}$ is an increasing sequence,
+    then $\left(\bigcup_{n=1}^\infty A_n\right)^x = \bigcup_{n=1}^\infty A_n^x \in \mathcal{F}$.
+    
+    Hence $\mathcal{F}$ is a $d$-class, so $d(\mathcal{A}\times\mathcal{B}) \subseteq \mathcal{F}$.
+    
+    However, $\mathcal{A}\times\mathcal{B}$ is a $\pi$-class, so
+    by the monotone class theorem, we therefore have that $\mathcal{A}\otimes\mathcal{B} = \sigma(\mathcal{A}\times\mathcal{B}) \subseteq \mathcal{F}$.
+    
+\end{proof}
+
+
+\begin{proposition}
+    Suppose that $(X,\mathcal{A})$, $(Y,\mathcal{B})$ and $(E,\mathcal{E})$
+    are $\sigma$-algebras.
+    
+    The a function $f:X\times Y\rightarrow E$ is $\mathcal{A}\otimes \mathcal{B}$-measurable
+    if and only if, for every $x \in X$ and $y \in Y$, we have that
+    the function $f^x:y\mapsto f(x,y)$ is $\mathcal{B}$-measurable
+    and the function $f^y:x\mapsto f(x,y)$ is $\mathcal{A}$-measurable.
+\end{proposition}
+\begin{proof}
+    First suppose that $f:X\times Y\rightarrow E$
+    is $\mathcal{A}\otimes \mathcal{B}$-measurable. Then fix $x \in X$. Let $F \in \mathcal{E}$.
+    
+    Hence,
+    \begin{equation*}
+        (f^x)^{-1}(F) = \{y\;:\;f(x,y) \in F\}.
+    \end{equation*}
+    But the right hand side is simply,
+    \begin{equation*}
+        \{(x,y)\;:\;f(x,y) \in F\}^x = f^{-1}(F)^x.
+    \end{equation*}
+    However by assumption $f^{-1}(F) \in \mathcal{A}\otimes\mathcal{B}$. 
+    Hence, $f^{-1}(F) \in \mathcal{B}$. Hence $f^x$ is $\mathcal{B}$-measurable.
+    
+    By symmetry, for each $y \in Y$ we have $f^y$ is $\mathcal{A}$-measurable
+    
+    
+    
+\end{proof}
+\section{Real measurable functions}
+We will now focus on measurable real valued functions on a concrete $sigma$-algebra.
+This will motivate our definitions for measurable real valued functions
+on an abstract $\sigma$-algebra. We shall use the machinery of product measures
+here. 
+
+The real numbers, $\Rl$, are given a $\sigma$-algebra, generated
+by all the half-open intervals of the form $(a,b]$, for $a < b \in \Rl$. It is
+easy to see that this is equivalently generated by rays, $(a,\infty)$, $[a,\infty)$
+or open intervals $(a,b)$ or closed intervals $[a,b]$, or open sets.
+
+Given a concrete $\sigma$-algebra $(X,\mathcal{A})$, let $\mathcal{M}(X,\mathcal{A})$
+denote the set of measurable functions from $X$ to $(\Rl,\mathcal{B}(\Rl))$.
+
+\begin{lemma}
+    Let $X = \prod_{i=1}^\infty[0,\infty]$, where each factor has the Borel
+    $\sigma$-algebra, and $X$ has the product algebra. Then the following functions
+    are measurable:
+    \begin{enumerate}
+        \item{} $(x_n)_{n=1}^\infty \mapsto \sup_n x_n$
+        \item{} $(x_n)_{n=1}^\infty \mapsto \inf_n x_n$
+        \item{} $(x_n)_{n=1}^\infty \mapsto \limsup_n x_n$
+        \item{} $(x_n)_{n=1}^\infty \mapsto \liminf_n x_n$.
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    We only need to prove $1$. Let
+    \begin{equation*}
+        f((x_n)_{n=1}^\infty) = \sup_n x_n.
+    \end{equation*}
+    We compute $f^{-1}((a,\infty])$ for some $a > 0$. This is simply,
+    \begin{equation*}
+        f^{-1}((a,\infty]) = \bigcup_{n=1}^\infty \prod_{i=1}^{n-1} [0,\infty]\times (a,\infty])\times\prod_{i=n+1}^\infty [0,\infty)
+    \end{equation*}
+    Which is in the product $\sigma$-algebra.
+\end{proof}
+
+\begin{lemma}
+    Let $X = \Rl^2$, given the $\sigma$-algebra $\mathbb{B}(\Rl)\otimes \mathbb{B}(\Rl)$.
+    Then the function $(x,y)\mapsto x+y$ is measurable.
+\end{lemma}
+\begin{proof}
+    This is true
+    because addition is continuous. 
+\end{proof} 
+
+
+\begin{proposition}
+    $\mathcal{M}(X,\mathcal{A})$ is a real vector space, when provided
+    with pointwise function addition and scalar multiplication.
+\end{proposition}
+\begin{proof}
+    Let $f \in \mathcal{M}(X,\mathcal{A})$. Given $\alpha \in \Rl$, if $\alpha = 0$,
+    we clearly have $\alpha f \in \mathcal{M}(X,\mathcal{A})$, so assume $\alpha \neq 0$.
+    
+    First assume that $\alpha > 0$. We can easily compute, $(\alpha f)^{-1}((a,b]) = f^{-1}(a/\alpha,b/\alpha]) \in \mathcal{A}$.
+    
+    Now if $\alpha < 0$, we have $(\alpha f)^{-1}((a,b]) = f^{-1}([b/\alpha,a/\alpha)) \in \mathcal{A}$.
+    
+    Now if $f,g \in \mathcal{M}(X,\mathcal{A})$, we can compute $f+g$ as a composition,
+    $x \mapsto (f(x),g(x))\mapsto f(x) + g(x)$. This is a composition of measurable maps.
+\end{proof}
+
+\begin{proposition}
+    Given a sequence $\{f_n\}_{n=1}^\infty \subseteq \mathcal{M}(X,\mathcal{A})$.
+    Then $\inf_{n} f_n ,\sup_n f_n \in \mathcal{M}(X,\mathcal{A})$.
+\end{proposition}
+\begin{proof}
+    Since each $f_n$ is measurable, the product map $x\mapsto (f_n(x))_{n\in\Ntrl}$
+    to $\Rl^\Ntrl$ is measurable. 
+\end{proof}
+
+Now, we use these proofs to motivate our construction of $\mathcal{M}(A)$,
+where $A$ is a Boolean $\sigma$-algebra.
+
+\section{Measure Algebras}
+Now that we have all the order theory out of the way, we can finally
+get to the theory of measures. The elementary concept
+that we introduce here is a \emph{measure algebra}.
+\begin{definition}
+    A measure algebra is a pair $(A,\mu)$, where $A$ is a Boolean $\sigma$-algebra and
+     $\mu:A\rightarrow[0,\infty]$ is such that:
+    \begin{enumerate}
+        \item{} $\mu(a) < \infty$ for some $a \in A$.
+        \item{} If $\{a_i\}_{i=1}^\infty \subseteq A$ is a sequence that is
+        \emph{pairwise disjoint} (meaning $a_i \wedge a_j = 0$ for $i\neq j$)
+        we have
+        \begin{equation*}
+            \mu\left(\bigvee_{i=1}^\infty a_i\right) = \sum_{i=1}^\infty \mu(a_i).
+        \end{equation*}
+    \end{enumerate}
+\end{definition}
+\begin{remark}
+    Given a $sigma$-algebra $\mathcal{A}$ of subsets of a set $X$, and a measure
+    algebra $(\mathcal{A},\mu)$, the triple $(X,\mathcal{A},\mu)$ is called a measure
+    space. Measure spaces are special cases of measure algebras, so we prove
+    as many things as possible for measure algebras before later on specialising
+    to measure spaces.
+\end{remark}
+\begin{proposition}
+    Let $(A,\mu)$ be a measure algebra. Then $\mu(0) = 0$. 
+\end{proposition}
+\begin{proof}
+    Let $a \in A$ with $\mu(a) < \infty$. By countable disjoint additivity, we have
+    \begin{equation*}
+        \mu(a\vee 0 \vee 0 \vee 0 \vee \cdots) = \mu(a) + \mu(0) + \mu(0) + \cdots.
+    \end{equation*}
+    Hence,
+    \begin{equation*}
+        \mu(0) + \mu(0) + \mu(0) + \cdots = 0.
+    \end{equation*}
+    Thus $\mu(0) = 0$.
+\end{proof}
+\begin{proposition}
+    Measure are finitely disjointly additive. That is, if $(A,\mu)$ is a measure
+    algebra, and $a,b \in A$ with $a \wedge b = 0$, then $\mu(a \vee b) = \mu(a) + \mu(b)$.
+\end{proposition}
+\begin{proof}
+    Write $a \vee b = a \vee b \vee 0 \vee 0 \vee 0 \vee \cdots$, then use
+    countable disjoint additivity and $\mu(0) = 0$.
+\end{proof}
+\begin{proposition}
+    Let $(A,\mu)$ be a measure algebra, and $a,b \in A$. Then,
+    \begin{equation*}
+        \mu(a \vee b) + \mu(a \wedge b) = \mu(a) + \mu(b).
+    \end{equation*}
+    If $\mu(a \wedge b) < \infty$, we have the familiar inclusion-exclusion principle,
+    $\mu(a\vee b) = \mu(a) + \mu(b) - \mu(a \wedge b)$.
+\end{proposition}
+\begin{proof}
+    We can write, $a \vee b = a \vee ( b \wedge a')$, and $a \vee b = (a \wedge b) \vee (a \wedge b') \vee (b \wedge a')$. 
+    Then by disjoint additivity, we have
+    \begin{equation*}
+        \mu(a \vee b) = \mu(a\wedge b) + \mu(a \wedge b') + \mu(a' \wedge b).
+    \end{equation*}
+    Hence,
+    \begin{equation*}
+        \mu(a \vee b)+\mu(a\wedge b) = (\mu(a\wedge b) + \mu(a \wedge b')) + (\mu(a \wedge b) + \mu(a'\wedge b))
+    \end{equation*}
+    But by disjoint additvity, the right hand side is simply $\mu(a) + \mu(b)$.
+    
+\end{proof} 
+\begin{proposition}
+    Suppose that $(A,\mu)$ is a measure algebra, and $\{a_i\}_{i=1}^\infty$
+    is an increasing sequence of elements of $A$, that is, $a_i \leq a_j$
+    for $i \leq j$. Then
+    \begin{equation*}
+        \mu\left(\bigvee_{i=1}^\infty a_i\right) = \lim_{i\rightarrow\infty} \mu(a_i).
+    \end{equation*}
+\end{proposition}
+\begin{proof}
+    We ``disjointify" the sequence $\{a_i\}_{i=1}^\infty$. Let $b_i = a_i \wedge a_{i-1}'$
+    for $i>1$. Then $\bigvee_{i=1}^\infty b_i = \bigvee_{i=1}^\infty a_i$, but 
+    the sequence $\{b_i\}_{i=1}^\infty$ is pairwise disjoint. Hence,
+    \begin{align*}
+        \mu\left(\bigvee_{i=1}^\infty a_i\right) &= \mu\left(\bigvee_{i=1}^\infty b_i\right)\\
+        &= \sum_{i=1}^\infty \mu(b_i)\\
+        &= \lim_{n\rightarrow\infty} \sum_{i=1}^n \mu(b_i)\\
+        &= \lim_{n\rightarrow \infty} \mu\left(\bigvee_{i=1}^n b_i\right)\\
+        &= \lim_{n\rightarrow\infty} \mu(a_n).
+    \end{align*}
+\end{proof}
+\begin{proposition}
+    Let $(A,\mu)$ be a measure algebra. Let $\{a_i\}_{i=1}^\infty$ be a decreasing
+    sequence of elements of $a$, that is $a_i \leq a_j$ for $i \geq j$, furthermore
+    assume that $\mu(a_1) < \infty$. Then
+    \begin{equation*}
+        \mu\left(\bigwedge_{i=1}^\infty a_i\right) = \lim_{n\rightarrow\infty} \mu(a_n).
+    \end{equation*}
+\end{proposition}
+\begin{proof}
+    We have,
+    \begin{align*}
+        \mu\left(a_1\wedge \left(\bigwedge_{i=1}^\infty a_i\right)'\right) &= \mu\left(\bigvee_{i=1}^\infty a_1\wedge a_i' \right)\\
+        &= \lim_{n\rightarrow\infty}  \mu(a_1\wedge a_n')\\
+        &= \lim_{n\rightarrow\infty} \mu(a_1)-\mu(a_n).
+    \end{align*}
+    Hence, subtract $\mu(a_1)$ from both sides and the result follows.
+\end{proof}
+
+There is an important property of measure spaces, called $\sigma$-finiteness.
+\begin{definition}
+    A measure space $(X,\mathcal{A},\mu)$ is $\sigma$-finite if there is
+    a sequence $\{A_n\}_{n=1}^\infty \subseteq \mathcal{A}$ such
+    that $\mu(A_n) < \infty$ for each $n$, but $\bigcup_{n=1}^\infty A_n = X$.
+\end{definition}
+
+\begin{proposition}
+    Suppose that $(X,\mathcal{A})$ is a $\sigma$-algebra, where $\mathcal{A} = \sigma(\mathcal{C})$
+    for some $\pi$-class $\mathcal{C}$. If two $\sigma$-finite measures $\mu$ and $\nu$ on $\mathcal{A}$
+    agree on $\mathcal{C}$, then they are equal.
+\end{proposition}
+\begin{proof}
+    First consider the case where $\mu$ and $\nu$ are finite. Then, let $\mathcal{F}$
+    be the collection of all $F \in \mathcal{A}$ such that $\mu(A) = \nu(A)$. We see
+    that if $A,B \in \mathcal{F}$, with $B \subseteq A$, then 
+    \begin{equation*}
+        \mu(A\setminus B) = \mu(A)-\mu(B) = \nu(A)-\nu(B) = \nu(A\setminus B).
+    \end{equation*}
+    So $A\setminus B \in \mathcal{F}$.
+    
+    Now if $\{A_n\}_{n=1}^\infty$ is an increasing sequence in $\mathcal{F}$, we
+    have 
+    \begin{equation*}
+        \mu\left(\bigcup_{n=1}^\infty A_n\right) = \lim_{n\rightarrow\infty} \mu\left(A_n\right) = \lim_{n\rightarrow\infty} \nu(A_n) = \nu\left(\bigcup_{n=1}^\infty\right)
+    \end{equation*} 
+    
+    Hence $\mathcal{F}$ is a $d$-class, so $\mathcal{A} = \sigma(\mathcal{C}) = d(\mathcal{C}) \subseteq \mathcal{F}$.
+    
+    Now assume that $\mu$ and $\nu$ are $\sigma$-finite. We can find an
+    increasing sequence $\{A_n\}_{n=1}^\infty$ such that $\mu(A_n),\nu(A_n) <\infty$
+    and $X = \bigcup_{n=1}^\infty A_n$. Then, if $A \in \mathcal{F}$ since the
+    measures $\mu_n(A) = \mu(A_n\cap A$ and $\nu_n(A) = \nu(A\cap A_n)$, we have
+    \begin{equation*}
+        \mu(A) = \lim_{n\rightarrow\infty} \mu(A\cap A_n) = \lim_{n\rightarrow\infty} \nu(A\cap A_n) = \nu(A).
+    \end{equation*}
+\end{proof}
+
+\section{Integration of non-negative functions}
+Let $X$ be any set, and let $f:X\rightarrow [0,\infty)$. We can find a sequence
+of functions of finite range that converges to $f$ pointwisely and monotonically
+from below.
+
+Let 
+\begin{equation*}
+    s_n = \sum_{k=1}^{2^{2n}} \frac{k}{2^n}\chi_{f^{-1}([k/2^n,(k+1)/2^n))}
+\end{equation*}
+
+Now let $(X,\mathcal{A},\mu)$ be a measure space. A function $s:X\rightarrow[0,\infty]$
+is called simple if it measurable and has finite image. If
+\begin{equation*}
+    s = \sum_{k=1}^n a_k \chi_{A_k}
+\end{equation*}
+for some disjoint selection $A_k \in \mathcal{A}$, we define the integral of $s$
+to be
+\begin{equation*}
+    \int_X s\;d\mu := \sum_{k=1}^n a_k\mu(A_k)
+\end{equation*}
+where we assert only for the purposes of this definition that $0\cdot\infty = 0$.
+
+Now if $f:X\rightarrow [0,\infty]$ is any measurable function, we define
+\begin{equation*}
+    \int_X f\;d\mu = \sup\{\int_X s\;d\mu\;:\;s\text{ is a simple function },s \leq f\}
+\end{equation*}
+
+Our first proposition is obvious,
+\begin{proposition}
+    Let $f,g:X\rightarrow[0,\infty]$ be measurable, and $f \leq g$, then
+    \begin{equation*}
+        \int_X f\;d\mu \leq \int_X g\;d\mu.
+    \end{equation*}
+\end{proposition}
+\begin{proof}
+    This follows from the fact 
+    \begin{equation*}
+        \{s\;:\;\text{ is a simple function },s \leq f\}
+    \end{equation*}
+    is a subset of
+    \begin{equation*}
+        \{s\;:\;\text{ is a simple function },s \leq g\}
+    \end{equation*}
+\end{proof}
+
+\begin{proposition}
+    Suppose that $\{f_n\}_{n=1}^\infty$ is a monotonically increasing
+    sequence of measurable functions from $X$ to $[0,\infty)$. Then
+    \begin{equation*}
+        \lim_{n\rightarrow\infty} \int_Xf_n\;d\mu = \int_X \lim_{n\rightarrow\infty} f_n\;d\mu.
+    \end{equation*}
+\end{proposition} 
+\begin{proof}
+    Let $f = \lim_{n\rightarrow \infty} f_n$. For any $n$, we have $f_n\leq f$. Hence,
+    \begin{equation*}
+        \int_{X} f_n\;d\mu \leq \int_X f\;d\mu.
+    \end{equation*}
+    Thus,
+    \begin{equation*}
+        \lim_{n\rightarrow\infty} \int_X f_n\;d\mu \leq\int_X f\;d\mu.
+    \end{equation*}
+    
+    So we must prove the reverse inequality.
+    
+    Let $s$ be a simple function with $s \leq f$.
+    Let $s = \sum_{k=1}^N s_k \chi_{B_k}$, where the $B_k$
+    are pairwise disjoint.
+     We would like to show that
+    $\lim_{n\rightarrow\infty} f_nd\mu \geq \int_X s\;d\mu$. To this end,
+    let $c \in (0,1)$. Define
+    \begin{equation*}
+        A_n = \{x\;:\;f_n \geq cs\}.
+    \end{equation*}
+    We have,
+    \begin{equation*}
+        f_n \geq f_n \chi_{A_n} \geq cs\chi_{A_n}.
+    \end{equation*} 
+    Hence,
+    \begin{equation*}
+        \int_X f_n\;d\mu \geq \sum_{k=1}^N cs_k \mu(B_k \cap A_n).
+    \end{equation*}
+    Now we take the limit. Note that since $f_n$ converges pointwisely,
+    $\bigcup_n A_n = X$. Thus, $\lim_{n\rightarrow\infty} \mu(B_k \cap A_n) = \mu(B_k)$.
+    
+    Thus, 
+    \begin{equation*}
+        \lim_{n\rightarrow\infty} \int_X f_n\;d\mu \geq c\int_X s\;d\mu.
+    \end{equation*}
+    But $c$ is arbitrary, so we have our result.
+\end{proof} 
+  
+  
+The next result is called Fatou's lemma. 
+\begin{lemma}
+    Let $\{f_n\}_{n=1}^\infty$ be a sequence of measurable functions from $X$ to $[0,\infty)$. We have
+    \begin{equation*}
+        \int_X \liminf_{n} f_n\;d\mu \leq \liminf_{n} \int_X f_n\;d\mu.
+    \end{equation*}
+\end{lemma}
+\begin{proof}
+    For any $k \geq 0$, and $j\geq n$, we have
+    \begin{equation*}
+        \inf_{n\geq k} f_n \leq f_j.
+    \end{equation*}
+    Hence, we integrate this,
+    \begin{equation*}
+        \int_X \inf_{n\geq k} f_n \leq \int_{X} f_j\;d\mu.
+    \end{equation*}
+    But since $j \geq k$ is arbitrary, this implies
+    \begin{equation*}
+        \int_X \inf_{n\geq k} f_n\;d\mu \leq \inf_{n\geq k} \int_X f_n \;d\mu.
+    \end{equation*}
+    Hence,
+    \begin{equation*}
+        \lim_{k\rightarrow\infty} \int_X \inf_{n\geq k} f_n\;d\mu \leq \lim_{k\rightarrow\infty} \inf_{n\geq k} \int_X f_n\;d\mu.
+    \end{equation*}
+    So by the monotone convergence theorem,
+    \begin{equation*}
+        \int_X \liminf_n f_n\;d\mu \leq \liminf_n \int_X f_n\;d\mu.
+    \end{equation*}
+\end{proof}
+  
+The next theorem generalises the monotone convergence theorem, and is called
+the convergence from beneath theorem:
+\begin{proposition}
+    Suppose that $\{f_n\}_{n=1}^\infty$ is sequence of measurable
+    functions from $X$ to $[0,\infty]$. Suppose that $\lim_{n\rightarrow\infty} = f$,
+    and for each $n$, we have $f_n \leq f$. Then
+    \begin{equation*}
+        \lim_{n\rightarrow\infty} \int_X f_n\;d\mu = \int_X f\;d\mu.
+    \end{equation*}
+\end{proposition}
+\begin{proof}
+    For each $n$, we have $f_n \leq f$, hence
+    \begin{equation*}
+        \limsup_n \int_X f_n \;d\mu \leq \int_X f\;d\mu.
+    \end{equation*}
+    But also $\liminf_n f_n = f$, so by Fatou's lemma,
+    \begin{equation*}
+        \int_X f\;d\mu = \int_X \liminf_n f_n\;d\mu \leq \liminf_n \int_X f_n\;d\mu.
+    \end{equation*}
+    So we are done.
+\end{proof}
+
+
+The monotone convergence theorem justifies our definition of the integral
+in the case of abstract measure algebras. Suppose that $(A,\mu)$ is a measure algebra,
+and $f:A\rightarrow \mathcal{B}([0,\infty])$ is a measurable function (that is,
+$f$ is a $\sigma$-algebra homomorphism from $\mathcal{B}([0,\infty])$ to $A$. Then define
+\begin{equation*}
+    \int_X f\;d\mu := \lim_{n\rightarrow\infty} \sum_{k=1}^{2^{2n}} \frac{k}{2^n}\mu(f(k/2^n,(k+1)/2^n])
+\end{equation*}
+
+Now using this definition, we prove some further properties.
+\begin{proposition}
+    Let $(A,\mu)$ be a $\sigma$-algebra. Let $f,g:A\rightarrow\mathcal{B}([0,\infty])$
+\end{proposition}
+
+\section{Product measures and Tonelli's theorem}
+Let $(X,\mathcal{A},\mu)$ and $(Y,\mathcal{B},\nu)$ be $\sigma$-finite measure
+spaces. We would like to define a compatible measure $\mu\times\nu$ on $(X\times Y,\mathcal{A}\otimes \mathcal{B})$. 
+
+We can specify this uniquely by saying that for each $A\times B \in \mathcal{A}\times \mathcal{B}$,
+we have $(\mu\times \nu)(A\times B) = \mu(A)\nu(B)$. This determines
+the measure uniquely, since it is obvious that any measure satisfying this equality
+is $\sigma$-finite, and $\mathcal{A}\times\mathcal{B}$ is a $\pi$-class.
+
+So we only need to prove that $\mu\times\nu$ exists. First we need to
+prove the following,
+\begin{lemma}
+    Let $E \in \mathcal{A}\otimes\mathcal{B}$. Then the function $X\rightarrow [0,\infty]$
+    given by $x\mapsto \nu(E^x)$ is $\mathcal{A}$ measurable.
+\end{lemma}
+\begin{proof}
+    
+    Let $\mathcal{F}$ be the set of all $E \subseteq X\times Y$ such that $x \mapsto \nu(E^x)$
+    is $\mathcal{A}$-measurable. 
+    
+    We clearly have $\mathcal{A}\times\mathcal{B} \subseteq \mathcal{F}$.
+    
+    Suppose that $\{A_n\}_{n=1}^\infty$ is an increasing sequence in $\mathcal{F}$. Then $\nu\left(\bigcup_{n=1}^\infty A_n\right)^x = \nu\left(\bigcup_{n=1}^\infty A_n^x\right)$.
+    But by countable additivity, this is $\sum_{n=1}^\infty \nu(A_n^x)$.
+    This is a supremum of measurable functions, hence is measurable.
+    
+    Now assume that $\nu$ is a finite measure.
+    
+    If $A,B \in \mathcal{F}$, then we have $\nu(A\setminus B)^x = \nu(A^x\setminus B^x) = \nu(A^x) - \nu(B^x)$,
+    hence $A \setminus B \in \mathcal{F}$.
+    
+    Now if $\nu$ is $\sigma$-finite, we have for each $B \in \mathcal{B}$, a sequence
+    of sets of finite measure $A_n$ such that $\nu(B) = \lim_{n\rightarrow\infty} \nu(A_n\cap B)$. 
+    
+    Hence, if $A,B \in \mathcal{F}$, then
+    \begin{align*}
+        \nu(A\setminus B)^x &= \lim_{n\rightarrow\infty}\\
+        &=  \nu((A\cap A_n)^x\setminus (B\cap A_n)^x)\\
+         &= \lim_{n\rightarrow\infty} \nu(A\cap A_n)^x-\nu(B\cap A_n)^x\\
+         &= \lim_{n\rightarrow\infty} \nu(A_n\cap(A\setminus B))^x\\
+    \end{align*}
+    Hence, $A\setminus B \in \mathcal{F}$.
+    
+\end{proof}
+
+\begin{proposition}
+    Let $(X,\mathcal{A},\mu)$ and $(Y,\mathcal{B},\nu)$ be $\sigma$-finite
+    measure spaces. Then there exists a product measure on $(X\times Y,\mathcal{A}\otimes \mathcal{B})$.
+\end{proposition}
+\begin{proof}
+    Define, for each $E \in \mathcal{A}\otimes \mathcal{B}$,
+    \begin{equation*}
+        (\mu\times\nu)(E) := \int_X \nu(E^x)\;d\mu(x).        
+    \end{equation*}
+    This is a measure by the monotone convergence theorem. That is, if $\{A_n\}_{n=1}^\infty$
+    is a pairwise disjoint subset of $\mathcal{A}\otimes\mathcal{B}$, then
+    \begin{equation*}
+        (\mu\times\nu)\left(\bigcup_{n=1}^\infty A_n\right) = \sum_{n=1}^\infty \int_{X} \nu(A_n^x)\;d\mu(x).
+    \end{equation*}
+    and we have $(\mu\times\nu)(\emptyset) = 0$
+\end{proof}
+
+Now we prove the famous and important Tonelli's theorem:
+\begin{proposition}
+    Let $(X,\mathcal{A},\nu)$ and $(Y,\mathcal{B},\mu)$ be measure spaces,
+    and let $f:X\times Y\rightarrow[0,\infty]$ be $\mathcal{A}\otimes\mathcal{B}$
+    measurable. Then
+    \begin{equation*}
+        \int_{X\times Y} f\;d(\mu\times\nu) = \int_Y \int_X f(x,y)\;d\mu(x)d\nu(y) = \int_X \int_Y f(x,y)\; d\nu(y)d\mu(x)
+    \end{equation*}
+\end{proposition}
+\begin{proof}
+    This is true by definition when $f$ is an indicator function. Hence by linearity
+    it is true when $f$ is simple. Then by the monotone convergence theorem,
+    it is true for any non-negative measurable function $f$.
+\end{proof}
+
+\section{$L^p$ spaces}
+So far we have dealt only with non-negative measurable functions. We define
+spaces of $\Cplx$ valued functions by noting that for any $p > 0$, the function
+$x\mapsto |x|^p$ is measurable on $\Cplx$ with the Borel $\sigma$-algebra.
+
+Hence define,
+\begin{definition}
+    Given $p > 0$ and a measure space $(X,\mathcal{A},\mu)$, define the set
+    \begin{equation*}
+        \mathcal{L}^p(X,\mu) := \{f:X\rightarrow\Cplx\;:\;f\text{ is }\mathcal{B}(\Cplx)\text{ measurable and},\int_X |f|^p\;d\mu < \infty\}
+    \end{equation*}
+\end{definition}
+
+Note that for any non-negative real numbers $a$ and $b$, we have the inequaluty $(a+b)^p \leq a^p + b^p$.
+Hence, $\mathcal{L}^p(X,\mu)$ is a complex vector space. Define the quantity,
+\begin{equation*}
+    \|f\|_p = \left(\int_X |f|^p\;d\mu\right)^{1/p}
+\end{equation*}
+Hence we have $\|f+g\|_p^p \leq \|f\|_p^p + \|g\|_p^p$.
+
+Given $f \in \mathcal{L}^1(X,\mu)$, we can write $f$
+as $f = (\max\{\Re(f),0\}-\max\{0,-\Re{f}\}) + i(\max\{\Im(f),0\}-\max\{0,-\Im(f)\})$,
+then define
+\begin{equation*}
+    \int_X f\;d\mu = \int_X \max\{\Re(f),0\}\;d\mu - \int_X \max\{0,-\Re(f)\}\;d\mu + i\left(\int_X \max\{\Im(f),0\}\;d\mu - \int_X \max\{0,-\Im(f)\}\;d\mu\right)
+\end{equation*}
+
+Now we can state the important dominated convergence theorem,
+\begin{proposition}
+    Let $\{f_n\}_{n=1}^\infty \subset \mathcal{L}^1(X,\mu)$ be such that
+    there exists a function $g \in \mathcal{L}^1(X,\mu)$ with $|f_n| \leq g$
+    for all $n$. Suppose that for every $x$, $f_n(x)\rightarrow f(x)$. Then
+    $\|f_n-f\|_1\rightarrow 0$, and hence
+    \begin{equation*}
+        \lim_{n\rightarrow\infty} \int_X f_n \;d\mu = \int_X f\;d\mu.
+    \end{equation*}
+\end{proposition}
+\begin{proof}
+    We have $|f-f_n| \leq 2g$, so by Fatou's lemma,
+    \begin{equation*}
+        \int_X \liminf_{n} 2g-|f-f_n| \;d\mu \leq \liminf_n\int_X 2g-|f-f_n|\;d\mu.
+    \end{equation*}
+    Hence,
+    \begin{equation*}
+        \limsup_n \int_X |f-f_n|\;d\mu \leq 0.
+    \end{equation*}
+\end{proof}
+
+Crucial to defining $L^p$ spaces is the following inequality,
+called the H\"older inequality.
+
+First we prove a lemma,
+\begin{lemma}
+    Let $a,b \geq 0$, and $p > 1$ with $1/p+1/q = 1$. Then
+    \begin{equation*}
+        ab \leq \frac{a^p}{p}+\frac{b^q}{q}
+    \end{equation*}
+\end{lemma}
+\begin{proof}
+    Consider the rectanble $[0,a]\times [0,b]$. The area graph of the function $x\mapsto x^{p-1}$
+    on the interval $[0,a]$ covers some fraction of $[0,a]\times [0,b]$. The remaining
+    part of the rectangle is covered by the graph if the inverse function, $x\mapsto x^{\frac{1}{p-1}}$.
+    Hence,
+    \begin{equation*}
+        ab\leq \int_0^a x^{p-1}\;dx + \int_0^{b} x^{\frac{1}{p-1}}\;dx = \frac{a^p}{p}+\frac{b^q}{q}.
+    \end{equation*}
+\end{proof}
+\begin{proposition}
+    Suppose $p \geq 1$, and $1/p + 1/q = 1$. Then,
+    \begin{equation*}
+        \|fg\|_1 \leq \|f\|_p\|g\|_q.
+    \end{equation*}
+\end{proposition}
+\begin{proof}
+    If $\|f\|_p = 0$ or $\|g\|_p = 0$, the result is easy. So assume
+    that $\|f\|_p = \|g\|_p = 1$. Then we have, for each $x \in X$,
+    \begin{equation*}
+        |f(x)g(x)| \leq \frac{|f(x)|^p}{p}+\frac{|g(x)|^q}{q}
+    \end{equation*}
+    Integrate over $p$ to obtain the result.
+\end{proof}
+
+The next result is called Minkowski's inequality,
+\begin{proposition}
+    Let $p\geq 1$. Then $\|f+g\|_p \leq \|f\|_p + \|g\|_p$.
+\end{proposition}
+\begin{proof}
+    Assume $\|f+g\|_p \neq 0$, because then it is obvious. 
+    
+    We compute,
+    \begin{equation*}
+        \|f+g\|_p^p \leq \int_{X} |f||f+g|^{p-1}\;d\mu + \int_X |g||f+g|^{p-1}\;d\mu
+    \end{equation*}
+    
+    Now we use H\"older's inequality,
+    \begin{equation*}
+        \|f+g\|_p^p \leq (\|f\|_p+\|g\|_p)\frac{\|f+g\|_p^p}{\|f+g\|_p}.
+    \end{equation*}
+    And the result follows.
+\end{proof}
+
+Now we introduce the $L^p$ spaces. Define an equivalence
+relation on $\mathcal{L}^p(X,\mu)$ such that two
+functions are equivalent if they differ on a set of measure $0$.
+This space is called $L^p(X,\mu)$. The algebraic operations and norms
+on $\mathcal{L}^p(X,\mu)$ are well defined for $L^p(X,\mu)$
+
+\begin{proposition}
+    Let $p > 0$. Then when equipped with the metric,
+    $d_p(f,g) = \|f-g\|_p^p$, $L^p(X,\mu)$ is a complete metric space.
+\end{proposition}
+\begin{proof}
+    If we suppose that $L^p(X,\mu)$ is complete, then given every series
+    $\sum_n u_n$ such that $\sum_n \|u_n\|_p^p$ converges, then $\sum_{n} u_n$
+    converges. This follows from the bound,
+    \begin{equation*}
+        \|u_n + u_{n+1} + u_{n+2} + \cdots + u_{n+m}\|^p_p \leq \|u_n\|_p^p + \|u_{n+1}\|_p^p + \cdots + \|u_{n+m}\|_p^p.
+    \end{equation*}
+    Conversely, if $L^p(X,\mu)$ has the property that every series of the form
+    $\sum_{n} u_n$ where $\sum_{n} \|u_n\|_p^p$ converges, then $\sum_{n} u_n$
+    converges in the $L^p$ space, then we prove that $L^p(X,\mu)$ is complete.
+    
+    Let $\{u_n\}_{n\in \Ntrl}$ be a Cauchy sequence in the $d_p$ metric. Choose
+    a subsequence $\{u_{\varphi(n)}\}_{n\in\Ntrl}$ where $\varphi:\Ntrl\rightarrow\Ntrl$
+    is increasingly rapidly enough such that $d_p(u_{\varphi(n)},u_{\varphi(n+1)}) < 2^{-n}$. 
+    Then the series $\sum_{n} u_{\varphi(n+1)}-u_{\varphi(n)}$ converges. Hence $\{u_n\}_n$
+    converges, so $L^p(X,\mu)$ is complete.
+    
+    
+    Hence to prove that $L^p(X,\mu)$ is complete, it is sufficient to prove that every
+    series of the form $\sum_n u_n$ where $\sum_n \|u_n\|_p^p$ converges
+    is convergent. By the monotone convergence theorem, we have
+    
+    \begin{equation*}
+        \lim_{n\rightarrow\infty} \int_X \left(\sum_{k=1}^n |u_k|\right)^p\;d\mu = \int_X \left(\sum_{k=1}^\infty|u_k|\right)^p\;d\mu \leq \sum_{k=1}^\infty \|u_k\|_p^p.
+    \end{equation*}
+    
+    Hence, we have an almost everywhere pointwise converging sum $\sum_{n} |u_n|$. Hence
+    almost everywhere, the function $f = \sum_{n} u_n$ is defined. The functions,
+    $f_N = \left(\sum_{n=1}^N u_n\right)^p$ are pointwise dominated by $G = \left(\sum_{n} |u_n|\right)^p$,
+    which is $L^1$. Hence $f$ is in $L^1$, and the functions $g_n = \sum_{k=n}^\infty u_n$
+    are dominated $G$ also, so $f_n\rightarrow f$ in the $L^p$ sense.
+\end{proof}
+
+\section{Signed Measures and Radon-Nykodym}
+A simple generalisation of the measure concept is provided
+by the idea of a signed measure.
+\begin{definition}
+    Let $A$ be a Boolean $\sigma$-algebra. A function $\nu:A\rightarrow [-\infty,\infty]$
+    is called a signed measure if,
+    \begin{enumerate}
+        \item{} $\nu(0) = 0$.
+        \item{} The values $-\infty$ and $+\infty$ are both not simultaneously obtained.
+        \item{} For any sequence $\{a_k\}_{k=1}^\infty \subseteq A$ with $a_k \wedge a_j = 0$
+        for all $k\neq j$, we have
+        \begin{equation*}
+            \nu\left(\bigvee_{i=1}^\infty a_i\right) = \sum_{i=1}^\infty \nu(a_i).
+        \end{equation*}
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    An element $p$ of a signed measure algebra $(A,\nu)$ is called \emph{hereditarily positive}
+    if for any $e \leq p$, we have $\nu(e) \geq 0$. Similarly an element $n$
+    is called \emph{hereditarily negative} if for any $f \leq n$ we have $\nu(f) \leq 0$.
+\end{definition}
+Note that the elements which are both hereditarily negative and hereditarily
+positive are exactly null sets.
+
+\begin{lemma}
+\label{positiveImpliesContainsPositive}
+Let $(A,\nu)$ be a signed measure algebra, suppose that $a \in A$ has $\nu(A) > 0$.
+Then there exists a hereditarily positive element $p \leq a$ with $\nu(p) > 0$.
+\end{lemma}
+\begin{proof}
+    If $a$ is hereditarily positive, then we are done.
+    
+    Otherwise, there is some $a_1 < a$ with $\nu(a_1) < 0$.
+    Choose $n_1$ as the smallest positive integer such that $\nu(a_1) < -1/n_1$.
+    
+    Now consider $a \wedge a_1'$. We must have $\nu(a\wedge a_1') > 0$. 
+    If $a \wedge a_1'$ is hereditarily positive, we are done. 
+    
+    Otherwise, there is some $a_2 < a \wedge a_1'$ with $\nu(a_2) < 0$.
+    
+    Choose $n_2$ as the smallest positive integer such that $\nu(a_2) < -1/n_2$.
+    
+    Continue inductively, building elements $a_k \leq a\wedge \bigwedge_{i=1}^{k-1} a_i'$,
+    with $n_k$ the smallest positive integer such that $\nu(a_k) \leq -1/n_k$.
+    
+    If no such $n_k$ exists, then we are done, and we can choose $p = a \wedge \bigwedge_{i=1}^{k-1} a_i'$.
+    
+    Otherwise, the process continues indefinitely. Then define,
+    \begin{equation*}
+        p := a \wedge \bigwedge_{i=1}^\infty a_i' = a\wedge\left(\bigvee_{i=1}^\infty a_i\right)'.
+    \end{equation*}
+    
+    Note that we have,
+    \begin{equation*}
+        \nu(p) = \nu(a) - \sum_{i=1}^\infty \nu(a_i).
+    \end{equation*}
+    Hence we cannot have $\sum_i \nu(a_i) = -\infty$. Thus
+    the sum $\sum_i 1/n_i$ converges. 
+    
+    Therefore the sequence $n_i \rightarrow \infty$ as $i\rightarrow\infty$.
+    
+    Now let $e \leq p$. If $\nu(e) < 0$, there is some $n_i$
+    with $\nu(e) < -1/n_i$. Choose $k > i$ such that $n_k > n_i$. But
+    then $e_k$ was chosen so that $n_k$ is the least integer such that $\nu(e_k) < -1/n_k$.
+    
+    However $\nu(e_k \vee e) < -1/n_i$, so $n_k$ cannot be minimal.
+    
+    This is a contradiction, so we must have $\nu(e) \geq 0$. Hence $p$
+    is hereditarily positive.
+\end{proof}
+
+Now we prove the Hahn decomposition for measure algebras:
+\begin{proposition}
+    Suppose that $(A,\nu)$ is a signed measure algebra. Then there
+    exists $p,n \in A$ with $p \vee n = 1$, $\nu(p \wedge n) = 0$
+    and $p$ hereditiarily positive and $n$ hereditarily negative.
+\end{proposition}
+\begin{proof}
+    Assume without loss of generality that $\nu$ does not take the value $+\infty$.
+    
+    Define
+    \begin{equation*}
+        \beta = \sup\{\nu(a)\;:\;a\text{ is hereditarily positive.}\}.
+    \end{equation*}
+    We see that $\beta$ exists because $0$ is hereditarily positive. Suppose
+    that $\{a_k\}_{k=1}^\infty$ is a sequence with $\nu(a_k)\rightarrow\beta$.
+    
+    Since the join of any two hereditarily positive elements is
+    hereditarily positive, we may take $a_k$ to be an increasing sequence. 
+    Let 
+    \begin{equation*}
+        p := \bigvee_{k=1}^\infty a_k.
+    \end{equation*}
+    See that if $e \in A$, we have 
+    \begin{equation*}
+        \nu(p\wedge e) = \lim_{k\rightarrow\infty} \nu(a_k\wedge e) \geq 0.
+    \end{equation*}
+    So $p$ is hereditarily positive, and $\nu(p) \leq \beta$. But since
+    \begin{equation*}
+        \nu(p) = \lim_{k\rightarrow\infty} \nu(a_k)
+    \end{equation*}
+    we must have $\nu(p) = \beta$.
+    
+    Now let $n = p'$. Let $f \leq n$. Then if $\nu(f) > 0$ by lemma \ref{positiveImpliesContainsPositive}, we must have
+    \begin{equation*}
+        \nu(p\vee f) > \nu(p) > \beta
+    \end{equation*}
+    and $p \vee f$ is hereditarily positive, so this is impossible. 
+    
+    Hence $\nu(f) \leq 0$, and so $n$ is hereditarily negative.
+    
+    Since $p \wedge n \leq n$ and $p \wedge n \leq p$, $p\wedge n$
+    is both hereditarily positive and negative, hence null.
+\end{proof}
+
+Two positive measures $\mu_1$
+and $\mu_2$ are said to be mutually singular if $\mu_1(a) > 0$
+implies that $\mu_2(a) = 0$, and vice versa. We write $\mu_1 \bot \mu_2$.
+
+This allows us to state and prove the Jordan decomposition:
+\begin{proposition}
+    Let $(A,\nu)$ be a signed measure algebra. There exist unique positive
+    measures $\nu_+$ and $\nu_-$ with $\nu_+\bot \nu_-$
+    and $\nu = \nu_+-\nu_-$.
+\end{proposition}
+\begin{proof}
+    Let $p,n$ be the Hahn decomposition of $A$. Define $\nu_+(a) = \nu(a\wedge p)$
+    and $\nu_-(a) = -\nu(a\wedge n)$. 
+    
+\end{proof}
+
+\begin{lemma}
+    Suppose that $A$ is a Boolean $\sigma$-algebra, and $\lambda$ and $\mu$
+    are two finite measures where $\lambda$ is positive, and which are not mutually singular. Then there
+    exists an $\varepsilon > 0$ and an element $e \in A$ such that $e$
+    is hereditarily positive for $\lambda-\varepsilon\mu$, and $\mu(e) > 0$.
+\end{lemma}
+\begin{proof}
+    Define the measure $\nu_k = \lambda-(1/k)\mu$. Let $1 = p_k\vee n_k$
+    be the associated Hahn decomposition. Then let $p = \bigvee_k p_k$
+    and $n = p' = \bigwedge_k n_k$.
+    
+    Then $n$ is negative for every $\nu_k$, thus $\lambda(n) \leq 0$. Hence $\lambda(n) = 0$.
+    
+    If $\mu(p) = 0$, then $\mu$ and $\lambda$ are mututally singular.
+    Hence $\mu(p_k) > 0$ for some $k$. Thus we have a solution
+    for $\varepsilon = 1/k$ and $e = p_k$. 
+\end{proof}
+
+At last we can prove the important Radon-Nikodym theorem, also
+called the Lebesque decomposition.
+\begin{proposition}
+    Let $(X,\mathcal{A},\nu)$ be a $\sigma$-finite signed measure space. Let
+    $\mu$ be a positive measure on $(X,\mathcal{A})$. Then there exists a
+    unique decomposition,
+    \begin{equation*}
+        \nu(A) = \lambda(A) + \int_A f\;d\mu.
+    \end{equation*}
+    where $f \in \mathcal{L}^1(X,\mu)$ and $\lambda$ is a positive measure with $\lambda \bot \nu$.
+\end{proposition}
+\begin{proof}
+    Assume first that $\nu(X) < \infty$ and $\nu$ is a positive measure.
+    Let
+    \begin{equation*}
+        \mathcal{F} = \left\{f \;:\; \int_A f\;d\mu \leq \nu(A)\right\}.
+    \end{equation*}
+    Note that if $f,g \in \mathcal{F}$, then $\max\{f,g\} \in \mathcal{F}$.
+    
+    Let
+    \begin{equation*}
+        a = \sup\left\{\int_X f\;d\mu \;:\; f \in \mathcal{F}\right\}.
+    \end{equation*}
+    We have $a \leq \nu(X)$. Suppose that $\{g_n\}_{n=1}^\infty$
+    is a sequence of measurable functions which approximate the supremum. That is,
+    \begin{equation*}
+        a = \lim_{n\rightarrow\infty} \int_X g_n\;d\mu.
+    \end{equation*}
+    
+    We can choose $g_n$ to be an increasing sequence, since $\mathcal{F}$
+    is closed under taking finite maximums. Then let $f = \lim_{n\rightarrow\infty} g_n$.
+    
+    Hence by the monotone convergence theorem we have
+    \begin{equation*}
+        \int_A f\;d\mu = \lim_{n\rightarrow\infty} \int_A g_n\;d\mu \leq \nu(A).
+    \end{equation*}
+    Hence $f \in \mathcal{F}$, and
+    \begin{equation*}
+        \int_X f\;d\mu = a.
+    \end{equation*}
+    
+    
+    Now define the measure $\lambda$,
+    \begin{equation*}
+        \lambda(A) = \nu(A) - \int_Af\;d\mu
+    \end{equation*}
+    $\lambda$ is a positive measure since $f \in \mathcal{F}$.
+    
+    If $\lambda$ is not mutually singular to $\mu$, then there exists $\varepsilon > 0$
+    and an element $E \in \mathcal{A}$ such that $E$ is hereditarily positive for 
+    $\lambda - \varepsilon \mu$ and $\mu(E) > 0$.
+    
+    Let $a \in A$. Then,
+    \begin{equation*}
+        \varepsilon\mu(E\cap A) \leq \lambda(A) = \nu(A) - \int_A f\;d\mu.
+    \end{equation*}
+    Then consider
+    $f_\varepsilon := f+\varepsilon\chi_E$. We have $\int_X f_\varepsilon \;d\mu > \int_X f\;d\mu$.
+    But this is impossible.
+    
+    Hence $\lambda \bot \mu$.
+    
+    Now we generalise to the case where $\nu$ is a $\sigma$-finite positive measure
+    by finding an increasing sequence $\{A_k\}_{k=1}^\infty \subseteq \mathcal{A}$
+    and finding a decomposition $d\lambda_k+f_kd\mu$ for the measure
+    obtained by restricting $\nu$ to $A_k$. By taking limits, this
+    gives us a decomposition for all of $X$.
+    
+    Now use the Jordan decomposition to increase to the case where $\nu$ is signed.    
+\end{proof}
+
+\section{Young's inequality}
+Suppose that $(G,+)$ is a locally compact abelian group. The general
+theory of locally compact abelian groups tells us that $G$ possesses
+a unique (up to scaling) translation invariant measure
+which is \emph{inner regular} and \emph{outer regular}. Denote
+this measure by $\mu$. Given $f,g \in C_c(G)$, define
+\begin{equation*}
+    (f*g)(x) := \int_G f(x-y)g(y)\;d\mu(y).
+\end{equation*}
+
+\begin{proposition}
+    Let $1 \leq p,q,r \leq \infty$ with $1+1/r = 1/p + 1/q$. Then if
+    $f \in \mathcal{L}^p(G,\mu)$ and $g \in \mathcal{L}^q(G,\mu)$,
+    then $f*g \in \mathcal{L}^r(G,\mu)$, with
+    \begin{equation*}
+        \|f*g\|_r \leq \|f\|_p\|g\|_q.
+    \end{equation*}
+\end{proposition}
+\begin{proof}
+    
+\end{proof}
+
+\end{document}
